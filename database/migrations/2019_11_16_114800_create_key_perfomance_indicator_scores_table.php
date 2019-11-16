@@ -17,8 +17,8 @@ class CreateKeyPerfomanceIndicatorScoresTable extends Migration
             $table->bigIncrements('id');
             $table->string('year');
             $table->string('ytd');
-            $table->unsignedBigInteger('keyPerfomanceIndicator_id');
-            $table->foreign('keyPerfomanceIndicator_id')->references('id')->on('key_perfomance_indicators');
+            $table->unsignedBigInteger('kpi_id');
+            $table->foreign('kpi_id')->references('id')->on('key_perfomance_indicators');
             $table->unsignedBigInteger('strategicObjective_id')->nullable();
             $table->foreign('strategicObjective_id')->references('id')->on('strategic_objectives');
             $table->string('score');

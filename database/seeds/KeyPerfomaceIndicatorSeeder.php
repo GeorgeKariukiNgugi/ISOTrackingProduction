@@ -523,6 +523,13 @@ class KeyPerfomaceIndicatorSeeder extends Seeder
                 'arithmeticStructure'=>'1'
             ],
             [
+                'name'=>'Ensure Customer Quality Management in terms of que Management (MASS)',
+                'target'=>'80',
+                'strategicObjective_id'=>'22',
+                'perspective_id'=>'7',
+                'arithmeticStructure'=>'1'
+            ],
+            [
                 'name'=>'Ensure Customer Quality Management in terms of Repeat caller FCR(First Contact Resolution)',
                 'target'=>'75',
                 'strategicObjective_id'=>'22',

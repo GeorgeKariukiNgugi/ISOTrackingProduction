@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "94d4bf9ac7f4a933030e46a346ee2917",
+    "content-hash": "6b77150873886fdba3fef7e2ae8b4080",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -3997,6 +3997,47 @@
                 "xunit"
             ],
             "time": "2019-10-28T10:37:36+00:00"
+        },
+        {
+            "name": "pipe-dream/laravel-create",
+            "version": "v0.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pipe-dream/laravel-create.git",
+                "reference": "ed8c7f6dfe4350c271896a3dc0a68e87d800f70b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pipe-dream/laravel-create/zipball/ed8c7f6dfe4350c271896a3dc0a68e87d800f70b",
+                "reference": "ed8c7f6dfe4350c271896a3dc0a68e87d800f70b",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1.3"
+            },
+            "type": "package",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "PipeDream\\LaravelCreate\\LaravelCreateServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PipeDream\\LaravelCreate\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Watch how this package DESTROYS all other generators. Boilerplate repos HATE it!",
+            "keywords": [
+                "laravel",
+                "package"
+            ],
+            "time": "2019-09-19T17:17:48+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
+use Auth;
 class LoginController extends Controller
 {
     /*
@@ -25,7 +25,23 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    // protected $redirectTo = '/home';
+
+    //! MODIYFING THE LOGIN FUNCTIONALITY TO REDIRECT THE USERS BASED ON THEIR EMAIL SPECIFICATION.
+
+    protected function redirectTo(){
+
+        if(Auth::user()->email == "list@gmail.com"){
+
+            // return "THIS IS A LIST.";
+            return '/trial';
+        }
+        else{
+
+            // return "WE NEVER SAW THIS COMING.";
+            return '/home';
+        }
+    }
 
     /**
      * Create a new controller instance.

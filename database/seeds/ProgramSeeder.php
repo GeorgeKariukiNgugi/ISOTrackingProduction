@@ -12,6 +12,35 @@ class ProgramSeeder extends Seeder
      */
     public function run()
     {
-        factory(Program::class, 10)->create();
+        // factory(Program::class, 10)->create();
+
+        $programs = [
+            [
+                'name'=>'Information Technology Service Management System',
+                'shortHand'=>'ITSMS'
+            ],
+            [
+                'name'=>'Business Contuinity Management System',
+                'shortHand'=>'BCSMS'
+            ],
+            [
+                'name'=>'Information Security Management System',
+                'shortHand'=>'ISMS'
+            ],
+            [
+                'name'=>'Environmental Manaement System',
+                'shortHand'=>'EMS'
+            ],
+            [
+                'name'=>'Quality Management System',
+                'shortHand'=>'BCSMS'
+            ],
+        ];
+
+        foreach($programs as $key => $value){
+
+            Program::create($value);
+
+        }
     }
 }

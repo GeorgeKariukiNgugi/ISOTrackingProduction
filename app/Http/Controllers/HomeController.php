@@ -49,11 +49,13 @@ class HomeController extends Controller
                 
                 $programs = Program::where('id','=',$id)->get();
                 foreach($programs as $program){
+                    $programName = $program->name;
+                    $programShortHand = $program->shortHand;
                     $perspectives = $program->perspectives;
-                    // dd($perspectives);
+                    
                 }
                 
-                return view('users.landingPage',['perspectives'=>$perspectives]);
+                return view('users.landingPage',['perspectives'=>$perspectives,'programName'=>$programName,'programShortHand'=>$programShortHand]);
             }
         }
         else{

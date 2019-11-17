@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Auth;
+use App\AssesorPerProgram;
 class LoginController extends Controller
 {
     /*
@@ -31,16 +32,21 @@ class LoginController extends Controller
 
     protected function redirectTo(){
 
-        if(Auth::user()->email == "list@gmail.com"){
+        //! GETTING THE USER EMAIL ADDRESS AND MAPPING IT TO THE PROGRAMID THAT THE USER NEEDS TO ASSES. 
 
-            // return "THIS IS A LIST.";
-            return '/trial';
-        }
-        else{
-
-            // return "WE NEVER SAW THIS COMING.";
+        $loggedInemail = Auth::user()->email;
+        $programids = AssesorPerProgram::where('email','=',$loggedInemail)->get();
+        $countingTheUsersReturned = count($programids);
+        // dd($countingTheUsersReturned);
+        if ($countingTheUsersReturned == 1) {
+            # code...
             return '/home';
+
+        } else {
+            # code...
+            return '/forbidden';
         }
+        
     }
 
     /**

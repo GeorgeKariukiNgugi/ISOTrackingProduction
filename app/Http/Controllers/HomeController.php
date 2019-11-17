@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use App\AssesorPerProgram;
+use App\Program;
 class HomeController extends Controller
 {
     /**
@@ -31,5 +33,34 @@ class HomeController extends Controller
 
     public function trial(){
         return view('sample');
+    }
+
+    public function programRedirect(){
+        // return $id;
+        $loggedInemail = Auth::user()->email;
+        $programids = AssesorPerProgram::where('email','=',$loggedInemail)->get();
+        $countingid = count($programids);
+        
+        $id = "null";
+        if($countingid == 1){
+            foreach($programids as $programid){
+                //!getting the program that the user should asses, and all its perspetives.
+                $id = $programid->program_id;
+                
+                $programs = Program::where('id','=',$id)->get();
+                foreach($programs as $program){
+                    $perspectives = $program->perspectives;
+                    // dd($perspectives);
+                }
+                
+                return view('users.landingPage',['perspectives'=>$perspectives]);
+            }
+        }
+        else{
+            return view('forbidden');
+        }
+        
+
+        
     }
 }

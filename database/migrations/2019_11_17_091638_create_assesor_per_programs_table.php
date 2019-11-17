@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAuthorisationsTable extends Migration
+class CreateAssesorPerProgramsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateAuthorisationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('authorisations', function (Blueprint $table) {
+        Schema::create('assesor_per_programs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-            $table->text('emailAddress');
-            $table->integer('prorammeAssesment');
-            $table->foreign('prorammeAssesment')->references('id')->on('programs');
+            $table->string('email');
+            $table->unsignedBigInteger('program_id');
+            $table->foreign('program_id')->references('id')->on('programs');
         });
     }
 
@@ -29,6 +29,6 @@ class CreateAuthorisationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('authorisations');
+        Schema::dropIfExists('assesor_per_programs');
     }
 }

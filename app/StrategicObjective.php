@@ -56,7 +56,10 @@ class StrategicObjective extends Model
     {
         return $this->hasMany(\App\KeyPerfomanceIndicatorScore::class);
     }
-
+    public function keyPerfomanceIndicator()
+    {
+        return $this->hasMany(\App\KeyPerfomaceIndicator::class);
+    }
 
     /**
      * Get the StrategicObjectiveScores for the StrategicObjective.

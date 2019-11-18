@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Auth;
 use App\AssesorPerProgram;
 use App\Program;
+use App\ScoreRecorded;
+use App\StrategicObjectiveScore;
 class HomeController extends Controller
 {
     /**
@@ -40,7 +42,22 @@ class HomeController extends Controller
         $loggedInemail = Auth::user()->email;
         $programids = AssesorPerProgram::where('email','=',$loggedInemail)->get();
         $countingid = count($programids);
-        
+        $scoresRecorded = StrategicObjectiveScore::all();
+
+        //! GETTING THE QUATERS THAT WILL BE CHECKED DURING THE INSERTION OF DATA.
+
+        $quaterOne = ScoreRecorded::where('quater','=','Q1')
+                                    ->where('year','=','2019')
+                                    ->get();
+        $quaterTwo = ScoreRecorded::where('quater','=','Q2')
+                                    ->where('year','=','2019')
+                                    ->get();
+        $quaterthree = ScoreRecorded::where('quater','=','Q3')
+                                    ->where('year','=','2019')
+                                    ->get();
+        $quaterfour = ScoreRecorded::where('quater','=','Q4')
+                                    ->where('year','=','2019')
+                                    ->get();
         $id = "null";
         if($countingid == 1){
             foreach($programids as $programid){
@@ -55,7 +72,7 @@ class HomeController extends Controller
                     
                 }
                 
-                return view('users.landingPage',['perspectives'=>$perspectives,'programName'=>$programName,'programShortHand'=>$programShortHand]);
+                return view('users.landingPage',['perspectives'=>$perspectives,'scoresRecorded'=>$scoresRecorded,'programName'=>$programName,'programShortHand'=>$programShortHand,'quaterOne'=>$quaterOne,'quaterTwo'=>$quaterTwo,'quaterthree'=>$quaterthree,'quaterfour'=>$quaterfour]);
             }
         }
         else{

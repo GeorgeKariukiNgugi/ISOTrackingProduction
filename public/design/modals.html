@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>isoTracking</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+    <div class="modal fade" role="dialog" tabindex="-1">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="text-center modal-title"><strong>Kindly Fill The Following Fields to Complete Assesing this KPI.</strong></h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="row" style="margin-bottom:1%;">
+                            <div class="col-lg-3 col-md-3">
+                                <p class="text-center">Root Cause for not meeting target.</p>
+                            </div>
+                            <div class="col-lg-9 col-md-9"><textarea class="form-control" name="rootCause" required="" placeholder="Root Cause For Non Conformity."></textarea></div>
+                        </div>
+                        <div class="row" style="margin-bottom:1%;">
+                            <div class="col-lg-3 col-md-3">
+                                <p class="text-center">Corretive Action To Meet The Target.&nbsp;</p>
+                            </div>
+                            <div class="col-lg-9 col-md-9"><textarea class="form-control" name="correctiveAction" required="" placeholder="Corrective Action For The Non Conformity."></textarea></div>
+                        </div>
+                        <div class="row" style="margin-bottom:1%;">
+                            <div class="col-lg-3 col-md-3">
+                                <p class="text-center">Completion Date of Corrective Action.</p>
+                            </div>
+                            <div class="col-lg-9 col-md-9"><input class="form-control" type="date"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3">
+                                <p class="text-center">Permanent Solution To Non conformity.</p>
+                            </div>
+                            <div class="col-lg-9 col-md-9"><textarea class="form-control" name="permanentSolution" required="" placeholder="Permanent Solution To Non Conformity."></textarea></div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer"><button class="btn btn-danger" type="button" data-dismiss="modal">Close</button><button class="btn btn-success" type="button">Save</button></div>
+            </div>
+        </div>
+    </div><i class="fa fa-bell" style="color:rgb(255,215,6);"></i><i class="fa fa-flag" style="color:rgb(255,0,0);"></i>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>

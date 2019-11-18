@@ -4,15 +4,23 @@
     <a href="/">
       <i class="fa fa-dashboard"></i>              
     </a>
-  </li>  
+  </li> 
+  
+  {{-- kindly check the number of non Conformities that are out of date. --}}
+  
   <li>            
       <a href="/" data-toggle="tooltip" title=" Non-conformities out of date">
-        <i class="fa fa-bell-o" style="color:#F39C12;"></i>              
+        {{-- <i class="fa fa-bell-o" style="color:#F39C12;"></i>             --}}
+        <i class="fa fa-bell" style="color:rgb(255,215,6);"></i>
       </a>
     </li> 
+
+    {{-- checking all the non conformities that are both to be implemented and also out of date. --}}
+
     <li>            
         <a href="/" data-toggle="tooltip" title="All Non Conformities.">
-          <i class="fa fa-flag-o" style="color:red;"></i>              
+          {{-- <i class="fa fa-flag-o" style="color:red;"></i>               --}}
+          <i class="fa fa-flag" style="color:rgb(255,0,0);"></i>
         </a>
       </li>
 @endsection
@@ -182,6 +190,8 @@
                                @endphp
                                       <div class="row" style="margin-bottom:0.5%;">
                                         {{-- <input type = "hidden" value="{{$originalObjectiveName}}" id = "{{"hiddenKPIObective".$kpiOriginalName}} name = "{{"hiddenObjectiveName".$originalObjectiveName}}"/> --}}
+                                        {{-- hidden input to et the value of the arithmetic structure. --}}
+                                        <input type="hidden" id="{{"arithmeticStructure".$kpi->id}}" value = "{{$kpi->arithmeticStructure}}"/>
                                         <div class=" col-md-1"style="text-align:center">
                                             <p>{{$kpi->id}}</p>
                                         </div>
@@ -190,14 +200,17 @@
                                         </div>
                                         <div class=" col-md-1" style="text-align:center"><p>{{$score}}</p></div>
                                         <div class=" col-md-1"style="text-align:center">
-                                            <p id = "{{"target".$kpiOriginalName}}" class ="{{"target".$kpiOriginalName}}" >{{$kpi->target}}</p>
+                                            <p id = "{{"target".$kpi->id}}" class ="{{"target".$kpi->id}}" >{{$kpi->target}}</p>
                                         </div>
-                                        <div class=" col-md-1"><input   type = "number" step=".01" required id = "{{"Quater1".$kpiOriginalName}}"class="form-control {{"Quater1".$kpiOriginalName}}" /></div>
-                                        <div class=" col-md-1"><input   type = "number" step=".01"  id = "{{"Quater2".$kpiOriginalName}}" readonly placeholder="Inactive" class="form-control {{"Quater2".$kpiOriginalName}}" /></div>
-                                        <div class=" col-md-1"><input   type = "number" step=".01"  id = "{{"Quater3".$kpiOriginalName}}" readonly placeholder="Inactive" class="form-control {{"Quater3".$kpiOriginalName}}" /></div>
-                                        <div class=" col-md-1"><input   type = "number" step=".01"  id = "{{"Quater4".$kpiOriginalName}}" readonly placeholder="Inactive"class="form-control {{"Quater4".$kpiOriginalName}}" /></div>                                      
+                                        <div class=" col-md-1"><input   type = "number" step=".01" required id = "{{"Quater1".$kpi->id}}"class="form-control {{"Quater1".$kpiOriginalName}}" /></div>
+                                        <div class=" col-md-1"><input   type = "number" step=".01"  id = "{{"Quater2".$kpi->id}}" readonly placeholder="Inactive" class="form-control {{"Quater2".$kpiOriginalName}}" /></div>
+                                        <div class=" col-md-1"><input   type = "number" step=".01"  id = "{{"Quater3".$kpi->id}}" readonly placeholder="Inactive" class="form-control {{"Quater3".$kpiOriginalName}}" /></div>
+                                        <div class=" col-md-1"><input   type = "number" step=".01"  id = "{{"Quater4".$kpi->id}}" readonly placeholder="Inactive"class="form-control {{"Quater4".$kpiOriginalName}}" /></div>                                      
                                         {{-- <div class=" col-md-3"><textarea  id="{{"reason".$kpiOriginalName}}"  readonly style="height:35px;">N/A</textarea></div> --}}
-                                    </div> 
+                                        <div id="{{"unmetTargetComment".$kpi->id}}" class = "col-md-1 text-center unmetTargetComment">
+                                          <a data-toggle="modal" href = "" data-target="{{"#modal".$kpi->id}}"> COMMENT</a>
+                                        </div>
+                                      </div>
                                @endforeach
                                <div class="box-footer">   
                                 {{-- Adding the Modal That is used to add the Key Perfomance Indicators.  --}}
@@ -209,9 +222,50 @@
                                 <div style="text-align:right;" class="col-md-6">
                                   <button class="btn btn-danger btn-md" type = "submit" id= "{{"submit".$strategicObjective->name}}"> <b>Save</b> </button>
                                 </div>
-                               </div>
+                               </div>                               
                                {{-- <input type = "hidden" value = "{{$numberOfKPI}}" id="{{$originalObjectiveName."numberOfKPI"}}"> --}}
             </form> 
+            {{-- inserting the modals that will be thrown once the targets are not reached. --}}
+            @foreach ($kpis as $kpiModal)
+            <div class="modal fade" role="dialog" tabindex="-1" id="{{"modal".$kpiModal->id}}">
+              <div class="modal-dialog modal-lg" role="document">
+                  <div class="modal-content">
+                      <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                          <h4 class="text-center modal-title">Kindly Fill The Following Fields to Complete Assesing :: <strong>{{$kpiModal->name}}.</strong></h4>
+                      </div>
+                      <div class="modal-body">
+                          <form>
+                              <div class="row" style="margin-bottom:1%;">
+                                  <div class="col-lg-3 col-md-3">
+                                      <p class="text-center">Root Cause for not meeting target.</p>
+                                  </div>
+                                  <div class="col-lg-9 col-md-9"><textarea class="form-control" name="rootCause" required="" placeholder="Root Cause For Non Conformity."></textarea></div>
+                              </div>
+                              <div class="row" style="margin-bottom:1%;">
+                                  <div class="col-lg-3 col-md-3">
+                                      <p class="text-center">Corretive Action To Meet The Target.&nbsp;</p>
+                                  </div>
+                                  <div class="col-lg-9 col-md-9"><textarea class="form-control" name="correctiveAction" required="" placeholder="Corrective Action For The Non Conformity."></textarea></div>
+                              </div>
+                              <div class="row" style="margin-bottom:1%;">
+                                  <div class="col-lg-3 col-md-3">
+                                      <p class="text-center">Completion Date of Corrective Action.</p>
+                                  </div>
+                                  <div class="col-lg-9 col-md-9"><input class="form-control" type="date"></div>
+                              </div>
+                              <div class="row">
+                                  <div class="col-lg-3 col-md-3">
+                                      <p class="text-center">Permanent Solution To Non conformity.</p>
+                                  </div>
+                                  <div class="col-lg-9 col-md-9"><textarea class="form-control" name="permanentSolution" required="" placeholder="Permanent Solution To Non Conformity."></textarea></div>
+                              </div>
+                          </form>
+                      </div>
+                      <div class="modal-footer"><button class="btn btn-danger" type="button" data-dismiss="modal">Close</button><button class="btn btn-success" type="button">Save</button></div>
+                  </div>
+              </div>
+            </div>
+            @endforeach
           </div>
           @endif
           @endforeach
@@ -225,16 +279,6 @@
 </div>
 <script src="design/assets/js/jquery.min.js"></script>
 <script>
-  $(document).ready(function(){ 
-    $('a').tooltip();
-$('.box-title > a').click(function() {
-    // console.log("clicked.");
-    $(this).find('i').toggleClass('fa-plus fa-minus')
-           .closest('.panel').siblings('.panel')
-           .find('i')
-           .removeClass('fa-minus').addClass('fa-plus');
-});   
-        });
-          
+// $("[id^='unmetTargetComment']").hide();         
 </script>
 @endsection

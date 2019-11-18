@@ -32,39 +32,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Google Font -->
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+        <style>           
+            input::-webkit-outer-spin-button,
+            input::-webkit-inner-spin-button {
+                /* display: none; <- Crashes Chrome on hover */
+                -webkit-appearance: none;
+                margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+            }
+            
+            input[type=number] {
+                -moz-appearance:textfield; /* Firefox */
+            }
+            
+            </style>
 </head>
-<style>
-    .dropdown{
-    position:absolute;
-    top:100%;
-    left:0;
-    z-index:1000;
-    display:none;
-    float:left;
-    min-width:10rem;
-    padding:.5rem 0;
-    margin:.125rem 0 0;
-    font-size:.9rem;
-    color:#212529;
-    text-align:left;
-    list-style:none;
-    /* background-color:#fff; */
-    background-clip:padding-box;
-    /* border:1px solid rgba(0,0,0,.15); */
-    /* border-radius:.25rem */
-    }
-    input::-webkit-outer-spin-button,
-    input::-webkit-inner-spin-button {
-        /* display: none; <- Crashes Chrome on hover */
-        -webkit-appearance: none;
-        margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
-    }
-    
-    input[type=number] {
-        -moz-appearance:textfield; /* Firefox */
-    }
-    
-    </style>
+
 <!--
 BODY TAG OPTIONS:
 =================
@@ -108,28 +90,8 @@ desired effect
       <!-- Navbar Right Menu -->
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
-          <!-- Messages: style can be found in dropdown.less-->
-          <li>            
-            <a href="/">
-              <i class="fa fa-dashboard"></i>              
-            </a>
-          </li>          
-          <!-- Notifications Menu -->
-          <li>
-            <!-- Menu toggle button -->
-            <a href="#">
-              <i class="fa fa-bell-o"></i>
-              <span class="label label-warning">10</span>
-            </a>
-          </li>
-          <!-- Tasks Menu -->
-          <li>
-            <!-- Menu Toggle Button -->
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-flag-o"></i>
-              <span class="label label-danger">9</span>
-            </a>
-          </li>
+          
+          @yield('navigationBar')
           <!-- User Account Menu -->
           <li class="dropdown user user-menu">
             <!-- Menu Toggle Button -->

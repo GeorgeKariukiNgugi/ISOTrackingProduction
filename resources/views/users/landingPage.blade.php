@@ -1,4 +1,21 @@
 @extends('extendingCode.usersExtending')
+@section('navigationBar')
+<li>            
+    <a href="/">
+      <i class="fa fa-dashboard"></i>              
+    </a>
+  </li>  
+  <li>            
+      <a href="/" data-toggle="tooltip" title=" Non-conformities out of date">
+        <i class="fa fa-bell-o" style="color:#F39C12;"></i>              
+      </a>
+    </li> 
+    <li>            
+        <a href="/" data-toggle="tooltip" title="All Non Conformities.">
+          <i class="fa fa-flag-o" style="color:red;"></i>              
+        </a>
+      </li>
+@endsection
 @section('section')
 @php
     $increment2 = 0;
@@ -64,8 +81,8 @@
           @endphp
           
           <div class="box box-primary box-solid">
-            <div class="box-header with-border"style="text-align:center">
-            <h3 class="box-title">{{$perspetiveName}}</h3>
+            <div class="box-header with-border text-center"style="text-align:center">
+            <h3 class="box-title text-center">{{$perspetiveName}}</h3>
             </div>
             {{-- getting the key perfomance indicators for the specific strategic objectives. --}}
             @php
@@ -209,13 +226,14 @@
 <script src="design/assets/js/jquery.min.js"></script>
 <script>
   $(document).ready(function(){ 
+    $('a').tooltip();
 $('.box-title > a').click(function() {
     // console.log("clicked.");
     $(this).find('i').toggleClass('fa-plus fa-minus')
            .closest('.panel').siblings('.panel')
            .find('i')
            .removeClass('fa-minus').addClass('fa-plus');
-});
+});   
         });
           
 </script>

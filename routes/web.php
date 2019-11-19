@@ -24,3 +24,7 @@ Route::get('/forbidden', function () {
     
     return view('forbidden');
 });
+
+//! submission of kpi scores 
+
+Route::post('submitScores','UserControllers\userController@submittingKPIScores');

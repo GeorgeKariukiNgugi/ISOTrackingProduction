@@ -116,8 +116,10 @@
             </div> 
           </div>           
             @else
-            <form id = "{{"form".$strategicObjective->name}}" method="POST" name = "{{"form".$strategicObjective->name}}" >
-              <div id = "{{"alert".$strategicObjective->name}}"></div>
+            <form id = "{{"form".$strategicObjective->id}}" method="POST" name = "{{"form".$strategicObjective->id}}" >
+              <div id = "{{"alert".$strategicObjective->id}}"></div>
+              {{ csrf_field() }}
+              <input type = "hidden" value ="{{$strategicObjective->id}}" name="strategicObjective"/>
                                {{-- <input type="hidden" name = "objectiveName" value="{{$objevtiveId}}"> --}}
                                <div class="row">
                                    <div class="col-md-1">

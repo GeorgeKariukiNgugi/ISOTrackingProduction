@@ -242,6 +242,7 @@ desired effect
 <script src="{{asset('js/accordion.js')}}"></script>
 <script src="{{asset('js/verification.js')}}"></script>
 <script src="{{asset('js/default.js')}}"></script>
+<script src="{{asset('js/submittingKPIScores.js')}}"></script>
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the

@@ -216,10 +216,10 @@
                                         <div class=" col-md-1"style="text-align:center">
                                             <p id = "{{"target".$kpi->id}}" class ="{{"target".$kpi->id}}" >{{$kpi->target}}</p>
                                         </div>
-                                        <div class=" col-md-1"><input   type = "number" step=".01"  id = "{{"Quater1".$kpi->id}}" readonly placeholder="Inactive" class="form-control {{"Quater1".$kpiOriginalName}}" /></div>
-                                        <div class=" col-md-1"><input   type = "number" step=".01"  id = "{{"Quater2".$kpi->id}}" readonly placeholder="Inactive" class="form-control {{"Quater2".$kpiOriginalName}}" /></div>
-                                        <div class=" col-md-1"><input   type = "number" step=".01"  id = "{{"Quater3".$kpi->id}}" readonly placeholder="Inactive" class="form-control {{"Quater3".$kpiOriginalName}}" /></div>
-                                        <div class=" col-md-1"><input   type = "number" step=".01"  id = "{{"Quater4".$kpi->id}}" readonly placeholder="Inactive"class="form-control {{"Quater4".$kpiOriginalName}}" /></div>                                      
+                                        <div class=" col-md-1"><input   type = "number" step=".01"  name = "{{"Quater1".$kpi->id}}" id = "{{"Quater1".$kpi->id}}" readonly placeholder="Inactive" class="form-control {{"Quater1".$kpiOriginalName}}" /></div>
+                                        <div class=" col-md-1"><input   type = "number" step=".01"  name = "{{"Quater2".$kpi->id}}" id = "{{"Quater2".$kpi->id}}" readonly placeholder="Inactive" class="form-control {{"Quater2".$kpiOriginalName}}" /></div>
+                                        <div class=" col-md-1"><input   type = "number" step=".01"  name = "{{"Quater3".$kpi->id}}" id = "{{"Quater3".$kpi->id}}" readonly placeholder="Inactive" class="form-control {{"Quater3".$kpiOriginalName}}" /></div>
+                                        <div class=" col-md-1"><input   type = "number" step=".01"  name = "{{"Quater4".$kpi->id}}" id = "{{"Quater4".$kpi->id}}" readonly placeholder="Inactive"class="form-control {{"Quater4".$kpiOriginalName}}" /></div>                                      
                                         {{-- <div class=" col-md-3"><textarea  id="{{"reason".$kpiOriginalName}}"  readonly style="height:35px;">N/A</textarea></div> --}}
                                         <div id="{{"unmetTargetComment".$kpi->id}}" class = "col-md-1 text-center unmetTargetComment">
                                           {{-- <a data-toggle="modal" href = "" data-target="{{"#modal".$kpi->id}}"> COMMENT</a> --}}
@@ -248,9 +248,11 @@
                       <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                           <h4 class="text-center modal-title">Kindly Fill The Following Fields to Complete Assesing :: <strong>{{$kpiModal->name}}.</strong></h4>
                       </div>
+                      <div id="{{"NonConformitymodal".$kpiModal->id}}"></div>
                       <div class="modal-body">
                           <form id="{{"unmetTargetModal".$kpiModal->id}}" class = "{{"unmetTargetModal".$kpiModal->id}}">
                             {{ csrf_field() }}
+                            <input type="hidden" name="nonConformitykpiId" value="{{$kpiModal->id}}">
                               <div class="row" style="margin-bottom:1%;">
                                   <div class="col-lg-3 col-md-3">
                                       <p class="text-center">Root Cause for not meeting target.</p>
@@ -267,7 +269,7 @@
                                   <div class="col-lg-3 col-md-3">
                                       <p class="text-center">Completion Date of Corrective Action.</p>
                                   </div>
-                                  <div class="col-lg-9 col-md-9"><input required class="form-control" type="date"></div>
+                                  <div class="col-lg-9 col-md-9"><input required class="form-control" name = "date" type="date"></div>
                               </div>
                               <div class="row">
                                   <div class="col-lg-3 col-md-3">

@@ -28,3 +28,6 @@ Route::get('/forbidden', function () {
 //! submission of kpi scores 
 
 Route::post('submitScores','UserControllers\userController@submittingKPIScores');
+
+//! submitting the nonconformities values. 
+Route::post('submitNonConformities','UserControllers\userController@submittingNonConformities');

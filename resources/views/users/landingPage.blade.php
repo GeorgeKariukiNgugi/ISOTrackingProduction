@@ -222,8 +222,9 @@
                                         <div class=" col-md-1"><input   type = "number" step=".01"  id = "{{"Quater4".$kpi->id}}" readonly placeholder="Inactive"class="form-control {{"Quater4".$kpiOriginalName}}" /></div>                                      
                                         {{-- <div class=" col-md-3"><textarea  id="{{"reason".$kpiOriginalName}}"  readonly style="height:35px;">N/A</textarea></div> --}}
                                         <div id="{{"unmetTargetComment".$kpi->id}}" class = "col-md-1 text-center unmetTargetComment">
-                                          <a data-toggle="modal" href = "" data-target="{{"#modal".$kpi->id}}"> COMMENT</a>
+                                          {{-- <a data-toggle="modal" href = "" data-target="{{"#modal".$kpi->id}}"> COMMENT</a> --}}
                                         </div>
+                                        <input type="hidden" name = "{{"nonConformityFlag".$kpi->id}}" value= "null" id = "{{"nonConformityFlag".$kpi->id}}">
                                       </div>
                                @endforeach
                                <div class="box-footer">   
@@ -248,7 +249,8 @@
                           <h4 class="text-center modal-title">Kindly Fill The Following Fields to Complete Assesing :: <strong>{{$kpiModal->name}}.</strong></h4>
                       </div>
                       <div class="modal-body">
-                          <form>
+                          <form id="{{"unmetTargetModal".$kpiModal->id}}" class = "{{"unmetTargetModal".$kpiModal->id}}">
+                            {{ csrf_field() }}
                               <div class="row" style="margin-bottom:1%;">
                                   <div class="col-lg-3 col-md-3">
                                       <p class="text-center">Root Cause for not meeting target.</p>
@@ -265,7 +267,7 @@
                                   <div class="col-lg-3 col-md-3">
                                       <p class="text-center">Completion Date of Corrective Action.</p>
                                   </div>
-                                  <div class="col-lg-9 col-md-9"><input class="form-control" type="date"></div>
+                                  <div class="col-lg-9 col-md-9"><input required class="form-control" type="date"></div>
                               </div>
                               <div class="row">
                                   <div class="col-lg-3 col-md-3">
@@ -273,9 +275,9 @@
                                   </div>
                                   <div class="col-lg-9 col-md-9"><textarea class="form-control" name="permanentSolution" required="" placeholder="Permanent Solution To Non Conformity."></textarea></div>
                               </div>
+                              <div class="modal-footer"><button class="btn btn-danger" type="button" data-dismiss="modal">Close</button><button class="btn btn-success" type="submit">Save</button></div>
                           </form>
-                      </div>
-                      <div class="modal-footer"><button class="btn btn-danger" type="button" data-dismiss="modal">Close</button><button class="btn btn-success" type="button">Save</button></div>
+                      </div>                      
                   </div>
               </div>
             </div>

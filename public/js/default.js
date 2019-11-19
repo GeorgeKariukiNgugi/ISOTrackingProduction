@@ -8,5 +8,6 @@ $(document).ready(function() {
     var selectingQuaters = $("[id^=" + quaterPrefixId + "]");
     selectingQuaters.removeAttr("readonly");
     selectingQuaters.removeAttr("placeholder");
+    selectingQuaters.attr("required", "true");
     // console.log(gettingTheQuaterNumber);
 });

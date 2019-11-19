@@ -1,6 +1,6 @@
 $(document).ready(function() {
     var quatersSelected = $("input[id*='Quater']");
-    $("[id^='unmetTargetComment']").hide();
+    // $("[id^='unmetTargetComment']").hide();
     quatersSelected.focusout(function() {
         var id = $(this).attr("id");
         var slicedId = id.substring(7);
@@ -20,6 +20,9 @@ $(document).ready(function() {
                 var arithmeticStructureValue = arithmeticStructure.val();
                 switch (arithmeticStructureValue) {
                     case "0":
+                        var unmetTargetId = "unmetTargetComment" + slicedId;
+                        var gettingModalName = "modal" + slicedId;
+                        var nonConformityFlag = "nonConformityFlag" + slicedId;
                         if (inputValue > targetValue) {
                             console.log(
                                 " 0 IT SHOULD BE SMALLER. target = " +
@@ -28,20 +31,58 @@ $(document).ready(function() {
                                     inputValue
                             );
 
+                            // !setting the flag to a positive.
+                            $("#" + nonConformityFlag + "").val(1);
+
+                            console.log($("#" + nonConformityFlag + "").val());
+                            $("#" + unmetTargetId + "").empty();
+
+                            $("#" + unmetTargetId + "").append(
+                                '<a href = "#" style = "color:red;" data-toggle="modal" data-target= "#' +
+                                    gettingModalName +
+                                    '"> <i style = "font-size:20px;"class = "fa fa-times">   <b>NO</b> </i></a>'
+                            );
                             $("#modal" + slicedId).modal("show");
                         } else {
+                            // !setting the flag to a negative.
+                            $("#" + nonConformityFlag + "").val(0);
+                            console.log($("#" + nonConformityFlag + "").val());
+
                             console.log("0 IT GOOD.");
+                            $("#" + unmetTargetId + "").empty();
+                            $("#" + unmetTargetId + "").append(
+                                '<p style = "color:green;"> <i style = "font-size:20px;" class = "fa fa-check">   <b>YES</b> </i></p>'
+                            );
                         }
                         break;
                     case "1":
+                        var gettingModalName = "modal" + slicedId;
+                        var unmetTargetId = "unmetTargetComment" + slicedId;
+                        var nonConformityFlag = "nonConformityFlag" + slicedId;
                         if (inputValue < targetValue) {
                             console.log("1 it should be larger");
-                            var unmetTaargetId = "unmetTargetComment" + id;
-                            $("#unmetTargetComment" + slicedId).show();
-                            console.log(slicedId);
+                            // !setting the flag to a positive.
+                            $("#" + nonConformityFlag + "").val(1);
+                            var flag = $("#" + nonConformityFlag + "").val();
+                            console.log("The flag is:" + flag);
+
+                            $("#" + unmetTargetId + "").empty();
+                            $("#" + unmetTargetId + "").append(
+                                '<a href = "#" style = "color:red;" data-toggle="modal" data-target= "#' +
+                                    gettingModalName +
+                                    '"> <i style = "font-size:20px;"class = "fa fa-times">   <b>NO</b> </i></a>'
+                            );
                             $("#modal" + slicedId).modal("show");
                         } else {
                             console.log("1 IT GOOD.");
+                            // !setting the flag to a negative.
+                            $("#" + nonConformityFlag + "").val(0);
+                            console.log($("#" + nonConformityFlag + "").val());
+
+                            $("#" + unmetTargetId + "").empty();
+                            $("#" + unmetTargetId + "").append(
+                                '<p style = "color:green;"> <i style = "font-size:20px;" class = "fa fa-check">   <b>YES</b> </i></p>'
+                            );
                         }
                         break;
                     case "3":

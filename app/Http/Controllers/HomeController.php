@@ -8,6 +8,8 @@ use App\AssesorPerProgram;
 use App\Program;
 use App\ScoreRecorded;
 use App\StrategicObjectiveScore;
+use App\QuaterActive;
+use App\YearActive;
 class HomeController extends Controller
 {
     /**
@@ -39,11 +41,25 @@ class HomeController extends Controller
 
     public function programRedirect(){
         // return $id;
+
         $loggedInemail = Auth::user()->email;
         $programids = AssesorPerProgram::where('email','=',$loggedInemail)->get();
         $countingid = count($programids);
         $scoresRecorded = StrategicObjectiveScore::all();
 
+        //! GETTING WHICH QUATER AND TEAR IS ACTIVE.
+
+        $activeYaerCollections = YearActive::where('Active','=',1)->get();
+        foreach($activeYaerCollections as $activeYaerCollection){
+            $activeYaer = $activeYaerCollection->Year;
+            // dd($activeYaer);
+        }
+
+        $activeQuaterCollections = QuaterActive::where('Active','=',1)->get();
+        foreach($activeQuaterCollections as $activeQuaterCollection){
+            $activeQuater = $activeQuaterCollection->Quater;
+            // dd($activeQuater);
+        }
         //! GETTING THE QUATERS THAT WILL BE CHECKED DURING THE INSERTION OF DATA.
 
         $quaterOne = ScoreRecorded::where('quater','=','Q1')
@@ -72,7 +88,7 @@ class HomeController extends Controller
                     
                 }
                 
-                return view('users.landingPage',['perspectives'=>$perspectives,'scoresRecorded'=>$scoresRecorded,'programName'=>$programName,'programShortHand'=>$programShortHand,'quaterOne'=>$quaterOne,'quaterTwo'=>$quaterTwo,'quaterthree'=>$quaterthree,'quaterfour'=>$quaterfour]);
+                return view('users.landingPage',['perspectives'=>$perspectives,'activeYaer'=>$activeYaer,'activeQuater'=>$activeQuater,'scoresRecorded'=>$scoresRecorded,'programName'=>$programName,'programShortHand'=>$programShortHand,'quaterOne'=>$quaterOne,'quaterTwo'=>$quaterTwo,'quaterthree'=>$quaterthree,'quaterfour'=>$quaterfour]);
             }
         }
         else{

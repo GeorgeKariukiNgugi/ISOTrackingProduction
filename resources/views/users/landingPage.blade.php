@@ -43,10 +43,16 @@
     //getting to know the length of the shorthand of the progrm        
         $shorthandLength = strlen($programShortHand)+1;
 @endphp
+
+{{-- GETTING THE QUATER THAT IS ACTIVE AND ALSO THE YEAR THAT IS ACTIVE. --}}
+<input type = "hidden" value="{{$activeQuater}}" name = "activeQuater" id = "activeQuater">
+<input type = "hidden" value="{{$activeYaer}}" name = "activeYear" id="activeYear">
+
+
 <div style="margin-bottom:5%;margin-top:5%"id="heading">
-<h1 class="text-center" style="font-family:Times New Roman;">Welcome To Safaricom {{$name}} Score Card.</h1>
+<h1 class="text-center" style="font-family:Times New Roman;">Welcome To Safaricom {{$name}} Score Card.    <b>{{$activeYaer}}</b></h1>
     <h1 class="text-center" style="font-family:Times New Roman;">({{$programShortHand}})</h1>
-    <h2 class="text-center" style="font-family:Times New Roman;">Update the quaterly Scores based on the perspectives that have been listed below :-</h2>
+    <h2 class="text-center" style="font-family:Times New Roman;">Update the <b>{{$activeQuater}}</b> Scores based on the perspectives that have been listed below :-</h2>
 </div>
     
 <div class="panel-group" id="accordion" role="tablist">  
@@ -210,7 +216,7 @@
                                         <div class=" col-md-1"style="text-align:center">
                                             <p id = "{{"target".$kpi->id}}" class ="{{"target".$kpi->id}}" >{{$kpi->target}}</p>
                                         </div>
-                                        <div class=" col-md-1"><input   type = "number" step=".01" required id = "{{"Quater1".$kpi->id}}"class="form-control {{"Quater1".$kpiOriginalName}}" /></div>
+                                        <div class=" col-md-1"><input   type = "number" step=".01"  id = "{{"Quater1".$kpi->id}}" readonly placeholder="Inactive" class="form-control {{"Quater1".$kpiOriginalName}}" /></div>
                                         <div class=" col-md-1"><input   type = "number" step=".01"  id = "{{"Quater2".$kpi->id}}" readonly placeholder="Inactive" class="form-control {{"Quater2".$kpiOriginalName}}" /></div>
                                         <div class=" col-md-1"><input   type = "number" step=".01"  id = "{{"Quater3".$kpi->id}}" readonly placeholder="Inactive" class="form-control {{"Quater3".$kpiOriginalName}}" /></div>
                                         <div class=" col-md-1"><input   type = "number" step=".01"  id = "{{"Quater4".$kpi->id}}" readonly placeholder="Inactive"class="form-control {{"Quater4".$kpiOriginalName}}" /></div>                                      

@@ -15,7 +15,7 @@
   
   {{-- kindly check the number of non Conformities that are out of date. --}}
   
-  <li>            
+  <li >            
       <a href="/" data-toggle="tooltip" title=" Non-conformities out of date">
         {{-- <i class="fa fa-bell-o" style="color:#F39C12;"></i>             --}}
         <i class="fa fa-bell" style="color:rgb(255,215,6);"></i>
@@ -44,7 +44,7 @@
         $shorthandLength = strlen($programShortHand)+1;
 @endphp
 <div style="margin-bottom:5%;margin-top:5%"id="heading">
-<h1 class="text-center" style="font-family:Times New Roman;">Welcome To Safaricom {{$name}}</h1>
+<h1 class="text-center" style="font-family:Times New Roman;">Welcome To Safaricom {{$name}} Score Card.</h1>
     <h1 class="text-center" style="font-family:Times New Roman;">({{$programShortHand}})</h1>
     <h2 class="text-center" style="font-family:Times New Roman;">Update the quaterly Scores based on the perspectives that have been listed below :-</h2>
 </div>

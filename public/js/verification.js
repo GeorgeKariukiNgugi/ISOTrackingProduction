@@ -1,7 +1,6 @@
-var quatersSelected = $("input[id*='Quater']");
-// var classSelected = quatersSelected.attr('class');
 $(document).ready(function() {
     var quatersSelected = $("input[id*='Quater']");
+    $("[id^='unmetTargetComment']").hide();
     quatersSelected.focusout(function() {
         var id = $(this).attr("id");
         var slicedId = id.substring(7);
@@ -37,7 +36,9 @@ $(document).ready(function() {
                     case "1":
                         if (inputValue < targetValue) {
                             console.log("1 it should be larger");
-                            $("#unmetTargetComment" + id).hide();
+                            var unmetTaargetId = "unmetTargetComment" + id;
+                            $("#unmetTargetComment" + slicedId).show();
+                            console.log(slicedId);
                             $("#modal" + slicedId).modal("show");
                         } else {
                             console.log("1 IT GOOD.");

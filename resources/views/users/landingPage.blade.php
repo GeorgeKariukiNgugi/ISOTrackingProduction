@@ -1,5 +1,12 @@
 @extends('extendingCode.usersExtending')
 @section('navigationBar')
+<li>
+    <a href="/home">
+      <i class="fa fa-address-card"></i>
+    </a>
+</li> 
+
+
 <li>            
     <a href="/">
       <i class="fa fa-dashboard"></i>              
@@ -13,8 +20,7 @@
         {{-- <i class="fa fa-bell-o" style="color:#F39C12;"></i>             --}}
         <i class="fa fa-bell" style="color:rgb(255,215,6);"></i>
       </a>
-    </li> 
-
+    </li>    
     {{-- checking all the non conformities that are both to be implemented and also out of date. --}}
 
     <li>            
@@ -278,7 +284,4 @@
 @endforeach
 </div>
 <script src="design/assets/js/jquery.min.js"></script>
-<script>
-// $("[id^='unmetTargetComment']").hide();         
-</script>
 @endsection

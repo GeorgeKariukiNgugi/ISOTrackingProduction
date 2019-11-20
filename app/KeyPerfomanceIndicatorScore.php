@@ -12,7 +12,7 @@ class KeyPerfomanceIndicatorScore extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'year', 'ytd', 'keyPerfomanceIndicator_id', 'strategicObjective_id', 'score'
+        'id', 'year', 'ytd', 'kpi_id', 'strategicObjective_id', 'score'
     ];
 
     /**

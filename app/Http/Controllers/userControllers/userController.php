@@ -11,6 +11,9 @@ use App\NonConformities;
 use App\Perspective;
 use App\Program;
 use App\KeyPerfomaceIndicator;
+use App\ScoreRecorded;
+use App\KeyPerfomanceIndicatorScore;
+use App\StrategicObjectiveScore;
 class userController extends Controller
 {
     public function submittingKPIScores(Request $request){        
@@ -36,12 +39,247 @@ class userController extends Controller
         foreach($strategicObjectivesKpis as $strategicObjectivesKpi){
             $kpis = $strategicObjectivesKpi->keyPerfomaceIndicators;
             $kpiNumber = count($kpis);
+            
         }
+                        
+        //! looping through the kpis so as to check the value of the flag. 
+        foreach($kpis as $kpi){
+            $idOfKPI = $kpi->id;
+            $formFlagInputName = "nonConformityFlag".$idOfKPI;
+            $formFlagInputValue = $request->$formFlagInputName;
+
+            //! GETTING ALL THE NON CONFORMITIES THAT HAVE BEEN RECORDED. 
+            $gettingNonConformities = NonConformities::where('keyPerfomanceIndicator_id','=',$idOfKPI)->get();
+            $numberOfReturnedNonConformities = count($gettingNonConformities);
+
+            //!checking if the flag value is positive or negative.
+            if ($formFlagInputValue == 1) {                
+                if($numberOfReturnedNonConformities == 0){
+                    return response()->json(['success'=>'Kindly Add The Non conformity reasons for the kpi  '.$kpi->name]);
+                }                
+            }
+            else if($formFlagInputValue == 0){
+                if($numberOfReturnedNonConformities == 1){
+                    //! if the values are present, and the flag has been set to negtive, delete the record since
+                    //! it is an update.
+                    foreach($gettingNonConformities as $gettingNonConformity){
+                        $gettingNonConformity->delete();
+                    }
+                }
+            } 
+            //! if no reasonable reason is found, then we can now insert the data into the scoresrecorded table. 
+            $prefixOfTheActiveQuater = substr($activeQuater,1);
+            $scoreInputName = "Quater".$prefixOfTheActiveQuater.$idOfKPI;
+            $score = $request->$scoreInputName;
+            
+            //! CHECKING IF THERE IS THE SAME RECORD IS FOUND IN THE DATABASE SO AS TO AVOID DUPLICATION OF DATA.
+            $gettingTheScoreRecordedCollection = ScoreRecorded::where('keyPerfomanceIndicator_id','=',$idOfKPI)->get();
+            $countingTheScoreRecorded = count($gettingTheScoreRecordedCollection);
+            if ($countingTheScoreRecorded >= 1) {
+                //! data is in the DB, update the record.
+                foreach($gettingTheScoreRecordedCollection as $scoreRecord){
+                    $scoreRecord->keyPerfomanceIndicator_id=$idOfKPI;
+                    $scoreRecord->score= $score;
+                    $scoreRecord->quater = $activeQuater;
+                    $scoreRecord->year = $activeYaer;
+                    $scoreRecord->metOrUnmet = $formFlagInputValue;
+                    $scoreRecord->reasonProvided = $formFlagInputValue;
+
+                    //!saving the updates. 
+                    $scoreRecord->save();
+                }
+                
+            } else {
+                //! data not in the database, insert a fresh record.
+                $savingTheScoresRecorded = new ScoreRecorded(
+                    array(
+                        'keyPerfomanceIndicator_id'=>$idOfKPI,
+                        'score'=>$score,
+                        'quater'=>$activeQuater,
+                        'year'=>$activeYaer,
+                        'metOrUnmet'=>$formFlagInputValue,
+                        'reasonProvided'=>$formFlagInputValue
+                    )
+                );
+                $savingTheScoresRecorded->save();
+            }
+            
+            //? THE FOLLOWING STEP IS FOR ADDING THE DATA TO THE KEY PERFOMANCE INDICATORS TABLE.
+            //! selecting all the records from the scores recorded with a particular kpiId and also the same year. 
+            $allKPIScoresWithSameYear = ScoreRecorded::where('year','=',$activeYaer)
+                                                     ->where('keyPerfomanceIndicator_id','=',$idOfKPI)
+                                                     ->get();
+
+            //!counting the number of records returned. 
+            $numberOfReturnedScores = count($allKPIScoresWithSameYear);
+            if($numberOfReturnedScores<1){
+                return response()->json(['success'=>'There is an error incalculating the ytds, contact the Admin For Help.']);
+            }
+
+            $sum = 0;
+            $averageThatBecomesytd = 0;
+
+            // for ($i=0; $i < $numberOfReturnedScores ; $i++) { 
+            //     # code...-score
+            //     $sum+=$allKPIScoresWithSameYear->score;
+            // }
+                foreach($allKPIScoresWithSameYear as $kpiScoreInSameYear){
+                    $sum+=$kpiScoreInSameYear->score;
+                }
+            $averageThatBecomesytd = $sum/$numberOfReturnedScores;
+
+            //!getting the score based on the ytd and the arithmetic structure.
+
+            $atithmeticStructure = $kpi->arithmeticStructure;
+            $kpiTarget = $kpi->target;
+            $kpiScore = 0;
+            switch ($atithmeticStructure) {
+                    case '0':
+                    # code...
+                    if ($averageThatBecomesytd<=$kpiTarget) {
+                        # code...
+                        $kpiScore = 100;
+                    } else {
+                        # code...                        
+                        if ($kpiTarget == 0) {
+                            # code...
+                            $kpiTarget = 1;
+                        }
+                        $percentage = $averageThatBecomesytd-$kpiTarget;
+                        $kpiScore = ($percentage/$averageThatBecomesytd)*100; 
+
+                    }
+                    
+                    break;
+                    case '1':
+                        # code...
+                        if ($averageThatBecomesytd>$kpiTarget) {
+                            # code...
+                            $kpiScore = 100;
+                        } else {
+                            # code...
+                            $kpiScore = ($averageThatBecomesytd/$kpiTarget)*100;
+                        }
+                        
+                    break;
+                    case '2':
+                            # code...
+                            //* isms, do later.
+                    break;
+                    case '3':
+                                # code...
+                                //* isms, do later.
+                    break;
+                    case '4':
+                                    # code...
+                                    //* isms, do later.
+                    break;
+                    case '5':
+                                        # code...
+                                        //* isms, do later.
+                    break;
+                    case '6':
+                                            # code...
+                                            //* isms, do later.
+                    break;
+                    case '7':
+                        # code...
+                        //* isms, do later.
+                    break;
+                
+                    default:
+                        return "There is a problem with the implementation of the scores and ytd.";
+                    break;
+            }
+
+            
+            //! Adding the data into the kpi scores table, we first check if it is present, if so we update or else we insert. 
+            $kpiscoresRecords = KeyPerfomanceIndicatorScore::where('kpi_id','=',$idOfKPI)->get();
+            
+            //!counting the records.
+            $numberOfKPIRecords = count($kpiscoresRecords);
+            if($numberOfKPIRecords>0){
+                //!since there is a record in the DB, update the record.
+                foreach($kpiscoresRecords as $kpiscoresRecord){
+                    $kpiscoresRecord->year =$activeYaer;
+                    $kpiscoresRecord->ytd =$averageThatBecomesytd;
+                    $kpiscoresRecord->kpi_id =$idOfKPI;
+                    $kpiscoresRecord->strategic_objective_id =$strategicObjectiveIdFromForm;
+                    $kpiscoresRecord->score = $kpiScore; 
+                    $kpiscoresRecord->save();
+                    // return response()->json(['success'=>''.$strategicObjectiveIdFromForm.'UPDATED successsfully, Move to the Next Objective']);                 
+                }
+
+            }
+
+            else if($numberOfKPIRecords == 0){
+                $savingKPIcore = new KeyPerfomanceIndicatorScore(
+                    array(
+                        'year' =>$activeYaer,
+                        'ytd' =>$averageThatBecomesytd,
+                        'kpi_id' =>$idOfKPI,
+                        'strategic_objective_id' =>$strategicObjectiveIdFromForm,
+                        'score' => $kpiScore,
+                    )                    
+                );
+                $savingKPIcore->save();
+                // return response()->json(['success'=>''.$strategicObjectiveIdFromForm.'saved successsfully, Move to the Next Objective']);
+            }
+
+        }   
+        //? Inserting Data to the strategic objectives scores table. 
+        //! to insert the data, we first have to get the strategicObjectives from form. 
         
+        $gettingTheKPIScores = KeyPerfomanceIndicatorScore::where('strategic_objective_id','=',$strategicObjectiveIdFromForm)->get();
+        $countingNoOfKPIScores = count($gettingTheKPIScores);
+        // dd($countingNoOfKPIScores);
+        $sum = 0;
+        $average = 0;
+        foreach($gettingTheKPIScores as $gettingTheKPIScore){
+            $value = $gettingTheKPIScore->score;
+            $sum = $sum+$value;
+        }
+        $average = $sum/$countingNoOfKPIScores;
+        // dd($average);
 
-        //!counting the key perfomance indicators.         
+        //! checking if the data has has a value so as to see if the value has a duplicate so as to update.
+            $gettingStrategicObjectiveRecord = StrategicObjectiveScore::where('strategicObjective_id','=',$strategicObjectiveIdFromForm)->get();
+            $countingTheNUmberOfReturnedStrategicObjective = count($gettingStrategicObjectiveRecord);
 
-        // return response()->json(['success'=>'Data has been saved successsfully, Move to the Next Objective']);
+            //!getting the strategic objective and the perspective id for the given kpi.
+            $gettingStrategicObjetive = StrategicObjective::where('id','=',$strategicObjectiveIdFromForm)->get();
+
+            foreach($gettingStrategicObjetive as $StrategicObjetive){
+                $perspectiveIddrawn = $StrategicObjetive->perspective_id;
+            }
+
+            if($countingTheNUmberOfReturnedStrategicObjective >=1){
+                foreach($gettingStrategicObjectiveRecord as $StrategicObjectiveRecord){
+
+                    $StrategicObjectiveRecord->strategicObjective_id= $strategicObjectiveIdFromForm;
+                    $StrategicObjectiveRecord->perspective_id= $perspectiveIddrawn;
+                    $StrategicObjectiveRecord->score= $average ;
+                    $StrategicObjectiveRecord->year = $activeYaer;
+
+                    //! saving the changes.
+                    $StrategicObjectiveRecord->save();
+
+                }
+            }
+            else{
+
+                $savingTheStrateicObjective = new StrategicObjectiveScore(
+                                            array(
+                                                'strategicObjective_id'=>$strategicObjectiveIdFromForm,
+                                                'perspective_id'=> $perspectiveIddrawn,
+                                                'score'=> $average,
+                                                'year'=>$activeYaer,
+                                            )
+                );
+                $savingTheStrateicObjective->save();
+            }
+
+        return response()->json(['success'=>'Data has been saved successsfully, Move to the Next Objective'.$kpiNumber]);
     }
 
 

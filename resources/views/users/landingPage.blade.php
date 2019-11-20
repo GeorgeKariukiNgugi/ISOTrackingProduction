@@ -224,7 +224,11 @@
                                         <div id="{{"unmetTargetComment".$kpi->id}}" class = "col-md-1 text-center unmetTargetComment">
                                           {{-- <a data-toggle="modal" href = "" data-target="{{"#modal".$kpi->id}}"> COMMENT</a> --}}
                                         </div>
-                                        <input type="hidden" name = "{{"nonConformityFlag".$kpi->id}}" value= "null" id = "{{"nonConformityFlag".$kpi->id}}">
+                                        @php
+                                            // dd($kpi->id);
+                                        @endphp
+                                        <input type="hidden" name = "{{"nonConformityFlag".$kpi->id}}" value= "1" id = "{{"nonConformityFlag".$kpi->id}}">
+
                                       </div>
                                @endforeach
                                <div class="box-footer">   

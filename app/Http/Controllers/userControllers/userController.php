@@ -198,6 +198,7 @@ class userController extends Controller
             
             //!counting the records.
             $numberOfKPIRecords = count($kpiscoresRecords);
+            // dd($numberOfKPIRecords);
             if($numberOfKPIRecords>0){
                 //!since there is a record in the DB, update the record.
                 foreach($kpiscoresRecords as $kpiscoresRecord){
@@ -207,6 +208,7 @@ class userController extends Controller
                     $kpiscoresRecord->strategic_objective_id =$strategicObjectiveIdFromForm;
                     $kpiscoresRecord->score = $kpiScore; 
                     $kpiscoresRecord->save();
+                    // dd($strategicObjectiveIdFromForm);
                     // return response()->json(['success'=>''.$strategicObjectiveIdFromForm.'UPDATED successsfully, Move to the Next Objective']);                 
                 }
 
@@ -222,14 +224,16 @@ class userController extends Controller
                         'score' => $kpiScore,
                     )                    
                 );
+                
                 $savingKPIcore->save();
+                // dd("out of table.");
                 // return response()->json(['success'=>''.$strategicObjectiveIdFromForm.'saved successsfully, Move to the Next Objective']);
             }
 
         }   
         //? Inserting Data to the strategic objectives scores table. 
         //! to insert the data, we first have to get the strategicObjectives from form. 
-        
+        // dd($strategicObjectiveIdFromForm);
         $gettingTheKPIScores = KeyPerfomanceIndicatorScore::where('strategic_objective_id','=',$strategicObjectiveIdFromForm)->get();
         $countingNoOfKPIScores = count($gettingTheKPIScores);
         // dd($countingNoOfKPIScores);
@@ -383,5 +387,28 @@ class userController extends Controller
          else{
             return response()->json(['success'=>'Non conformity details cannot be accessed at this time. Kindly Contact Admin.']);
          }        
+    }
+
+    //! This is the function that is used to store the the new kpis. 
+
+    public function submittingNewKPIs(Request $request){
+        
+        $newKPIPerspective = $request->perpective;
+        $newStrategicObjective = $request->strategicObjective;        
+        $newKPIName = $request->kpiName;
+        $newJPITarget = $request->kpiTarget;
+        $newKPIArithmeticStructure = $request->arithmeticStructure;
+        $savingKPI = new KeyPerfomaceIndicator(
+                        array(
+                            'name'=>$newKPIName,
+                            'strategic_objective_id'=>$newStrategicObjective,                            
+                            'perspective_id'=>$newKPIPerspective,
+                            'arithmeticStructure'=>$newKPIArithmeticStructure,
+                            'target'=>$newJPITarget,
+                        )
+        );
+        // dd($newStrategicObjective);
+        $savingKPI->save();
+        return response()->json(['success'=>'New KPI Added. Close PopUp To Continue.']);
     }
 }

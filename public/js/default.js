@@ -4,10 +4,14 @@ $(document).ready(function() {
     var activeQuater = $("#activeQuater").val();
     var gettingTheQuaterNumber = activeQuater.substr(1);
     var quaterPrefixId = "Quater" + gettingTheQuaterNumber;
+    var gettingScoreValue = "scoreHidden" + gettingTheQuaterNumber;
+    var value = $("#" + gettingScoreValue).val();
 
     var selectingQuaters = $("[id^=" + quaterPrefixId + "]");
     selectingQuaters.removeAttr("readonly");
     selectingQuaters.removeAttr("placeholder");
     selectingQuaters.attr("required", "true");
+    // console.log(value);
+    // selectingQuaters.val(value);
     // console.log(gettingTheQuaterNumber);
 });

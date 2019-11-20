@@ -31,3 +31,6 @@ Route::post('submitScores','UserControllers\userController@submittingKPIScores')
 
 //! submitting the nonconformities values. 
 Route::post('submitNonConformities','UserControllers\userController@submittingNonConformities');
+
+//! this is the function that is used to store the new kpis that have been generated.
+Route::post('submittingKPI','UserControllers\userController@submittingNewKPIs');

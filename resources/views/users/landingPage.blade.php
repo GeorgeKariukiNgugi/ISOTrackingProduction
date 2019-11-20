@@ -61,6 +61,7 @@
     {{-- getting the name of the particular perspective. --}}
 
     @php
+        $perspectiveId = $perspective->id;
         $name2 = $perspective->name;
         $nameOfPerspective = substr($name2,$shorthandLength);
         $name2 = str_replace('_', ' ', $nameOfPerspective);
@@ -116,11 +117,51 @@
                 </div>
               <div class="box-footer clearfix">
                   <div style="text-align:left" class="col-md-6">
-                      <a class="btn btn-success btn-md" data-toggle="modal" data-target="{{"#modal".$strategicObjective->name}}"> <b>Add New</b> </a>                  
+                      <a class="btn btn-success btn-md" data-toggle="modal" data-target="{{"#modal".$strategicObjective->id}}"> <b>Add New</b> </a>                  
                   </div>
               </div>
             </div> 
-          </div>           
+            <div role="dialog" tabindex="-1" class="modal fade" id="{{"modal".$strategicObjective->id}}">
+              <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                      <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                          <h4 class="modal-title" style="text-align:center;">Add a new KPI to the Strategic Objective : <strong>{{$perspetiveName}}</strong></h4>
+                      </div>
+                      <div class="modal-body">
+                        <form method="POST" id = "{{"modalSubmit".$strategicObjective->id}}">
+                            <div id="{{"KPIalert".$strategicObjective->id}}"></div>
+                          {{ csrf_field() }}
+                            <input type="hidden" name="perpective" value="{{$perspectiveId}}">
+                            <input type="hidden" name="strategicObjective" value="{{$strategicObjective->id}}">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6">
+                                    <p><strong>Name of KPI:</strong></p>
+                                </div>
+                                <div class="col-lg-6 col-md-6"><input type="text" required name="kpiName" /></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6">
+                                    <p><strong>Target</strong></p>
+                                </div>
+                                <div class="col-lg-6 col-md-6"><input type="number" required name="kpiTarget" /></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6">
+                                    <p><strong>Arithmtic Structure</strong></p>
+                                </div>
+                                <div class="col-lg-6 col-md-6"><select required name="arithmeticStructure"><optgroup label="Arithmetic Structure"><option value="1">Above</option><option value="0">Below</option></optgroup></select></div>
+                            </div>
+                            <div class="modal-footer"><button class="btn btn-danger" type="button" data-dismiss="modal">Close</button><button class="btn btn-success" type="submit">Save</button></div>
+                        </form>
+                          
+
+                      </div>
+                      
+                  </div>
+              </div>
+          </div> 
+          </div>  
+                  
             @else
             <form id = "{{"form".$strategicObjective->id}}" method="POST" name = "{{"form".$strategicObjective->id}}" >
               <div id = "{{"alert".$strategicObjective->id}}"></div>
@@ -201,10 +242,29 @@
                                 }
                                }     
                                //end of getting the score of the key perfomance indicator.
+
+                               //getting the score of the specific kpi by looping though.
+                               $countingTheNumberOfReturnedscores = count($quaterValueCollection);
+
+                              //  for ($i=0; $i < $countingTheNumberOfReturnedscores ; $i++) { 
+                              //    # code...
+                              //  }
+                                $quaterScore = '';
+                                if($countingTheNumberOfReturnedscores == 0){
+                                  $quaterScore = '';
+                                }
+                              foreach($quaterValueCollection as $quaterValue){
+                                if($quaterValue->keyPerfomanceIndicator_id = $kpi->id){
+                                  $quaterScore = $quaterValue->score;
+                                break;
+                                }                                
+                              }
+
                                @endphp
                                       <div class="row" style="margin-bottom:0.5%;">
                                         {{-- <input type = "hidden" value="{{$originalObjectiveName}}" id = "{{"hiddenKPIObective".$kpiOriginalName}} name = "{{"hiddenObjectiveName".$originalObjectiveName}}"/> --}}
                                         {{-- hidden input to et the value of the arithmetic structure. --}}
+                                        
                                         <input type="hidden" id="{{"arithmeticStructure".$kpi->id}}" value = "{{$kpi->arithmeticStructure}}"/>
                                         <div class=" col-md-1"style="text-align:center">
                                             <p>{{$kpi->id}}</p>
@@ -235,7 +295,7 @@
                                 {{-- Adding the Modal That is used to add the Key Perfomance Indicators.  --}}
                                 {{-- id="{{ "modal".$originalObjectiveName}} --}}                                                                    
                                 <div style="text-align:left" class="col-md-6">
-                                  <a class="btn btn-success btn-md" data-toggle="modal" data-target="{{"#modal".$strategicObjective->name}}"> <b>Add New</b> </a>
+                                  <a class="btn btn-success btn-md" data-toggle="modal" data-target="{{"#modal".$strategicObjective->id}}"> <b>Add New</b> </a>
                                   {{-- <a class="btn btn-warning btn-md" > <b>Edit .</b> </a> --}}
                                 </div>
                                 <div style="text-align:right;" class="col-md-6">
@@ -289,7 +349,52 @@
             </div>
             @endforeach
           </div>
-          @endif
+
+           <div role="dialog" tabindex="-1" class="modal fade" id="{{"modal".$strategicObjective->id}}">
+              <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                      <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                          <h4 class="modal-title" style="text-align:center;">Add a new KPI to the Strategic Objective :  <strong>{{$perspetiveName}}</strong></h4>
+                      </div>
+                      <div class="modal-body">
+                        <form method="POST" id = "{{"modalSubmit".$strategicObjective->id}}">
+                          <div id="{{"KPIalert".$strategicObjective->id}}"></div>
+                          {{ csrf_field() }}
+                            <div class="row">
+                              <input type="hidden" name="perpective" value="{{$perspectiveId}}">
+                              <input type="hidden" name="strategicObjective" value="{{$strategicObjective->id}}">
+                                <div class="col-lg-6 col-md-6">
+                                    <p><strong>Name of KPI:</strong></p>
+                                </div>
+                                <div class="col-lg-6 col-md-6"><input type="text" required name="kpiName" /></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6">
+                                    <p><strong>Target</strong></p>
+                                </div>
+                                <div class="col-lg-6 col-md-6"><input type="number" required name="kpiTarget" /></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6">
+                                    <p><strong>Arithmtic Structure</strong></p>
+                                </div>
+                                <div class="col-lg-6 col-md-6"><select required name="arithmeticStructure"><optgroup label="Arithmetic Structure"><option value="1">Above</option><option value="0">Below</option></optgroup></select></div>
+                            </div>
+                            <div class="modal-footer"><button class="btn btn-danger" type="button" data-dismiss="modal">Close</button><button class="btn btn-success" type="submit">Save</button></div>
+                        </form>
+                          
+
+                      </div>
+                      
+                  </div>
+              </div>
+          </div>      
+          @endif  
+          {{-- this section is used to add the modal for adding a new KPI. --}}
+          @php
+              // dd($strategicObjective->name);
+          @endphp          
+            
           @endforeach
 
       @endif

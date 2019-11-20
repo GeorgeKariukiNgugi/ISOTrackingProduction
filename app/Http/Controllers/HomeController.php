@@ -60,20 +60,11 @@ class HomeController extends Controller
             $activeQuater = $activeQuaterCollection->Quater;
             // dd($activeQuater);
         }
-        //! GETTING THE QUATERS THAT WILL BE CHECKED DURING THE INSERTION OF DATA.
+        //!getting the appropriate quater data to show case in the text input. 
+        $quaterValueCollection = ScoreRecorded::where('quater','=',$activeQuater)
+                                                ->where('year','=',$activeYaer)
+                                                ->get();
 
-        $quaterOne = ScoreRecorded::where('quater','=','Q1')
-                                    ->where('year','=','2019')
-                                    ->get();
-        $quaterTwo = ScoreRecorded::where('quater','=','Q2')
-                                    ->where('year','=','2019')
-                                    ->get();
-        $quaterthree = ScoreRecorded::where('quater','=','Q3')
-                                    ->where('year','=','2019')
-                                    ->get();
-        $quaterfour = ScoreRecorded::where('quater','=','Q4')
-                                    ->where('year','=','2019')
-                                    ->get();
         $id = "null";
         if($countingid == 1){
             foreach($programids as $programid){
@@ -88,7 +79,7 @@ class HomeController extends Controller
                     
                 }
                 
-                return view('users.landingPage',['perspectives'=>$perspectives,'activeYaer'=>$activeYaer,'activeQuater'=>$activeQuater,'scoresRecorded'=>$scoresRecorded,'programName'=>$programName,'programShortHand'=>$programShortHand,'quaterOne'=>$quaterOne,'quaterTwo'=>$quaterTwo,'quaterthree'=>$quaterthree,'quaterfour'=>$quaterfour]);
+                return view('users.landingPage',['perspectives'=>$perspectives,'activeYaer'=>$activeYaer,'activeQuater'=>$activeQuater,'scoresRecorded'=>$scoresRecorded,'programName'=>$programName,'programShortHand'=>$programShortHand,'quaterValueCollection'=>$quaterValueCollection]);
             }
         }
         else{

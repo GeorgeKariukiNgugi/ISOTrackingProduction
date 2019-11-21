@@ -1,6 +1,9 @@
-@extends('extendingCode.adminMain')
+@extends('extendingCode.usersExtending')
 @section('charts')
-
 {!! $chart->script() !!}
-{!! $usersChart->script() !!}
+@endsection
+@section('section')
+{!! $chart->container() !!}
+
+{{$id."coe."}}
 @endsection

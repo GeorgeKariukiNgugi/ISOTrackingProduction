@@ -38,4 +38,4 @@ Route::post('submittingKPI','UserControllers\userController@submittingNewKPIs');
 
 //!this is the route that is used to generate the dashboard graphs amoung others. 
 
-Route::get('dashBoard/{id}','UserControllers\userController@dashboardConroller');
+Route::get('dashBoard/{id}','UserControllers\userController@DashboardConroller');

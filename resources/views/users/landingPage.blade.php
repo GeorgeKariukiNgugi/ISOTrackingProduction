@@ -117,7 +117,7 @@
                     <h4 style="text-align:center;">There are no key perfomance indicators for this strategic objective. <b> Click on the add button to add the kpis.</b></h4>
                 </div>
               <div class="box-footer clearfix">
-                  <div style="text-align:left" class="col-md-6">
+                  <div style="text-align:left" class="col-md-6  col-sm-6">
                       <a class="btn btn-success btn-md" data-toggle="modal" data-target="{{"#modal".$strategicObjective->id}}"> <b>Add New</b> </a>                  
                   </div>
               </div>
@@ -135,22 +135,22 @@
                             <input type="hidden" name="perpective" value="{{$perspectiveId}}">
                             <input type="hidden" name="strategicObjective" value="{{$strategicObjective->id}}">
                             <div class="row">
-                                <div class="col-lg-6 col-md-6">
+                                <div class="col-lg-6 col-md-6  col-sm-6">
                                     <p><strong>Name of KPI:</strong></p>
                                 </div>
-                                <div class="col-lg-6 col-md-6"><input type="text" required name="kpiName" /></div>
+                                <div class="col-lg-6 col-md-6  col-sm-6"><input type="text" required name="kpiName" /></div>
                             </div>
                             <div class="row">
-                                <div class="col-lg-6 col-md-6">
+                                <div class="col-lg-6 col-md-6  col-sm-6">
                                     <p><strong>Target</strong></p>
                                 </div>
-                                <div class="col-lg-6 col-md-6"><input type="number" required name="kpiTarget" /></div>
+                                <div class="col-lg-6 col-md-6  col-sm-6"><input type="number" required name="kpiTarget" /></div>
                             </div>
                             <div class="row">
-                                <div class="col-lg-6 col-md-6">
+                                <div class="col-lg-6 col-md-6  col-sm-6">
                                     <p><strong>Arithmtic Structure</strong></p>
                                 </div>
-                                <div class="col-lg-6 col-md-6"><select required name="arithmeticStructure"><optgroup label="Arithmetic Structure"><option value="1">Above</option><option value="0">Below</option></optgroup></select></div>
+                                <div class="col-lg-6 col-md-6  col-sm-6"><select required name="arithmeticStructure"><optgroup label="Arithmetic Structure"><option value="1">Above</option><option value="0">Below</option></optgroup></select></div>
                             </div>
                             <div class="modal-footer"><button class="btn btn-danger" type="button" data-dismiss="modal">Close</button><button class="btn btn-success" type="submit">Save</button></div>
                         </form>
@@ -333,11 +333,11 @@
                                <div class="box-footer">   
                                 {{-- Adding the Modal That is used to add the Key Perfomance Indicators.  --}}
                                 {{-- id="{{ "modal".$originalObjectiveName}} --}}                                                                    
-                                <div style="text-align:left" class="col-md-6">
+                                <div style="text-align:left" class="col-md-6  col-sm-6">
                                   <a class="btn btn-success btn-md" data-toggle="modal" data-target="{{"#modal".$strategicObjective->id}}"> <b>Add New</b> </a>
                                   {{-- <a class="btn btn-warning btn-md" > <b>Edit .</b> </a> --}}
                                 </div>
-                                <div style="text-align:right;" class="col-md-6">
+                                <div style="text-align:right;" class="col-md-6  col-sm-6">
                                   <button class="btn btn-danger btn-md" type = "submit" id= "{{"submit".$strategicObjective->name}}"> <b>Save</b> </button>
                                 </div>
                                </div>                               
@@ -402,22 +402,22 @@
                             <div class="row">
                               <input type="hidden" name="perpective" value="{{$perspectiveId}}">
                               <input type="hidden" name="strategicObjective" value="{{$strategicObjective->id}}">
-                                <div class="col-lg-6 col-md-6">
+                                <div class="col-lg-6 col-md-6  col-sm-6">
                                     <p><strong>Name of KPI:</strong></p>
                                 </div>
-                                <div class="col-lg-6 col-md-6"><input type="text" required name="kpiName" /></div>
+                                <div class="col-lg-6 col-md-6  col-sm-6"><input type="text" required name="kpiName" /></div>
                             </div>
                             <div class="row">
-                                <div class="col-lg-6 col-md-6">
+                                <div class="col-lg-6 col-md-6  col-sm-6">
                                     <p><strong>Target</strong></p>
                                 </div>
-                                <div class="col-lg-6 col-md-6"><input type="number" required name="kpiTarget" /></div>
+                                <div class="col-lg-6 col-md-6  col-sm-6"><input type="number" required name="kpiTarget" /></div>
                             </div>
                             <div class="row">
-                                <div class="col-lg-6 col-md-6">
+                                <div class="col-lg-6 col-md-6  col-sm-6">
                                     <p><strong>Arithmtic Structure</strong></p>
                                 </div>
-                                <div class="col-lg-6 col-md-6"><select required name="arithmeticStructure"><optgroup label="Arithmetic Structure"><option value="1">Above</option><option value="0">Below</option></optgroup></select></div>
+                                <div class="col-lg-6 col-md-6  col-sm-6"><select required name="arithmeticStructure"><optgroup label="Arithmetic Structure"><option value="1">Above</option><option value="0">Below</option></optgroup></select></div>
                             </div>
                             <div class="modal-footer"><button class="btn btn-danger" type="button" data-dismiss="modal">Close</button><button class="btn btn-success" type="submit">Save</button></div>
                         </form>

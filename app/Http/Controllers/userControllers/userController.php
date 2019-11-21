@@ -467,5 +467,14 @@ class userController extends Controller
         $savingKPI->save();
         return response()->json(['success'=>'New KPI Added. Close PopUp To Continue.']);
     }
- //! TTHIS IS THE CONTROLLER THAT IS USED TO HANDLE ALL THE DASHBOARD GRAPH GENERATION.   
+ //! TTHIS IS THE CONTROLLER THAT IS USED TO HANDLE ALL THE DASHBOARD GRAPH GENERATION.
+ 
+ public function DashboardConroller($id){
+    $chart = new DashBoardCharts;
+    $chart->labels(['John', 'Chege', 'Kamau']);
+    $chart->displaylegend(true);
+    $chart->dataset('My dataset 1 with TRIAL', 'pie', [1, 2, 3])->color("white")->backgroundcolor("rgb(255, 99, 132)");
+    // return view('sample_view', compact('chart');
+    return view('users.dashboard',['chart'=>$chart,'id'=>$id]);
+ }
 }

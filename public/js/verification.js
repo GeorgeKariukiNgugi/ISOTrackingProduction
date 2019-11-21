@@ -1,7 +1,7 @@
-$(document).ready(function() {
+$(document).ready(function () {
     var quatersSelected = $("input[id*='Quater']");
     // $("[id^='unmetTargetComment']").hide();
-    quatersSelected.focusout(function() {
+    quatersSelected.focusout(function () {
         var id = $(this).attr("id");
         var slicedId = id.substring(7);
         var getTargetIdName = "target" + slicedId;
@@ -17,6 +17,7 @@ $(document).ready(function() {
                 console.log("The value is blank.");
                 $("#" + unmetTargetId + "").empty();
             } else {
+                inputValue = parseFloat(inputValue, 10);
                 //! getting the arithmetic structure.
                 var arithmeticStructure = $("#arithmeticStructure" + slicedId);
                 var arithmeticStructureValue = arithmeticStructure.val();
@@ -28,11 +29,11 @@ $(document).ready(function() {
                         if (inputValue > targetValue) {
                             console.log(
                                 " 0 IT SHOULD BE SMALLER. target = " +
-                                    targetValue +
-                                    "input value = " +
-                                    inputValue
+                                targetValue +
+                                "input value = " +
+                                inputValue
                             );
-
+                            console.log(typeof inputValue + "  This is the data type.");
                             // !setting the flag to a positive.
                             $("#" + nonConformityFlag + "").val(1);
 
@@ -41,16 +42,16 @@ $(document).ready(function() {
 
                             $("#" + unmetTargetId + "").append(
                                 '<a href = "#" style = "color:red;" data-toggle="modal" data-target= "#' +
-                                    gettingModalName +
-                                    '"> <i style = "font-size:20px;"class = "fa fa-times">   <b>NO</b> </i></a>'
+                                gettingModalName +
+                                '"> <i style = "font-size:20px;"class = "fa fa-times">   <b>NO</b> </i></a>'
                             );
-                            $(this).focus();
+                            // $(this).focus();
                             $("#modal" + slicedId).modal("show");
                         } else {
                             // !setting the flag to a negative.
                             $("#" + nonConformityFlag + "").val(0);
                             console.log($("#" + nonConformityFlag + "").val());
-
+                            console.log(typeof inputValue + "  This is the data type.");
                             console.log("0 IT GOOD.");
                             $("#" + unmetTargetId + "").empty();
                             $("#" + unmetTargetId + "").append(
@@ -64,6 +65,7 @@ $(document).ready(function() {
                         var nonConformityFlag = "nonConformityFlag" + slicedId;
                         if (inputValue < targetValue) {
                             console.log("1 it should be larger");
+                            console.log(typeof inputValue + "  This is the data type.");
                             // !setting the flag to a positive.
                             $("#" + nonConformityFlag + "").val(1);
                             var flag = $("#" + nonConformityFlag + "").val();
@@ -72,13 +74,14 @@ $(document).ready(function() {
                             $("#" + unmetTargetId + "").empty();
                             $("#" + unmetTargetId + "").append(
                                 '<a href = "#" style = "color:red;" data-toggle="modal" data-target= "#' +
-                                    gettingModalName +
-                                    '"> <i style = "font-size:20px;"class = "fa fa-times">   <b>NO</b> </i></a>'
+                                gettingModalName +
+                                '"> <i style = "font-size:20px;"class = "fa fa-times">   <b>NO</b> </i></a>'
                             );
                             $("#modal" + slicedId).modal("show");
-                            $(this).focus();
+                            // $(this).focus();
                         } else {
                             console.log("1 IT GOOD.");
+                            console.log(typeof inputValue + "  This is the data type.");
                             // !setting the flag to a negative.
                             $("#" + nonConformityFlag + "").val(0);
                             console.log($("#" + nonConformityFlag + "").val());
@@ -103,10 +106,10 @@ $(document).ready(function() {
                             $("#" + unmetTargetId + "").empty();
                             $("#" + unmetTargetId + "").append(
                                 '<a href = "#" style = "color:red;" data-toggle="modal" data-target= "#' +
-                                    gettingModalName +
-                                    '"> <i style = "font-size:20px;"class = "fa fa-times">   <b>NO</b> </i></a>'
+                                gettingModalName +
+                                '"> <i style = "font-size:20px;"class = "fa fa-times">   <b>NO</b> </i></a>'
                             );
-                            $(this).focus();
+                            // $(this).focus();
                             $("#modal" + slicedId).modal("show");
                         } else {
                             console.log("1 IT GOOD.");
@@ -134,11 +137,11 @@ $(document).ready(function() {
                             $("#" + unmetTargetId + "").empty();
                             $("#" + unmetTargetId + "").append(
                                 '<a href = "#" style = "color:red;" data-toggle="modal" data-target= "#' +
-                                    gettingModalName +
-                                    '"> <i style = "font-size:20px;"class = "fa fa-times">   <b>NO</b> </i></a>'
+                                gettingModalName +
+                                '"> <i style = "font-size:20px;"class = "fa fa-times">   <b>NO</b> </i></a>'
                             );
                             console.log(id);
-                            $("#" + id).focus();
+                            // $("#" + id).focus();
                             $("#modal" + slicedId).modal("show");
                         } else {
                             console.log("1 IT GOOD.");
@@ -166,10 +169,10 @@ $(document).ready(function() {
                             $("#" + unmetTargetId + "").empty();
                             $("#" + unmetTargetId + "").append(
                                 '<a href = "#" style = "color:red;" data-toggle="modal" data-target= "#' +
-                                    gettingModalName +
-                                    '"> <i style = "font-size:20px;"class = "fa fa-times">   <b>NO</b> </i></a>'
+                                gettingModalName +
+                                '"> <i style = "font-size:20px;"class = "fa fa-times">   <b>NO</b> </i></a>'
                             );
-                            $(this).focus();
+                            // $(this).focus();
                             $("#modal" + slicedId).modal("show");
                         } else {
                             console.log("1 IT GOOD.");
@@ -197,10 +200,10 @@ $(document).ready(function() {
                             $("#" + unmetTargetId + "").empty();
                             $("#" + unmetTargetId + "").append(
                                 '<a href = "#" style = "color:red;" data-toggle="modal" data-target= "#' +
-                                    gettingModalName +
-                                    '"> <i style = "font-size:20px;"class = "fa fa-times">   <b>NO</b> </i></a>'
+                                gettingModalName +
+                                '"> <i style = "font-size:20px;"class = "fa fa-times">   <b>NO</b> </i></a>'
                             );
-                            $(this).focus();
+                            // $(this).focus();
                             $("#modal" + slicedId).modal("show");
                         } else {
                             console.log("1 IT GOOD.");
@@ -228,10 +231,10 @@ $(document).ready(function() {
                             $("#" + unmetTargetId + "").empty();
                             $("#" + unmetTargetId + "").append(
                                 '<a href = "#" style = "color:red;" data-toggle="modal" data-target= "#' +
-                                    gettingModalName +
-                                    '"> <i style = "font-size:20px;"class = "fa fa-times">   <b>NO</b> </i></a>'
+                                gettingModalName +
+                                '"> <i style = "font-size:20px;"class = "fa fa-times">   <b>NO</b> </i></a>'
                             );
-                            $(this).focus();
+                            // $(this).focus();
                             $("#modal" + slicedId).modal("show");
                         } else {
                             console.log("1 IT GOOD.");

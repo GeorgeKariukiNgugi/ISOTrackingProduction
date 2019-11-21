@@ -165,26 +165,79 @@ class userController extends Controller
                     case '2':
                             # code...
                             //* isms, do later.
+                            if ($averageThatBecomesytd == 1) {
+                                # code...
+                                $kpiScore = 100;
+                            } else  if ($averageThatBecomesytd == 2){
+                                $kpiScore = 80;
+                            }
+                            else  if ($averageThatBecomesytd == 3){
+                                $kpiScore = 70;
+                            }
+                            else  if ($averageThatBecomesytd == 4){
+                                $kpiScore = 66;
+                            }
+                            else  if ($averageThatBecomesytd == 5){
+                                $kpiScore = 33;
+                            }
+                            else{
+                                $kpiScore = 0;
+                            }
                     break;
                     case '3':
                                 # code...
                                 //* isms, do later.
+                                if ($averageThatBecomesytd == 1) {
+                                    # code...
+                                    $kpiScore = 100;
+                                } else  if ($averageThatBecomesytd == 2){
+                                    $kpiScore = 80;
+                                }
+                                else  if ($averageThatBecomesytd == 3){
+                                    $kpiScore = 70;
+                                }
+                                else  if ($averageThatBecomesytd == 4){
+                                    $kpiScore = 66;
+                                }
+                                else  if ($averageThatBecomesytd == 5){
+                                    $kpiScore = 33;
+                                }
+                                else{
+                                    $kpiScore = 0;
+                                }
                     break;
                     case '4':
-                                    # code...
-                                    //* isms, do later.
+                        if ($averageThatBecomesytd == 1) {
+                            # code...
+                            $kpiScore = 100;
+                        } else{
+                            $kpiScore = 0;
+                        }
                     break;
                     case '5':
-                                        # code...
-                                        //* isms, do later.
+                        if ($averageThatBecomesytd == 0) {
+                            # code...
+                            $kpiScore = 100;
+                        } else{
+                            $kpiScore = 0;
+                        }          
                     break;
                     case '6':
-                                            # code...
-                                            //* isms, do later.
+                        if ($averageThatBecomesytd <= 1) {
+                            # code...
+                            $kpiScore = 100;
+                        } else{
+                            $kpiScore = 0;
+                        } 
                     break;
                     case '7':
-                        # code...
-                        //* isms, do later.
+                        if ($averageThatBecomesytd <= 36) {
+                            # code...
+                            $kpiScore = 100;
+                        } else{
+                            $kpiScore  = ((($averageThatBecomesytd *100)/$kpiTarget) - 100);
+                            
+                        }
                     break;
                 
                     default:

@@ -14,6 +14,9 @@ use App\KeyPerfomaceIndicator;
 use App\ScoreRecorded;
 use App\KeyPerfomanceIndicatorScore;
 use App\StrategicObjectiveScore;
+//!DASHBOARD CLASS.
+use  App\Charts\DashBoardCharts;
+
 class userController extends Controller
 {
     public function submittingKPIScores(Request $request){        
@@ -464,4 +467,5 @@ class userController extends Controller
         $savingKPI->save();
         return response()->json(['success'=>'New KPI Added. Close PopUp To Continue.']);
     }
+ //! TTHIS IS THE CONTROLLER THAT IS USED TO HANDLE ALL THE DASHBOARD GRAPH GENERATION.   
 }

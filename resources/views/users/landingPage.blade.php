@@ -8,7 +8,7 @@
 
 
 <li>            
-    <a href="/">
+    <a href="{{"/dashBoard/".$programId}}">
       <i class="fa fa-dashboard"></i>              
     </a>
   </li> 

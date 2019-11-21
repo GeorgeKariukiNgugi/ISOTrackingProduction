@@ -1,6 +1,6 @@
-$(document).ready(function() {
+$(document).ready(function () {
     // console.log("this is a submitting scores model.");
-    $("form[id^='form']").on("submit", function(e) {
+    $("form[id^='form']").on("submit", function (e) {
         e.preventDefault();
         var idOfForm = $(this).attr("id");
         var objective = idOfForm.substring(4);
@@ -14,7 +14,7 @@ $(document).ready(function() {
             cache: false,
             processData: false,
             dataType: "json",
-            success: function(data) {
+            success: function (data) {
                 var html = "";
                 if (data.success) {
                     html =
@@ -24,6 +24,7 @@ $(document).ready(function() {
                 }
 
                 $("#" + alertName).html(html);
+
             }
         });
     });

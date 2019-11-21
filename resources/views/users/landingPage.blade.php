@@ -31,6 +31,7 @@
       </li>
 @endsection
 @section('section')
+<div id = "ajaxReload">
 @php
     $increment2 = 0;
 @endphp
@@ -213,26 +214,27 @@
                                $name3 = ucwords($name3);
                                $increment3++;
                                $kpiId = $kpi->id;
-                               $scoreRecordedNumberReturned = count($scoresRecorded);
+                               $scoreRecordedNumberReturned = count($keyPerfomanceIndicatorsScores);
 
                               //!  getting the score of the particular strategic objective.
-                               if(is_null($scoresRecorded)){
+                               if(is_null($keyPerfomanceIndicatorsScores)){
                                 $score = 0;
                                 // dd("null");
                                }
                                else{
-                                //  dd("not null");
+                                //  dd($scoreRecordedNumberReturned);
                                 if ($scoreRecordedNumberReturned<1) {
                                   # code...
                                   $score = 0;
                                 } else {
                                   # code...                                
-                                        foreach($scoresRecorded as $scoresRecordeds)
+                                        foreach($keyPerfomanceIndicatorsScores as $keyPerfomanceIndicatorsScoress)
                                       {
-                                        $scoreKPI = $scoresRecordeds->key_Perfomance_Indicator_id;
-                                        $scoreYear = $scoresRecordeds->year;
+                                        // dd($keyPerfomanceIndicatorsScoress);
+                                        $scoreKPI = $keyPerfomanceIndicatorsScoress->kpi_id;
+                                        $scoreYear = $keyPerfomanceIndicatorsScoress->year;
                                         if($scoreKPI == $kpiId){
-                                            $score = $scoresRecordeds->ytd;
+                                            $score = $keyPerfomanceIndicatorsScoress->ytd;
                                         break;
                                         }
                                         else{
@@ -241,26 +243,9 @@
                                       }
                                 }
                                }     
-                               //end of getting the score of the key perfomance indicator.
-
-                               //getting the score of the specific kpi by looping though.
-                               $countingTheNumberOfReturnedscores = count($quaterValueCollection);
-
-                              //  for ($i=0; $i < $countingTheNumberOfReturnedscores ; $i++) { 
-                              //    # code...
-                              //  }
-                                $quaterScore = '';
-                                if($countingTheNumberOfReturnedscores == 0){
-                                  $quaterScore = '';
-                                }
-                              foreach($quaterValueCollection as $quaterValue){
-                                if($quaterValue->keyPerfomanceIndicator_id = $kpi->id){
-                                  $quaterScore = $quaterValue->score;
-                                break;
-                                }                                
-                              }
-
+                               //end of getting the score of the key perfomance indicator.                                
                                @endphp
+                               
                                       <div class="row" style="margin-bottom:0.5%;">
                                         {{-- <input type = "hidden" value="{{$originalObjectiveName}}" id = "{{"hiddenKPIObective".$kpiOriginalName}} name = "{{"hiddenObjectiveName".$originalObjectiveName}}"/> --}}
                                         {{-- hidden input to et the value of the arithmetic structure. --}}
@@ -276,17 +261,71 @@
                                         <div class=" col-md-1"style="text-align:center">
                                             <p id = "{{"target".$kpi->id}}" class ="{{"target".$kpi->id}}" >{{$kpi->target}}</p>
                                         </div>
-                                        <div class=" col-md-1"><input   type = "number" step=".01"  name = "{{"Quater1".$kpi->id}}" id = "{{"Quater1".$kpi->id}}" readonly placeholder="Inactive" class="form-control {{"Quater1".$kpiOriginalName}}" /></div>
-                                        <div class=" col-md-1"><input   type = "number" step=".01"  name = "{{"Quater2".$kpi->id}}" id = "{{"Quater2".$kpi->id}}" readonly placeholder="Inactive" class="form-control {{"Quater2".$kpiOriginalName}}" /></div>
-                                        <div class=" col-md-1"><input   type = "number" step=".01"  name = "{{"Quater3".$kpi->id}}" id = "{{"Quater3".$kpi->id}}" readonly placeholder="Inactive" class="form-control {{"Quater3".$kpiOriginalName}}" /></div>
-                                        <div class=" col-md-1"><input   type = "number" step=".01"  name = "{{"Quater4".$kpi->id}}" id = "{{"Quater4".$kpi->id}}" readonly placeholder="Inactive"class="form-control {{"Quater4".$kpiOriginalName}}" /></div>                                      
-                                        {{-- <div class=" col-md-3"><textarea  id="{{"reason".$kpiOriginalName}}"  readonly style="height:35px;">N/A</textarea></div> --}}
+
+
+                                        {{-- CHECKING THE VALUES OF VARIOUS QUATERS. --}}
+                                        @php
+                                            // values for QUATER ONE.
+                                            $Q1Value = '';
+                                            $numberOfQuater1Records = count($quaterOne);
+                                            if($numberOfQuater1Records == 0){
+                                                $Q1Value = '';
+                                            }else{
+                                              foreach($quaterOne as $quaterOnes){
+                                                if($quaterOnes->keyPerfomanceIndicator_id == $kpi->id){
+                                                  $Q1Value = $quaterOnes->score;
+                                                }                                              
+                                              }
+                                            }
+         
+                                            //values for quater two
+                                            $Q2Value = '';
+                                            $numberOfQuater2Records = count($quaterTwo);
+                                            if($numberOfQuater2Records == 0){
+                                                $Q2Value = '';
+                                            }else{
+                                              foreach($quaterTwo as $quaterTwos){
+                                                if($quaterTwos->keyPerfomanceIndicator_id == $kpi->id){
+                                                  $Q2Value = $quaterTwos->score;
+                                                }                                              
+                                              }
+                                            }
+         
+                                            //values for quater three. 
+                                            $Q3Value = '';
+                                            $numberOfQuater3Records = count($quaterthree);
+                                            if($numberOfQuater3Records == 0){
+                                                $Q3Value = '';
+                                            }else{
+                                              foreach($quaterthree as $quaterthrees){
+                                                if($quaterthrees->keyPerfomanceIndicator_id == $kpi->id){
+                                                  $Q3Value = $quaterthrees->score;
+                                                }                                              
+                                              }
+                                            }
+         
+                                            //values for quater four.
+                                            $Q4Value = '';                                            
+                                            $numberOfQuater4Records = count($quaterfour);
+                                            if($numberOfQuater4Records == 0){
+                                                $Q4Value = '';
+                                            }else{
+                                              foreach($quaterfour as $quaterfours){
+                                                if($quaterfours->keyPerfomanceIndicator_id == $kpi->id){                                                  
+                                                  $Q4Value = $quaterfours->score;                                                  
+                                                }                                                                                          
+                                              }                                               
+                                            }
+         
+                                        @endphp
+
+                                        <div class=" col-md-1"><input   value="{{$Q1Value}}" type = "number" step=".01"  name = "{{"Quater1".$kpi->id}}" id = "{{"Quater1".$kpi->id}}" readonly placeholder="Inactive" class="form-control {{"Quater1".$kpiOriginalName}}" /></div>
+                                        <div class=" col-md-1"><input   value="{{$Q2Value}}" type = "number" step=".01"  name = "{{"Quater2".$kpi->id}}" id = "{{"Quater2".$kpi->id}}" readonly placeholder="Inactive" class="form-control {{"Quater2".$kpiOriginalName}}" /></div>
+                                        <div class=" col-md-1"><input   value="{{$Q3Value}}" type = "number" step=".01"  name = "{{"Quater3".$kpi->id}}" id = "{{"Quater3".$kpi->id}}" readonly placeholder="Inactive" class="form-control {{"Quater3".$kpiOriginalName}}" /></div>
+                                        <div class=" col-md-1"><input   value="{{$Q4Value}}" type = "number" step=".01"  name = "{{"Quater4".$kpi->id}}" id = "{{"Quater4".$kpi->id}}" readonly placeholder="Inactive"class="form-control {{"Quater4".$kpiOriginalName}}" /></div>                                                                              
                                         <div id="{{"unmetTargetComment".$kpi->id}}" class = "col-md-1 text-center unmetTargetComment">
                                           {{-- <a data-toggle="modal" href = "" data-target="{{"#modal".$kpi->id}}"> COMMENT</a> --}}
                                         </div>
-                                        @php
-                                            // dd($kpi->id);
-                                        @endphp
                                         <input type="hidden" name = "{{"nonConformityFlag".$kpi->id}}" value= "1" id = "{{"nonConformityFlag".$kpi->id}}">
 
                                       </div>
@@ -405,4 +444,5 @@
 @endforeach
 </div>
 <script src="design/assets/js/jquery.min.js"></script>
+</div>
 @endsection

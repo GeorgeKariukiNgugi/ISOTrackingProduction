@@ -10,6 +10,7 @@ use App\ScoreRecorded;
 use App\StrategicObjectiveScore;
 use App\QuaterActive;
 use App\YearActive;
+use App\KeyPerfomanceIndicatorScore;
 class HomeController extends Controller
 {
     /**
@@ -45,7 +46,7 @@ class HomeController extends Controller
         $loggedInemail = Auth::user()->email;
         $programids = AssesorPerProgram::where('email','=',$loggedInemail)->get();
         $countingid = count($programids);
-        $scoresRecorded = StrategicObjectiveScore::all();
+        $keyPerfomanceIndicatorsScores = KeyPerfomanceIndicatorScore::all();
 
         //! GETTING WHICH QUATER AND TEAR IS ACTIVE.
 
@@ -60,10 +61,20 @@ class HomeController extends Controller
             $activeQuater = $activeQuaterCollection->Quater;
             // dd($activeQuater);
         }
-        //!getting the appropriate quater data to show case in the text input. 
-        $quaterValueCollection = ScoreRecorded::where('quater','=',$activeQuater)
-                                                ->where('year','=',$activeYaer)
-                                                ->get();
+        
+        //!GETTING THE SCORES PER QUATER.
+        $quaterOne = ScoreRecorded::where('quater','=','Q1')
+                                    ->where('year','=',$activeYaer)
+                                    ->get();
+        $quaterTwo = ScoreRecorded::where('quater','=','Q2')
+                                    ->where('year','=',$activeYaer)
+                                    ->get();
+        $quaterthree = ScoreRecorded::where('quater','=','Q3')
+                                    ->where('year','=',$activeYaer)
+                                    ->get();
+        $quaterfour = ScoreRecorded::where('quater','=','Q4')
+                                    ->where('year','=',$activeYaer)
+                                    ->get();
 
         $id = "null";
         if($countingid == 1){
@@ -79,7 +90,7 @@ class HomeController extends Controller
                     
                 }
                 
-                return view('users.landingPage',['perspectives'=>$perspectives,'activeYaer'=>$activeYaer,'activeQuater'=>$activeQuater,'scoresRecorded'=>$scoresRecorded,'programName'=>$programName,'programShortHand'=>$programShortHand,'quaterValueCollection'=>$quaterValueCollection]);
+                return view('users.landingPage',['quaterOne'=>$quaterOne,'quaterTwo'=>$quaterTwo,'quaterthree'=>$quaterthree,'quaterfour'=>$quaterfour,'perspectives'=>$perspectives,'activeYaer'=>$activeYaer,'activeQuater'=>$activeQuater,'keyPerfomanceIndicatorsScores'=>$keyPerfomanceIndicatorsScores,'programName'=>$programName,'programShortHand'=>$programShortHand]);
             }
         }
         else{

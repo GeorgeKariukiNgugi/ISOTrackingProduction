@@ -470,11 +470,124 @@ class userController extends Controller
  //! TTHIS IS THE CONTROLLER THAT IS USED TO HANDLE ALL THE DASHBOARD GRAPH GENERATION.
  
  public function DashboardConroller($id){
+
+    // ! To Prevent Un Foreseen Eroors, if the user has not included all the strategic objectives, give him a differen dashboard.
+    //! count all the kpis that have been included.
+    $activeYaerCollections = YearActive::where('Active','=',1)->get();
+    foreach($activeYaerCollections as $activeYaerCollection){
+        $activeYaer = $activeYaerCollection->Year;
+        // dd($activeYaer);
+    }
+    //!THIS FIRST SECTION IS USED TO DEFINE THE ARRAY THAT WILL HOLD THE COLLECTION OF THE BAR CHARTS THATHAVE BEEN DEPLOYED. 
+    $charts = array();
+    // $proramPersspectives = StrategicObjective::where('perspective_id','=',$id)->get();
+    $proramPersspectives = Perspective::where('program_id','=',$id)->get();
+        
+    //!definig the two arrays that will be used to store the names and also the values.
+    
+    foreach ($proramPersspectives as $proramPersspective) {
+        $chartNames = array();
+        $chartValues = array();
+        $gettingThePerspectiveId = $proramPersspective->id;
+        $perspectiveObjectiveName = $proramPersspective->name;
+
+        $perspectiveStrategicObjectiveNames = StrategicObjective::where('perspective_id','=',$gettingThePerspectiveId)                                                                                                                               
+                                                                ->get();
+        //!thi section is used to get the strategic objective name.
+        foreach ($perspectiveStrategicObjectiveNames as $perspectiveStrategicObjectiveName) {
+            # code...
+            array_push($chartNames,$perspectiveStrategicObjectiveName->name);
+            
+            $perspectiveStrategicObjectives = StrategicObjectiveScore::where('perspective_id','=',$gettingThePerspectiveId)
+                                                                      ->where('year','=',$activeYaer)->get();                                                                    
+            //!this section is used to get the scores of the particular strateegic objective.
+            //!counting the number of records returned from the scores table. 
+            if(count($perspectiveStrategicObjectives) == 0){
+                array_push($chartValues,0);
+            }
+            else{
+                foreach ($perspectiveStrategicObjectives as $perspectiveStrategicObjective) {
+                    # code...
+                    array_push($chartValues,$perspectiveStrategicObjective->score);
+                }
+            }
+        }
+
+        //Definig the chart instance that will hold the chart items.
+        $borderColors = [
+            "rgba(255, 99, 132, 1.0)",
+            "rgba(22,160,133, 1.0)",
+            "rgba(255, 205, 86, 1.0)",
+            "rgba(51,105,232, 1.0)",
+            "rgba(244,67,54, 1.0)",
+            "rgba(34,198,246, 1.0)",
+            "rgba(153, 102, 255, 1.0)",
+            "rgba(255, 159, 64, 1.0)",
+            "rgba(233,30,99, 1.0)",
+            "rgba(205,220,57, 1.0)"
+        ];
+        $fillColors = [
+            "rgba(255, 99, 132, 0.2)",
+            "rgba(22,160,133, 0.2)",
+            "rgba(255, 205, 86, 0.2)",
+            "rgba(51,105,232, 0.2)",
+            "rgba(244,67,54, 0.2)",
+            "rgba(34,198,246, 0.2)",
+            "rgba(153, 102, 255, 0.2)",
+            "rgba(255, 159, 64, 0.2)",
+            "rgba(233,30,99, 0.2)",
+            "rgba(205,220,57, 0.2)"
+
+        ];
+        
+        $chartName = "chart".$perspectiveObjectiveName;
+        $chartName = new DashBoardCharts;
+        $chartName->minimalist(true);
+        $chartName->displayaxes(true);
+        // $chartName->displaylegend(true);
+        $chartName->labels($chartNames);
+        $chartName->dataset($perspectiveObjectiveName, 'bar', $chartValues)
+            ->color($borderColors)
+            ->backgroundcolor($fillColors);
+
+        //!PUSHING THE CHART TO THE ARRAY THAT CONTAINS ALL THE CHARTS.
+
+        array_push($charts, $chartName);
+    }
+
+    //!THIS NEXT SECTION IS USED TO GET THE TOTAL SCORE OF THE PROGRAM.
+    $finalScore = 0;
+    foreach ($proramPersspectives as $proramPersspective) {
+        $strategicObjectivesSum = 0;
+        $strateicObjectiveAverage = 0;
+        //!the next step is to get the strateic objectives of the reated perspective. 
+        $gettingStrategicObjectivesOfRelatedPerspective = StrategicObjectiveScore::where('perspective_id','=',$proramPersspective->id)->get();
+        foreach ($gettingStrategicObjectivesOfRelatedPerspective as $strategicObjective) {
+            # code...
+            $strategicObjectivesSum  += $strategicObjective->score;
+        }
+        $strateicObjectiveAverage= $strategicObjectivesSum/ count($gettingStrategicObjectivesOfRelatedPerspective);
+        //!the next step is to get its equivalent score in telation to its weight.
+
+        $weight = $proramPersspective->weight;
+        $finalScore += ($strateicObjectiveAverage*$weight)/100;
+        
+    }
+
+    $remainingValue = 100-$finalScore;
+    // dd($finalScore);
     $chart = new DashBoardCharts;
-    $chart->labels(['John', 'Chege', 'Kamau']);
+    $chart->minimalist(true);
+    $chart->labels(['finalScore', 'Fail']);
     $chart->displaylegend(true);
-    $chart->dataset('My dataset 1 with TRIAL', 'pie', [1, 2, 3])->color("white")->backgroundcolor("rgb(255, 99, 132)");
-    // return view('sample_view', compact('chart');
-    return view('users.dashboard',['chart'=>$chart,'id'=>$id]);
+    $fillColor = [
+        '#00A65A',
+        '#D73925'
+    ];
+    $chart->dataset('FINAL SCORE TO THE CATEGORY.', 'doughnut', [$finalScore, $remainingValue])->color("white")
+                                                                                        ->backgroundcolor($fillColor);
+    //! creating the pie chart that will give a visual representation of everything.
+
+    return view('users.dashboard',['chart'=>$chart,'finalScore'=>$finalScore,'id'=>$id,'charts'=>$charts,'proramPersspectives'=>$proramPersspectives ]);
  }
 }

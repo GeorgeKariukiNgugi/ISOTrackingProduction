@@ -70,6 +70,22 @@ class userController extends Controller
                     }
                 }
             } 
+            else if ($formFlagInputValue == 2){
+                //!if the flag is neither positive or negative, that is, its null, just update the score.
+                $prefixOfTheActiveQuater = substr($activeQuater,1);
+                $scoreInputName = "Quater".$prefixOfTheActiveQuater.$idOfKPI;
+                // dd($scoreInputName);
+                $score = $request->$scoreInputName;
+                $gettingTheScoreRecordedCollection = ScoreRecorded::where('keyPerfomanceIndicator_id','=',$idOfKPI)->get();
+                $countingTheScoreRecorded = count($gettingTheScoreRecordedCollection);
+                if ($countingTheScoreRecorded >= 1) {
+                    foreach($gettingTheScoreRecordedCollection as $scoreRecord){
+                        $scoreRecord->score= $score;
+                        $scoreRecord->save();
+                    }
+                    // return response()->json(['success'=>'Data Has Been Updated. '.$kpi->name]);
+                }
+            }
             //! if no reasonable reason is found, then we can now insert the data into the scoresrecorded table. 
             $prefixOfTheActiveQuater = substr($activeQuater,1);
             $scoreInputName = "Quater".$prefixOfTheActiveQuater.$idOfKPI;
@@ -473,6 +489,8 @@ class userController extends Controller
 
     // ! To Prevent Un Foreseen Eroors, if the user has not included all the strategic objectives, give him a differen dashboard.
     //! count all the kpis that have been included.
+
+    
     $activeYaerCollections = YearActive::where('Active','=',1)->get();
     foreach($activeYaerCollections as $activeYaerCollection){
         $activeYaer = $activeYaerCollection->Year;
@@ -562,11 +580,19 @@ class userController extends Controller
         $strateicObjectiveAverage = 0;
         //!the next step is to get the strateic objectives of the reated perspective. 
         $gettingStrategicObjectivesOfRelatedPerspective = StrategicObjectiveScore::where('perspective_id','=',$proramPersspective->id)->get();
-        foreach ($gettingStrategicObjectivesOfRelatedPerspective as $strategicObjective) {
+        if (count($gettingStrategicObjectivesOfRelatedPerspective) == 0) {
             # code...
-            $strategicObjectivesSum  += $strategicObjective->score;
+            $strateicObjectiveAverage =0;
+        } else {
+            # code...
+            foreach ($gettingStrategicObjectivesOfRelatedPerspective as $strategicObjective) {
+                # code...
+                $strategicObjectivesSum  += $strategicObjective->score;
+            }
+            $strateicObjectiveAverage= $strategicObjectivesSum/ count($gettingStrategicObjectivesOfRelatedPerspective);
         }
-        $strateicObjectiveAverage= $strategicObjectivesSum/ count($gettingStrategicObjectivesOfRelatedPerspective);
+        
+        
         //!the next step is to get its equivalent score in telation to its weight.
 
         $weight = $proramPersspective->weight;

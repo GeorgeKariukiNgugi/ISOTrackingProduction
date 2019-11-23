@@ -689,4 +689,11 @@ class userController extends Controller
 
     }     
  }
+
+
+//!  THIS CONTROLLER METHOD WILL BE USED TO SUBMIT THE CLOSURE OF THE NON CONFORMITIES.
+
+public function closingNonConformity(Request $request){
+    return back();
+}
 }

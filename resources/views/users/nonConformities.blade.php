@@ -154,15 +154,58 @@
                       <td>
                           <div class="btn-group" role="group">
                             <button class="btn btn-warning btn-sm" type="button" data-toggle="modal" data-target= "{{"#moreInformationModal".$nonConformity->id}}"><strong>More Details</strong></button>
-                            <button class="btn btn-success btn-sm" type="button"><strong>Close NC.</strong></button>
+                            <button class="btn btn-success btn-sm" type="button" data-toggle="modal" data-target= "{{"#closingNCModal".$nonConformity->id}}"><strong>Close NC.</strong></button>
                           </div>
                       </td>
                     </tr>
+                    {{-- THIS SECTION OF THE CODE IS DIRECTED TOWARDS THE CLOSURE OF THE NON CONFORMITIES. --}}
+
+
+                    <div role="dialog" tabindex="-1" class="modal fade" id="{{"closingNCModal".$nonConformity->id}}">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header" style="background-color:#0af288;"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                    <h4 class="modal-title">Close The Non-Conformity: <b> {{$kpiName}}</b></h4>
+                                </div>
+                                <div class="modal-body" style="background-color:#ECF0F5;">
+                                    <form action="{{url('/closingNonConformity')}}" method="POST" enctype="multipart/form-data" id="{{"ClosingNonConformity".$nonConformity->id}}">
+                                      {{ csrf_field() }}
+                                        <input type="hidden" name="{{'nonConformityId'.$nonConformity->id}}" id ="{{'nonConformityId'.$nonConformity->id}}" value = {{$nonConformity->id}}/>
+                                        <div class="row">
+                                            <div class="col-lg-5 col-md-5">
+                                                <h4><strong>Brief Description Of Closure:</strong></h4>
+                                            </div>
+                                            <div class="col-lg-7 col-md-7"><textarea required place-holder = "Briefly Describe How You Achieved To Close The Non-Conformity."class="form-control" cols="60" name="{{"briefDescription".$nonConformity->id}}"></textarea></div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-lg-5 col-md-5">
+                                                <h4 style="color:rgb(0,0,0);"><strong>Kindly Attach Supporting Document.</strong><span style="color:rgb(245,13,13);">*optional</span></h4>
+                                            </div>
+                                            <div class="col-lg-7 col-md-7">
+                                                <div class="btn btn-default btn-file"><i class="fa fa-paperclip"></i>Attachment<input type="file" name="{{"attachment"}}" /></div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-lg-5 col-md-5">
+                                                <h4 style="color:rgb(0,0,0);"><strong>Date Corrective Action Was Implemented:</strong></h4>
+                                            </div>
+                                            <div class="col-lg-7 col-md-7"><input type="date" required name="closureDate" class="form-control" /></div>
+                                        </div>                                                                            
+                                </div>
+                                <div class="modal-footer" style="background-color:#0af288;;"><button class="btn btn-danger" type="button" data-dismiss="modal"><strong>cancel</strong></button><button class="btn btn-success" type="submit"><strong>Close NC</strong></button></div>
+                              </form>
+                              </div>
+                        </div>
+                    </div>
+
+
                     {{-- THIS IS THE MODAL THAT WILL BE CALLED ONCE THE MORE DETAILS BUTTON IS CLICKED. --}}
                     <div role="dialog" tabindex="-1" class="modal fade" id="{{"moreInformationModal".$nonConformity->id}}">
                         <div class="modal-dialog modal-lg" role="document">
                             <div class="modal-content">
-                                <div class="modal-header" style="background-color:#0af288;"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                <div class="modal-header text-center" style="background-color:#0af288;"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                                     <h4 class="modal-title">Details For The Non Conformity For KPI  <b>{{$kpiName}}</b></h4>
                                 </div>
                                 <div class="modal-body" style="background-color:#ECF0F5;">
@@ -171,15 +214,16 @@
                                             <h4><strong>KPI Name:</strong></h4>
                                         </div>
                                         <div class="col-md-9">
-                                            <p>{{$kpiName}}</p>
+                                            <h5>{{$kpiName}}</h5>
                                         </div>
                                     </div>
+                                  </hr>
                                     <div class="row">
                                         <div class="col-md-3">
                                             <h4><strong>Stategic Obj Name:</strong></h4>
                                         </div>
                                         <div class="col-md-9">
-                                            <p>{{$strategicObjectiveName}}</p>
+                                            <h5>{{$strategicObjectiveName}}</h5>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -187,7 +231,7 @@
                                             <h4><strong>Perspective  Name:</strong></h4>
                                         </div>
                                         <div class="col-md-9">
-                                            <p>{{$name}}</p>
+                                            <h5>{{$name}}</p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -195,7 +239,7 @@
                                             <h4><strong>Root Cause:</strong></h4>
                                         </div>
                                         <div class="col-md-9">
-                                            <p>{{$nonConformity->rootCause}}</p>
+                                            <h5>{{$nonConformity->rootCause}}</h5>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -203,7 +247,7 @@
                                             <h4><strong>Corrective Action:</strong></h4>
                                         </div>
                                         <div class="col-md-9">
-                                            <p>{{$nonConformity->correctiveAction}}</p>
+                                            <h5>{{$nonConformity->correctiveAction}}</h5>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -211,12 +255,12 @@
                                             <h4><strong>Permenent Solution</strong></h4>
                                         </div>
                                         <div class="col-md-9">
-                                            <p>{{$nonConformity->correction}}</p>
+                                            <h5>{{$nonConformity->correction}}</h5>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <h4><strong>Date For Cosure:</strong></h4>
+                                            <h4><strong>Date For Closure:</strong></h4>
                                         </div>
                                         <div class="col-md-9">
                                           @php

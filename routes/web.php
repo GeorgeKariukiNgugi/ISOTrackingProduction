@@ -42,3 +42,7 @@ Route::get('dashBoard/{id}','UserControllers\userController@DashboardConroller')
 
 //! this is the route that will handle the viewing of all the nonconformities that have been identified from the particular program.
 Route::get('/nonconformities/{program}/{closed}','UserControllers\userController@nonConformities');
+
+//! this route will be used to hande the submission of the closing of the noncongormities that have been identified.
+
+Route::post('/closingNonConformity','UserControllers\userController@closingNonConformity');

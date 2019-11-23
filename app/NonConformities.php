@@ -74,5 +74,7 @@ class NonConformities extends Model
     {
         return $this->belongsTo(\App\StrategicObjective::class, 'strategicObjective_id');
     }
-
+    public function noncoformityEvidence(){
+        return $this->hasOne('App\closedNonConformityEvidence', 'nonConformity_id');
+    }
 }

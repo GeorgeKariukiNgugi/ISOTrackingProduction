@@ -245,6 +245,7 @@ desired effect
 <script src="{{asset('js/submittingKPIScores.js')}}"></script>
 <script src="{{asset('js/submitNonConformities.js')}}"></script>
 <script src="{{asset('js/submittingNewKPIs.js')}}"></script>
+<script src="{{asset('js/submittingClosingNonConformity.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
 @yield('charts')
 <!-- Optionally, you can add Slimscroll and FastClick plugins.

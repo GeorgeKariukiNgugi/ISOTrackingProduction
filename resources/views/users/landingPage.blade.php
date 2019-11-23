@@ -15,18 +15,18 @@
   
   {{-- kindly check the number of non Conformities that are out of date. --}}
   
-  <li >            
-      <a href="/" data-toggle="tooltip" title=" Non-conformities out of date">
+  <li>            
+      <a href="{{"/nonconformities/".$programId."/1"}}" data-toggle="tooltip" title=" Non-conformities out of date">
         {{-- <i class="fa fa-bell-o" style="color:#F39C12;"></i>             --}}
-        <i class="fa fa-bell" style="color:rgb(255,215,6);"></i>
+        <i class="fa fa-bell" style="color:rgb(255,0,0);"></i>
       </a>
     </li>    
     {{-- checking all the non conformities that are both to be implemented and also out of date. --}}
 
     <li>            
-        <a href="/" data-toggle="tooltip" title="All Non Conformities.">
+        <a href="{{"/nonconformities/".$programId."/0"}}" data-toggle="tooltip" title="All Non Conformities.">
           {{-- <i class="fa fa-flag-o" style="color:red;"></i>               --}}
-          <i class="fa fa-flag" style="color:rgb(255,0,0);"></i>
+          <i class="fa fa-flag" style="color:rgb(255,215,6);"></i>
         </a>
       </li>
 @endsection

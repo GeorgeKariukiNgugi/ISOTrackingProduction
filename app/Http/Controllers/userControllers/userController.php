@@ -486,12 +486,7 @@ class userController extends Controller
  //! TTHIS IS THE CONTROLLER THAT IS USED TO HANDLE ALL THE DASHBOARD GRAPH GENERATION.
  
  public function DashboardConroller($id){
-
-    // ! To Prevent Un Foreseen Eroors, if the user has not included all the strategic objectives, give him a differen dashboard.
-    //! count all the kpis that have been included.
-
-    
-    $activeYaerCollections = YearActive::where('Active','=',1)->get();
+     $activeYaerCollections = YearActive::where('Active','=',1)->get();
     foreach($activeYaerCollections as $activeYaerCollection){
         $activeYaer = $activeYaerCollection->Year;
         // dd($activeYaer);
@@ -601,7 +596,7 @@ class userController extends Controller
     }
 
     $remainingValue = 100-$finalScore;
-    // dd($finalScore);
+    //! creating the pie chart that will give a visual representation of everything.
     $chart = new DashBoardCharts;
     $chart->minimalist(true);
     $chart->labels(['finalScore', 'Fail']);
@@ -612,8 +607,86 @@ class userController extends Controller
     ];
     $chart->dataset('FINAL SCORE TO THE CATEGORY.', 'doughnut', [$finalScore, $remainingValue])->color("white")
                                                                                         ->backgroundcolor($fillColor);
-    //! creating the pie chart that will give a visual representation of everything.
 
-    return view('users.dashboard',['chart'=>$chart,'finalScore'=>$finalScore,'id'=>$id,'charts'=>$charts,'proramPersspectives'=>$proramPersspectives ]);
+    //! This section of code gives a vivid description of what kpis have not been assesed, a small pie chart iss to be included.
+    
+    //? STEPS: GETTING THE WHOLE LIST.
+
+    $programId = $id;
+    $allPerctivesForTheProgram = Perspective::where('program_id','=',$programId)->get();
+    
+    $allKPIsRetrieved = array();
+    foreach ($allPerctivesForTheProgram as $allPerctives) {
+        // $allKPIsRetrieved = array();
+        $kpisRetrieved = $allPerctives->keyPerfomaceIndicators;
+        foreach($kpisRetrieved as $kpi){
+            array_push($allKPIsRetrieved,$kpi->id);
+        }
+    }
+    // dd($allKPIsRetrieved);
+    //! The next Step is to get the missing ids that are not in the list. 
+    $kpisNotScored = array();
+    $kpisScored = array();
+    $kpiNotScoredNames = array();
+    for ($i=0; $i < count($allKPIsRetrieved); $i++) { 
+        # code...
+        $dbSearch = KeyPerfomanceIndicatorScore::where('kpi_id','=',$allKPIsRetrieved[$i])->get();
+        // dd(count($dbSearch));
+        if(count($dbSearch) == 0){
+            array_push($kpisNotScored,$allKPIsRetrieved[$i]);
+            // dd("null");
+            $gettingNamesKpiNotScored = KeyPerfomaceIndicator::where('id','=',$allKPIsRetrieved[$i])->get();
+            foreach ($gettingNamesKpiNotScored as $kpiNames) {
+                array_push($kpiNotScoredNames,$kpiNames->name);
+            }
+        }
+        else{
+            array_push($kpisScored,$allKPIsRetrieved[$i]);
+            // dd("present");
+        }
+    }
+    // dd($kpiNotScoredNames);
+    return view('users.dashboard',['chart'=>$chart,'kpiNotScoredNames'=>$kpiNotScoredNames,'allKpis'=>$allKPIsRetrieved,'finalScore'=>$finalScore,'id'=>$id,'charts'=>$charts,'proramPersspectives'=>$proramPersspectives ]);
+ }
+
+ public function nonConformities($id, $closed){
+// ! In this section we area going to fetch all the momconformities that have both been closed and are not overdue.
+    $activeYaerCollections = YearActive::where('Active','=',1)->get();
+    foreach($activeYaerCollections as $activeYaerCollection){
+        $activeYaer = $activeYaerCollection->Year;        
+    }
+
+    $todaysdate = date('Y-m-d H:i:s');
+
+    //!getting the prgram Name . 
+    $programNames = Program::where('id','=',$id)->get();
+    $proramenameValue = '';
+    foreach($programNames as $programName){
+        $proramenameValue = $programName->name;
+    }
+
+    if ($closed == 1) {
+        # code...        
+        //! this isthe section that will look for the nonconformities thatare out of date.
+        $nonConformities = NonConformities::where('openClosed', '=', 'open')
+                                            ->whereDate('date', '<=',$todaysdate)
+                                            ->where('year','=',$activeYaer)
+                                            ->where('program_id','=',$id)
+                                            ->orderBy('date', 'asc')
+                                            ->get();
+
+        // dd("Overdue  ".count( $nonConformities ));  
+        return view('users\nonConformities',['nonConformities'=>$nonConformities,'id'=>$id,'state'=>$closed,'programmeName'=>$proramenameValue]);
+
+    } else if ($closed == 0){
+        $nonConformities = NonConformities::where('openClosed', '=', 'open')
+                                            ->whereDate('date', '>=',$todaysdate)
+                                            ->where('year','=',$activeYaer)
+                                            ->where('program_id','=',$id)
+                                            ->orderBy('date', 'asc')
+                                            ->get();
+        return view('users\nonConformities',['nonConformities'=>$nonConformities,'id'=>$id,'state'=>$closed,'programmeName'=>$proramenameValue]);  
+
+    }     
  }
 }

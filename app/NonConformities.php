@@ -12,7 +12,7 @@ class NonConformities extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'year', 'quater', 'rootCause', 'openClosed', 'correction', 'correctiveAction', 'keyPerfomanceIndicator_id', 'strategicObjective_id', 'perspective_id', 'program_id'
+        'id', 'year', 'date', 'quater', 'rootCause', 'openClosed', 'correction', 'correctiveAction', 'keyPerfomanceIndicator_id', 'strategicObjective_id', 'perspective_id', 'program_id'
     ];
 
     /**
@@ -20,7 +20,7 @@ class NonConformities extends Model
      *
      * @var array
      */
-    protected $dates = ['date', 'created_at', 'updated_at'];
+    protected $dates = ['created_at', 'updated_at'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -63,7 +63,7 @@ class NonConformities extends Model
      */
     public function keyPerfomaceIndicator()
     {
-        return $this->belongsTo(\App\KeyPerfomaceIndicator::class);
+        return $this->belongsTo(\App\KeyPerfomaceIndicator::class, 'keyPerfomanceIndicator_id');
     }
 
 
@@ -72,7 +72,7 @@ class NonConformities extends Model
      */
     public function strategicObjective()
     {
-        return $this->belongsTo(\App\StrategicObjective::class);
+        return $this->belongsTo(\App\StrategicObjective::class, 'strategicObjective_id');
     }
 
 }

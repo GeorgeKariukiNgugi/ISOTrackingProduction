@@ -153,11 +153,84 @@
                       @endif
                       <td>
                           <div class="btn-group" role="group">
-                            <button class="btn btn-warning btn-sm" type="button"><strong>More Details</strong></button>
+                            <button class="btn btn-warning btn-sm" type="button" data-toggle="modal" data-target= "{{"#moreInformationModal".$nonConformity->id}}"><strong>More Details</strong></button>
                             <button class="btn btn-success btn-sm" type="button"><strong>Close NC.</strong></button>
                           </div>
                       </td>
                     </tr>
+                    {{-- THIS IS THE MODAL THAT WILL BE CALLED ONCE THE MORE DETAILS BUTTON IS CLICKED. --}}
+                    <div role="dialog" tabindex="-1" class="modal fade" id="{{"moreInformationModal".$nonConformity->id}}">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header" style="background-color:#0af288;"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                    <h4 class="modal-title">Details For The Non Conformity For KPI  <b>{{$kpiName}}</b></h4>
+                                </div>
+                                <div class="modal-body" style="background-color:#ECF0F5;">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <h4><strong>KPI Name:</strong></h4>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <p>{{$kpiName}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <h4><strong>Stategic Obj Name:</strong></h4>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <p>{{$strategicObjectiveName}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <h4><strong>Perspective  Name:</strong></h4>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <p>{{$name}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <h4><strong>Root Cause:</strong></h4>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <p>{{$nonConformity->rootCause}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <h4><strong>Corrective Action:</strong></h4>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <p>{{$nonConformity->correctiveAction}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <h4><strong>Permenent Solution</strong></h4>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <p>{{$nonConformity->correction}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <h4><strong>Date For Cosure:</strong></h4>
+                                        </div>
+                                        <div class="col-md-9">
+                                          @php
+                                            $dateToFormat = date_create($nonConformity->date);
+                                            $date = date_format($dateToFormat, "D-d-F-Y");     
+                                          @endphp
+                                            {{$date}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer" style="background-color:#0af288;"><button class="btn btn-danger" type="button" data-dismiss="modal">Close</button></div>
+                            </div>
+                        </div>
+                    </div>
                 @endforeach
               </tbody>
               <tfoot>

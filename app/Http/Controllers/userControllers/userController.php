@@ -16,7 +16,7 @@ use App\KeyPerfomanceIndicatorScore;
 use App\StrategicObjectiveScore;
 //!DASHBOARD CLASS.
 use  App\Charts\DashBoardCharts;
-
+use RealRashid\SweetAlert\Facades\Alert;
 class userController extends Controller
 {
     public function submittingKPIScores(Request $request){        
@@ -694,6 +694,21 @@ class userController extends Controller
 //!  THIS CONTROLLER METHOD WILL BE USED TO SUBMIT THE CLOSURE OF THE NON CONFORMITIES.
 
 public function closingNonConformity(Request $request){
+    
+    //getting the names of the submitted data.
+    
+    //! checking if the file input has the data that is needed.
+    // if ($request->hasFile('attachment')) {
+    //     //get the file name with b
+    // } else {
+    //     # code...
+    // }
+    
+    // clossureDate
+    // briefDescription    
+    // nonConformity_id
+    Alert::success('Success Title', 'Success Message');
+
     return back();
 }
 }

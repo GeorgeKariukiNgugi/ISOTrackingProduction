@@ -247,6 +247,7 @@ desired effect
 <script src="{{asset('js/submittingNewKPIs.js')}}"></script>
 <script src="{{asset('js/submittingClosingNonConformity.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
+@include('sweetalert::alert')
 @yield('charts')
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the

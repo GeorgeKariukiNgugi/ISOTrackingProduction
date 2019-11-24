@@ -170,12 +170,12 @@
                                 <div class="modal-body" style="background-color:#ECF0F5;">
                                     <form action="{{url('/closingNonConformity')}}" method="POST" enctype="multipart/form-data" id="{{"ClosingNonConformity".$nonConformity->id}}">
                                       {{ csrf_field() }}
-                                        <input type="hidden" name="{{'nonConformityId'.$nonConformity->id}}" id ="{{'nonConformityId'.$nonConformity->id}}" value = {{$nonConformity->id}}/>
+                                        <input type="hidden" name="{{'nonConformityId'}}" id ="{{'nonConformityId'.$nonConformity->id}}" value = "{{$nonConformity->id}}"/>
                                         <div class="row">
                                             <div class="col-lg-5 col-md-5">
                                                 <h4><strong>Brief Description Of Closure:</strong></h4>
                                             </div>
-                                            <div class="col-lg-7 col-md-7"><textarea required place-holder = "Briefly Describe How You Achieved To Close The Non-Conformity."class="form-control" cols="60" name="{{"briefDescription".$nonConformity->id}}"></textarea></div>
+                                            <div class="col-lg-7 col-md-7"><textarea required place-holder = "Briefly Describe How You Achieved To Close The Non-Conformity."class="form-control" cols="60" name="{{"briefDescription"}}"></textarea></div>
                                         </div>
                                         <br>
                                         <div class="row">

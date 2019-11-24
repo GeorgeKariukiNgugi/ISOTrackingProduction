@@ -688,6 +688,17 @@ class userController extends Controller
                                             ->get();
         return view('users\nonConformities',['nonConformities'=>$nonConformities,'id'=>$id,'state'=>$closed,'programmeName'=>$proramenameValue]);  
 
+    }
+    else if ($closed == 2){
+        $nonConformities = NonConformities::where('openClosed', '=', 'closed')       
+        ->where('year','=',$activeYaer)
+        ->where('program_id','=',$id)
+        ->orderBy('date', 'asc')
+        ->get();
+
+        //! getting the details that will be sent to the closed non conformities.
+            $closedNonConformities = closedNonConformityEvidence::all();        
+return view('users\nonConformities',['closedNonConformities'=>$closedNonConformities,'nonConformities'=>$nonConformities,'id'=>$id,'state'=>$closed,'programmeName'=>$proramenameValue]);
     }     
  }
 

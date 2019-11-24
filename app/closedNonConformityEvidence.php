@@ -10,6 +10,6 @@ class closedNonConformityEvidence extends Model
     protected $guarded = ['id'];
 
     public function nonconformity(){
-        return $this->hasOne('App\NonConformities');
+        return $this->belongsTo('App\NonConformities');
     }
 }

@@ -27,6 +27,12 @@
         <i class="fa fa-flag" style="color:rgb(255,215,6);"></i>
       </a>
     </li>
+    <li>            
+        <a href="{{"/nonconformities/".$id."/2"}}" data-toggle="tooltip" title="All Non Conformities.">
+          {{-- <i class="fa fa-flag-o" style="color:red;"></i>               --}}
+          <i class="fa fa-thumb-tack"></i>
+        </a>
+      </li>
 @endsection
 
 
@@ -40,12 +46,16 @@
         $text = "THE FOLLOWING ARE THE NONCONFORMITIES THAT ARE OVERDUE CLOSE THEM SOONEST !!!!";
     @endphp
      
- @else
+ @elseif($state == 0)
  @php
      $boxColor = "box-info";
      $text = "THE FOLLOWING NON CONFORMITIES NEED TO BE CLOSED."
  @endphp
-     
+    @elseif($state == 2)
+    @php
+    $boxColor = "box-success";
+    $text = "THE FOLLOWING NON CONFORMITIES HAVE SUCCESSFULLY BEEN CLOSED."
+@endphp
  @endif
     <h3 style="font-family:'Times New Roman', Times, serif;text-align:center;">{{$text}}</h3>
 <div class="box {{$boxColor}} box-solid">
@@ -79,19 +89,37 @@
                     <th class="sorting_asc" tabindex="0" >S<sub>no</sub></th>
                     <th class="sorting" tabindex="0" >KPI Name.</th>
                     <th class="sorting" tabindex="0">Strategic Objective Name.</th>
-                    <th class="sorting" tabindex="0" >Perspeective Name.</th>
+                    <th class="sorting" tabindex="0" > Quater NC Identified.</th>
                     @if ($state == 1)
 
                     <th> No OverDue Days</th>
-                        
-                    @else
+                    <th class="sorting" tabindex="0" >Actions.</th>  
+                    @elseif($state == 0) 
                         <th>Last Day To Close.</th>
+                        <th class="sorting" tabindex="0" >Actions.</th>
+                    @elseif($state == 2)  
+                    <th> Date closed.</th>
+                    <th>Evidence Provided.</th>
                     @endif                        
-                    <th class="sorting" tabindex="0" >Actions.</th>
+                    
                 </tr>
                 </thead>
                 <tbody>
                 @foreach ($nonConformities as $nonConformity)
+
+                
+                
+                {{-- @php
+                foreach ($closedNonConformities as $closedNonConformity) {
+                    # code...
+                    if($nonConformity->id == $closedNonConformity->nonConformity_id){
+                        $evidence = $nonConformity->id;
+                    }
+                break;
+                }
+                    
+
+                @endphp --}}
                     <tr>
                       <td>
                         {{-- inserting the increment number --}}
@@ -121,11 +149,14 @@
                       <td>
                         {{-- inserting the perspective name of the nonconformity. --}}
                         @php
-                            $perspectiveNames = $nonConformity->perspective->name;
-                            $perspectiveShortHand = $nonConformity->program->shortHand;                            
-                            $shortHandCount = strlen($perspectiveShortHand); 
-                            $name = str_replace('_', ' ', substr($perspectiveNames,$shortHandCount));
-                            $name = ucwords($name);
+                            // $perspectiveNames = $nonConformity->perspective->name;
+                            // $perspectiveShortHand = $nonConformity->program->shortHand;                            
+                            // $shortHandCount = strlen($perspectiveShortHand); 
+                            // $name = str_replace('_', ' ', substr($perspectiveNames,$shortHandCount));
+                            // $name = ucwords($name);
+                            $quater = $nonConformity->quater;
+                            $year = $nonConformity->year;
+                            $name = $year.'  '. $quater;
                         @endphp
                         {{$name}}
                       </td>
@@ -142,7 +173,7 @@
                         <b style="color:red;">{{$timeLate}}</b>                        
                       </td>
                           
-                      @else
+                      @elseif($state == 0)
                           <td>
                             @php
                                 $dateToFormat = date_create($nonConformity->date);
@@ -151,12 +182,45 @@
                             {{$date}}
                           </td>
                       @endif
+                      @if ($state == 1 OR $state == 0)
                       <td>
-                          <div class="btn-group" role="group">
-                            <button class="btn btn-warning btn-sm" type="button" data-toggle="modal" data-target= "{{"#moreInformationModal".$nonConformity->id}}"><strong>More Details</strong></button>
-                            <button class="btn btn-success btn-sm" type="button" data-toggle="modal" data-target= "{{"#closingNCModal".$nonConformity->id}}"><strong>Close NC.</strong></button>
-                          </div>
-                      </td>
+                        <div class="btn-group" role="group">
+                          <button class="btn btn-warning btn-sm" type="button" data-toggle="modal" data-target= "{{"#moreInformationModal".$nonConformity->id}}"><strong>More Details</strong></button>
+                          <button class="btn btn-success btn-sm" type="button" data-toggle="modal" data-target= "{{"#closingNCModal".$nonConformity->id}}"><strong>Close NC.</strong></button>
+                        </div>
+                    </td>
+                    @else 
+                        
+                    {{-- checking the date that the nonconformity was closed. --}}
+
+                    <td>
+
+                        
+                        @php
+                            $dateToFormat = date_create($nonConformity->date);
+                            $date = date_format($dateToFormat, "D-d-F-Y");
+                        @endphp
+
+                        {{$date}}
+                    </td>
+
+                    {{-- this is the section that will contain the code that has the evidence of the non conformity.. --}}
+                        <td>
+                            @php
+                                $evidence = $nonConformity->noncoformityEvidence->locationOfEvidence;
+                                if ($evidence == 'N/A') {
+                                    # code...
+                                    $location = "No Supporting Document was supplied.";
+                                    echo $location;
+                                } else {
+                                    # code...
+                                    echo "<a  download href = '/storage/evidence/".$evidence."''> Click To Download The Document Supplid.</a>";
+                                }
+                                
+                            @endphp
+                        </td>
+                      @endif
+                      
                     </tr>
                     {{-- THIS SECTION OF THE CODE IS DIRECTED TOWARDS THE CLOSURE OF THE NON CONFORMITIES. --}}
 
@@ -287,10 +351,17 @@
 
                   <th> No OverDue Days</th>
                       
-                  @else
+                  @elseif($state == 0)
                       <th>Last Day To Close.</th>
-                  @endif                       
+                      @elseif($state == 2)
+                      <th>Date Closed.</th>
+                  @endif 
+                  @if ($state == 0 OR $state == 1)
                   <th>Actions.</th>
+                  @else
+                      <th>Evidence Provided.</th>
+                  @endif
+                  
               </tr>
               </tfoot>
             </table>

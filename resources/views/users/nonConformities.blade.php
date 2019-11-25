@@ -227,7 +227,8 @@
                                                 <h4 style="color:rgb(0,0,0);"><strong>Kindly Attach Supporting Document.</strong><span style="color:rgb(245,13,13);">*optional</span></h4>
                                             </div>
                                             <div class="col-lg-7 col-md-7">
-                                                <div class="btn btn-default btn-file"><i class="fa fa-paperclip"></i>Attachment<input type="file" name="{{"attachment"}}" /></div>
+                                                    <input type="file" name="{{"attachment"}}" />
+                                                {{-- <div class="btn btn-default btn-file"><i class="fa fa-paperclip"></i>Attachment</div> --}}
                                             </div>
                                         </div>
                                         <br>

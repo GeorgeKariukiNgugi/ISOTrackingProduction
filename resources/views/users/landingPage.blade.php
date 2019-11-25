@@ -47,7 +47,7 @@
 
 
 <div style="margin-bottom:5%;margin-top:5%"id="heading">
-<h1 class="text-center" style="font-family:Times New Roman;">Welcome To Safaricom {{$name}} Score Card.    <b>{{$activeYaer}}</b></h1>
+<h1 class="text-center" style="font-family:Times New Roman;">{{$name}} Score Card.    <b>{{$activeYaer}}</b></h1>
     <h1 class="text-center" style="font-family:Times New Roman;">({{$programShortHand}})</h1>
     <h2 class="text-center" style="font-family:Times New Roman;">Update the <b>{{$activeQuater}}</b> Scores based on the perspectives that have been listed below :-</h2>
 </div>

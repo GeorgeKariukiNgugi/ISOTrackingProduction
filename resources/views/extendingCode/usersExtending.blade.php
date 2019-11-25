@@ -74,11 +74,11 @@ desired effect
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="/home" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>S</b>AF</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Saf Iso NC Tracket</b></span>
+      <span class="logo-lg"><b>Saf Iso NC Tracker</b></span>
     </a>
 
     <!-- Header Navbar -->
@@ -185,7 +185,7 @@ desired effect
       </div>
 
       <!-- search form (Optional) -->
-      <form action="#" method="get" class="sidebar-form">
+      {{-- <form action="#" method="get" class="sidebar-form">
         <div class="input-group">
           <input type="text" name="q" class="form-control" placeholder="Search...">
           <span class="input-group-btn">
@@ -193,24 +193,25 @@ desired effect
               </button>
             </span>
         </div>
-      </form>
+      </form> --}}
       <!-- /.search form -->
 
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">HEADER</li>
+        <li class="header">OPTIONS.</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
+        <li class="active"><a href="#"><i class="fa fa-edit"></i> <span>User Manual </span></a></li>
+
+        <li><a href="#"><i class="fa fa-video-camera"></i> <span>Video Sample</span></a></li>
         <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
+          <a href="#"><i class="fa fa-book""></i> <span>Reports</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#">Link in level 2</a></li>
-            <li><a href="#">Link in level 2</a></li>
+            <li><a href="#">2018/2019</a></li>
+            <li><a href="#">2019/2020</a></li>
           </ul>
         </li>
       </ul>

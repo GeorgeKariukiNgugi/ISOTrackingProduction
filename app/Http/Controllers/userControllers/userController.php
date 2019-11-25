@@ -59,7 +59,7 @@ class userController extends Controller
             //!checking if the flag value is positive or negative.
             if ($formFlagInputValue == 1) {                
                 if($numberOfReturnedNonConformities == 0){
-                    return response()->json(['success'=>'Kindly Add The Non conformity reasons for the kpi  '.$kpi->name]);
+                    return response()->json(['success'=>' SCORES NOT SUBMITTED. Kindly Add The Non conformity reasons for the kpi  '.$kpi->name]);
                 }                
             }
             else if($formFlagInputValue == 0){
@@ -510,7 +510,7 @@ class userController extends Controller
         //!thi section is used to get the strategic objective name.
         foreach ($perspectiveStrategicObjectiveNames as $perspectiveStrategicObjectiveName) {
             # code...
-            array_push($chartNames,$perspectiveStrategicObjectiveName->name);
+            array_push($chartNames,$perspectiveStrategicObjectiveName->shortHand);
             
             $perspectiveStrategicObjectives = StrategicObjectiveScore::where('perspective_id','=',$gettingThePerspectiveId)
                                                                       ->where('year','=',$activeYaer)->get();                                                                    
@@ -638,7 +638,12 @@ class userController extends Controller
             // dd("null");
             $gettingNamesKpiNotScored = KeyPerfomaceIndicator::where('id','=',$allKPIsRetrieved[$i])->get();
             foreach ($gettingNamesKpiNotScored as $kpiNames) {
-                array_push($kpiNotScoredNames,$kpiNames->name);
+                $name = $kpiNames->name;
+                $removingUnserScores = str_replace('_', ' ', $name);                
+                $ucName = ucwords($removingUnserScores);
+                $nameInserted = substr($ucName,0,55);
+                $addingElipses = $nameInserted.' ...';
+                array_push($kpiNotScoredNames,$addingElipses);
             }
         }
         else{

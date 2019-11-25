@@ -677,7 +677,7 @@ class userController extends Controller
                                             ->get();
 
         // dd("Overdue  ".count( $nonConformities ));  
-        return view('users\nonConformities',['nonConformities'=>$nonConformities,'id'=>$id,'state'=>$closed,'programmeName'=>$proramenameValue]);
+        return view('users\nonConformities',['status'=> 'open','nonConformities'=>$nonConformities,'id'=>$id,'state'=>$closed,'programmeName'=>$proramenameValue]);
 
     } else if ($closed == 0){
         $nonConformities = NonConformities::where('openClosed', '=', 'open')
@@ -686,7 +686,7 @@ class userController extends Controller
                                             ->where('program_id','=',$id)
                                             ->orderBy('date', 'asc')
                                             ->get();
-        return view('users\nonConformities',['nonConformities'=>$nonConformities,'id'=>$id,'state'=>$closed,'programmeName'=>$proramenameValue]);  
+        return view('users\nonConformities',['status'=> 'open','nonConformities'=>$nonConformities,'id'=>$id,'state'=>$closed,'programmeName'=>$proramenameValue]);  
 
     }
     else if ($closed == 2){
@@ -698,7 +698,7 @@ class userController extends Controller
 
         //! getting the details that will be sent to the closed non conformities.
             $closedNonConformities = closedNonConformityEvidence::all();        
-return view('users\nonConformities',['closedNonConformities'=>$closedNonConformities,'nonConformities'=>$nonConformities,'id'=>$id,'state'=>$closed,'programmeName'=>$proramenameValue]);
+return view('users\nonConformities',['status'=> 'closed','closedNonConformities'=>$closedNonConformities,'nonConformities'=>$nonConformities,'id'=>$id,'state'=>$closed,'programmeName'=>$proramenameValue]);
     }     
  }
 

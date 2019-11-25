@@ -46,3 +46,7 @@ Route::get('/nonconformities/{program}/{closed}','UserControllers\userController
 //! this route will be used to hande the submission of the closing of the noncongormities that have been identified.
 
 Route::post('/closingNonConformity','UserControllers\userController@closingNonConformity');
+
+//! this route will handle all the sample export of the ecell file.
+
+Route::get('/sampleExcelDownload/{programId}/{status}', 'UserControllers\spreadheetExports@export');

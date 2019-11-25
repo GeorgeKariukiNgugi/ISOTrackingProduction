@@ -51,9 +51,13 @@
 <div class="box {{$boxColor}} box-solid">
     <div class="box-header with-border">
             <h1 class="box-title" style="text-align:center;"> <b>Non Conformities Table For : {{$programmeName}}</b></h1>
+
+            @if (count($nonConformities) > 0)
             <div class="box-tools pull-right">
-              <span style="color:white;"> <a href="#"  style="color:white;"><i class="fa fa-file-excel-o" style="color:white;font-size:25px;"></i>  Download Excel File</a></span>
-            </div>
+                <span style="color:white;"> <a href="/sampleExcelDownload/{{$id}}/{{$status}}"  style="color:white;"><i class="fa fa-file-excel-o" style="color:white;font-size:25px;"></i>  Download Excel File</a></span>
+              </div>                             
+            @endif
+
             <!-- /.box-tools -->
           </div>
     <!-- /.box-header -->
@@ -96,20 +100,6 @@
                 </thead>
                 <tbody>
                 @foreach ($nonConformities as $nonConformity)
-
-                
-                
-                {{-- @php
-                foreach ($closedNonConformities as $closedNonConformity) {
-                    # code...
-                    if($nonConformity->id == $closedNonConformity->nonConformity_id){
-                        $evidence = $nonConformity->id;
-                    }
-                break;
-                }
-                    
-
-                @endphp --}}
                     <tr>
                       <td>
                         {{-- inserting the increment number --}}

@@ -92,6 +92,36 @@ desired effect
         <ul class="nav navbar-nav">
           
           @yield('navigationBar')
+
+          <li class="dropdown notifications-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" title = "Non Conformities."aria-expanded="false">
+              <i class="fa fa-flag text-yellow"></i>
+              
+            </a>
+            <ul class="dropdown-menu">
+              <li class="header">The Following Are Your NonConformities.</li>
+              <li>
+                <!-- inner menu: contains the actual data -->
+                <ul class="menu">
+                  <li>
+                    @yield('closed')
+                      <i class="fa fa-warning text-green"></i> Non-Conformities Closed.
+                    </a>
+                  </li>
+                  <li>
+                    @yield('inProgress')
+                      <i class="fa fa-warning text-yellow"></i> Non-Conformities In Progress.
+                    </a>
+                  </li>
+                  <li>
+                    @yield('overdue')
+                      <i class="fa fa-warning text-red"></i> OverDue-Non Conformities.
+                    </a>
+                  </li>                  
+                </ul>
+              </li>              
+            </ul>
+          </li>
           <!-- User Account Menu -->
           <li class="dropdown user user-menu">
             <!-- Menu Toggle Button -->

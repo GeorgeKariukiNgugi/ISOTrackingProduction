@@ -13,20 +13,18 @@
       <i class="fa fa-dashboard"></i>              
     </a>
   </li> 
-  <li>            
-    <a href="{{"/nonconformities/".$id."/1"}}" data-toggle="tooltip" title=" Non-conformities out of date">
-      {{-- <i class="fa fa-bell-o" style="color:#F39C12;"></i>             --}}
-      <i class="fa fa-bell" style="color:rgb(255,0,0);"></i>
-    </a>
-  </li>    
-  {{-- checking all the non conformities that are both to be implemented and also out of date. --}}
+@endsection
 
-  <li>            
-      <a href="{{"/nonconformities/".$id."/0"}}" data-toggle="tooltip" title="All Non Conformities.">
-        {{-- <i class="fa fa-flag-o" style="color:red;"></i>               --}}
-        <i class="fa fa-flag" style="color:rgb(255,215,6);"></i>
-      </a>
-    </li>
+@section('overdue')
+<a href="{{"/nonconformities/".$id."/1"}}" data-toggle="tooltip" title=" Non-conformities out of date">
+@endsection
+
+@section('inProgress')
+<a href="{{"/nonconformities/".$id."/0"}}" data-toggle="tooltip" title="Non Conformies In Proress.">
+@endsection
+
+@section('closed')
+<a href="{{"/nonconformities/".$id."/2"}}" data-toggle="tooltip" title="Closed Non Confrmities.">
 @endsection
 
 @section('charts')

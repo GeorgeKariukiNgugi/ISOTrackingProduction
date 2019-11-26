@@ -1,5 +1,7 @@
 $(document).ready(function () {
-    var quatersSelected = $("input[id*='Quater']");
+    var activeQuater = $("#activeQuater").val();
+    var gettingTheQuaterNumber = activeQuater.substr(1);
+    var quatersSelected = $("input[id*='Quater" + gettingTheQuaterNumber + "']");
     // $("[id^='unmetTargetComment']").hide();
     quatersSelected.focusout(function () {
         var id = $(this).attr("id");

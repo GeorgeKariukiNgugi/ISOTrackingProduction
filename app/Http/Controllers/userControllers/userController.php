@@ -235,7 +235,7 @@ class userController extends Controller
                         }
                     break;
                     case '5':
-                        if ($averageThatBecomesytd == 0) {
+                        if ($averageThatBecomesytd == 0 OR $averageThatBecomesytd == 1) {
                             # code...
                             $kpiScore = 100;
                         } else{
@@ -247,7 +247,8 @@ class userController extends Controller
                             # code...
                             $kpiScore = 100;
                         } else{
-                            $kpiScore = 0;
+                            // $kpiScore = 0;
+                            $kpiScore = 100- (($averageThatBecomesytd-1)*100);
                         } 
                     break;
                     case '7':
@@ -492,6 +493,11 @@ class userController extends Controller
         $activeYaer = $activeYaerCollection->Year;
         // dd($activeYaer);
     }
+    $activeQuaterCollections = QuaterActive::where('Active','=',1)->get();
+        foreach($activeQuaterCollections as $activeQuaterCollection){
+            $activeQuater = $activeQuaterCollection->Quater;
+            // dd($activeQuater);
+        }
     //!THIS FIRST SECTION IS USED TO DEFINE THE ARRAY THAT WILL HOLD THE COLLECTION OF THE BAR CHARTS THATHAVE BEEN DEPLOYED. 
     $charts = array();
     // $proramPersspectives = StrategicObjective::where('perspective_id','=',$id)->get();
@@ -513,7 +519,9 @@ class userController extends Controller
             array_push($chartNames,$perspectiveStrategicObjectiveName->shortHand);
             
             $perspectiveStrategicObjectives = StrategicObjectiveScore::where('perspective_id','=',$gettingThePerspectiveId)
-                                                                      ->where('year','=',$activeYaer)->get();                                                                    
+                                                                      ->where('year','=',$activeYaer)
+                                                                    //   ->where('quater','=',$activeQuater)
+                                                                      ->get();                                                                    
             //!this section is used to get the scores of the particular strateegic objective.
             //!counting the number of records returned from the scores table. 
             if(count($perspectiveStrategicObjectives) == 0){

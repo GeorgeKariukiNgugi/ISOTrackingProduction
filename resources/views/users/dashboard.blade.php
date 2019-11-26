@@ -54,7 +54,7 @@
         <div class="box-body">
           @if (count($kpiNotScoredNames) == 0)
           <h3>ALL KPIs HAVE BEEN ASSESSED.</h3>
-              <a href=""> <i class="fa fa-download"></i> Download Report Card.</a>   
+              <a href="/samplePDF"> <i class="fa fa-download"></i> Download Report Card.</a>   
 
           @elseif (count($kpiNotScoredNames) == count($allKpis))
           <h3 style="text-align:center;"> <b>NO KPI HAS BEEN ASSESSED</b></h3>

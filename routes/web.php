@@ -50,3 +50,7 @@ Route::post('/closingNonConformity','UserControllers\userController@closingNonCo
 //! this route will handle all the sample export of the ecell file.
 
 Route::get('/sampleExcelDownload/{programId}/{status}', 'UserControllers\spreadheetExports@export');
+
+//! this is the link that has the sample download pdf. 
+
+Route::get('/samplePDF','UserControllers\PDFController@downloadPFD');

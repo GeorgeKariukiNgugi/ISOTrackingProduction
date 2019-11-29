@@ -82,7 +82,7 @@
                  $name = str_replace('_', ' ', $proramPersspectives[$i]->name);
                  $name = ucwords($name);
             @endphp
-            {{$name}}
+            <b style="color:blue;">{{$name}}</b>
         </h3>
       </div>
       <!-- /.box-header -->

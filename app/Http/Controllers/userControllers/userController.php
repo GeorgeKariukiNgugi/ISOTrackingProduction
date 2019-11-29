@@ -608,8 +608,8 @@ class userController extends Controller
     //! creating the pie chart that will give a visual representation of everything.
     $chart = new DashBoardCharts;
     $chart->minimalist(true);
-    $chart->labels(['finalScore', 'Fail']);
-    $chart->displaylegend(true);
+    $chart->labels(['Pass', 'Fail']);
+    // $chart->displaylegend(true);
     $fillColor = [
         '#00A65A',
         '#D73925'

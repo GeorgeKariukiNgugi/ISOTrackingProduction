@@ -27,16 +27,19 @@
                             <tr>
                                 <th>Column 1</th>
                                 <th>Column 2</th>
+                                <th>Column 3</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @for ($i = 0; $i < 7; $i++)
                             @foreach ($data as $program)
                             <tr>
+                                    <td>{{$i}}</td>
                                     <td>{{$program->name}}</td>
                                     <td>{{$program->shortHand}}</td>
                                 </tr>  
-                            @endforeach
-            
+                            @endforeach 
+                            @endfor                                       
                         </tbody>
                         <tfoot>
                             <tr>

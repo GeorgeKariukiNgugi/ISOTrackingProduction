@@ -12,7 +12,7 @@ class KeyPerfomaceIndicator extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'name', 'strategic_objective_id', 'perspective_id', 'arithmeticStructure','target'
+        'id', 'name', 'strategic_objective_id', 'perspective_id', 'arithmeticStructure','target','period'
     ];
 
     /**

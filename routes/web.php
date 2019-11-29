@@ -11,9 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+//! this route will sere as the landing page of the applictaion. It is basically the log in page of the app.
+
+Route::get('/','LogInController@logIn');
 
 Auth::routes();
 

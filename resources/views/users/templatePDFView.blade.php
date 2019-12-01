@@ -10,16 +10,15 @@
 </head>
 <body>
     <div class="container">            
-            {{-- <div class="row">
-                    <div class="col-lg-6 col-md-6"><img src="images/image012.jpg" style="align:left"alt="" width = "150px"class="responsive"></div>
-                    <div class="col-lg-6 col-md-6"><img src="images/ems.jpg" style="align:right" alt="" width = "150px"class="responsive"></div>
-                </div>          --}}
-
-                <div class="row">
-                        <div class="col-lg-6 col-md-6"><img src="images/image012.jpg" style /></div>
-                        <div class="col-lg-6 col-md-6" style="float:right; text-align:right;"><img src="images/isms.png" style="width:150px;height:80px;" /></div>
-                    </div>
-            <i class="glyphicon glyphicon-ok" style="color:red;"></i>
+                    @foreach ($programDetails as $programDetail)
+                    <div class="row">
+                            <div class="col-lg-6 col-md-6"><img src="images/image012.jpg" style /></div>
+                            <div class="col-lg-6 col-md-6" style="float:right; text-align:right;"><img src="{{$programDetail->imageLocation}}" style="width:150px;height:80px;" /></div>
+                        </div>
+                    <h3 style="text-align:center;"> Summary Report For  : {{$programDetail->programCode}}   {{$programDetail->name}}</h3>
+                    @endforeach
+                    
+            <h4 style="text-align:center;"> SCORES SUMMARY FOR: <b> {{$activeYaer}}  {{$activeQuater}} </b></h4>
             <div class="table-responsive" style="font-family:&#39;IM Fell Great Primer SC&#39;, serif;">
                 
                     <table class="table table-striped table-bordered">

@@ -660,7 +660,19 @@ class userController extends Controller
         }
     }
     // dd($kpiNotScoredNames);
-    return view('users.dashboard',['chart'=>$chart,'kpiNotScoredNames'=>$kpiNotScoredNames,'allKpis'=>$allKPIsRetrieved,'finalScore'=>$finalScore,'id'=>$id,'charts'=>$charts,'proramPersspectives'=>$proramPersspectives ]);
+
+    //!getting the program name and also the program code of the active program that is being assesed.
+
+    $proramDetails = Program::where('id','=',$id)->get();
+    $programDetailsArray = array();
+    foreach($proramDetails as $proramDetail){
+        array_push($programDetailsArray,$proramDetail->name);
+        array_push($programDetailsArray,$proramDetail->programCode);
+        array_push($programDetailsArray,$proramDetail->shortHand);
+    }
+
+
+    return view('users.dashboard',['programDetailsArray'=>$programDetailsArray,'activeYaer'=>$activeYaer,'activeQuater'=>$activeQuater,'chart'=>$chart,'kpiNotScoredNames'=>$kpiNotScoredNames,'allKpis'=>$allKPIsRetrieved,'finalScore'=>$finalScore,'id'=>$id,'charts'=>$charts,'proramPersspectives'=>$proramPersspectives ]);
  }
 
  public function nonConformities($id, $closed){

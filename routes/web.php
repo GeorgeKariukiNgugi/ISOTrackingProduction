@@ -57,4 +57,4 @@ Route::get('/sampleExcelDownload/{programId}/{status}', 'UserControllers\spreadh
 
 //! this is the link that has the sample download pdf. 
 
-Route::get('/samplePDF','UserControllers\PDFController@downloadPFD');
+Route::get('/samplePDF/{progId}','UserControllers\PDFController@downloadPFD');

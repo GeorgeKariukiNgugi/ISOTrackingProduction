@@ -75,6 +75,7 @@
             <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
           </div>
           <!-- /.col -->
+          <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
         </div>
       </form>
     </div>

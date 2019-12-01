@@ -82,7 +82,12 @@ class HomeController extends Controller
                 //!getting the program that the user should asses, and all its perspetives.
                 $id = $programid->program_id;
                 
+                if ($id == 0) {
+                    return view('adminPages.adminLanding');
+                }
                 $programs = Program::where('id','=',$id)->get();
+
+
                 foreach($programs as $program){
                     $programName = $program->name;
                     $programShortHand = $program->shortHand;

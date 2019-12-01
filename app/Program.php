@@ -12,7 +12,7 @@ class Program extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'name', 'shortHand', 'description'
+        'id', 'name', 'shortHand', 'description','imageLocation','programCode','colorCode'
     ];
 
     /**

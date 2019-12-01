@@ -67,7 +67,7 @@ desired effect
 |               | sidebar-mini                            |
 |---------------------------------------------------------|
 -->
-<body class="hold-transition  skin-green fixed  ">
+<body class="hold-transition  skin-green  sidebar-mini   ">
 <div class="wrapper">
 
   <!-- Main Header -->
@@ -161,10 +161,6 @@ desired effect
         <li><a href="#"><i class="fa fa-plus"></i> <span>Add New Program</span></a></li>
         <li><a href="#"><i class="fa fa-calendar-plus-o"></i> <span> Assesing Calender</span></a></li>
         <li><a href="#"><i class="fa fa-users"></i> <span> Program Assesors.</span></a></li>
-        <li><a href="#"><i class="fa fa-edit"></i> <span>User Manual </span></a></li>
-
-        <li><a href="#"><i class="fa fa-video-camera"></i> <span>Video Sample</span></a></li>
-
         <li class="treeview">
           <a href="#"><i class="fa fa-warning""></i> <span>Non Cnformities</span>
             <span class="pull-right-container">
@@ -177,23 +173,27 @@ desired effect
             <li><a href="#"> <i class="fa fa-warning text-red" ></i>  <span>Non-Confromities Overdue</span></a></li>
           </ul>
         </li>
+        <li><a href="#"><i class="fa fa-edit"></i> <span>User Manual </span></a></li>
+        <li><a href="#"><i class="fa fa-video-camera"></i> <span>Video Sample</span></a></li>
         <br>
         <li class="header" style="color:white;font-decoration:bold;">PROGRAMS.</li> 
         <br>
 
+        @foreach ($programs as $program)
         <li class="treeview">
-            <a href="#"><i class="fa  fa-trophy"></i> <span>Progam Proress.</span>
+            <a href="#"><i class="fa  fa-trophy"></i> <span>{{$program->shortHand}}</span>
               <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="#">Program Details.</a></li>
-              <li><a href="#">Proram Matrices</a></li>
-              <li><a href="#">Program Scores</a></li>
-              <li><a href="#">Program Current Dashboard.</a></li>
+              <li><a href="#">{{$program->shortHand}} Details.</a></li>
+              <li><a href="#">{{$program->shortHand}} Matrices</a></li>
+              <li><a href="#">{{$program->shortHand}} Scores</a></li>
+              <li><a href="#">{{$program->shortHand}} Current Dashboard.</a></li>
             </ul>
           </li>
+        @endforeach        
       </ul>
       <!-- /.sidebar-menu -->
     </section>
@@ -231,7 +231,11 @@ desired effect
   <footer class="main-footer">
     <!-- To the right -->
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2019 <a href="#">Safaricom PLC.</a>.</strong> All rights reserved.
+
+    @php
+        
+    @endphp
+    <strong>Copyright &copy; 2019 <a href="#">Safaricom PLC.</a></strong> All rights reserved.
   </footer>
 
   <!-- Control Sidebar -->

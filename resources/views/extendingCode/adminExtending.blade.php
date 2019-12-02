@@ -10,7 +10,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <title>ISO NC Tracker.</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <link rel="stylesheet" href="{{asset('AdminLTE-master\bower_components\bootstrap/dist\css\bootstrap.min.css')}}">
+  <link rel="stylesheet" href="{{asset('AdminLTE-master\bower_components\bootstrap\dist\css\bootstrap.min.css')}}">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{asset('AdminLTE-master\bower_components\font-awesome\css\font-awesome.min.css')}}">
   <!-- Ionicons -->
@@ -158,7 +158,7 @@ desired effect
         <li class="header" style="color:white;font-decoration:bold;">OPTIONS.</li>
         <br>
         <!-- Optionally, you can add icons to the links -->
-        <li><a href="#"><i class="fa fa-plus"></i> <span>Add New Program</span></a></li>
+        <li><a href="/addingNewProramStep0"><i class="fa fa-plus"></i> <span>Add New Program</span></a></li>
         <li><a href="#"><i class="fa fa-calendar-plus-o"></i> <span> Assesing Calender</span></a></li>
         <li><a href="#"><i class="fa fa-users"></i> <span> Program Assesors.</span></a></li>
         <li class="treeview">
@@ -261,6 +261,8 @@ desired effect
 <script src="{{asset('js/submitNonConformities.js')}}"></script>
 <script src="{{asset('js/submittingNewKPIs.js')}}"></script>
 <script src="{{asset('js/submittingClosingNonConformity.js')}}"></script>
+<script src="{{asset('js/addingPerspectives.js')}}"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
 @include('sweetalert::alert')
 @yield('charts')

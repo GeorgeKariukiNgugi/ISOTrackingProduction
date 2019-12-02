@@ -58,3 +58,16 @@ Route::get('/sampleExcelDownload/{programId}/{status}', 'UserControllers\spreadh
 //! this is the link that has the sample download pdf. 
 
 Route::get('/samplePDF/{progId}','UserControllers\PDFController@downloadPFD');
+
+//!this route will be used to handle the creation of a new program.
+
+Route::get('/addingNewProramStep0','adminController\adminController@addingANewProgramstep0');
+Route::get('/addingNewProramStep1','adminController\adminController@addingANewProgramstep1');
+
+//! this route is a post route that is used to post the data that has been submiited from the step1 of the adding a new proram.
+
+Route::post('/submittingProgramDetails','adminController\adminController@submittingProgramDetails');
+
+//!the route that is going to be defined below is going to be used to used to post the perspectives table. 
+
+Route::post('/submittingPerspectives','adminController\adminController@submittingPerspectives');

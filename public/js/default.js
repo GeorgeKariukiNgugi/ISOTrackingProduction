@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
     $(".tooltip").tooltip();
     //!this is getting which quaters are active and also which ones are n active and displaying them in the view.
     var activeQuater = $("#activeQuater").val();
@@ -11,7 +11,7 @@ $(document).ready(function() {
     selectingQuaters.removeAttr("readonly");
     selectingQuaters.removeAttr("placeholder");
     selectingQuaters.attr("required", "true");
-    // console.log(value);
-    // selectingQuaters.val(value);
-    // console.log(gettingTheQuaterNumber);
+
+    //!on loading the page successfully hide the two types of perspectives that will be used by the uer to bring the perspectives to life.
+
 });

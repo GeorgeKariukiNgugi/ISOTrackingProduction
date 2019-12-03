@@ -74,3 +74,11 @@ Route::post('/submittingPerspectives','adminController\adminController@submittin
 
 //! this route is going to be used to post the emails of the assesors. 
 Route::post('/submittingEmailAddress','adminController\adminController@submittingEmailAddress');
+
+//! this route is used to show the assesment calender view.
+
+Route::get('/assesmentCalender','adminController\asesmentCalender@viewingAssesmentCalender');
+
+//! this route will be used to post the calender details when changing the data.
+
+Route::post('/submittingCalender','adminController\asesmentCalender@submittingNewCalender');

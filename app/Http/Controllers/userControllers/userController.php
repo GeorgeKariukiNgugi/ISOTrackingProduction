@@ -77,7 +77,9 @@ class userController extends Controller
                 $scoreInputName = "Quater".$prefixOfTheActiveQuater.$idOfKPI;
                 // dd($scoreInputName);
                 $score = $request->$scoreInputName;
-                $gettingTheScoreRecordedCollection = ScoreRecorded::where('keyPerfomanceIndicator_id','=',$idOfKPI)->get();
+                $gettingTheScoreRecordedCollection = ScoreRecorded::where('keyPerfomanceIndicator_id','=',$idOfKPI)
+                                                                    ->where('quater','=',$activeQuater)
+                                                                    ->get();
                 $countingTheScoreRecorded = count($gettingTheScoreRecordedCollection);
                 if ($countingTheScoreRecorded >= 1) {
                     foreach($gettingTheScoreRecordedCollection as $scoreRecord){
@@ -93,7 +95,9 @@ class userController extends Controller
             $score = $request->$scoreInputName;
             
             //! CHECKING IF THERE IS THE SAME RECORD IS FOUND IN THE DATABASE SO AS TO AVOID DUPLICATION OF DATA.
-            $gettingTheScoreRecordedCollection = ScoreRecorded::where('keyPerfomanceIndicator_id','=',$idOfKPI)->get();
+            $gettingTheScoreRecordedCollection = ScoreRecorded::where('keyPerfomanceIndicator_id','=',$idOfKPI)
+                                                                ->where('quater','=',$activeQuater)
+                                                                ->get();
             $countingTheScoreRecorded = count($gettingTheScoreRecordedCollection);
             if ($countingTheScoreRecorded >= 1) {
                 //! data is in the DB, update the record.
@@ -131,6 +135,8 @@ class userController extends Controller
                                                      ->get();
 
             //!counting the number of records returned. 
+
+            // dd(count($allKPIScoresWithSameYear));
             $numberOfReturnedScores = count($allKPIScoresWithSameYear);
             if($numberOfReturnedScores<1){
                 return response()->json(['success'=>'There is an error incalculating the ytds, contact the Admin For Help.']);
@@ -147,7 +153,7 @@ class userController extends Controller
                     $sum+=$kpiScoreInSameYear->score;
                 }
             $averageThatBecomesytd = $sum/$numberOfReturnedScores;
-
+                // dd($averageThatBecomesytd);
             //!getting the score based on the ytd and the arithmetic structure.
 
             $atithmeticStructure = $kpi->arithmeticStructure;
@@ -639,7 +645,10 @@ class userController extends Controller
     $kpiNotScoredNames = array();
     for ($i=0; $i < count($allKPIsRetrieved); $i++) { 
         # code...
-        $dbSearch = KeyPerfomanceIndicatorScore::where('kpi_id','=',$allKPIsRetrieved[$i])->get();
+        // $dbSearch = KeyPerfomanceIndicatorScore::where('kpi_id','=',$allKPIsRetrieved[$i])->get();
+        $dbSearch = ScoreRecorded::where('keyPerfomanceIndicator_id','=',$allKPIsRetrieved[$i])
+                                 ->where('quater','=',$activeQuater)
+                                    ->get();
         // dd(count($dbSearch));
         if(count($dbSearch) == 0){
             array_push($kpisNotScored,$allKPIsRetrieved[$i]);

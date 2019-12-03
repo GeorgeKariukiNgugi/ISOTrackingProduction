@@ -159,7 +159,7 @@ desired effect
         <br>
         <!-- Optionally, you can add icons to the links -->
         <li><a href="/addingNewProramStep0"><i class="fa fa-plus"></i> <span>Add New Program</span></a></li>
-        <li><a href="#"><i class="fa fa-calendar-plus-o"></i> <span> Assesing Calender</span></a></li>
+        <li><a href="/assesmentCalender"><i class="fa fa-calendar-plus-o"></i> <span> Assesing Calender</span></a></li>
         <li><a href="#"><i class="fa fa-users"></i> <span> Program Assesors.</span></a></li>
         <li class="treeview">
           <a href="#"><i class="fa fa-warning""></i> <span>Non Cnformities</span>

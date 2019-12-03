@@ -42,7 +42,7 @@
 <div class="col-md-8">
     <div class="box box-danger">
         <div class="box-header with-border text-center" >
-          <h3 class="box-title"> <span style="font-size:40px;font-family:Georgia, 'Times New Roman', Times, serif">FINAL SCORES::</span> <span><b style="font-size:40px;font-family:Verdana, Geneva, Tahoma, sans-serif">{{ sprintf("%.2f", $finalScore)."%"}}</b></span></h3>
+          <h3 class="box-title"> <span style="font-size:40px;font-family:Georgia, 'Times New Roman', Times, serif">CUMMULATIVE FINAL SCORES::</span> <span><b style="font-size:40px;font-family:Verdana, Geneva, Tahoma, sans-serif">{{ sprintf("%.2f", $finalScore)."%"}}</b></span></h3>
         </div>
         <div class="box-body">
                 {!! $chart->container() !!}
@@ -61,10 +61,10 @@
               <a href="{{"/samplePDF/".$id}}"> <i class="fa fa-download"></i> Download Report Card.</a>   
 
           @elseif (count($kpiNotScoredNames) == count($allKpis))
-          <h3 style="text-align:center;"> <b>NO KPI HAS BEEN ASSESSED</b></h3>
+          <h3 style="text-align:center;"> <b>NO KPI HAS BEEN ASSESSED FOR {{$activeQuater}} Quater {{$activeYaer}}</b> </h3>
           <h3 style="text-align:center;"> <a href="/home">CLICK ME</a> TO MOVE TO SCORECARD FOR ASSESMENT.</h3>
         @else
-          <h4 style="text-align:center;"> <b>{{count($kpiNotScoredNames) }} KPIs Have Not Been Assessed.</b></h4>
+          <h4 style="text-align:center;"> <b>{{count($kpiNotScoredNames) }} KPIs Have Not Been Assessed For {{$activeQuater}} Quater {{$activeYaer}}</b></h4>
           @for ($i = 0; $i < count($kpiNotScoredNames); $i++)
               <p>{{$i+1 .'.   '.  $kpiNotScoredNames[$i]}}</p>
               

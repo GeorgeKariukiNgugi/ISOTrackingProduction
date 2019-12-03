@@ -9,7 +9,7 @@
         <br>
         <li> Defining The Program Perspectives.</li>
         <br>
-        <li>Confirmation Of The Details.</li> 
+        <li>Adding The Assesors Details.</li> 
         <br>   
     </ol>
 

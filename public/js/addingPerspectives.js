@@ -3,7 +3,15 @@ $(document).ready(function () {
     $('#primitive_perspective').hide();
     console.log('hiding the perspectives.');
     $('#custom_perspective').hide();
+    var increment = 0;
     $('#customPerspectiveRadio').on('click', function () {
+        var activePerspective = $("input[id^='perspectivePrimitive']");
+        increment = 0;
+        $('#addingPerspective').empty();
+        $('#numberOfCustomPersectives').val(increment);
+        activePerspective.each(function () {
+            $(this).removeAttr('required')
+        });
         $('#custom_perspective').show();
         $('#primitive_perspective').hide();
     });
@@ -17,27 +25,14 @@ $(document).ready(function () {
                 'required': 'required',
             })
         });
-
-        // console.log(activePerspective.length + '  ' + typeof activePerspective);
-
-        // for (let index = 0; index < activePerspective.length; index++) {
-
-        //     // console.log(activePerspective[index]);
-        //     var perspective = activePerspective[index];
-        //     perspective.attr(["required", "true"]);
-        //     console.log(gettingId);
-
-        // }
-        // activePerspective.attr('required', 'required');
     });
 
-    var increment = 1;
+
 
 
     $('#addingPerspectiveButton').on('click', function () {
-        $("input[id^='perspectivePrimitive']").removeAttr('id');
         increment++;
-        $appendingData = '<div class="row"><div id="addingPerspective"><div class="col-md-6"><div class="row"><div class="col-md-6"><p>Perspective Name</p></div><div class="col-md-6"><input type="text" /></div></div></div><div class="col-md-6"><div class="row"><div class="col-md-6"><p>Perspective Weight</p></div><div class="col-md-6"><input type="number" name = "' + +'"/></div></div></div></div></div>';
+        $appendingData = '<div class="row"><div id="addingPerspective"><div class="col-md-6"><div class="row"><div class="col-md-6"><p>Perspective Name</p></div><div class="col-md-6"><input type="text" required name ="' + 'customname' + increment + '" /></div></div></div><div class="col-md-6"><div class="row"><div class="col-md-6"><p>Perspective Weight</p></div><div class="col-md-6"><input required type="number" name = "' + 'customweight' + increment + '"/></div></div></div></div></div>';
         $('#addingPerspective').append($appendingData);
 
         $('#numberOfCustomPersectives').val(increment);

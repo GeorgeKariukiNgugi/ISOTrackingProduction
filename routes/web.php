@@ -71,3 +71,6 @@ Route::post('/submittingProgramDetails','adminController\adminController@submitt
 //!the route that is going to be defined below is going to be used to used to post the perspectives table. 
 
 Route::post('/submittingPerspectives','adminController\adminController@submittingPerspectives');
+
+//! this route is going to be used to post the emails of the assesors. 
+Route::post('/submittingEmailAddress','adminController\adminController@submittingEmailAddress');

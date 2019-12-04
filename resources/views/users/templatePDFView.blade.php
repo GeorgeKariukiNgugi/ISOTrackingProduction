@@ -9,16 +9,20 @@
   <!-- Theme style -->
 </head>
 <body>
+
+    <p>book.</p>
     <div class="container">            
-                    @foreach ($programDetails as $programDetail)
+                    {{-- @foreach ($programDetails as $programDetail)
                     <div class="row">
                             <div class="col-lg-6 col-md-6"><img src="images/image012.jpg" style /></div>
-                            <div class="col-lg-6 col-md-6" style="float:right; text-align:right;"><img src="{{$programDetail->imageLocation}}" style="width:150px;height:80px;" /></div>
+                            <div class="col-lg-6 col-md-6" style="float:right; text-align:right;">
+                                
+                            </div>
                         </div>
                     <h3 style="text-align:center;"> Summary Report For  : {{$programDetail->programCode}}   {{$programDetail->name}}</h3>
                     @endforeach
                     
-            <h4 style="text-align:center;"> SCORES SUMMARY FOR: <b> {{$activeYaer}}  {{$activeQuater}} </b></h4>
+            <h4 style="text-align:center;"> SCORES SUMMARY FOR: <b> {{$activeYaer}}  {{$activeQuater}} </b></h4> --}}
             <div class="table-responsive" style="font-family:&#39;IM Fell Great Primer SC&#39;, serif;">
                 
                     <table class="table table-striped table-bordered">
@@ -30,7 +34,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @for ($i = 0; $i < 7; $i++)
+                            {{-- @for ($i = 0; $i < 7; $i++)
                             @foreach ($data as $program)
                             <tr>
                                     <td>{{$i}}</td>
@@ -38,7 +42,7 @@
                                     <td>{{$program->shortHand}}</td>
                                 </tr>  
                             @endforeach 
-                            @endfor                                       
+                            @endfor                                        --}}
                         </tbody>
                         <tfoot>
                             <tr>

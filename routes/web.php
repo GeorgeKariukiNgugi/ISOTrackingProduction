@@ -87,20 +87,26 @@ Route::post('/submittingCalender','adminController\asesmentCalender@submittingNe
 Route::get('/viewingAssesors','adminController\programsAssesors@displayingProgramsAssesors');
 
 //!this route will be used to delete the assesor that has been selected.
-
 Route::post('/deletingAssesor','adminController\programsAssesors@deletingAssesor');
 
 //! this route will be used to ost the results of editing the users.
-
 Route::post('/editingUser','adminController\programsAssesors@editingAnAssesor');
 
 //! this route will be used to post the addition of a new user to the system.
-
 Route::post('/addingAssesor','adminController\programsAssesors@addingAssesor');
 
 //! this route will be used to handle the viewing of all the types of nonconformities that are targeted towards the admin.
 Route::get('/nonConformitiesAdmin/{type}','adminController\AdminnonConformities@viewingNonConformities');
 
 //!this route will be handling the the expertation of the spreadsheet that has the non conformities.
-
 Route::get('/adminNonConformitiesExcelDownload/{type}', 'adminController\spreadsheetExport@exportingData');
+
+//! this route is used to get the program details of each program.
+Route::get('/programDetails/{id}','adminController\programDetails@viewingTheProgramDetails');
+
+//! this roue will be used to delete the programs.
+Route::post('/deletingProgram','adminController\programDetails@deleteProgram');
+
+//! this route will be used to post the resulta that are from editing the program.
+Route::post('/eitingTheProgram','adminController\programDetails@editProgram');
+

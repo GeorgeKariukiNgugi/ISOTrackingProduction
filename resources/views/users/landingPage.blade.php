@@ -172,9 +172,9 @@
                                    <div class=" col-md-3 ">
                                        <p  style="font-size:16px;text-align:left;"><strong>Key Perfomance Indicator</strong><br /></p>
                                    </div>
-                                   <div class=" col-md-1">
-                                    <p  style="font-size:16px;text-align:left;"><strong>Assesment Period.</strong><br /></p>
-                                </div>
+                                   {{-- <div class=" col-md-1">
+                                    <p  style="font-size:16px;text-align:left;"><strong>Assesment Period.</strong><br /></p> 
+                                </div> --}}
                                    <div class="col-md-1">
                                        <p class="text-center" style="font-size:16px;"><strong>Score</strong><br /></p>
                                    </div>
@@ -256,9 +256,9 @@
                                         <div class=" col-md-3" style="text-align:left">
                                             <p>{{$name3}}</p>
                                         </div>
-                                        <div class=" col-md-1" style="text-align:left">
+                                        {{-- <div class=" col-md-1" style="text-align:left">
                                           <p>Quaterly</p>
-                                      </div>
+                                      </div> --}}
                                         <div class=" col-md-1" style="text-align:center"><p>{{$score}}</p></div>
                                         <div class=" col-md-1"style="text-align:center">
                                             <p id = "{{"target".$kpi->id}}" class ="{{"target".$kpi->id}}" >{{$kpi->target}}</p>

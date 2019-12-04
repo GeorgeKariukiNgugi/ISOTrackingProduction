@@ -168,9 +168,9 @@ desired effect
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"> <i class="fa fa-warning text-green"></i> <span>Closed Non-Confromities</span></a></li>
-            <li><a href="#"> <i class="fa fa-warning text-blue"></i>  <span>Non-Confromities In Progress</span></a></li>
-            <li><a href="#"> <i class="fa fa-warning text-red" ></i>  <span>Non-Confromities Overdue</span></a></li>
+            <li><a href="/nonConformitiesAdmin/0"> <i class="fa fa-warning text-green"></i> <span>Closed Non-Confromities</span></a></li>
+            <li><a href="/nonConformitiesAdmin/1"> <i class="fa fa-warning text-blue"></i>  <span>Non-Confromities In Progress</span></a></li>
+            <li><a href="/nonConformitiesAdmin/2"> <i class="fa fa-warning text-red" ></i>  <span>Non-Confromities Overdue</span></a></li>
           </ul>
         </li>
         <li><a href="#"><i class="fa fa-edit"></i> <span>User Manual </span></a></li>

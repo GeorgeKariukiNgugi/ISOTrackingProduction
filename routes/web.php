@@ -83,7 +83,7 @@ Route::get('/assesmentCalender','adminController\asesmentCalender@viewingAssesme
 
 Route::post('/submittingCalender','adminController\asesmentCalender@submittingNewCalender');
 
-//!this route will be used to get the viewing of the assesors.
+//!this route will be used to get the viewing ofnonConformities@viewingNonConformities the assesors.
 Route::get('/viewingAssesors','adminController\programsAssesors@displayingProgramsAssesors');
 
 //!this route will be used to delete the assesor that has been selected.
@@ -97,3 +97,10 @@ Route::post('/editingUser','adminController\programsAssesors@editingAnAssesor');
 //! this route will be used to post the addition of a new user to the system.
 
 Route::post('/addingAssesor','adminController\programsAssesors@addingAssesor');
+
+//! this route will be used to handle the viewing of all the types of nonconformities that are targeted towards the admin.
+Route::get('/nonConformitiesAdmin/{type}','adminController\AdminnonConformities@viewingNonConformities');
+
+//!this route will be handling the the expertation of the spreadsheet that has the non conformities.
+
+Route::get('/adminNonConformitiesExcelDownload/{type}', 'adminController\spreadsheetExport@exportingData');

@@ -53,9 +53,11 @@ class userController extends Controller
             $formFlagInputValue = $request->$formFlagInputName;
 
             //! GETTING ALL THE NON CONFORMITIES THAT HAVE BEEN RECORDED. 
-            $gettingNonConformities = NonConformities::where('keyPerfomanceIndicator_id','=',$idOfKPI)->get();
+            $gettingNonConformities = NonConformities::where('keyPerfomanceIndicator_id','=',$idOfKPI)
+                                                        ->where('quater','=',$activeQuater)
+                                                        ->get();
             $numberOfReturnedNonConformities = count($gettingNonConformities);
-
+            // dd($numberOfReturnedNonConformities);
             //!checking if the flag value is positive or negative.
             if ($formFlagInputValue == 1) {                
                 if($numberOfReturnedNonConformities == 0){
@@ -420,7 +422,9 @@ class userController extends Controller
             //! GETTING TO SEE IF THE NON CONFORMITY HAS BEEN ADDED TO THE NONCONFORMITY TABLE. 
             //! IF SO, UPDATE THE RECORD, IF NOT,ADD THE DATA TO THE NON CONFORMITY TABLE.
 
-         $gettingTheNonConformityWithGivenKPIid = NonConformities::where('keyPerfomanceIndicator_id','=',$nonConformitykpiId)->get();
+         $gettingTheNonConformityWithGivenKPIid = NonConformities::where('keyPerfomanceIndicator_id','=',$nonConformitykpiId)
+                                                                  ->where('quater','=',$activeQuater)                                                      
+                                                                 ->get();
          $countingReturnedNonConformities = count($gettingTheNonConformityWithGivenKPIid);
          if ($countingReturnedNonConformities == 0) {
              # code...

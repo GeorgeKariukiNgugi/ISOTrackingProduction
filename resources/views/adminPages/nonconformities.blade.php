@@ -147,10 +147,10 @@
                     <div role="dialog" tabindex="-1" class="modal fade" id={{"moreDatailsButton".$nonConformity->id}}>
                         <div class="modal-dialog modal-lg" role="document">
                             <div class="modal-content">
-                                <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                <div class="modal-header"style="background-color:#f3ff6a" ><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                                     <h4 class="modal-title">KPI NC Details:</h4>
                                 </div>
-                                <div class="modal-body">
+                                <div class="modal-body" style="background-color:#f8ffaa">
                                     <div class="row">
                                         <div class="col-md-4">
                                             <p><strong>KPI Name:</strong></p>
@@ -184,7 +184,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="modal-footer"><button class="btn btn-danger" type="button" data-dismiss="modal"><strong>Close</strong></button></div>
+                                <div class="modal-footer" style="background-color:#f3ff6a;"><button class="btn btn-danger" type="button" data-dismiss="modal"><strong>Close</strong></button></div>
                             </div>
                         </div>
                     </div>

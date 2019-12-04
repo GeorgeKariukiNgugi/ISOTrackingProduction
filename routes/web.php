@@ -110,3 +110,6 @@ Route::post('/deletingProgram','adminController\programDetails@deleteProgram');
 //! this route will be used to post the resulta that are from editing the program.
 Route::post('/eitingTheProgram','adminController\programDetails@editProgram');
 
+//! this route is used to get the scores of the program that has been selected.
+Route::get('/scores/{id}','adminController\scoresConroller@viewScores');
+

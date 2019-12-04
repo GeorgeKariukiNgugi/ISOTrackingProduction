@@ -82,3 +82,18 @@ Route::get('/assesmentCalender','adminController\asesmentCalender@viewingAssesme
 //! this route will be used to post the calender details when changing the data.
 
 Route::post('/submittingCalender','adminController\asesmentCalender@submittingNewCalender');
+
+//!this route will be used to get the viewing of the assesors.
+Route::get('/viewingAssesors','adminController\programsAssesors@displayingProgramsAssesors');
+
+//!this route will be used to delete the assesor that has been selected.
+
+Route::post('/deletingAssesor','adminController\programsAssesors@deletingAssesor');
+
+//! this route will be used to ost the results of editing the users.
+
+Route::post('/editingUser','adminController\programsAssesors@editingAnAssesor');
+
+//! this route will be used to post the addition of a new user to the system.
+
+Route::post('/addingAssesor','adminController\programsAssesors@addingAssesor');

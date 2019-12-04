@@ -113,3 +113,6 @@ Route::post('/eitingTheProgram','adminController\programDetails@editProgram');
 //! this route is used to get the scores of the program that has been selected.
 Route::get('/scores/{id}','adminController\scoresConroller@viewScores');
 
+//! this route is used to get the various dashboards of the programs.
+Route::get('/programDashboard/{id}','adminController\Programdashboard@programDashboard');
+

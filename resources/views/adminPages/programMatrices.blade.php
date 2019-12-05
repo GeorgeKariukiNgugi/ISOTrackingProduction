@@ -305,7 +305,8 @@
                                 <h4 class="text-center modal-title"><strong>Edit The KPI: {{$kpiName}}</strong></h4>
                             </div>
                             <div class="modal-body" style="background-color:#a4daac;">
-                                <form action="" method="POST">                                
+                                <form action="{{"/editingKPIs/".$kpiModal->id}}" method="POST"> 
+                                    {{ csrf_field() }}                               
                                 <div class="row">
                                     <div class="col-md-6">
                                         <h4 style="font-family:'Times New Roman', Times, serif;">KPI Name:</h4>

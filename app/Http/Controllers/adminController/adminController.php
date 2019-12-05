@@ -170,11 +170,16 @@ class adminController extends Controller
                         $weightname = 'customweight'.$i;
                         $perspectiveNamename = 'customname'.$i;
                          $request->$weightname;
-
+                         $programShortHands = Program::where('id','=',$id)->get();
+                         foreach($programShortHands as $programShortHand){
+                            $shortHand = $programShortHand->shortHand ;
+                         }
                          $insertingPerspective = new Perspective(
 
+                            //! getting the shorthand of the program that has been inserted latest. 
+                            
                             array(
-                                'name'=> $request->$perspectiveNamename,
+                                'name'=> $shortHand.'_'.$request->$perspectiveNamename,
                                 'weight'=>$request->$weightname, 
                                 'program_id'=>$id,
                             )

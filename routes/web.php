@@ -122,4 +122,8 @@ Route::get('/programMatrices/{id}','adminController\programMatrices@proramMatric
 //! this route will be used to submit the adding of a new strategic objective.
 Route::post('/addingNewStrstegicObjective/{id}', 'adminController\programMatrices@addStrategicObjective');
 
+//! this route will be used to post the editing of each KPI.
+
+Route::post('/editingKPIs/{id}','adminController\programMatrices@EditingKpis');
+
 

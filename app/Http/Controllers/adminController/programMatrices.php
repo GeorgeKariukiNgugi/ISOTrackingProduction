@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 
 use Auth;
 use DB;
+use App\Http\Requests\editingKpis;
 use App\AssesorPerProgram;
 use App\Program;
 use App\ScoreRecorded;
@@ -17,6 +18,7 @@ use App\Perspective;
 use App\NonConformities;
 use App\StrategicObjective;
 use App\KeyPerfomanceIndicatorScore;
+use App\KeyPerfomaceIndicator;
 use App\Http\Requests\AddingNewStrstegicObjective;
 use RealRashid\SweetAlert\Facades\Alert;
 use  App\Charts\DashBoardCharts;
@@ -64,7 +66,7 @@ class programMatrices extends Controller
         
     }
 
-    public function addStrategicObjective( AddingNewStrstegicObjective $request, $id){
+    public function addStrategicObjective(AddingNewStrstegicObjective $request, $id){
         $newStrstegicObjective = new StrategicObjective(
                         array(
                             'perspective_id'=> $id,
@@ -74,6 +76,23 @@ class programMatrices extends Controller
         $newStrstegicObjective->save();
 
         Alert::success(' <h4 style = "color:green;">Congartulations    <i class="fa fa-thumbs-up"></i></h4>', 'New Strategic Objective Has Been Added.');
+        return back();
+
+    }
+
+    public function EditingKpis(editingKpis $request, $id){
+        $kpiToBeUpdated = KeyPerfomaceIndicator::where('id','=',$id)->get();
+
+        foreach($kpiToBeUpdated as $kpi){
+            $kpi->name  =$request->name;
+            $kpi->period  =$request->period;
+            $kpi->arithmeticStructure  =$request->arithmeticStructure;
+            $kpi->target  =$request->target;
+
+            $kpi->save();
+        }
+        
+        Alert::success(' <h4 style = "color:green;">Congartulations    <i class="fa fa-thumbs-up"></i></h4>','Succesfully Updated.');
         return back();
 
     }

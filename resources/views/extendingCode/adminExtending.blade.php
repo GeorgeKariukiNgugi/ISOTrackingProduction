@@ -188,7 +188,7 @@ desired effect
             </a>
             <ul class="treeview-menu">
               <li><a href="{{"/programDetails/".$program->id}}">{{$program->shortHand}} Details.</a></li>
-              <li><a href="#">{{$program->shortHand}} Matrices</a></li>
+              <li><a href="{{"/programMatrices/".$program->id}}">{{$program->shortHand}} Matrices</a></li>
               <li><a href="{{"/scores/".$program->id}}">{{$program->shortHand}} Scores</a></li>
               <li><a href="{{"/programDashboard/".$program->id}}">{{$program->shortHand}} Current Dashboard.</a></li>
             </ul>

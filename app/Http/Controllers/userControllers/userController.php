@@ -481,6 +481,7 @@ class userController extends Controller
         $newStrategicObjective = $request->strategicObjective;        
         $newKPIName = $request->kpiName;
         $newJPITarget = $request->kpiTarget;
+        $newKPIPeriod = $request->period;
         $newKPIArithmeticStructure = $request->arithmeticStructure;
         $savingKPI = new KeyPerfomaceIndicator(
                         array(
@@ -489,6 +490,7 @@ class userController extends Controller
                             'perspective_id'=>$newKPIPerspective,
                             'arithmeticStructure'=>$newKPIArithmeticStructure,
                             'target'=>$newJPITarget,
+                            'period'=>$newKPIPeriod,
                         )
         );
         // dd($newStrategicObjective);

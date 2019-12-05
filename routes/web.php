@@ -116,3 +116,10 @@ Route::get('/scores/{id}','adminController\scoresConroller@viewScores');
 //! this route is used to get the various dashboards of the programs.
 Route::get('/programDashboard/{id}','adminController\Programdashboard@programDashboard');
 
+//! this route will be used to get the proram matrices of all the prorams that are in a particular program.
+Route::get('/programMatrices/{id}','adminController\programMatrices@proramMatrices');
+
+//! this route will be used to submit the adding of a new strategic objective.
+Route::post('/addingNewStrstegicObjective/{id}', 'adminController\programMatrices@addStrategicObjective');
+
+

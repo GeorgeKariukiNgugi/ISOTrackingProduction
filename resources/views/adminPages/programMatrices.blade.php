@@ -17,15 +17,19 @@
 {{-- GETTING THE QUATER THAT IS ACTIVE AND ALSO THE YEAR THAT IS ACTIVE. --}}
 <input type = "hidden" value="{{$activeQuater}}" name = "activeQuater" id = "activeQuater">
 <input type = "hidden" value="{{$activeYaer}}" name = "activeYear" id="activeYear">
-
-
 <div style="margin-bottom:5%;margin-top:5%"id="heading">
-<h1 class="text-center" style="font-family:Times New Roman;">{{$name}} Score Card.    <b>{{$activeYaer}}</b></h1>
+<h1 class="text-center" style="font-family:Times New Roman;">{{$name}}</h1>
     <h1 class="text-center" style="font-family:Times New Roman;">({{$programShortHand}})</h1>
-    <h2 class="text-center" style="font-family:Times New Roman;"><b>{{$activeQuater}}</b> Is Active.</h2>
+    <h2 class="text-center" style="font-family:Times New Roman;"><b>Martices (Perspectives, Strategic Objectives and Key Perfomance Indicators.)</b></h2>
 </div>
     
-<div class="panel-group" id="accordion" role="tablist">  
+<div class="panel-group" id="accordion" role="tablist"> 
+    
+    @if (count($perspectives) == 0)
+
+    <h2 style="text-align:center;font-family:'Times New Roman', Times, serif;color:red;"> <b>THERE ARE NO PERSPECTIVES FOR THIS PROGRAM....</b></h2>
+        
+    @endif
 @foreach ($perspectives as $perspective)
     
     {{-- getting the name of the particular perspective. --}}
@@ -39,31 +43,60 @@
         $increment2++;               
     @endphp
 
-<div class="panel box box-warning box-solid">
-  <div class="box-header with-border">
+<div class="panel box box-solid">
+  <div class="box-header with-border" style="background-color:tomato;">
     <h4 class="box-title" style="width:100%;">
-      <a data-toggle="collapse" style="padding-right:10px;" data-parent="#accordion" href="{{"#collapseOne".$increment2}}" aria-expanded="true" aria-controls="collapseOne">
+      <a data-toggle="collapse" style="padding-right:10px;color:white" data-parent="#accordion" href="{{"#collapseOne".$increment2}}" aria-expanded="true" aria-controls="collapseOne">
         {{$name2}} <i style = "float:right;"class="accordion_icon fa fa-plus"></i>
       </a>
     </h4>
   </div>
   <div id="{{"collapseOne".$increment2}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
     <div class="panel-body">
-      
+
+        {{-- the modal that will be used to add the new strategic objectives --}}
+        <div role="dialog" tabindex="-1" class="modal fade" id="{{"addingStrategicObjectives".$perspective->id}}">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header" style="background-color:#23bac3;"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            <h4 class="text-center modal-title"><strong>Add A New STRATEGIC OBJECTIVE.</strong></h4>
+                        </div>
+                        <div class="modal-body" style="background-color:#2af3ff;">
+                                <form action="{{"/addingNewStrstegicObjective/".$perspective->id}}" method="POST">
+                                    {{ csrf_field() }}
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h4>Strategic Objective Name.</h4>
+                                </div>
+                                <div class="col-md-6"><input type="text" style="width:100%;height:35px;" name="strName"/></div>
+                            </div>
+                        </div>
+                        <div class="modal-footer" style="background-color:#23bac3;"><button class="btn btn-danger" type="button" data-dismiss="modal">Close</button><button class="btn btn-success" type="submit">Save</button></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
       {{-- getting the strategic objectives of theperspecives that have been given. --}}
+      
 
       @php
           $strategicObjectives = $perspective->strategicObjectives;
           $number = count($strategicObjectives);
-          if($number < 1){
-            // echo "there are no strategic objectives for thie perspective.";
-          }                  
+
       @endphp
+
       @if ($number < 1)
-          <h2 style="font-family:'Times New Roman', Times, serif;text-align:center;">THERE ARE NO STRATEGIC OBJECTIVES FOR THIS PERSPECTIVE. KINDLY ADD AND SCORE TO VIEW RESULTS.</h2>
+          <h3 style="font-family:'Times New Roman', Times, serif; text-align:center;">THERE ARE NO STRATEGIC OBJECTIVES FOR THIS PERSPECTIVE.</h3>
+          <div style="" class="col-md-6  col-sm-6">
+                <a class="btn btn-warning btn-md" data-toggle="modal"  data-target="{{"#addingStrategicObjectives".$perspective->id}}"> <b>Add New Strategic Objective.</b> </a>                  
+         </div>          
       @endif
       @if ($number > 0)
-          
+      <div>
+            <a class="btn btn-warning btn-md" data-toggle="modal"  data-target="{{"#addingStrategicObjectives".$perspective->id}}"> <b>Add New Strategic Objective.</b> </a>                  
+      </div> 
+
+      <br>
           @foreach ($strategicObjectives as $strategicObjective)
           {{-- cleaning the data that is in the strategic objective for better visualisation. --}}
           @php
@@ -75,6 +108,7 @@
             <div class="box-header with-border text-center"style="text-align:center">
             <h3 class="box-title text-center">{{$perspetiveName}}</h3>
             </div>
+            
             {{-- getting the key perfomance indicators for the specific strategic objectives. --}}
             @php
                 $kpis = $strategicObjective->keyPerfomanceIndicator;
@@ -87,6 +121,11 @@
                 </div>
               
             </div> 
+            <div class="box-footer clearfix">
+                    <div style="text-align:left" class="col-md-6  col-sm-6">
+                        <a class="btn btn-success btn-md" data-toggle="modal" data-target="{{"#modal".$strategicObjective->id}}"> <b>Add New</b> </a>                  
+                    </div>
+                </div>
             <div role="dialog" tabindex="-1" class="modal fade" id="{{"modal".$strategicObjective->id}}">
               <div class="modal-dialog" role="document">
                   <div class="modal-content">
@@ -117,6 +156,20 @@
                                 </div>
                                 <div class="col-lg-6 col-md-6  col-sm-6"><select required name="arithmeticStructure"><optgroup label="Arithmetic Structure"><option value="1">Above</option><option value="0">Below</option></optgroup></select></div>
                             </div>
+                            <div class="row">
+                                    <div class="col-lg-6 col-md-6  col-sm-6">
+                                        <p><strong>Period.</strong></p>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6  col-sm-6">
+                                        <select required name="period">
+                                            <optgroup label="Select Period.">
+                                                <option value="4">Quaterly</option>
+                                                <option value="2">Semi Anually</option>
+                                                <option value="1">Anually</option>
+                                            </optgroup>
+                                        </select>
+                                    </div>
+                                </div>                                
                             <div class="modal-footer"><button class="btn btn-danger" type="button" data-dismiss="modal">Close</button><button class="btn btn-success" type="submit">Save</button></div>
                         </form>
                           
@@ -138,30 +191,18 @@
                                    <div class="col-md-1">
                                        <p class="text-center" style="font-size:16px;"><strong>No</strong></p>
                                    </div>
-                                   <div class=" col-md-3 ">
+                                   <div class=" col-md-6 ">
                                        <p  style="font-size:16px;text-align:left;"><strong>Key Perfomance Indicator</strong><br /></p>
                                    </div>
-                                   {{-- <div class=" col-md-1">
+                                   <div class=" col-md-2">
                                     <p  style="font-size:16px;text-align:left;"><strong>Assesment Period.</strong><br /></p> 
-                                </div> --}}
-                                   <div class="col-md-1">
-                                       <p class="text-center" style="font-size:16px;"><strong>Score</strong><br /></p>
-                                   </div>
+                                </div>
                                    <div class="col-md-1">
                                        <p class="text-center" style="font-size:16px;"><strong>Target</strong><br /></p>
                                    </div>
-                                   <div class="col-md-1">
-                                       <p class="text-center" style="font-size:16px;"><strong>Q1</strong><br /></p>
+                                   <div class="col-md-2">
+                                       <p class="text-center" style="font-size:16px;"><strong>Actions</strong><br /></p>
                                    </div>
-                                   <div class="col-md-1">
-                                       <p class="text-center" style="font-size:16px;"><strong>Q2</strong><br /></p>
-                                   </div>
-                                   <div class="col-md-1">
-                                       <p class="text-center" style="font-size:16px;"><strong>Q3</strong><br /></p>
-                                   </div>
-                                   <div class="col-md-1">
-                                       <p class="text-center" style="font-size:16px;"><strong>Q4</strong><br /></p>
-                                   </div>                                   
                                </div>
                               
                                @foreach ($kpis as $kpi)
@@ -219,128 +260,110 @@
                                         <div class=" col-md-1"style="text-align:center">
                                             <p>{{$kpi->id}}</p>
                                         </div>
-                                        <div class=" col-md-3" style="text-align:left">
+                                        <div class=" col-md-6" style="text-align:left">
                                             <p>{{$name3}}</p>
                                         </div>
-                                        {{-- <div class=" col-md-1" style="text-align:left">
+                                        <div class=" col-md-2" style="text-align:left">
                                           <p>Quaterly</p>
-                                      </div> --}}
-                                        <div class=" col-md-1" style="text-align:center"><p>{{$score}}</p></div>
+                                      </div>
+                                        {{-- <div class=" col-md-1" style="text-align:center"><p>{{$score}}</p></div> --}}
                                         <div class=" col-md-1"style="text-align:center">
                                             <p id = "{{"target".$kpi->id}}" class ="{{"target".$kpi->id}}" >{{$kpi->target}}</p>
                                         </div>
-
-
-                                        {{-- CHECKING THE VALUES OF VARIOUS QUATERS. --}}
-                                        @php
-                                            // values for QUATER ONE.
-                                            $Q1Value = '';
-                                            $numberOfQuater1Records = count($quaterOne);
-                                            if($numberOfQuater1Records == 0){
-                                                $Q1Value = '';
-                                            }else{
-                                              foreach($quaterOne as $quaterOnes){
-                                                if($quaterOnes->keyPerfomanceIndicator_id == $kpi->id){
-                                                  $Q1Value = $quaterOnes->score;
-                                                }                                              
-                                              }
-                                            }
-         
-                                            //values for quater two
-                                            $Q2Value = '';
-                                            $numberOfQuater2Records = count($quaterTwo);
-                                            if($numberOfQuater2Records == 0){
-                                                $Q2Value = '';
-                                            }else{
-                                              foreach($quaterTwo as $quaterTwos){
-                                                if($quaterTwos->keyPerfomanceIndicator_id == $kpi->id){
-                                                  $Q2Value = $quaterTwos->score;
-                                                }                                              
-                                              }
-                                            }
-         
-                                            //values for quater three. 
-                                            $Q3Value = '';
-                                            $numberOfQuater3Records = count($quaterthree);
-                                            if($numberOfQuater3Records == 0){
-                                                $Q3Value = '';
-                                            }else{
-                                              foreach($quaterthree as $quaterthrees){
-                                                if($quaterthrees->keyPerfomanceIndicator_id == $kpi->id){
-                                                  $Q3Value = $quaterthrees->score;
-                                                }                                              
-                                              }
-                                            }
-         
-                                            //values for quater four.
-                                            $Q4Value = '';                                            
-                                            $numberOfQuater4Records = count($quaterfour);
-                                            if($numberOfQuater4Records == 0){
-                                                $Q4Value = '';
-                                            }else{
-                                              foreach($quaterfour as $quaterfours){
-                                                if($quaterfours->keyPerfomanceIndicator_id == $kpi->id){                                                  
-                                                  $Q4Value = $quaterfours->score;                                                  
-                                                }                                                                                          
-                                              }                                               
-                                            }
-         
-                                        @endphp
-
-                                        <div class=" col-md-1"><input   value="{{$Q1Value}}" type = "number" step=".01"  name = "{{"Quater1".$kpi->id}}" id = "{{"Quater1".$kpi->id}}" disabled placeholder="Inactive" class="form-control {{"Quater1".$kpiOriginalName}}" /></div>
-                                        <div class=" col-md-1"><input   value="{{$Q2Value}}" type = "number" step=".01"  name = "{{"Quater2".$kpi->id}}" id = "{{"Quater2".$kpi->id}}" disabled placeholder="Inactive" class="form-control {{"Quater2".$kpiOriginalName}}" /></div>
-                                        <div class=" col-md-1"><input   value="{{$Q3Value}}" type = "number" step=".01"  name = "{{"Quater3".$kpi->id}}" id = "{{"Quater3".$kpi->id}}" disabled placeholder="Inactive" class="form-control {{"Quater3".$kpiOriginalName}}" /></div>
-                                        <div class=" col-md-1"><input   value="{{$Q4Value}}" type = "number" step=".01"  name = "{{"Quater4".$kpi->id}}" id = "{{"Quater4".$kpi->id}}" disabled placeholder="Inactive"class="form-control {{"Quater4".$kpiOriginalName}}" /></div>                                                                              
+                                        <div class=" col-md-2" style="text-align:center">
+                                                <button class="btn btn-info btn-sm" data-toggle="modal" data-target="{{"#editKpiModal".$kpi->id}}"> <b>Edit KPI.</b></button>
+                                        </div>
                                       </div>
                                @endforeach
                                <div class="box-footer">   
-                               
+                                    <div class="box-footer">   
+                                            {{-- Adding the Modal That is used to add the Key Perfomance Indicators.  --}}
+                                            {{-- id="{{ "modal".$originalObjectiveName}} --}}                                                                    
+                                            <div style="text-align:left" class="col-md-6  col-sm-6">
+                                              <a class="btn btn-success btn-md" data-toggle="modal" data-target="{{"#modal".$strategicObjective->id}}"> <b>Add New</b> </a>
+                                              {{-- <a class="btn btn-warning btn-md" > <b>Edit .</b> </a> --}}
+                                            </div>
+                                            {{-- <div style="text-align:right;" class="col-md-6  col-sm-6">
+                                              <button class="btn btn-danger btn-md" type = "submit" id= "{{"submit".$strategicObjective->name}}"> <b>Save</b> </button>
+                                            </div> --}}
+                                           </div> 
                                </div>                               
                                {{-- <input type = "hidden" value = "{{$numberOfKPI}}" id="{{$originalObjectiveName."numberOfKPI"}}"> --}}
             </form> 
             {{-- inserting the modals that will be thrown once the targets are not reached. --}}
             @foreach ($kpis as $kpiModal)
-            <div class="modal fade" role="dialog" tabindex="-1" id="{{"modal".$kpiModal->id}}">
-              <div class="modal-dialog modal-lg" role="document">
-                  <div class="modal-content">
-                      <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                          <h4 class="text-center modal-title">Kindly Fill The Following Fields to Complete Assesing :: <strong>{{$kpiModal->name}}.</strong></h4>
-                      </div>
-                      <div id="{{"NonConformitymodal".$kpiModal->id}}"></div>
-                      <div class="modal-body">
-                          <form id="{{"unmetTargetModal".$kpiModal->id}}" class = "{{"unmetTargetModal".$kpiModal->id}}">
-                            {{ csrf_field() }}
-                            <input type="hidden" name="nonConformitykpiId" value="{{$kpiModal->id}}">
-                              <div class="row" style="margin-bottom:1%;">
-                                  <div class="col-lg-3 col-md-3">
-                                      <p class="text-center">Root Cause for not meeting target.</p>
-                                  </div>
-                                  <div class="col-lg-9 col-md-9"><textarea class="form-control" name="rootCause" required="" placeholder="Root Cause For Non Conformity."></textarea></div>
-                              </div>
-                              <div class="row" style="margin-bottom:1%;">
-                                  <div class="col-lg-3 col-md-3">
-                                      <p class="text-center">Corretive Action To Meet The Target.&nbsp;</p>
-                                  </div>
-                                  <div class="col-lg-9 col-md-9"><textarea class="form-control" name="correctiveAction" required="" placeholder="Corrective Action For The Non Conformity."></textarea></div>
-                              </div>
-                              <div class="row" style="margin-bottom:1%;">
-                                  <div class="col-lg-3 col-md-3">
-                                      <p class="text-center">Completion Date of Corrective Action.</p>
-                                  </div>
-                                  <div class="col-lg-9 col-md-9"><input required class="form-control" name = "date" type="date"></div>
-                              </div>
-                              <div class="row">
-                                  <div class="col-lg-3 col-md-3">
-                                      <p class="text-center">Permanent Solution To Non conformity.</p>
-                                  </div>
-                                  <div class="col-lg-9 col-md-9"><textarea class="form-control" name="permanentSolution" required="" placeholder="Permanent Solution To Non Conformity."></textarea></div>
-                              </div>
-                              <div class="modal-footer"><button class="btn btn-danger" type="button" data-dismiss="modal">Close</button><button class="btn btn-success" type="submit">Save</button></div>
-                          </form>
-                      </div>                      
-                  </div>
-              </div>
-            </div>
+
+            @php
+                $kpiName = $kpiModal->name;
+                $kpiName = str_replace('_', ' ', $kpiName);
+                $kpiName = ucwords($kpiName);
+            @endphp
+            <div role="dialog" tabindex="-1" style="font-family:'Times New Roman', Times, serif" class="modal fade" id="{{"editKpiModal".$kpiModal->id}}">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header" style="background-color:#62d975;"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                <h4 class="text-center modal-title"><strong>Edit The KPI: {{$kpiName}}</strong></h4>
+                            </div>
+                            <div class="modal-body" style="background-color:#a4daac;">
+                                <form action="" method="POST">                                
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h4 style="font-family:'Times New Roman', Times, serif;">KPI Name:</h4>
+                                    </div>
+                                    <div class="col-md-6"><input type="text" name="name" style="width:100%;height:35px;" value="{{$kpiName}}"/></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h4 style="font-family:'Times New Roman', Times, serif">KPI Assesment Period:</h4>
+                                    </div>
+                                    <div class="col-md-6">
+                                    <select name="period" style="height:35px;width:100%;">
+                                        <optgroup label="Assesment Period.">
+                                            @if ($kpiModal->period == 4)
+                                            <option value="4" selected >Quater</option>
+                                            <option value="2">Semi Anually</option>
+                                            <option value="1" >Anually</option>
+                                            @elseif($kpiModal->period == 2)
+                                            <option value="4">Quater</option>
+                                            <option value="2" selected>Semi Anually</option>
+                                            <option value="1">Anually</option>
+                                            @elseif($kpiModal->period == 1)
+                                            <option value="4">Quater</option>
+                                            <option value="2">Semi Anually</option>
+                                            <option value="1" selected>Anually</option>
+                                            @endif
+                                        </optgroup>
+                                    </select>
+                                </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h4 style="font-family:'Times New Roman', Times, serif">Arithmetic Structure:</h4>
+                                    </div>
+                                    <div class="col-md-6"><select name="arithmeticStructure" style="width:100%;height:35px;">
+                                        <optgroup label="Arithmetic Structure">
+                                            @if ($kpiModal->arithmeticStructure == 0)
+                                            <option value="1">Above</option>
+                                            <option value="0" selected>Below</option>
+                                            @elseif($kpiModal->arithmeticStructure == 1)
+                                            <option value="1">Above</option>
+                                            <option value="0" selected>Below</option>
+                                            @endif
+                                            
+                                        </optgroup></select></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h4 style="font-family:'Times New Roman', Times, serif">Target:</h4>
+                                    </div>
+                                    <div class="col-md-6"><input type="text" name="target" style="width:100%;height:35px;" value="{{$kpiModal->target}}"/></div>
+                                </div>
+                            </div>
+                            <div class="modal-footer" style="background-color:#62d975;"><button class="btn btn-danger btn-sm" type="button" data-dismiss="modal"><strong>Close</strong></button><button class="btn btn-success btn-sm" type="submit"><strong>Save</strong></button></div>
+                        </form>
+                        </div>
+                    </div>
+                </div>
             @endforeach
           </div>
 
@@ -374,6 +397,20 @@
                                 </div>
                                 <div class="col-lg-6 col-md-6  col-sm-6"><select required name="arithmeticStructure"><optgroup label="Arithmetic Structure"><option value="1">Above</option><option value="0">Below</option></optgroup></select></div>
                             </div>
+                            <div class="row">
+                                    <div class="col-lg-6 col-md-6  col-sm-6">
+                                        <p><strong>Period.</strong></p>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6  col-sm-6">
+                                        <select required name="period">
+                                            <optgroup label="Select Period.">
+                                                <option value="4">Quaterly</option>
+                                                <option value="2">Semi Anually</option>
+                                                <option value="1">Anually</option>
+                                            </optgroup>
+                                        </select>
+                                    </div>
+                                </div> 
                             <div class="modal-footer"><button class="btn btn-danger" type="button" data-dismiss="modal">Close</button><button class="btn btn-success" type="submit">Save</button></div>
                         </form>
                           

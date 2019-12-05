@@ -57,7 +57,7 @@ class adminController extends Controller
                                             'imageLocation'=>$newName
                                         )
             );
-
+            $newProram->save();
             //! getting the last inserted data in the table.  
 
             $lastIds = Program::where('shortHand','=',$progamShortHand)->get();
@@ -65,7 +65,7 @@ class adminController extends Controller
             foreach($lastIds as $lastId){
                 $id = $lastId->id;
             }
-            $newProram->save();
+            
 
             $unmetWeight = 0;
             $numbersSubmitted = 1;
@@ -102,6 +102,7 @@ class adminController extends Controller
                 return view('adminPages\addingNewProgramStep2',['programs'=>$programs,'sumOfWeight'=>$sumOfWeight,'unmetWeight'=>$sumOfWeight,'id'=>$id,'name'=>$request->name,'progamShortHand'=>$request->shorthand,'progamCode'=>$request->code]);
             }
             $perspectives = array();
+            // dd($id);
             //!pushing data to array for easier insertion. 
 
             array_push($perspectives,$financial);
@@ -163,6 +164,8 @@ class adminController extends Controller
                     $unmetWeight = 0;
                     return view('adminPages\addingNewProgramStep2',['programs'=>$programs,'sumOfWeight'=>$sumOfWeight,'unmetWeight'=>$unmetWeight,'numbersSubmitted'=>$numbersSubmitted,'id'=>$id,'name'=>$request->name,'progamShortHand'=>$request->shorthand,'progamCode'=>$request->code]);
                 } else {
+
+                    // dd($id);
                     for ($i=1; $i < $numbersSubmitted+1 ; $i++) { 
                         $weightname = 'customweight'.$i;
                         $perspectiveNamename = 'customname'.$i;

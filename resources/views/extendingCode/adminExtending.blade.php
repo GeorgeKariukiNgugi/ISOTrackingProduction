@@ -78,7 +78,7 @@ desired effect
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>S</b>AF</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Saf Iso NC Tracker</b></span>
+      <span class="logo-lg" style="font-family:'Times New Roman', Times, serif;"><b>Saf Iso NC Tracker</b></span>
     </a>
 
     <!-- Header Navbar -->
@@ -168,9 +168,9 @@ desired effect
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="/nonConformitiesAdmin/0"> <i class="fa fa-warning text-green"></i> <span>Closed Non-Confromities</span></a></li>
-            <li><a href="/nonConformitiesAdmin/1"> <i class="fa fa-warning text-blue"></i>  <span>Non-Confromities In Progress</span></a></li>
-            <li><a href="/nonConformitiesAdmin/2"> <i class="fa fa-warning text-red" ></i>  <span>Non-Confromities Overdue</span></a></li>
+            <li><a href="/nonConformitiesAdmin/0/0"> <i class="fa fa-warning text-green"></i> <span>Closed Non-Confromities</span></a></li>
+            <li><a href="/nonConformitiesAdmin/1/0"> <i class="fa fa-warning text-blue"></i>  <span>Non-Confromities In Progress</span></a></li>
+            <li><a href="/nonConformitiesAdmin/2/0"> <i class="fa fa-warning text-red" ></i>  <span>Non-Confromities Overdue</span></a></li>
           </ul>
         </li>
         <li><a href="#"><i class="fa fa-edit"></i> <span>User Manual </span></a></li>

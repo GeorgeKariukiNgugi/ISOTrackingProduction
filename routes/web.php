@@ -96,7 +96,10 @@ Route::post('/editingUser','adminController\programsAssesors@editingAnAssesor');
 Route::post('/addingAssesor','adminController\programsAssesors@addingAssesor');
 
 //! this route will be used to handle the viewing of all the types of nonconformities that are targeted towards the admin.
-Route::get('/nonConformitiesAdmin/{type}','adminController\AdminnonConformities@viewingNonConformities');
+Route::get('/nonConformitiesAdmin/{type}/{program}','adminController\AdminnonConformities@viewingNonConformities');
+
+//! this method wil be used to post the data that will be used to search for the perticular non-conformities of a program.
+Route::post('/searchingNonConformities/{type}/{program}','adminController\AdminnonConformities@viewingNonConformities');
 
 //!this route will be handling the the expertation of the spreadsheet that has the non conformities.
 Route::get('/adminNonConformitiesExcelDownload/{type}', 'adminController\spreadsheetExport@exportingData');

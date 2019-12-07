@@ -371,10 +371,10 @@
            <div role="dialog" tabindex="-1" class="modal fade" id="{{"modal".$strategicObjective->id}}">
               <div class="modal-dialog" role="document">
                   <div class="modal-content">
-                      <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                      <div class="modal-header" style="background-color:#5ab1f1"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                           <h4 class="modal-title" style="text-align:center;">Add a new KPI to the Strategic Objective :  <strong>{{$perspetiveName}}</strong></h4>
                       </div>
-                      <div class="modal-body">
+                      <div class="modal-body" style="background-color:#8dcaf7;">
                         <form method="POST" id = "{{"modalSubmit".$strategicObjective->id}}">
                           <div id="{{"KPIalert".$strategicObjective->id}}"></div>
                           {{ csrf_field() }}
@@ -412,13 +412,10 @@
                                         </select>
                                     </div>
                                 </div> 
-                            <div class="modal-footer"><button class="btn btn-danger" type="button" data-dismiss="modal">Close</button><button class="btn btn-success" type="submit">Save</button></div>
-                        </form>
-                          
-
                       </div>
-                      
-                  </div>
+                      <div class="modal-footer" style="background-color:#5ab1f1"><button class="btn btn-danger" type="button" data-dismiss="modal">Close</button><button class="btn btn-success" type="submit">Save</button></div>
+                    </form>
+                    </div>
               </div>
           </div>      
           @endif  

@@ -115,7 +115,7 @@ class Programdashboard extends Controller
             $strategicObjectivesSum = 0;
             $strateicObjectiveAverage = 0;
             //!the next step is to get the strateic objectives of the reated perspective. 
-            $gettingStrategicObjectivesOfRelatedPerspective = StrategicObjectiveScore::where('perspective_id','=',$proramPersspective->id)->get();
+            $gettingStrategicObjectivesOfRelatedPerspective = StrategicObjectiveScore::where('perspective_id','=',$proramPersspective->id)->where('year','=',$activeYaer)->get();
             if (count($gettingStrategicObjectivesOfRelatedPerspective) == 0) {
                 # code...
                 $strateicObjectiveAverage =0;

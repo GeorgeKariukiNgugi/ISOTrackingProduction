@@ -8,10 +8,11 @@ use App\closedNonConformityEvidence;
 use Illuminate\Http\Request;
 use App\KeyPerfomaceIndicator;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Input;
 
 class AdminnonConformities extends Controller
 {
-    public function viewingNonConformities($type){
+    public function viewingNonConformities($type, $program){
         $programs = Program::all();
 
 
@@ -19,13 +20,52 @@ class AdminnonConformities extends Controller
 
         $todaysdate = date('Y-m-d H:i:s');
         if ($type == 2) {
-            # code...        
-            //! this is the section that will look for the nonconformities thatare out of date.
+            # code...    
+            if ($program ==0) {
+                
+                 //! this is the section that will look for the nonconformities thatare out of date.
             $nonConformities = NonConformities::where('openClosed', '=', 'open')
-                                                ->whereDate('date', '<=',$todaysdate)
-                                                ->orderBy('program_id')
-                                                ->orderBy('date', 'asc')
-                                                ->get();
+            ->whereDate('date', '<=',$todaysdate)
+            ->orderBy('program_id')
+            ->orderBy('date', 'asc')
+            ->get();
+
+            $titleName = " The following Are All The OverDue Non Conformities.";
+
+            } elseif($program == 1) {
+                # code...
+                //! first get the program that the user wants.
+                $program = Input::get('program');
+
+                if ($program == 0) {
+                    # code...
+                    $nonConformities = NonConformities::where('openClosed', '=', 'open')
+                    ->whereDate('date', '<=',$todaysdate)
+                    ->orderBy('program_id')
+                    ->orderBy('date', 'asc')
+                    ->get();
+                    $titleName = " The following Are All The OverDue Non Conformities.";
+                } else {
+                    # code...
+                 //! this is the section that will look for the nonconformities thatare out of date.
+                    $nonConformities = NonConformities::where('openClosed', '=', 'open')
+                    ->where('program_id','=',$program)
+                    ->whereDate('date', '<=',$todaysdate)
+                    ->orderBy('program_id')
+                    ->orderBy('date', 'asc')
+                    ->get();
+
+                    $proramNames = Program::where('id','=',$program)->get();
+                    foreach ($proramNames as $proramName) {
+                        # code...
+                        $titleName = $proramName->name;
+                    }
+                    }
+                }
+                
+                
+                
+           
             //!establising an array that will store the non-conformities program codes.
             $arrayWithProgramCodes = array();
             foreach($nonConformities as $nonConformity){
@@ -42,14 +82,37 @@ class AdminnonConformities extends Controller
             }
             $kpis = KeyPerfomaceIndicator::all();
 
-            return view('adminPages\nonconformities',['programs'=>$programs,'kpis'=>$kpis,'type'=>$type,'nonConformities'=>$nonConformities,'arrayWithProgramCodes'=>$arrayWithProgramCodes]);
+            return view('adminPages\nonconformities',['programs'=>$programs,'titleName'=>$titleName,'kpis'=>$kpis,'type'=>$type,'nonConformities'=>$nonConformities,'arrayWithProgramCodes'=>$arrayWithProgramCodes]);
             
         } else if ($type == 1){
-            $nonConformities = NonConformities::where('openClosed', '=', 'open')
-                                                ->whereDate('date', '>=',$todaysdate)
-                                                ->orderBy('program_id')
-                                                ->orderBy('date', 'asc')
-                                                ->get();
+
+            if ($program == 0) {
+                $nonConformities = NonConformities::where('openClosed', '=', 'open')
+                ->whereDate('date', '>=',$todaysdate)
+                ->orderBy('program_id')
+                ->orderBy('date', 'asc')
+                ->get();
+            }
+            else{
+                $program = Input::get('program');
+                if ($program == 0) {
+                    $nonConformities = NonConformities::where('openClosed', '=', 'open')
+                    ->whereDate('date', '>=',$todaysdate)
+                    ->orderBy('program_id')
+                    ->orderBy('date', 'asc')
+                    ->get();
+                }
+                else{
+                    $nonConformities = NonConformities::where('openClosed', '=', 'open')
+                    ->where('program_id','=',$program)
+                    ->whereDate('date', '>=',$todaysdate)
+                    ->orderBy('program_id')
+                    ->orderBy('date', 'asc')
+                    ->get();
+                }
+            }
+
+           
 
             // dd(count($nonConformities));                                                
             //!establising an array that will store the non-conformities program codes.
@@ -74,10 +137,34 @@ class AdminnonConformities extends Controller
 
         }
         else if ($type == 0){
-            $nonConformities = NonConformities::where('openClosed', '=', 'closed')       
-            ->orderBy('date', 'asc')
-            ->orderBy('program_id')
-            ->get();
+
+            if ($program ==0) {
+                $nonConformities = NonConformities::where('openClosed', '=', 'closed')       
+                ->orderBy('date', 'asc')
+                ->orderBy('program_id')
+                ->get();
+            }
+            else {
+                # code...
+                $program = Input::get('program');
+                if ($program ==0) {
+                    $nonConformities = NonConformities::where('openClosed', '=', 'closed')       
+                    ->orderBy('date', 'asc')
+                    ->orderBy('program_id')
+                    ->get();
+                }
+                else {
+                    # code...
+                    $nonConformities = NonConformities::where('openClosed', '=', 'closed')
+                    ->where('program_id','=',$program)       
+                    ->orderBy('date', 'asc')
+                    ->orderBy('program_id')
+                    ->get();
+                }
+                
+            }
+
+           
                 //!establising an array that will store the non-conformities program codes.
                 $arrayWithProgramCodes = array();
                 foreach($nonConformities as $nonConformity){

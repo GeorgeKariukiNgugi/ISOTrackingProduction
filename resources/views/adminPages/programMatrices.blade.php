@@ -46,7 +46,7 @@
 <div class="panel box box-solid">
   <div class="box-header with-border" style="background-color:tomato;">
     <h4 class="box-title" style="width:100%;">
-      <a data-toggle="collapse" style="padding-right:10px;color:white" data-parent="#accordion" href="{{"#collapseOne".$increment2}}" aria-expanded="true" aria-controls="collapseOne">
+      <a data-toggle="collapse" style="padding-right:10px;color:white;font-family:'Times New Roman', Times, serif;" data-parent="#accordion" href="{{"#collapseOne".$increment2}}" aria-expanded="true" aria-controls="collapseOne">
         {{$name2}} <i style = "float:right;"class="accordion_icon fa fa-plus"></i>
       </a>
     </h4>
@@ -105,10 +105,65 @@
           @endphp
           
           <div class="box box-primary box-solid">
-            <div class="box-header with-border text-center"style="text-align:center">
-            <h3 class="box-title text-center">{{$perspetiveName}}</h3>
+
+            <div class="box-header with-border text-center">  
+                    <div style="text-align:center">
+                            <h2 class="box-title text-center" style="font-family:'Times New Roman', Times, serif; text-align:center;"> <b>{{$perspetiveName}}</b></h2>
+                    </div>
+                    <br>  
+                    <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="{{"#deleteStrategicbjective".$strategicObjective->id}}">  <b>Delete Strategic Objective.</b> </button>
+                    <button class="btn btn-info btn-sm" data-toggle="modal" data-target="{{"#editStrategicObjective".$strategicObjective->id}}"> <b>Edit Strategic Objective.</b></button>
+                                
             </div>
+
+            {{-- implementing the modal that will be used to edit the strategic objective --}}
+
+            <div role="dialog" tabindex="-1" class="modal fade" id="{{"editStrategicObjective".$strategicObjective->id}}">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header" style="background-color:#bbc1f5;font-family:'Times New Roman', Times, serif;"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                <h3 class="modal-title">Edit The Strategic Objective: {{$strategicObjective->name}}</h3>
+                            </div>
+                            <div class="modal-body" style="background-color:#d4d8fb;font-family:'Times New Roman', Times, serif;" >
+                                @foreach ($errors->all() as $error)
+                                <p style="color:red;">
+                                        {{$error}}
+                                </p>
+                                @endforeach
+                                <form action="{{"/editingStrObjective/".$strategicObjective->id}}" method="POST">
+                                    {{ csrf_field() }}
+                                        <div class="row">
+                                                <div class="col-md-4">
+                                                    <h3 class="text-center">Strategic Objective Name :</h3>
+                                                </div>
+                                                <div class="col-md-8" style="margin-top:2%;"><input type="text" value="{{$strategicObjective->name}}" style="width:80%;height:45px;" name="name" required /></div>
+                                            </div>
+                                        </div>
+                                            <div class="modal-footer" style="background-color:#bbc1f5;"><button class="btn btn-danger" type="button" data-dismiss="modal"><strong>Close</strong></button><button class="btn btn-success" type="submit"><strong>Save</strong></button></div>
+                                </form>
+                        </div>
+                    </div>
+                </div>
             
+
+                    {{-- implementing the modal that will delete the strategic objective. --}}
+                    <div role="dialog" tabindex="-1" class="modal fade" id="{{"deleteStrategicbjective".$strategicObjective->id}}">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header" style="background-color:#fc5d5d;"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                        <h4 class="modal-title"><strong>Delete Strategic Objective: {{$strategicObjective->name}}</strong></h4>
+                                    </div>
+                                    <div class="modal-body" style="background-color:#f78686;">
+                                        <h3 class="text-center" style="color:white">Confirmation:: Are You Sure You Want To Delete The  Strategic Objective::: {{$strategicObjective->name}} ??</h3>
+                                    </div>
+                                    <form action="{{"/deleteStrObjective/".$strategicObjective->id}}" method="POST">
+                                        {{ csrf_field() }}
+                                            <div class="modal-footer" style="background-color:#fc5d5d;"><button class="btn btn-default" type="button" data-dismiss="modal">Close</button><button class="btn btn-success" type="submit">DELETE.</button></div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
             {{-- getting the key perfomance indicators for the specific strategic objectives. --}}
             @php
                 $kpis = $strategicObjective->keyPerfomanceIndicator;
@@ -181,17 +236,14 @@
           </div> 
           </div>  
                   
-            @else
-            <form id = "{{"form".$strategicObjective->id}}" method="POST" name = "{{"form".$strategicObjective->id}}" >
-              <div id = "{{"alert".$strategicObjective->id}}"></div>
-              {{ csrf_field() }}
+            @else            
               <input type = "hidden" value ="{{$strategicObjective->id}}" name="strategicObjective"/>
                                {{-- <input type="hidden" name = "objectiveName" value="{{$objevtiveId}}"> --}}
                                <div class="row">
                                    <div class="col-md-1">
                                        <p class="text-center" style="font-size:16px;"><strong>No</strong></p>
                                    </div>
-                                   <div class=" col-md-6 ">
+                                   <div class=" col-md-4 ">
                                        <p  style="font-size:16px;text-align:left;"><strong>Key Perfomance Indicator</strong><br /></p>
                                    </div>
                                    <div class=" col-md-2">
@@ -200,7 +252,7 @@
                                    <div class="col-md-1">
                                        <p class="text-center" style="font-size:16px;"><strong>Target</strong><br /></p>
                                    </div>
-                                   <div class="col-md-2">
+                                   <div class="col-md-4">
                                        <p class="text-center" style="font-size:16px;"><strong>Actions</strong><br /></p>
                                    </div>
                                </div>
@@ -260,7 +312,7 @@
                                         <div class=" col-md-1"style="text-align:center">
                                             <p>{{$kpi->id}}</p>
                                         </div>
-                                        <div class=" col-md-6" style="text-align:left">
+                                        <div class=" col-md-4" style="text-align:left">
                                             <p>{{$name3}}</p>
                                         </div>
                                         <div class=" col-md-2" style="text-align:left">
@@ -270,8 +322,9 @@
                                         <div class=" col-md-1"style="text-align:center">
                                             <p id = "{{"target".$kpi->id}}" class ="{{"target".$kpi->id}}" >{{$kpi->target}}</p>
                                         </div>
-                                        <div class=" col-md-2" style="text-align:center">
+                                        <div class=" col-md-4" style="text-align:center">
                                                 <button class="btn btn-info btn-sm" data-toggle="modal" data-target="{{"#editKpiModal".$kpi->id}}"> <b>Edit KPI.</b></button>
+                                                <button class="btn btn-danger btn-sm" data-target="{{"#deleteKpiModal".$kpi->id}}" data-toggle="modal"> Delete KPI</button>
                                         </div>
                                       </div>
                                @endforeach
@@ -288,8 +341,7 @@
                                             </div> --}}
                                            </div> 
                                </div>                               
-                               {{-- <input type = "hidden" value = "{{$numberOfKPI}}" id="{{$originalObjectiveName."numberOfKPI"}}"> --}}
-            </form> 
+                               {{-- <input type = "hidden" value = "{{$numberOfKPI}}" id="{{$originalObjectiveName."numberOfKPI"}}"> --}}            
             {{-- inserting the modals that will be thrown once the targets are not reached. --}}
             @foreach ($kpis as $kpiModal)
 
@@ -362,6 +414,26 @@
                             </div>
                             <div class="modal-footer" style="background-color:#62d975;"><button class="btn btn-danger btn-sm" type="button" data-dismiss="modal"><strong>Close</strong></button><button class="btn btn-success btn-sm" type="submit"><strong>Save</strong></button></div>
                         </form>
+                        </div>
+                    </div>
+                </div>
+
+
+            {{-- modal that is used to delete the KPI. --}}
+
+            <div role="dialog" tabindex="-1" class="modal fade" id="{{"deleteKpiModal".$kpiModal->id}}">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header" style="background-color:#fc5d5d;"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                <h4 class="modal-title"><strong>Delete KPI: {{$kpiModal->name}}</strong></h4>
+                            </div>
+                            <div class="modal-body" style="background-color:#f78686;">
+                                <h3 class="text-center" style="color:white">Confirmation:: Are You Sure You Want To Delete The  KPI:: {{$kpiModal->name}} ??</h3>
+                            </div>
+                            <form action="{{"/deletingKPI/".$kpiModal->id}}" method="POST">
+                                {{ csrf_field() }}
+                                    <div class="modal-footer" style="background-color:#fc5d5d;"><button class="btn btn-default" type="button" data-dismiss="modal">Close</button><button class="btn btn-success" type="submit">DELETE</button></div>
+                            </form>
                         </div>
                     </div>
                 </div>

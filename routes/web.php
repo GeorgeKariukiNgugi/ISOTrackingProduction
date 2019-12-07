@@ -126,7 +126,15 @@ Route::get('/programMatrices/{id}','adminController\programMatrices@proramMatric
 Route::post('/addingNewStrstegicObjective/{id}', 'adminController\programMatrices@addStrategicObjective');
 
 //! this route will be used to post the editing of each KPI.
-
 Route::post('/editingKPIs/{id}','adminController\programMatrices@EditingKpis');
+
+//! this route is used to post the deletion of a particular KPI.
+Route::post('/deletingKPI/{id}','adminController\programMatrices@deleteKPI');
+
+//! this route is used to delete a particulae strategic Objective. 
+Route::post('/deleteStrObjective/{id}','adminController\programMatrices@deleteStrategicObjective');
+
+//! this route is used to edit the name of a particular strategicObjective.
+Route::post('editingStrObjective/{id}', 'adminController\programMatrices@editStrategicObjective');
 
 

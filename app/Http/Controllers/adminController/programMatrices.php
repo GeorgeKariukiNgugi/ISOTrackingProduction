@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Auth;
 use DB;
 use App\Http\Requests\editingKpis;
+use App\Http\Requests\editingStrategicObjective;
 use App\AssesorPerProgram;
 use App\Program;
 use App\ScoreRecorded;
@@ -96,4 +97,55 @@ class programMatrices extends Controller
         return back();
 
     }
+
+    //! this controller method is used to delete the particular KPIs. 
+
+    public function deleteKPI($kpiId){
+            
+        $kpiIds = KeyPerfomaceIndicator::where('id','=',$kpiId)->get();
+
+        foreach($kpiIds as $kpiId){
+            $kpiId->delete();
+        }
+        Alert::success(' <h4 style = "color:green;">Congartulations    <i class="fa fa-thumbs-up"></i></h4>','KPI Successfully Deleted..');
+        return back();
+    }
+
+    //! this method id used to delete the strategic objective of a perspective.
+    public function deleteStrategicObjective($strObjectiveId){
+
+    $strategicObjectives = StrategicObjective::where('id','=',$strObjectiveId)->get(); 
+    foreach ($strategicObjectives as $strategicObjective) {
+        # code...
+        //! getting the kpis related to the strategicObjective.
+        $kpis = $strategicObjective->keyPerfomaceIndicators;
+
+        foreach($kpis as $kpi){
+            $kpi->delete();
+        }
+        $strategicObjective->delete();
+    } 
+    
+    Alert::success(' <h4 style = "color:green;">Congartulations    <i class="fa fa-thumbs-up"></i></h4>','Strayegic Objective Successfully Deleted..');
+        return back();
+    }
+
+    //! this method id used to edit a particular strategic Objective.
+    public function editStrategicObjective(editingStrategicObjective $request, $strategicObjectiveId){
+
+        $newName = $request->name;
+           //!getting strategic objective.
+           $strategicObjectives = StrategicObjective::where('id','=',$strategicObjectiveId)->get();
+
+           foreach ($strategicObjectives as $strategicObjective) {
+               # code...
+               $strategicObjective->name = $newName;
+               $strategicObjective->save();
+           }
+
+           Alert::success(' <h4 style = "color:green;">Congartulations    <i class="fa fa-thumbs-up"></i></h4>','Strategic Objective Successfully Edited.');
+           return back();
+    }
+
+
 }

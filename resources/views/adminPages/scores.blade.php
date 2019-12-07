@@ -39,10 +39,10 @@
         $increment2++;               
     @endphp
 
-<div class="panel box box-warning box-solid">
-  <div class="box-header with-border">
+<div class="panel box box-solid">
+  <div class="box-header with-border" style="background-color:teal">
     <h4 class="box-title" style="width:100%;">
-      <a data-toggle="collapse" style="padding-right:10px;" data-parent="#accordion" href="{{"#collapseOne".$increment2}}" aria-expanded="true" aria-controls="collapseOne">
+      <a data-toggle="collapse" style="padding-right:10px;color:white;" data-parent="#accordion" href="{{"#collapseOne".$increment2}}" aria-expanded="true" aria-controls="collapseOne">
         {{$name2}} <i style = "float:right;"class="accordion_icon fa fa-plus"></i>
       </a>
     </h4>

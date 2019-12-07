@@ -34,9 +34,29 @@
               <h3 class="box-title" style="font-family:'Times New Roman', Times, serif;">{{$text}}</h3>
               <div class="box-tools">
                     @if (count($nonConformities) > 0)
-                    <div class="box-tools pull-right">
+                    <form action="/" method="POST">
+                    <div class="box-tools pull-right" >
+                        <div class="input-group input-group-sm hidden-xs" style="width: 150px;float:left; margin-left:0%;">
+                            {{-- <input type="text" name="table_search" class="form-control pull-right" placeholder="Search"> --}}
+                            
+                            <select style="width:100%;" class="form-control">
+                              <optgroup label="Select A Program.">
+                                <option value="0" selected>All.</option>
+                                @foreach ($programs as $program)
+                                <option value="{{$program->id}}">{{$program->shortHand}}</option>
+                                @endforeach
+                              </optgroup>
+                            </select>
+                            <div class="input-group-btn">
+                              <button type="submit"class="btn btn-primary " ><i class="fa fa-search"></i></button>
+                            </div>
+                            
+                          </div>
+                        </form>
+                        <span style="padding-right:10px;;"></span>
                         <span style="color:white;"> <a href="/adminNonConformitiesExcelDownload/{{$typeString}}"  style="color:white;"><i class="fa fa-file-excel-o" style="color:white;font-size:25px;"></i>  Download Excel File</a></span>
-                      </div>                             
+                      </div>
+                      <br style="clear:both;">                             
                     @endif
               </div>
             </div>

@@ -67,7 +67,7 @@ desired effect
 |               | sidebar-mini                            |
 |---------------------------------------------------------|
 -->
-<body class="hold-transition  skin-green  sidebar-mini   ">
+<body class="hold-transition  skin-green  sidebar-mini" style="font-family:'Times New Roman', Times, serif;">
 <div class="wrapper">
 
   <!-- Main Header -->

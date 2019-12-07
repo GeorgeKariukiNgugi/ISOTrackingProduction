@@ -55,6 +55,7 @@ class userController extends Controller
             //! GETTING ALL THE NON CONFORMITIES THAT HAVE BEEN RECORDED. 
             $gettingNonConformities = NonConformities::where('keyPerfomanceIndicator_id','=',$idOfKPI)
                                                         ->where('quater','=',$activeQuater)
+                                                        ->where('year','=',$activeYaer)
                                                         ->get();
             $numberOfReturnedNonConformities = count($gettingNonConformities);
             // dd($numberOfReturnedNonConformities);
@@ -81,6 +82,7 @@ class userController extends Controller
                 $score = $request->$scoreInputName;
                 $gettingTheScoreRecordedCollection = ScoreRecorded::where('keyPerfomanceIndicator_id','=',$idOfKPI)
                                                                     ->where('quater','=',$activeQuater)
+                                                                    ->where('year','=',$activeYaer)
                                                                     ->get();
                 $countingTheScoreRecorded = count($gettingTheScoreRecordedCollection);
                 if ($countingTheScoreRecorded >= 1) {
@@ -99,6 +101,7 @@ class userController extends Controller
             //! CHECKING IF THERE IS THE SAME RECORD IS FOUND IN THE DATABASE SO AS TO AVOID DUPLICATION OF DATA.
             $gettingTheScoreRecordedCollection = ScoreRecorded::where('keyPerfomanceIndicator_id','=',$idOfKPI)
                                                                 ->where('quater','=',$activeQuater)
+                                                                ->where('year','=',$activeYaer)
                                                                 ->get();
             $countingTheScoreRecorded = count($gettingTheScoreRecordedCollection);
             if ($countingTheScoreRecorded >= 1) {
@@ -276,7 +279,9 @@ class userController extends Controller
 
             
             //! Adding the data into the kpi scores table, we first check if it is present, if so we update or else we insert. 
-            $kpiscoresRecords = KeyPerfomanceIndicatorScore::where('kpi_id','=',$idOfKPI)->get();
+            $kpiscoresRecords = KeyPerfomanceIndicatorScore::where('kpi_id','=',$idOfKPI)
+                                                            ->where('yaer','=',$activeYaer)
+                                                            ->get();
             
             //!counting the records.
             $numberOfKPIRecords = count($kpiscoresRecords);
@@ -316,7 +321,9 @@ class userController extends Controller
         //? Inserting Data to the strategic objectives scores table. 
         //! to insert the data, we first have to get the strategicObjectives from form. 
         // dd($strategicObjectiveIdFromForm);
-        $gettingTheKPIScores = KeyPerfomanceIndicatorScore::where('strategic_objective_id','=',$strategicObjectiveIdFromForm)->get();
+        $gettingTheKPIScores = KeyPerfomanceIndicatorScore::where('strategic_objective_id','=',$strategicObjectiveIdFromForm)
+                                                            ->where('year','=',$activeYaer)
+                                                            ->get();
         $countingNoOfKPIScores = count($gettingTheKPIScores);
         // dd($countingNoOfKPIScores);
         $sum = 0;
@@ -329,7 +336,9 @@ class userController extends Controller
         // dd($average);
 
         //! checking if the data has has a value so as to see if the value has a duplicate so as to update.
-            $gettingStrategicObjectiveRecord = StrategicObjectiveScore::where('strategicObjective_id','=',$strategicObjectiveIdFromForm)->get();
+            $gettingStrategicObjectiveRecord = StrategicObjectiveScore::where('strategicObjective_id','=',$strategicObjectiveIdFromForm)
+                                                                        ->where('year','=',$activeYaer)
+                                                                        ->get();
             $countingTheNUmberOfReturnedStrategicObjective = count($gettingStrategicObjectiveRecord);
 
             //!getting the strategic objective and the perspective id for the given kpi.

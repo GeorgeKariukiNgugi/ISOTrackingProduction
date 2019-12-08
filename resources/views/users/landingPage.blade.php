@@ -68,7 +68,7 @@
 
 <div class="panel box box-warning box-solid">
   <div class="box-header with-border">
-    <h4 class="box-title" style="width:100%;">
+    <h4 class="box-title" style="width:100%;font-family:'Times New Roman', Times, serif">
       <a data-toggle="collapse" style="padding-right:10px;" data-parent="#accordion" href="{{"#collapseOne".$increment2}}" aria-expanded="true" aria-controls="collapseOne">
         {{$name2}} <i style = "float:right;"class="accordion_icon fa fa-plus"></i>
       </a>
@@ -100,7 +100,7 @@
           
           <div class="box box-primary box-solid">
             <div class="box-header with-border text-center"style="text-align:center">
-            <h3 class="box-title text-center">{{$perspetiveName}}</h3>
+            <h3 class="box-title text-center" style="font-family:'Times New Roman', Times, serif;">{{$perspetiveName}}</h3>
             </div>
             {{-- getting the key perfomance indicators for the specific strategic objectives. --}}
             @php
@@ -275,8 +275,8 @@
                                
                                       <div class="row" style="margin-bottom:0.5%;">
                                         {{-- <input type = "hidden" value="{{$originalObjectiveName}}" id = "{{"hiddenKPIObective".$kpiOriginalName}} name = "{{"hiddenObjectiveName".$originalObjectiveName}}"/> --}}
-                                        {{-- hidden input to et the value of the arithmetic structure. --}}
                                         
+                                        {{-- hidden input to et the value of the arithmetic structure. --}}
                                         <input type="hidden" id="{{"arithmeticStructure".$kpi->id}}" value = "{{$kpi->arithmeticStructure}}"/>
                                         <div class=" col-md-1"style="text-align:center">
                                             <p>{{$kpi->id}}</p>
@@ -357,7 +357,7 @@
                                           {{-- <a data-toggle="modal" href = "" data-target="{{"#modal".$kpi->id}}"> COMMENT</a> --}}
                                         </div>
                                         <input type="hidden" name = "{{"nonConformityFlag".$kpi->id}}" value= "2" id = "{{"nonConformityFlag".$kpi->id}}">
-
+                                        <input type="hidden" name="{{"period".$kpi->id}}"  id="{{"period".$kpi->id}}" value="{{$kpi->period}}">
                                       </div>
                                @endforeach
                                <div class="box-footer">   

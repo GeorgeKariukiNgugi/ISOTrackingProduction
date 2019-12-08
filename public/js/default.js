@@ -12,6 +12,8 @@ $(document).ready(function () {
     selectingQuaters.removeAttr("placeholder");
     selectingQuaters.attr("required", "true");
 
-    //!on loading the page successfully hide the two types of perspectives that will be used by the uer to bring the perspectives to life.
+    //!on loading the page successfully hide the two types of perspectives that will be used by the uer to bring the perspectives to li
+
+    //! the next section isused to get the 
 
 });

@@ -146,19 +146,58 @@ class userController extends Controller
             if($numberOfReturnedScores<1){
                 return response()->json(['success'=>'There is an error incalculating the ytds, contact the Admin For Help.']);
             }
-
-            $sum = 0;
             $averageThatBecomesytd = 0;
+            //!getting the period of the kpi that is being asses.
+            $period = $kpi->period;
+            
+            if($period == 2){
 
-            // for ($i=0; $i < $numberOfReturnedScores ; $i++) { 
-            //     # code...-score
-            //     $sum+=$allKPIScoresWithSameYear->score;
-            // }
+                if($prefixOfTheActiveQuater == 1){
+                    $averageThatBecomesytd = 100;
+                }
+                elseif($prefixOfTheActiveQuater == 3){
+                    $findingQ2Value = ScoreRecorded::where('year','=',$activeYaer)
+                    ->where('keyPerfomanceIndicator_id','=',$idOfKPI)
+                    ->where('quater','=','Q2')
+                    ->get();
+
+                    foreach($findingQ2Value as $Value){
+                        $averageThatBecomesytd = $Value->score;
+                    }
+                }
+                elseif($prefixOfTheActiveQuater == 2){
+                    $averageThatBecomesytd = $score;
+                }
+                else{
+                    $findingQ2Value = ScoreRecorded::where('year','=',$activeYaer)
+                    ->where('keyPerfomanceIndicator_id','=',$idOfKPI)
+                    ->where('quater','=','Q2')
+                    ->get();
+
+                    foreach($findingQ2Value as $Value){
+                        $scoreFetched = $Value->score;
+                    }
+                    $averageThatBecomesytd = ($score+$scoreFetched)/2;
+                }
+            }
+            elseif($period == 1){
+
+                if ($prefixOfTheActiveQuater == 4) {
+                    # code...
+                    $averageThatBecomesytd = $score;
+                } else {
+                    # code...
+                    $averageThatBecomesytd = 100;
+                }
+            }
+            else{
+                $sum = 0;
                 foreach($allKPIScoresWithSameYear as $kpiScoreInSameYear){
                     $sum+=$kpiScoreInSameYear->score;
                 }
             $averageThatBecomesytd = $sum/$numberOfReturnedScores;
-                // dd($averageThatBecomesytd);
+            }
+            // dd($averageThatBecomesytd);
             //!getting the score based on the ytd and the arithmetic structure.
 
             $atithmeticStructure = $kpi->arithmeticStructure;
@@ -280,9 +319,9 @@ class userController extends Controller
             
             //! Adding the data into the kpi scores table, we first check if it is present, if so we update or else we insert. 
             $kpiscoresRecords = KeyPerfomanceIndicatorScore::where('kpi_id','=',$idOfKPI)
-                                                            ->where('yaer','=',$activeYaer)
+                                                            ->where('year','=',$activeYaer)
                                                             ->get();
-            
+                                    
             //!counting the records.
             $numberOfKPIRecords = count($kpiscoresRecords);
             // dd($numberOfKPIRecords);
@@ -298,6 +337,7 @@ class userController extends Controller
                     // dd($strategicObjectiveIdFromForm);
                     // return response()->json(['success'=>''.$strategicObjectiveIdFromForm.'UPDATED successsfully, Move to the Next Objective']);                 
                 }
+                
 
             }
 
@@ -313,7 +353,7 @@ class userController extends Controller
                 );
                 
                 $savingKPIcore->save();
-                // dd("out of table.");
+                // dd($kpiScore);
                 // return response()->json(['success'=>''.$strategicObjectiveIdFromForm.'saved successsfully, Move to the Next Objective']);
             }
 
@@ -541,7 +581,7 @@ class userController extends Controller
             
             $perspectiveStrategicObjectives = StrategicObjectiveScore::where('perspective_id','=',$gettingThePerspectiveId)
                                                                       ->where('year','=',$activeYaer)
-                                                                    //   ->where('quater','=',$activeQuater)
+                                                                      ->where('strategicObjective_id','=',$perspectiveStrategicObjectiveName->id)
                                                                       ->get();                                                                    
             //!this section is used to get the scores of the particular strateegic objective.
             //!counting the number of records returned from the scores table. 
@@ -614,7 +654,7 @@ class userController extends Controller
                 # code...
                 $strategicObjectivesSum  += $strategicObjective->score;
             }
-            $strateicObjectiveAverage= $strategicObjectivesSum/ count($gettingStrategicObjectivesOfRelatedPerspective);
+            $strateicObjectiveAverage= $strategicObjectivesSum/count($gettingStrategicObjectivesOfRelatedPerspective);
         }
         
         

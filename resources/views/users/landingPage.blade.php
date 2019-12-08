@@ -148,6 +148,20 @@
                                 </div>
                                 <div class="col-lg-6 col-md-6  col-sm-6"><select required name="arithmeticStructure"><optgroup label="Arithmetic Structure"><option value="1">Above</option><option value="0">Below</option></optgroup></select></div>
                             </div>
+                            <div class="row">
+                              <div class="col-lg-6 col-md-6  col-sm-6">
+                                  <p><strong>Period.</strong></p>
+                              </div>
+                              <div class="col-lg-6 col-md-6  col-sm-6">
+                                  <select required name="period">
+                                      <optgroup label="Select Period.">
+                                          <option value="4">Quaterly</option>
+                                          <option value="2">Semi Anually</option>
+                                          <option value="1">Anually</option>
+                                      </optgroup>
+                                  </select>
+                              </div>
+                          </div> 
                             <div class="modal-footer"><button class="btn btn-danger" type="button" data-dismiss="modal">Close</button><button class="btn btn-success" type="submit">Save</button></div>
                         </form>
                           
@@ -172,9 +186,9 @@
                                    <div class=" col-md-3 ">
                                        <p  style="font-size:16px;text-align:left;"><strong>Key Perfomance Indicator</strong><br /></p>
                                    </div>
-                                   {{-- <div class=" col-md-1">
+                                   <div class=" col-md-1">
                                     <p  style="font-size:16px;text-align:left;"><strong>Assesment Period.</strong><br /></p> 
-                                </div> --}}
+                                </div>
                                    <div class="col-md-1">
                                        <p class="text-center" style="font-size:16px;"><strong>Score</strong><br /></p>
                                    </div>
@@ -242,7 +256,21 @@
                                       }
                                 }
                                }     
-                               //end of getting the score of the key perfomance indicator.                                
+                               //end of getting the score of the key perfomance indicator. 
+                               
+                               //getting the period that is being used by the kpi.
+
+                               $period = $kpi->period;
+
+                               if($period == 1){
+                                $period = 'Anually';
+                               }
+                               elseif($period == 2){
+                                $period = 'Semi-Anually';
+                               }
+                               else{
+                                $period = 'Quaterly';
+                               }
                                @endphp
                                
                                       <div class="row" style="margin-bottom:0.5%;">
@@ -256,9 +284,9 @@
                                         <div class=" col-md-3" style="text-align:left">
                                             <p>{{$name3}}</p>
                                         </div>
-                                        {{-- <div class=" col-md-1" style="text-align:left">
-                                          <p>Quaterly</p>
-                                      </div> --}}
+                                        <div class=" col-md-1" style="text-align:left">
+                                          <p>{{$period}}</p>
+                                      </div>
                                         <div class=" col-md-1" style="text-align:center"><p>{{$score}}</p></div>
                                         <div class=" col-md-1"style="text-align:center">
                                             <p id = "{{"target".$kpi->id}}" class ="{{"target".$kpi->id}}" >{{$kpi->target}}</p>
@@ -421,6 +449,21 @@
                                 </div>
                                 <div class="col-lg-6 col-md-6  col-sm-6"><select required name="arithmeticStructure"><optgroup label="Arithmetic Structure"><option value="1">Above</option><option value="0">Below</option></optgroup></select></div>
                             </div>
+                            <div class="row">
+                              <div class="col-lg-6 col-md-6  col-sm-6">
+                                  <p><strong>Period.</strong></p>
+                              </div>
+                              <div class="col-lg-6 col-md-6  col-sm-6">
+                                  <select required name="period">
+                                      <optgroup label="Select Period.">
+                                          <option value="4">Quaterly</option>
+                                          <option value="2">Semi Anually</option>
+                                          <option value="1">Anually</option>
+                                      </optgroup>
+                                  </select>
+                              </div>
+                          </div> 
+                             
                             <div class="modal-footer"><button class="btn btn-danger" type="button" data-dismiss="modal">Close</button><button class="btn btn-success" type="submit">Save</button></div>
                         </form>
                           

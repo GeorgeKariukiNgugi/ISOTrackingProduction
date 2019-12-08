@@ -103,6 +103,12 @@ class programMatrices extends Controller
     public function deleteKPI($kpiId){
             
         $kpiIds = KeyPerfomaceIndicator::where('id','=',$kpiId)->get();
+        $kpiScores = KeyPerfomanceIndicatorScore::where('kpi_id','=',$kpiId)->get();
+
+        foreach ($kpiScores as $kpiScore) {
+            # code...
+            $kpiScore->delete();
+        }
 
         foreach($kpiIds as $kpiId){
             $kpiId->delete();
@@ -119,12 +125,25 @@ class programMatrices extends Controller
         # code...
         //! getting the kpis related to the strategicObjective.
         $kpis = $strategicObjective->keyPerfomaceIndicators;
+        $kpiScores = $strategicObjective->keyPerfomanceIndicatorScores;
+        //! delete strategic Objective Scores. 
+        
 
         foreach($kpis as $kpi){
             $kpi->delete();
         }
+        foreach ($kpiScores as $kpiScore) {
+            # code...
+            $kpiScore->delete();
+        }
         $strategicObjective->delete();
     } 
+    
+         $strategicObjectiveScores = StrategicObjectiveScore::where('strategicObjective_id','=',$strObjectiveId)->get();
+        foreach ($strategicObjectiveScores as $strategicObjectiveScore) {
+            # code...
+            $strategicObjectiveScore->delete();
+        }
     
     Alert::success(' <h4 style = "color:green;">Congartulations    <i class="fa fa-thumbs-up"></i></h4>','Strayegic Objective Successfully Deleted..');
         return back();

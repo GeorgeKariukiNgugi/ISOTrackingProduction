@@ -301,7 +301,17 @@
                                       }
                                 }
                                }     
-                               //end of getting the score of the key perfomance indicator.                                
+                               //end of getting the score of the key perfomance indicator.   
+                               $period = $kpi->period;
+                                if($period == 1){
+                                $period = 'Anually';
+                                }
+                                elseif($period == 2){
+                                $period = 'Semi-Anually';
+                                }
+                                else{
+                                $period = 'Quaterly';
+                                }                             
                                @endphp
                                
                                       <div class="row" style="margin-bottom:0.5%;">
@@ -316,7 +326,7 @@
                                             <p>{{$name3}}</p>
                                         </div>
                                         <div class=" col-md-2" style="text-align:left">
-                                          <p>Quaterly</p>
+                                          <p>{{$period}}</p>
                                       </div>
                                         {{-- <div class=" col-md-1" style="text-align:center"><p>{{$score}}</p></div> --}}
                                         <div class=" col-md-1"style="text-align:center">

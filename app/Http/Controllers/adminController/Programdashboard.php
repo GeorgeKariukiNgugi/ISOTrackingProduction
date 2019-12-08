@@ -52,7 +52,7 @@ class Programdashboard extends Controller
                 
                 $perspectiveStrategicObjectives = StrategicObjectiveScore::where('perspective_id','=',$gettingThePerspectiveId)
                                                                           ->where('year','=',$activeYaer)
-                                                                        //   ->where('quater','=',$activeQuater)
+                                                                          ->where('strategicObjective_id','=',$perspectiveStrategicObjectiveName->id)
                                                                           ->get();                                                                    
                 //!this section is used to get the scores of the particular strateegic objective.
                 //!counting the number of records returned from the scores table. 

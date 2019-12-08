@@ -20,7 +20,7 @@
               <div class="icon">
                 <i class="fa  fa-trophy"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+              <a href="{{"/programDashboard/".$programIds[$i]}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>  
     @endfor  
@@ -57,15 +57,15 @@
                         <td>{{$checkingIfAssesed[$i+1]}}</td>
                         <td>
                             @if ($checkingIfAssesed[$i] == 0)
-                            {{"All Kpis Have Been Assesed."}}
+                            {{"All Kpis  for ".$activeYaer.'  '.$activeQuater."Have Been Assesed."}}
                             <b><i class=" fa  fa-check" style="color:green;font-size:30px;"></i></b>
                             
                             @elseif($checkingIfAssesed[$i] == -1)
-                            {{ "No Kpi Has Been Assesed ."}}
+                            {{ "No Kpi  for ".$activeYaer.'  '.$activeQuater."Has Been Assesed ."}}
                             <b><i class=" fa fa-times" style="color:red;font-size:30px;"></i></b>
                             
                             @else
-                              {{$checkingIfAssesed[$i]. "  KPIs Have Not Been Assesed."}}
+                              {{$checkingIfAssesed[$i]. "  KPIs  for ".$activeYaer.'  '.$activeQuater."Have Not Been Assesed."}}
                               <b><i class=" fa  fa-adjust" style="color:orange;font-size:30px;"></i></b>
                             @endif
                         </td>

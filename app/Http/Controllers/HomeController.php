@@ -97,6 +97,7 @@ class HomeController extends Controller
                     $programScores = array();
                     $programShorthand = array();
                     $programColors = array();
+                    $programIds = array();
                     
                     //! THIS NEXT SECTION IS USED TO GET THE TOTAL SCORE OF THE PROGRAMS.
                     foreach ($programs as $program) {
@@ -104,6 +105,7 @@ class HomeController extends Controller
                         
                         array_push($programShorthand,$program->shortHand);
                         array_push($programColors,$program->colorCode);
+                        array_push($programIds,$program->id);
                         $perspectives = Perspective::where('program_id','=',$program->id)->get();
                         // dd($perspectives);
                         
@@ -231,7 +233,23 @@ class HomeController extends Controller
                                                                                     ->where('year','=',$activeYaer)
                                                                                     ->get();
                                 $numberOfKpis += count($strategicObjective->keyPerfomaceIndicators);
-                                $numberOfKpisScored += count($strategicObjective->keyPerfomanceIndicatorScores);
+
+                                //! this section of the code is used to get the number of cores of the kpi that are added to the scores recorded table. 
+                                    // foreach($strategicObjective as $objective){
+                                        //!getting the kpis that relate to the spectific  strategic objective.
+                                        $kpis = $strategicObjective->keyPerfomaceIndicators;
+                                        foreach ($kpis as $kpi) {
+                                            # code...
+                                            $scoresRecorded = ScoreRecorded::where('keyPerfomanceIndicator_id','=', $kpi->id)
+                                                                            ->where('year','=',$activeYaer)
+                                                                            ->where('quater','=',$activeQuater)
+                                                                            ->get();
+                                            $numberOfKpisScored += count($scoresRecorded);
+                                        }
+
+                                        // dd($numberOfKpisScored.'  '.$numberOfKpis);
+                                    // }
+                                // $numberOfKpisScored += count($strategicObjective->keyPerfomanceIndicatorScores);
                                 
                             }
                             // $checkingIfAssesed
@@ -239,6 +257,7 @@ class HomeController extends Controller
 
                         $value = $numberOfKpis - $numberOfKpisScored;
                         // dd($numberOfKpis.' '.$numberOfKpisScored);
+                        // dd($value);
                         if($value == 0){
                             array_push($checkingIfAssesed, 0);
                             array_push($checkingIfAssesed, $program->shortHand);
@@ -258,7 +277,7 @@ class HomeController extends Controller
                     // dd($checkingIfAssesed);
                     
 
-                    return view('adminPages.adminLanding',['programs'=>$programs,'checkingIfAssesed'=>$checkingIfAssesed,'ncsperProgramCharts'=>$ncsperProgramCharts,'ncsArray'=>$ncsArray,'ncsCharts'=>$ncsCharts,'activeYaer'=>$activeYaer,'activeQuater'=>$activeQuater,'programScores'=>$programScores,'programShorthand'=>$programShorthand,'programColors'=>$programColors]);
+                    return view('adminPages.adminLanding',['programs'=>$programs,'programIds'=>$programIds,'checkingIfAssesed'=>$checkingIfAssesed,'ncsperProgramCharts'=>$ncsperProgramCharts,'ncsArray'=>$ncsArray,'ncsCharts'=>$ncsCharts,'activeYaer'=>$activeYaer,'activeQuater'=>$activeQuater,'programScores'=>$programScores,'programShorthand'=>$programShorthand,'programColors'=>$programColors]);
                 }
                 $programs = Program::where('id','=',$id)->get();
 

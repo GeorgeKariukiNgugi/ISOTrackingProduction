@@ -174,7 +174,8 @@ class Programdashboard extends Controller
             // $dbSearch = KeyPerfomanceIndicatorScore::where('kpi_id','=',$allKPIsRetrieved[$i])->get();
             $dbSearch = ScoreRecorded::where('keyPerfomanceIndicator_id','=',$allKPIsRetrieved[$i])
                                      ->where('quater','=',$activeQuater)
-                                        ->get();
+                                     ->where('year','=',$activeYaer)
+                                    ->get();
             // dd(count($dbSearch));
             if(count($dbSearch) == 0){
                 array_push($kpisNotScored,$allKPIsRetrieved[$i]);

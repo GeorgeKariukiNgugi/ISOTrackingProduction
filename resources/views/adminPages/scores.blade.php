@@ -83,7 +83,7 @@
             @if ($numberOfKPI <= 0)
             <div>
                 <div class="box-body">
-                    <h4 style="text-align:center;">There are no key perfomance indicators for this strategic objective. <b> Click on the add button to add the kpis.</b></h4>
+                    <h4 style="text-align:center;">There are no key perfomance indicators for this strategic objective. <b> Add KPIs In The Programs Tab.</b></h4>
                 </div>
               
             </div> 

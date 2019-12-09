@@ -20,9 +20,9 @@ $(document).ready(function () {
             $("#" + nonConFlagName).val(0);
         } else if (period == 1 && gettingTheQuaterNumber == 1) {
             $("#" + nonConFlagName).val(0);
-        } else if (period == 2 && gettingTheQuaterNumber == 1) {
+        } else if (period == 1 && gettingTheQuaterNumber == 2) {
             $("#" + nonConFlagName).val(0);
-        } else if (period == 3 && gettingTheQuaterNumber == 1) {
+        } else if (period == 1 && gettingTheQuaterNumber == 3) {
             $("#" + nonConFlagName).val(0);
         } else {
             if (inputValue === null) {

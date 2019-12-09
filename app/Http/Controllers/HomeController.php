@@ -52,6 +52,7 @@ class HomeController extends Controller
         $loggedInemail = Auth::user()->email;
         $programids = AssesorPerProgram::where('email','=',$loggedInemail)->get();
         $countingid = count($programids);
+        // dd($countingid);
         $keyPerfomanceIndicatorsScores = KeyPerfomanceIndicatorScore::all();
 
         //! GETTING WHICH QUATER AND TEAR IS ACTIVE.

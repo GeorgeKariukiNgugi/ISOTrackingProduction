@@ -72,6 +72,7 @@ class programMatrices extends Controller
                         array(
                             'perspective_id'=> $id,
                             'name'=>$name =$request->strName,
+                            'shortHand'=> substr($request->strName,0,20),
                         )
         );
         $newStrstegicObjective->save();

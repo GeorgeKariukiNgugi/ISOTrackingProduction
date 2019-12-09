@@ -14,7 +14,9 @@
     </a>
   </li> 
 @endsection
-
+@section('video')
+<a href="{{"/usersTutorial/".$id}}"><i class="fa fa-video-camera"></i> <span>Video Sample</span></a>
+@endsection
 @section('overdue')
 <a href="{{"/nonconformities/".$id."/1"}}" data-toggle="tooltip" title=" Non-conformities out of date">
 @endsection

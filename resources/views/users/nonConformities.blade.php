@@ -26,6 +26,10 @@
 @section('closed')
 <a href="{{"/nonconformities/".$id."/2"}}" data-toggle="tooltip" title="Closed Non Confrmities.">
 @endsection
+
+@section('video')
+<a href="{{"/usersTutorial/".$id}}"><i class="fa fa-video-camera"></i> <span>Video Sample</span></a>
+@endsection
 @section('section')
 @php
     $boxColor = "box-info";

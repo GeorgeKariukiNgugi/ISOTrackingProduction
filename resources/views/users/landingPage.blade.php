@@ -26,6 +26,9 @@
 <a href="{{"/nonconformities/".$programId."/2"}}" data-toggle="tooltip" title="Closed Non Confrmities.">
 @endsection
 
+@section('video')
+<a href="{{"/usersTutorial/".$programId}}"><i class="fa fa-video-camera"></i> <span>Video Sample</span></a>
+@endsection
 @section('section')
 <div id = "ajaxReload">
 @php

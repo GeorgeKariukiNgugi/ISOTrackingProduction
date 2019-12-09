@@ -137,4 +137,7 @@ Route::post('/deleteStrObjective/{id}','adminController\programMatrices@deleteSt
 //! this route is used to edit the name of a particular strategicObjective.
 Route::post('editingStrObjective/{id}', 'adminController\programMatrices@editStrategicObjective');
 
+//! this route will be used to display the video tutorial.
+Route::get('/usersTutorial/{id}', 'UserControllers\userController@video');
+
 

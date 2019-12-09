@@ -849,4 +849,10 @@ $closedNCEvidence->save();
 
     return back();
 }
+
+public function video($programId){
+    $programs = Program::all();
+
+    return view('users\video',['programs'=>$programs,'id'=>$programId]);
+}
 }

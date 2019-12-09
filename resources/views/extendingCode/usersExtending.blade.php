@@ -202,7 +202,11 @@ desired effect
         <!-- Optionally, you can add icons to the links -->
         <li class="active"><a href="#"><i class="fa fa-edit"></i> <span>User Manual </span></a></li>
 
-        <li><a href="#"><i class="fa fa-video-camera"></i> <span>Video Sample</span></a></li>
+        <li>
+
+          @yield('video')
+
+        </li>
         <li class="treeview">
           <a href="#"><i class="fa fa-book""></i> <span>Reports</span>
             <span class="pull-right-container">

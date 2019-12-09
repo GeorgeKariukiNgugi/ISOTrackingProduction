@@ -44,8 +44,7 @@ class PDFController extends Controller
             }
         }
         $data = Program::all();
-        $pdf = PDF::loadView('users.templatePDFView', compact('data','id','programDetails','activeYaer','activeQuater'));
-
+        $pdf = PDF::loadView('users.templatePDFView',compact('activeYaer'));
         return $pdf->download('reportCard.pdf');
     }
 }

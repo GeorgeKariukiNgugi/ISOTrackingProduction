@@ -86,11 +86,11 @@
           $strategicObjectives = $perspective->strategicObjectives;
           $number = count($strategicObjectives);
           if($number < 1){
-            echo "there are no strategic objectives for thie perspective.";
+            // echo "there are no strategic objectives for thie perspective.";
           }                  
       @endphp
       @if ($number < 1)
-          <p>THERE ARE NO STRATEGIC OBJECTIVES FOR THIS PERSPECTIVE.</p>
+          <p class="text-center">THERE ARE NO STRATEGIC OBJECTIVES FOR THIS PERSPECTIVE. KINDLY COBTACT ADMIN TO ADD THE STRATEGIC OBJECTVES THAT YOU WILL SCORE.</p>
       @endif
       @if ($number > 0)
           
@@ -381,41 +381,44 @@
             <div class="modal fade" role="dialog" tabindex="-1" id="{{"modal".$kpiModal->id}}">
               <div class="modal-dialog modal-lg" role="document">
                   <div class="modal-content">
-                      <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                          <h4 class="text-center modal-title">Kindly Fill The Following Fields to Complete Assesing :: <strong>{{$kpiModal->name}}.</strong></h4>
+                      <div class="modal-header" style="background-color:#a3e253" ><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                          <h4 class="text-center modal-title" style="font-family:'Times New Roman', Times, serif">Kindly Fill The Following Fields to Complete Assesing :: <strong>{{$kpiModal->name}}.</strong></h4>
                       </div>
                       <div id="{{"NonConformitymodal".$kpiModal->id}}"></div>
-                      <div class="modal-body">
+                      <div class="modal-body" style="background-color:#cfeda8;">
                           <form id="{{"unmetTargetModal".$kpiModal->id}}" class = "{{"unmetTargetModal".$kpiModal->id}}">
                             {{ csrf_field() }}
                             <input type="hidden" name="nonConformitykpiId" value="{{$kpiModal->id}}">
                               <div class="row" style="margin-bottom:1%;">
                                   <div class="col-lg-3 col-md-3">
-                                      <p class="text-center">Root Cause for not meeting target.</p>
+                                      <p class="text-center">Root Cause.</p>
                                   </div>
                                   <div class="col-lg-9 col-md-9"><textarea class="form-control" name="rootCause" required="" placeholder="Root Cause For Non Conformity."></textarea></div>
                               </div>
                               <div class="row" style="margin-bottom:1%;">
                                   <div class="col-lg-3 col-md-3">
-                                      <p class="text-center">Corretive Action To Meet The Target.&nbsp;</p>
+                                      <p class="text-center">Correction.&nbsp;</p>
                                   </div>
-                                  <div class="col-lg-9 col-md-9"><textarea class="form-control" name="correctiveAction" required="" placeholder="Corrective Action For The Non Conformity."></textarea></div>
+                                  <div class="col-lg-9 col-md-9"><textarea class="form-control" name="correctiveAction" required="" placeholder="Immediate remediation to non confromity or Temporary Solution."></textarea></div>
                               </div>
+                              
                               <div class="row" style="margin-bottom:1%;">
                                   <div class="col-lg-3 col-md-3">
-                                      <p class="text-center">Completion Date of Corrective Action.</p>
-                                  </div>
-                                  <div class="col-lg-9 col-md-9"><input required class="form-control" name = "date" type="date"></div>
-                              </div>
-                              <div class="row">
-                                  <div class="col-lg-3 col-md-3">
-                                      <p class="text-center">Permanent Solution To Non conformity.</p>
+                                      <p class="text-center">Cottective Action</p>
                                   </div>
                                   <div class="col-lg-9 col-md-9"><textarea class="form-control" name="permanentSolution" required="" placeholder="Permanent Solution To Non Conformity."></textarea></div>
                               </div>
-                              <div class="modal-footer"><button class="btn btn-danger" type="button" data-dismiss="modal">Close</button><button class="btn btn-success" type="submit">Save</button></div>
+
+                              <div class="row" style="margin-bottom:1%;">
+                                <div class="col-lg-3 col-md-3">
+                                    <p class="text-center">Completion Date of Corrective Action.</p>
+                                </div>
+                                <div class="col-lg-9 col-md-9"><input required class="form-control" name = "date" type="date"></div>
+                            </div>
+                          </div>
+                              <div class="modal-footer" style="background-color:#a3e253"><button class="btn btn-danger" type="button" data-dismiss="modal">Close</button><button class="btn btn-success" type="submit">Save</button></div>
                           </form>
-                      </div>                      
+                                            
                   </div>
               </div>
             </div>

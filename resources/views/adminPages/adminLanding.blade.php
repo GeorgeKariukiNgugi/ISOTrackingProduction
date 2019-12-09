@@ -114,15 +114,15 @@
                                       </thead>
                                       <tbody>
                                           <tr>
-                                              <td> <a href="/nonConformitiesAdmin/0">Closed NCs.</a></td>
+                                              <td> <a href="/nonConformitiesAdmin/0/0">Closed NCs.</a></td>
                                               <td>{{$ncsArray[0]}}</td>
                                           </tr> 
                                           <tr>
-                                                  <td>  <a href="/nonConformitiesAdmin/1">NCs In Progress.</a></td>
+                                                  <td>  <a href="/nonConformitiesAdmin/1/0">NCs In Progress.</a></td>
                                                   <td>{{ $ncsArray[1]}}</td>
                                               </tr> 
                                               <tr>
-                                                      <td> <a href="/nonConformitiesAdmin/2">OverDue NCs</a></td>
+                                                      <td> <a href="/nonConformitiesAdmin/2/0">OverDue NCs</a></td>
                                                       <td>{{$ncsArray[2]}}</td>
                                                   </tr>                                           
                                       </tbody>

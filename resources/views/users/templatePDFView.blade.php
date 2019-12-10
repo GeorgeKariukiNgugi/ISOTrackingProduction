@@ -18,26 +18,92 @@
     </style>
 </head>
 
+@php
+    if($programImage == "N/A"){
+        $programImage = "images/bsiLoggo.png";
+    }
+
+    $numberOfPerspectives = count($perspectiveNameArray);
+    // dd($numberOfPerspectives);
+@endphp
 <body>
     <div class="container">
         <p>{{$activeYaer}}</p>
+        <div class="row">
+                <div class="col-lg-6 col-md-6"><img src="images/image012.jpg" /></div>
+                <div class="col-lg-6 col-md-6" style="text-align:right;"><img src="{{$programImage}}" style="width:150px;height:80px;" /></div>
+            </div>
+            <h2 style="font-family:'Times New Roman', Times, serif;text-align:center;">{{$programName}}</h2>
+            <h3 style="font-family:'Times New Roman', Times, serif;text-align:center;"> {{"(".$programDetail->shortHand."   ".$programDetail->programCode.")"}}</h3>
+            <h3 style="font-family:'Times New Roman', Times, serif;text-align:center;"> Score For {{$activeYaer."   ".$activeQuater}}</h3>
         <div class="table-responsive">
-            <table class="table table-striped table-bordered">
+            <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>Column 1</th>
-                        <th>Column 2</th>
+                        <th>Perspectives ScoreCard.</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Cell 1</td>
-                        <td>Cell 2</td>
-                    </tr>
-                    <tr>
-                        <td>Cell 3</td>
-                        <td>Cell 4</td>
-                    </tr>
+                    @for ($i = 0; $i < $numberOfPerspectives; $i++)
+                        <tr style="background-color:#F5F5F5;" >
+                            <td style="text-align:center;">
+                                @php
+                                     $name = str_replace('_', ' ',$perspectiveNameArray[$i]);
+                                     $name = ucwords($name);
+                                @endphp
+                                   <b>{{$name}}</b> 
+                            </td>
+                            <td></td>
+                        </tr>
+                                @php
+                                    $counting = $i;
+                                    
+                                    if ($i == 0) {
+                                        $trackingNumbers = $trackingNumberArray[$i];
+                                        $startingPoint = 0;
+                                        $endpoint = $startingPoint+$trackingNumbers;
+                                        
+                                    } else {
+                                        $startingPoint = 0;
+                                        for ($j=0; $j < $counting ; $j++) { 
+                                            # code...
+                                            $startingPoint += $trackingNumberArray[$j]; 
+                                        }
+                                        $trackingNumbers = $trackingNumberArray[$counting];
+                                        $endpoint = $startingPoint+$trackingNumbers;
+                                    }
+                                    
+                                @endphp
+
+                                <tr>
+                                <td>
+                                    <p style="font-size:10px;">Strategic Objective Name.</p>
+                                    
+                                </td>
+                                <td>
+                                        <p style="font-size:10px;">Score.</p>
+                                </td>
+                            </tr>
+                                @for ($k = $startingPoint; $k < $endpoint ; $k++)
+                                <tr>
+                                    <td>
+                                        @php                                            
+                                     $strname = str_replace('_', ' ',$strategicObjectiveNameArray[$k]);
+                                     $strname = ucwords($strname);                                
+                                        @endphp
+                                        {{$strname}} 
+                                    
+                                    </td>
+                                    <td>
+                                        @php
+                                            $number = number_format($strategicObjectiveScoresArray[$k], 2)
+                                        @endphp
+                                            {{$number.'%'}}
+                                    </td>
+                                </tr>
+                                @endfor                               
+                    @endfor
                 </tbody>
             </table>
         </div>

@@ -235,19 +235,19 @@ class userController extends Controller
                     case '2':
                             # code...
                             //* isms, do later.
-                            if ($averageThatBecomesytd == 1) {
+                            if ($averageThatBecomesytd <= 1) {
                                 # code...
                                 $kpiScore = 100;
-                            } else  if ($averageThatBecomesytd == 2){
+                            } else  if ($averageThatBecomesytd <= 2){
                                 $kpiScore = 80;
                             }
-                            else  if ($averageThatBecomesytd == 3){
+                            else  if ($averageThatBecomesytd <= 3){
                                 $kpiScore = 70;
                             }
-                            else  if ($averageThatBecomesytd == 4){
+                            else  if ($averageThatBecomesytd <= 4){
                                 $kpiScore = 66;
                             }
-                            else  if ($averageThatBecomesytd == 5){
+                            else  if ($averageThatBecomesytd <= 5){
                                 $kpiScore = 33;
                             }
                             else{
@@ -257,19 +257,19 @@ class userController extends Controller
                     case '3':
                                 # code...
                                 //* isms, do later.
-                                if ($averageThatBecomesytd == 1) {
+                                if ($averageThatBecomesytd <= 1) {
                                     # code...
                                     $kpiScore = 100;
-                                } else  if ($averageThatBecomesytd == 2){
+                                } else  if ($averageThatBecomesytd <= 2){
                                     $kpiScore = 80;
                                 }
-                                else  if ($averageThatBecomesytd == 3){
+                                else  if ($averageThatBecomesytd <= 3){
                                     $kpiScore = 70;
                                 }
-                                else  if ($averageThatBecomesytd == 4){
+                                else  if ($averageThatBecomesytd <= 4){
                                     $kpiScore = 66;
                                 }
-                                else  if ($averageThatBecomesytd == 5){
+                                else  if ($averageThatBecomesytd <= 5){
                                     $kpiScore = 33;
                                 }
                                 else{

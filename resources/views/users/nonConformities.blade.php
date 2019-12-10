@@ -30,6 +30,11 @@
 @section('video')
 <a href="{{"/usersTutorial/".$id}}"><i class="fa fa-video-camera"></i> <span>Video Sample</span></a>
 @endsection
+
+@section('reports')
+<a href="{{"/reports/".$id}}"><i class="fa fa-book"></i> <span> Reports</span></a>
+
+@endsection
 @section('section')
 @php
     $boxColor = "box-info";

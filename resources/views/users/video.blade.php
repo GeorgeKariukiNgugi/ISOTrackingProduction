@@ -28,6 +28,10 @@
 @section('closed')
 <a href="{{"/nonconformities/".$id."/2"}}" data-toggle="tooltip" title="Closed Non Confrmities.">
 @endsection
+@section('reports')
+<a href="{{"/reports/".$id}}"><i class="fa fa-book"></i> <span> Reports</span></a>
+
+@endsection
 @section('section')
 
 <div class="container">

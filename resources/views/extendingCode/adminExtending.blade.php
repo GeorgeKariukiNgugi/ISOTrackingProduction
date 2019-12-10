@@ -161,6 +161,7 @@ desired effect
         <li><a href="/addingNewProramStep0"><i class="fa fa-plus"></i> <span>Add New Program</span></a></li>
         <li><a href="/assesmentCalender"><i class="fa fa-calendar-plus-o"></i> <span> Assesing Calender</span></a></li>
         <li><a href="/viewingAssesors"><i class="fa fa-users"></i> <span> Program Assesors.</span></a></li>
+        <li> <a href="/adminReports"> <i class="fa fa-book"></i> <span> All Downloaded Reports.</span> </a></li>
         <li class="treeview">
           <a href="#"><i class="fa fa-warning""></i> <span>Non Cnformities</span>
             <span class="pull-right-container">
@@ -173,6 +174,7 @@ desired effect
             <li><a href="/nonConformitiesAdmin/2/0"> <i class="fa fa-warning text-red" ></i>  <span>Non-Confromities Overdue</span></a></li>
           </ul>
         </li>
+        
         <li><a href="#"><i class="fa fa-edit"></i> <span>User Manual </span></a></li>
         <li><a href="#"><i class="fa fa-video-camera"></i> <span>Video Sample</span></a></li>
         <br>

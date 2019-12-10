@@ -35,7 +35,10 @@
 {!! $charts[$i]->script() !!}
 @endfor
 @endsection
+@section('reports')
+<a href="{{"/reports/".$id}}"><i class="fa fa-book"></i> <span>Downloaded Reports</span></a>
 
+@endsection
 @section('section')
 
 <h1 style="font-family:Georgia, 'Times New Roman', Times, serif;text-align:center;"> {{$programDetailsArray[0]}}</h1>

@@ -207,7 +207,12 @@ desired effect
           @yield('video')
 
         </li>
-        <li class="treeview">
+
+        <li>
+          @yield('reports')
+        </li>
+        
+        {{-- <li class="treeview">
           <a href="#"><i class="fa fa-book""></i> <span>Reports</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
@@ -217,7 +222,7 @@ desired effect
             <li><a href="#">2018/2019</a></li>
             <li><a href="#">2019/2020</a></li>
           </ul>
-        </li>
+        </li> --}}
       </ul>
       <!-- /.sidebar-menu -->
     </section>

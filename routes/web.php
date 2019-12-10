@@ -140,4 +140,9 @@ Route::post('editingStrObjective/{id}', 'adminController\programMatrices@editStr
 //! this route will be used to display the video tutorial.
 Route::get('/usersTutorial/{id}', 'UserControllers\userController@video');
 
+//! this route will be usedto get the reports view. 
+Route::get('/reports/{id}','UserControllers\reports@viewReports');
+
+Route::get('/adminReports', 'UserControllers\reports@adminReports');
+
 

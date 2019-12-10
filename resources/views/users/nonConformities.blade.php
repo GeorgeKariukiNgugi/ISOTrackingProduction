@@ -57,6 +57,11 @@
 @endphp
  @endif
     <h3 style="font-family:'Times New Roman', Times, serif;text-align:center;">{{$text}}</h3>
+
+    @foreach ($errors->all() as $error)
+        {{-- {{$error}} --}}
+        <div class="alert alert-danger" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><span id="text"><strong>{{$error}}  KINDLY CHECK THE ATTACHMENT SIZE. </strong></span></div>
+    @endforeach
 <div class="box {{$boxColor}} box-solid">
     <div class="box-header with-border">
             <h1 class="box-title" style="text-align:center;"> <b>Non Conformities Table For : {{$programmeName}}</b></h1>
@@ -233,10 +238,10 @@
                                         <br>
                                         <div class="row">
                                             <div class="col-lg-5 col-md-5">
-                                                <h4 style="color:rgb(0,0,0);"><strong>Kindly Attach Supporting Document.</strong><span style="color:rgb(245,13,13);">*optional</span></h4>
+                                                <h4 style="color:rgb(0,0,0);"><strong>Kindly Attach Supporting Document.</strong><span style="color:rgb(245,13,13);">*optional* <br> <span style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif"> N.B// Due To Storage Constraints. Uploads Larger Than 2MB (2048kb) will not be uploaded, An Error message will be thrown.</span> </span></h4>
                                             </div>
                                             <div class="col-lg-7 col-md-7">
-                                                    <input type="file" name="{{"attachment"}}" />
+                                                    <input type="file" name="attachment" />
                                                 {{-- <div class="btn btn-default btn-file"><i class="fa fa-paperclip"></i>Attachment</div> --}}
                                             </div>
                                         </div>

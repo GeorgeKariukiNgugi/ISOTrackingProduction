@@ -162,7 +162,7 @@
                             echo $location;
                         } else {
                             # code...
-                            echo "<a  download href = '/storage/evidence/".$evidence."''> Click To Download The Document Supplid.</a>";
+                            echo "<a href = '/storage/evidence/".$evidence."''> Click To Download The Document Supplid.</a>";
                         }
                         
                     @endphp

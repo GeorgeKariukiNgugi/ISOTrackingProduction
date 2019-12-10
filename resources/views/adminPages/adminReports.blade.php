@@ -2,7 +2,7 @@
 @section('section')
 
 <h1 style="font-family:Georgia, 'Times New Roman', Times, serif;text-align:center;"> <i class="fa fa-book"></i>  Downloaded Reports  Tab. </h1>
-<div class="col-xs-10 col-xs-offset-1">
+<div class="col-xs-12">
         <div class="box box-solid box-success">
           <div class="box-header " style="text-align:center;">
             <h3 class="box-title" style="font-family:Georgia, 'Times New Roman', Times, serif;text-align:center;">Downloaded Reports.</h3>
@@ -12,7 +12,7 @@
             <table class="table table-hover">
               <tbody><tr>
                 <th>S<sub>no</sub></th>
-                <th>Proram</th>
+                <th>Program</th>
                 <th>Year</th>
                 <th>Quater</th>
                 <th>Report In PDF Format.</th>

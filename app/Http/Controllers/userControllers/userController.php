@@ -16,6 +16,7 @@ use App\KeyPerfomanceIndicatorScore;
 use App\StrategicObjectiveScore;
 use App\closedNonConformityEvidence;
 //!DASHBOARD CLASS.
+use App\Http\Requests\submittingClosingNonConfromity;
 use  App\Charts\DashBoardCharts;
 use RealRashid\SweetAlert\Facades\Alert;
 class userController extends Controller
@@ -794,10 +795,10 @@ return view('users\nonConformities',['status'=> 'closed','closedNonConformities'
 
 //!  THIS CONTROLLER METHOD WILL BE USED TO SUBMIT THE CLOSURE OF THE NON CONFORMITIES.
 
-public function closingNonConformity(Request $request){
+public function closingNonConformity(submittingClosingNonConfromity $request){
     
     //getting the names of the submitted data.
-    
+    dd("checking.");
     //! checking if the file input has the data that is needed.
     if ($request->hasFile('attachment')) {        
         $fileFullName = $request->attachment->getClientOriginalName();         

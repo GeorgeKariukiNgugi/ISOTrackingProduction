@@ -8,6 +8,7 @@ use App\QuaterActive;
 use App\YearActive;
 use App\StrategicObjective;
 use PDF;
+use App\reportsGenerated;
 use App\StrategicObjectiveScore;
 class PDFController extends Controller
 {
@@ -34,7 +35,9 @@ class PDFController extends Controller
             $strategicObjectiveNameArray = array();
             $strategicObjectiveScoresArray = array();
             $perspectiveNameArray = array();
-
+            $finalSScore = 0;
+            
+            
 
             $programName = $programDetail->name;
             $programShortHand = $programDetail->shortHand;
@@ -49,7 +52,8 @@ class PDFController extends Controller
                 $strategicObjectiveScores = count($perspective->strategicObjectiveScores);
 
                 if($strategicObjectiveScores == $strategicObjectiveNumbers){
-                    
+                    $strategicObjectivesSum = 0;
+                    $strateicObjectiveAverage = 0;      
                     //!pushing the number of strategic objectives to the array.
                     array_push($trackingNumberArray,count($perspective->strategicObjectiveScores));
                     //! pushing the perspective name to the array.
@@ -62,13 +66,23 @@ class PDFController extends Controller
                         array_push($strategicObjectiveNameArray,$strategicObjective->name);
 
                         //!getting the rhyming strategic objective scores.
-                        $trategicObjectiveScores = StrategicObjectiveScore::where('strategicObjective_id','=',$strategicObjective->id)->get();                        
+                        $trategicObjectiveScores = StrategicObjectiveScore::where('strategicObjective_id','=',$strategicObjective->id)->where('year','=',$activeYaer)->get();                        
 
                         foreach ($trategicObjectiveScores as $trategicObjectiveScore) {
                             # code...
                             array_push($strategicObjectiveScoresArray,$trategicObjectiveScore->score);
+                            
+                            //!getting the final score that willl be displayed.
+                            $strategicObjectivesSum += $trategicObjectiveScore->score;
                         }
+                        
                     }
+                    $strateicObjectiveAverage = $strategicObjectivesSum/count($strategicObjectives);
+                    // dd($strateicObjectiveAverage);
+                    $weight = $perspective->weight;
+                    $finalSScore += ($strateicObjectiveAverage*$weight)/100;
+                    // dd($finalSScore.' '.$weight);
+                    // $finalSScore += $strateicObjectiveAverage;
                     
                 }
                 else{
@@ -79,12 +93,43 @@ class PDFController extends Controller
                 
             }
         }
-        // dd($trackingNumberArray);
+        
         $yearForPdf =str_replace('/', '-', $activeYaer); 
         $data = Program::all();
-        $pdf = PDF::loadView('users.templatePDFView',compact('activeYaer','programName','programImage','programDetail','activeQuater','trackingNumberArray','strategicObjectiveNameArray','strategicObjectiveScoresArray','perspectiveNameArray'));
-        // $timeStamp = new Datetime();
-        $pdfNames = $programShortHand.'_report_'.$yearForPdf.'_'.$activeQuater.'_'.time().'.pdf';
+        $pdf = PDF::loadView('users.templatePDFView',compact('activeYaer','programName','finalSScore','programImage','programDetail','activeQuater','trackingNumberArray','strategicObjectiveNameArray','strategicObjectiveScoresArray','perspectiveNameArray'));
+        
+        //! this section of the code will be used to check if the report card has been stored in the 
+        //!file system, if not store it, if yes replace its location.
+
+        $reportInStore = reportsGenerated::where('quater','=',$activeQuater)
+                                         ->where('year','=',$activeYaer)
+                                         ->where('program_id','=',$programDetail->id)   
+                                         ->get();
+
+        $pdfNames = $programShortHand.'_report_'.$yearForPdf.'_'.$activeQuater.'_'.time().'.pdf';                                         
+        if(count($reportInStore) == 0){
+            //!store the data in the BD.
+            $storingRecordInDB = new reportsGenerated(
+                                array(
+                                    'quater'=>$activeQuater,
+                                    'year'=>$activeYaer,
+                                    'reportLocation'=>'reports/'.$pdfNames,
+                                    'program_id'=>$programDetail->id
+
+                                )
+            ); 
+            $storingRecordInDB->save();
+        }
+        else{
+            //!update the record (report location) name in DB.
+            foreach($reportInStore as $report){
+                $report->reportLocation = 'reports/'.$pdfNames;
+                $report->save();
+            }
+
+        }                                         
+
+        
         $pdf->save('reports/'.$pdfNames);        
         return $pdf->download($pdfNames);
     }

@@ -104,6 +104,17 @@
                                 </tr>
                                 @endfor                               
                     @endfor
+
+                    <tr>
+                        <td>
+                            <h3 style="color:red;">FINAL SCORE:</h3>
+                        </td>
+                        <td>
+                                <h3 style="color:red;">{{$finalSScore."%"}}</h3>
+                        </td>
+                        
+                        
+                    </tr>
                 </tbody>
             </table>
         </div>

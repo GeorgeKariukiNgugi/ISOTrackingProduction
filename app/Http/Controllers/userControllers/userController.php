@@ -798,7 +798,7 @@ return view('users\nonConformities',['status'=> 'closed','closedNonConformities'
 public function closingNonConformity(submittingClosingNonConfromity $request){
     
     //getting the names of the submitted data.
-    dd("checking.");
+    // dd("checking.");
     //! checking if the file input has the data that is needed.
     if ($request->hasFile('attachment')) {        
         $fileFullName = $request->attachment->getClientOriginalName();         

@@ -31,25 +31,25 @@ Route::get('/forbidden', function () {
 
 //! submission of kpi scores 
 
-Route::post('submitScores','UserControllers\userController@submittingKPIScores');
+Route::post('submitScores','UserControllers\UserController@submittingKPIScores');
 
 //! submitting the nonconformities values. 
-Route::post('submitNonConformities','UserControllers\userController@submittingNonConformities');
+Route::post('submitNonConformities','UserControllers\UserController@submittingNonConformities');
 
 //! this is the function that is used to store the new kpis that have been generated.
-Route::post('submittingKPI','UserControllers\userController@submittingNewKPIs');
+Route::post('submittingKPI','UserControllers\UserController@submittingNewKPIs');
 
 
 //!this is the route that is used to generate the dashboard graphs amoung others. 
 
-Route::get('dashBoard/{id}','UserControllers\userController@DashboardConroller');
+Route::get('dashBoard/{id}','UserControllers\UserController@DashboardConroller');
 
 //! this is the route that will handle the viewing of all the nonconformities that have been identified from the particular program.
-Route::get('/nonconformities/{program}/{closed}','UserControllers\userController@nonConformities');
+Route::get('/nonconformities/{program}/{closed}','UserControllers\UserController@nonConformities');
 
 //! this route will be used to hande the submission of the closing of the noncongormities that have been identified.
 
-Route::post('/closingNonConformity','UserControllers\userController@closingNonConformity');
+Route::post('/closingNonConformity','UserControllers\UserController@closingNonConformity');
 
 //! this route will handle all the sample export of the ecell file.
 
@@ -138,7 +138,7 @@ Route::post('/deleteStrObjective/{id}','adminController\programMatrices@deleteSt
 Route::post('editingStrObjective/{id}', 'adminController\programMatrices@editStrategicObjective');
 
 //! this route will be used to display the video tutorial.
-Route::get('/usersTutorial/{id}', 'UserControllers\userController@video');
+Route::get('/usersTutorial/{id}', 'UserControllers\UserController@video');
 
 //! this route will be usedto get the reports view. 
 Route::get('/reports/{id}','UserControllers\reports@viewReports');

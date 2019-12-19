@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\userControllers;
+namespace App\Http\Controllers\UserControllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -19,7 +19,7 @@ use App\closedNonConformityEvidence;
 use App\Http\Requests\submittingClosingNonConfromity;
 use  App\Charts\DashBoardCharts;
 use RealRashid\SweetAlert\Facades\Alert;
-class userController extends Controller
+class UserController extends Controller
 {
     public function submittingKPIScores(Request $request){        
 

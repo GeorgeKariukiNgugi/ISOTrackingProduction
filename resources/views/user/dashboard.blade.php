@@ -41,9 +41,9 @@
 @endsection
 @section('section')
 
-<h1 style="font-family:Georgia, 'Times New Roman', Times, serif;text-align:center;"> {{$programDetailsArray[0]}}</h1>
-<h1 style="font-family:Georgia, 'Times New Roman', Times, serif;text-align:center;"> {{ $programDetailsArray[1]}}</h1>
-<h1 style="font-family:Georgia, 'Times New Roman', Times, serif;text-align:center;"> {{  $activeYaer . ' '. $activeQuater. 'DashBoard.' }}</h1>
+{{-- <h1 style="font-family:Georgia, 'Times New Roman', Times, serif;text-align:center;"> {{$programDetailsArray[0]}}</h1> --}}
+{{-- <h1 style="font-family:Georgia, 'Times New Roman', Times, serif;text-align:center;"> {{ $programDetailsArray[1]}}</h1> --}}
+{{-- <h1 style="font-family:Georgia, 'Times New Roman', Times, serif;text-align:center;"> {{  $activeYaer . ' '. $activeQuater. 'DashBoard.' }}</h1> --}}
 <div class="col-md-8">
     <div class="box box-danger">
         <div class="box-header with-border text-center" >

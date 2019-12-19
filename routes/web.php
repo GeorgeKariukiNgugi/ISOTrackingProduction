@@ -42,7 +42,7 @@ Route::post('submittingKPI','userControllers\UserController@submittingNewKPIs');
 
 //!this is the route that is used to generate the dashboard graphs amoung others. 
 
-Route::get('dashBoard/{id}','userControllers\UserController@DashboardConroller');
+Route::get('dashBoard/{id}','userControllers/UserController@DashboardConroller');
 
 //! this is the route that will handle the viewing of all the nonconformities that have been identified from the particular program.
 Route::get('/nonconformities/{program}/{closed}','userControllers\UserController@nonConformities');

@@ -32,33 +32,33 @@ Route::get('/forbidden', function () {
 
 //! submission of kpi scores 
 
-Route::post('submitScores','userControllers\UserController@submittingKPIScores');
+Route::post('submitScores','userController\UserController@submittingKPIScores');
 
 //! submitting the nonconformities values. 
-Route::post('submitNonConformities','userControllers\UserController@submittingNonConformities');
+Route::post('submitNonConformities','userController\UserController@submittingNonConformities');
 
 //! this is the function that is used to store the new kpis that have been generated.
-Route::post('submittingKPI','userControllers\UserController@submittingNewKPIs');
+Route::post('submittingKPI','userController\UserController@submittingNewKPIs');
 
 
 //!this is the route that is used to generate the dashboard graphs amoung others. 
 
-Route::get('dashBoard/{id}','userControllers\UserController@DashboardConroller');
+Route::get('dashBoard/{id}','userController\UserController@DashboardConroller');
 
 //! this is the route that will handle the viewing of all the nonconformities that have been identified from the particular program.
-Route::get('/nonconformities/{program}/{closed}','userControllers\UserController@nonConformities');
+Route::get('/nonconformities/{program}/{closed}','userController\UserController@nonConformities');
 
 //! this route will be used to hande the submission of the closing of the noncongormities that have been identified.
 
-Route::post('/closingNonConformity','userControllers\UserController@closingNonConformity');
+Route::post('/closingNonConformity','userController\UserController@closingNonConformity');
 
 //! this route will handle all the sample export of the ecell file.
 
-Route::get('/sampleExcelDownload/{programId}/{status}', 'userControllers\spreadheetExports@export');
+Route::get('/sampleExcelDownload/{programId}/{status}', 'userController\spreadheetExports@export');
 
 //! this is the link that has the sample download pdf. 
 
-Route::get('/samplePDF/{progId}','userControllers\PDFController@downloadPFD');
+Route::get('/samplePDF/{progId}','userController\PDFController@downloadPFD');
 
 //!this route will be used to handle the creation of a new program.
 
@@ -139,11 +139,11 @@ Route::post('/deleteStrObjective/{id}','adminController\programMatrices@deleteSt
 Route::post('editingStrObjective/{id}', 'adminController\programMatrices@editStrategicObjective');
 
 //! this route will be used to display the video tutorial.
-Route::get('/usersTutorial/{id}', 'userControllers\UserController@video');
+Route::get('/usersTutorial/{id}', 'userController\UserController@video');
 
 //! this route will be usedto get the reports view. 
-Route::get('/reports/{id}','userControllers\reports@viewReports');
+Route::get('/reports/{id}','userController\reports@viewReports');
 
-Route::get('/adminReports', 'userControllers\reports@adminReports');
+Route::get('/adminReports', 'userController\reports@adminReports');
 
 

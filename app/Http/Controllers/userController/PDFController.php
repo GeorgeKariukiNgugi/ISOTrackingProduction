@@ -96,7 +96,7 @@ class PDFController extends Controller
         
         $yearForPdf =str_replace('/', '-', $activeYaer); 
         $data = Program::all();
-        $pdf = PDF::loadView('users.templatePDFView',compact('activeYaer','programName','finalSScore','programImage','programDetail','activeQuater','trackingNumberArray','strategicObjectiveNameArray','strategicObjectiveScoresArray','perspectiveNameArray'));
+        $pdf = PDF::loadView('user.templatePDFView',compact('activeYaer','programName','finalSScore','programImage','programDetail','activeQuater','trackingNumberArray','strategicObjectiveNameArray','strategicObjectiveScoresArray','perspectiveNameArray'));
         
         //! this section of the code will be used to check if the report card has been stored in the 
         //!file system, if not store it, if yes replace its location.

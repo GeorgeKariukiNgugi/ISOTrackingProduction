@@ -29,7 +29,7 @@ class reports extends Controller
             }
         }
 // dd($programNamesArray);
-        return view('users\reports',['id'=>$id,'reports'=>$reports,'programNamesArray'=>$programNamesArray]);
+        return view('user.reports',['id'=>$id,'reports'=>$reports,'programNamesArray'=>$programNamesArray]);
     }
 
     public function adminReports(){

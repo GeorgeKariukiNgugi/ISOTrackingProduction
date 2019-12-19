@@ -737,7 +737,7 @@ class UserController extends Controller
     }
 
 
-    return view('users.dashboard',['programDetailsArray'=>$programDetailsArray,'activeYaer'=>$activeYaer,'activeQuater'=>$activeQuater,'chart'=>$chart,'kpiNotScoredNames'=>$kpiNotScoredNames,'allKpis'=>$allKPIsRetrieved,'finalScore'=>$finalScore,'id'=>$id,'charts'=>$charts,'proramPersspectives'=>$proramPersspectives ]);
+    return view('user.dashboard',['programDetailsArray'=>$programDetailsArray,'activeYaer'=>$activeYaer,'activeQuater'=>$activeQuater,'chart'=>$chart,'kpiNotScoredNames'=>$kpiNotScoredNames,'allKpis'=>$allKPIsRetrieved,'finalScore'=>$finalScore,'id'=>$id,'charts'=>$charts,'proramPersspectives'=>$proramPersspectives ]);
  }
 
  public function nonConformities($id, $closed){
@@ -767,7 +767,7 @@ class UserController extends Controller
                                             ->get();
 
         // dd("Overdue  ".count( $nonConformities ));  
-        return view('users\nonConformities',['status'=> 'open','nonConformities'=>$nonConformities,'id'=>$id,'state'=>$closed,'programmeName'=>$proramenameValue]);
+        return view('user\nonConformities',['status'=> 'open','nonConformities'=>$nonConformities,'id'=>$id,'state'=>$closed,'programmeName'=>$proramenameValue]);
 
     } else if ($closed == 0){
         $nonConformities = NonConformities::where('openClosed', '=', 'open')
@@ -776,7 +776,7 @@ class UserController extends Controller
                                             ->where('program_id','=',$id)
                                             ->orderBy('date', 'asc')
                                             ->get();
-        return view('users\nonConformities',['status'=> 'open','nonConformities'=>$nonConformities,'id'=>$id,'state'=>$closed,'programmeName'=>$proramenameValue]);  
+        return view('user\nonConformities',['status'=> 'open','nonConformities'=>$nonConformities,'id'=>$id,'state'=>$closed,'programmeName'=>$proramenameValue]);  
 
     }
     else if ($closed == 2){
@@ -788,7 +788,7 @@ class UserController extends Controller
 
         //! getting the details that will be sent to the closed non conformities.
             $closedNonConformities = closedNonConformityEvidence::all();        
-return view('users\nonConformities',['status'=> 'closed','closedNonConformities'=>$closedNonConformities,'nonConformities'=>$nonConformities,'id'=>$id,'state'=>$closed,'programmeName'=>$proramenameValue]);
+return view('user\nonConformities',['status'=> 'closed','closedNonConformities'=>$closedNonConformities,'nonConformities'=>$nonConformities,'id'=>$id,'state'=>$closed,'programmeName'=>$proramenameValue]);
     }     
  }
 
@@ -854,6 +854,6 @@ $closedNCEvidence->save();
 public function video($programId){
     $programs = Program::all();
 
-    return view('users\video',['programs'=>$programs,'id'=>$programId]);
+    return view('user\video',['programs'=>$programs,'id'=>$programId]);
 }
 }

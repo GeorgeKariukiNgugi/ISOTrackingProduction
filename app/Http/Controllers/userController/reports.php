@@ -51,6 +51,6 @@ class reports extends Controller
                     }
                 }
 
-        return view('adminPages\adminReports',['programs'=>$programs,'reports'=>$reports,'programNamesArray'=>$programNamesArray]);
+        return view('adminPage.adminReports',['programs'=>$programs,'reports'=>$reports,'programNamesArray'=>$programNamesArray]);
     }
 }

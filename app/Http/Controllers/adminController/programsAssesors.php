@@ -41,7 +41,7 @@ class programsAssesors extends Controller
             array_push($programDetails,$userEmail);
             array_push($programDetails,$assesorPerProgram->id);
         }
-        return view('adminPages.assesors',['programs'=>$programs,'programDetails'=>$programDetails]);
+        return view('adminPage.assesors',['programs'=>$programs,'programDetails'=>$programDetails]);
     }
 
     public function deletingAssesor(DeletingAssesor $request){

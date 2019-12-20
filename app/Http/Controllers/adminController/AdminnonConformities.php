@@ -82,7 +82,7 @@ class AdminnonConformities extends Controller
             }
             $kpis = KeyPerfomaceIndicator::all();
 
-            return view('adminPages\nonconformities',['programs'=>$programs,'titleName'=>$titleName,'kpis'=>$kpis,'type'=>$type,'nonConformities'=>$nonConformities,'arrayWithProgramCodes'=>$arrayWithProgramCodes]);
+            return view('adminPage.nonconformities',['programs'=>$programs,'titleName'=>$titleName,'kpis'=>$kpis,'type'=>$type,'nonConformities'=>$nonConformities,'arrayWithProgramCodes'=>$arrayWithProgramCodes]);
             
         } else if ($type == 1){
 
@@ -133,7 +133,7 @@ class AdminnonConformities extends Controller
             //! getting all the key perfomance indicators.
             $kpis = KeyPerfomaceIndicator::all();
 
-            return view('adminPages\nonconformities',['programs'=>$programs,'kpis'=>$kpis,'type'=>$type,'nonConformities'=>$nonConformities,'arrayWithProgramCodes'=>$arrayWithProgramCodes]);
+            return view('adminPage.nonconformities',['programs'=>$programs,'kpis'=>$kpis,'type'=>$type,'nonConformities'=>$nonConformities,'arrayWithProgramCodes'=>$arrayWithProgramCodes]);
 
         }
         else if ($type == 0){
@@ -184,7 +184,7 @@ class AdminnonConformities extends Controller
                 
                 $kpis = KeyPerfomaceIndicator::all();
 
-            return view('adminPages\nonconformities',['programs'=>$programs,'closedNonConformities'=>$closedNonConformities,'kpis'=>$kpis,'type'=>$type,'nonConformities'=>$nonConformities,'arrayWithProgramCodes'=>$arrayWithProgramCodes]);
+            return view('adminPage.nonconformities',['programs'=>$programs,'closedNonConformities'=>$closedNonConformities,'kpis'=>$kpis,'type'=>$type,'nonConformities'=>$nonConformities,'arrayWithProgramCodes'=>$arrayWithProgramCodes]);
         }     
     }
 }

@@ -27,7 +27,7 @@ class asesmentCalender extends Controller
                     $activeQuater = $activeQuaterCollection->Quater;
                     // dd($activeQuater);
                 }
-        return view('adminPages\assesmentCalender',['programs'=>$programs,'activeYaer'=>$activeYaer,'activeQuater'=>$activeQuater]);
+        return view('adminPage.assesmentCalender',['programs'=>$programs,'activeYaer'=>$activeYaer,'activeQuater'=>$activeQuater]);
     }
 
     public function submittingNewCalender(submittingCalender $request){

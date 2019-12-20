@@ -14,7 +14,7 @@ class programDetails extends Controller
 {
     public function viewingTheProgramDetails($id){
         $programs = Program::all();
-        return view('adminPages\programDetails',['programs'=>$programs,'id'=>$id]);
+        return view('adminPage.programDetails',['programs'=>$programs,'id'=>$id]);
     }
 
     public function deleteProgram(deletingProgram $request){

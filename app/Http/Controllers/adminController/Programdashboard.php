@@ -209,6 +209,6 @@ class Programdashboard extends Controller
     
         $programs = Program::all();
     
-        return view('adminPages\programDashboard',['programs'=>$programs,'programDetailsArray'=>$programDetailsArray,'activeYaer'=>$activeYaer,'activeQuater'=>$activeQuater,'chart'=>$chart,'kpiNotScoredNames'=>$kpiNotScoredNames,'allKpis'=>$allKPIsRetrieved,'finalScore'=>$finalScore,'id'=>$id,'charts'=>$charts,'proramPersspectives'=>$proramPersspectives ]);
+        return view('adminPage.programDashboard',['programs'=>$programs,'programDetailsArray'=>$programDetailsArray,'activeYaer'=>$activeYaer,'activeQuater'=>$activeQuater,'chart'=>$chart,'kpiNotScoredNames'=>$kpiNotScoredNames,'allKpis'=>$allKPIsRetrieved,'finalScore'=>$finalScore,'id'=>$id,'charts'=>$charts,'proramPersspectives'=>$proramPersspectives ]);
     }
 }

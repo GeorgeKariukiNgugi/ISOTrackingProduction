@@ -101,6 +101,13 @@ desired effect
               <!-- The user image in the navbar-->
               <img src="{{asset('images/index.png')}}" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
+              @if (Auth::user()->name == null)
+
+                    @php
+                        return redirect('/login');
+                    @endphp
+                  
+              @endif
               <span class="hidden-xs">{{ Auth::user()->name }}</span>
             </a>
             <ul class="dropdown-menu">

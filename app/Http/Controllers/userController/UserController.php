@@ -788,7 +788,7 @@ class UserController extends Controller
 
         //! getting the details that will be sent to the closed non conformities.
             $closedNonConformities = closedNonConformityEvidence::all();        
-return view('user\nonConformities',['status'=> 'closed','closedNonConformities'=>$closedNonConformities,'nonConformities'=>$nonConformities,'id'=>$id,'state'=>$closed,'programmeName'=>$proramenameValue]);
+return view('user.nonConformities',['status'=> 'closed','closedNonConformities'=>$closedNonConformities,'nonConformities'=>$nonConformities,'id'=>$id,'state'=>$closed,'programmeName'=>$proramenameValue]);
     }     
  }
 

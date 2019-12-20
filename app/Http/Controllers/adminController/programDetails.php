@@ -32,7 +32,7 @@ class programDetails extends Controller
                 //!getting the kpi.
                 foreach($strategicObjectives as $strategicObjective){
 
-                   $kpis =  $strategicObjectives->keyPerfomaceIndicators;
+                   $kpis =  $strategicObjective->keyPerfomaceIndicators;
 
                    foreach ($kpis as $kpi) {
                        # code...

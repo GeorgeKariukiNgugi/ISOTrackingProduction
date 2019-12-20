@@ -17,11 +17,11 @@ class adminController extends Controller
 {
     public function addingANewProgramstep0(){
         $programs = Program::all();
-        return view('adminPages\addingNewProgramStep0',['programs'=>$programs]);
+        return view('adminPage.addingNewProgramStep0',['programs'=>$programs]);
     }
     public function addingANewProgramstep1(){
         $programs = Program::all();
-        return view('adminPages\addingNewProgramStep1',['programs'=>$programs]);
+        return view('adminPage.addingNewProgramStep1',['programs'=>$programs]);
     }
     public function submittingProgramDetails(validatingSubmittedData $request){
         $programs = Program::all();
@@ -70,7 +70,7 @@ class adminController extends Controller
             $unmetWeight = 0;
             $numbersSubmitted = 1;
             $sumOfWeight = 0;
-        return view('adminPages\addingNewProgramStep2',['programs'=>$programs,'sumOfWeight'=>$sumOfWeight,'numbersSubmitted'=>$numbersSubmitted,'unmetWeight'=>$unmetWeight,'id'=>$id,'name'=>$name,'progamShortHand'=>$progamShortHand,'progamCode'=>$progamCode]);
+        return view('adminPage.addingNewProgramStep2',['programs'=>$programs,'sumOfWeight'=>$sumOfWeight,'numbersSubmitted'=>$numbersSubmitted,'unmetWeight'=>$unmetWeight,'id'=>$id,'name'=>$name,'progamShortHand'=>$progamShortHand,'progamCode'=>$progamCode]);
     }
     public function submittingPerspectives(SubmittingPerspetive $request){
 
@@ -99,7 +99,7 @@ class adminController extends Controller
                 }
                 $programs = Program::all();
                 $sumOfWeight = 0;
-                return view('adminPages\addingNewProgramStep2',['programs'=>$programs,'sumOfWeight'=>$sumOfWeight,'unmetWeight'=>$sumOfWeight,'id'=>$id,'name'=>$request->name,'progamShortHand'=>$request->shorthand,'progamCode'=>$request->code]);
+                return view('adminPage.addingNewProgramStep2',['programs'=>$programs,'sumOfWeight'=>$sumOfWeight,'unmetWeight'=>$sumOfWeight,'id'=>$id,'name'=>$request->name,'progamShortHand'=>$request->shorthand,'progamCode'=>$request->code]);
             }
             $perspectives = array();
             // dd($id);
@@ -129,7 +129,7 @@ class adminController extends Controller
                     $insertingPerspective->save();
                 }
                 $programs = Program::all();
-                return view('adminPages\addingNewProgramStep3',['programs'=>$programs,'id'=>$id,'name'=>$request->name,'progamShortHand'=>$request->shorthand,'progamCode'=>$request->code]);
+                return view('adminPage.addingNewProgramStep3',['programs'=>$programs,'id'=>$id,'name'=>$request->name,'progamShortHand'=>$request->shorthand,'progamCode'=>$request->code]);
         }
         elseif($perspective == 'custom'){
 
@@ -146,7 +146,7 @@ class adminController extends Controller
                 $programs = Program::all();
                 $unmetWeight = 0;
                 $sumOfWeight = 0;
-                return view('adminPages\addingNewProgramStep2',['programs'=>$programs,'sumOfWeight'=>$sumOfWeight,'unmetWeight'=>$unmetWeight,'numbersSubmitted'=>$numbersSubmitted,'id'=>$id,'name'=>$request->name,'progamShortHand'=>$request->shorthand,'progamCode'=>$request->code]);
+                return view('adminPage.addingNewProgramStep2',['programs'=>$programs,'sumOfWeight'=>$sumOfWeight,'unmetWeight'=>$unmetWeight,'numbersSubmitted'=>$numbersSubmitted,'id'=>$id,'name'=>$request->name,'progamShortHand'=>$request->shorthand,'progamCode'=>$request->code]);
             }
             else{
 
@@ -162,7 +162,7 @@ class adminController extends Controller
                     # code...
                     $programs = Program::all();
                     $unmetWeight = 0;
-                    return view('adminPages\addingNewProgramStep2',['programs'=>$programs,'sumOfWeight'=>$sumOfWeight,'unmetWeight'=>$unmetWeight,'numbersSubmitted'=>$numbersSubmitted,'id'=>$id,'name'=>$request->name,'progamShortHand'=>$request->shorthand,'progamCode'=>$request->code]);
+                    return view('adminPage.addingNewProgramStep2',['programs'=>$programs,'sumOfWeight'=>$sumOfWeight,'unmetWeight'=>$unmetWeight,'numbersSubmitted'=>$numbersSubmitted,'id'=>$id,'name'=>$request->name,'progamShortHand'=>$request->shorthand,'progamCode'=>$request->code]);
                 } else {
 
                     // dd($id);
@@ -188,7 +188,7 @@ class adminController extends Controller
 
                     }
                     $programs = Program::all();
-                    return view('adminPages\addingNewProgramStep3',['programs'=>$programs,'id'=>$id,'name'=>$request->name,'progamShortHand'=>$request->shorthand,'progamCode'=>$request->code]);
+                    return view('adminPage.addingNewProgramStep3',['programs'=>$programs,'id'=>$id,'name'=>$request->name,'progamShortHand'=>$request->shorthand,'progamCode'=>$request->code]);
 
                 }
                 

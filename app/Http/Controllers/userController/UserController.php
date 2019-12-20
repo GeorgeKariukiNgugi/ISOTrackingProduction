@@ -767,7 +767,7 @@ class UserController extends Controller
                                             ->get();
 
         // dd("Overdue  ".count( $nonConformities ));  
-        return view('user\nonConformities',['status'=> 'open','nonConformities'=>$nonConformities,'id'=>$id,'state'=>$closed,'programmeName'=>$proramenameValue]);
+        return view('user.nonConformities',['status'=> 'open','nonConformities'=>$nonConformities,'id'=>$id,'state'=>$closed,'programmeName'=>$proramenameValue]);
 
     } else if ($closed == 0){
         $nonConformities = NonConformities::where('openClosed', '=', 'open')
@@ -776,7 +776,7 @@ class UserController extends Controller
                                             ->where('program_id','=',$id)
                                             ->orderBy('date', 'asc')
                                             ->get();
-        return view('user\nonConformities',['status'=> 'open','nonConformities'=>$nonConformities,'id'=>$id,'state'=>$closed,'programmeName'=>$proramenameValue]);  
+        return view('user.nonConformities',['status'=> 'open','nonConformities'=>$nonConformities,'id'=>$id,'state'=>$closed,'programmeName'=>$proramenameValue]);  
 
     }
     else if ($closed == 2){
@@ -854,6 +854,6 @@ $closedNCEvidence->save();
 public function video($programId){
     $programs = Program::all();
 
-    return view('user\video',['programs'=>$programs,'id'=>$programId]);
+    return view('user.video',['programs'=>$programs,'id'=>$programId]);
 }
 }

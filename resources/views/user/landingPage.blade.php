@@ -388,8 +388,8 @@
                       <div class="modal-header" style="background-color:#a3e253" ><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                           <h4 class="text-center modal-title" style="font-family:'Times New Roman', Times, serif">Kindly Fill The Following Fields to Complete Assesing :: <strong>{{$kpiModal->name}}.</strong></h4>
                       </div>
-                      <div id="{{"NonConformitymodal".$kpiModal->id}}"></div>
                       <div class="modal-body" style="background-color:#cfeda8;">
+                        <div id="{{"NonConformitymodal".$kpiModal->id}}"></div>
                           <form id="{{"unmetTargetModal".$kpiModal->id}}" class = "{{"unmetTargetModal".$kpiModal->id}}">
                             {{ csrf_field() }}
                             <input type="hidden" name="nonConformitykpiId" value="{{$kpiModal->id}}">

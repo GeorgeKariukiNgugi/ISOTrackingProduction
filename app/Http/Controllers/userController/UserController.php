@@ -510,7 +510,7 @@ class UserController extends Controller
 
                     //  return "saved Data.";
                     $errorMessage = '<div role="alert" class="alert alert-success" style="width:70%;text-align:center;margin-right:15%;margin-top:1%;margin-left:15%;"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><span class="text-capitalize"><strong>'.
-                    "Root Cause, Correction and corrective actions successfully saved. Close PopUp To Continue.'".$kpi->name.
+                    "Root Cause, Correction and corrective actions successfully saved. Close PopUp To Continue.'".
                         "</strong><br /></span></div>";
                     // return response()->json(['success'=>'Root Cause, Correction and corrective actions successfully saved. Close PopUp To Continue.']);
                     return response()->json(['success'=>$errorMessage]);

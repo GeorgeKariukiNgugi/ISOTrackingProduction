@@ -63,7 +63,12 @@ class UserController extends Controller
             //!checking if the flag value is positive or negative.
             if ($formFlagInputValue == 1) {                
                 if($numberOfReturnedNonConformities == 0){
-                    return response()->json(['success'=>' SCORES NOT SUBMITTED. Kindly Add The Non conformity reasons for the kpi  '.$kpi->name]);
+                    $errorMessage = '<div role="alert" class="alert alert-danger" style="width:70%;text-align:center;margin-right:15%;margin-top:1%;margin-left:15%;"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><span class="text-capitalize"><strong>'.
+                    "SCORES NOT SUBMITTED. Kindly Add The Non conformity reasons for the kpi".$kpi->name.
+                        "</strong><br /></span></div>";
+                    // return response()->json(['success'=>' SCORES NOT SUBMITTED. Kindly Add The Non conformity reasons for the kpi  '.$kpi->name]);
+                    return response()->json(['success'=>$errorMessage]);
+
                 }                
             }
             else if($formFlagInputValue == 0){
@@ -145,7 +150,11 @@ class UserController extends Controller
             // dd(count($allKPIScoresWithSameYear));
             $numberOfReturnedScores = count($allKPIScoresWithSameYear);
             if($numberOfReturnedScores<1){
-                return response()->json(['success'=>'There is an error incalculating the ytds, contact the Admin For Help.']);
+                $errorMessage = '<div role="alert" class="alert alert-danger" style="width:70%;text-align:center;margin-right:15%;margin-top:1%;margin-left:15%;"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><span class="text-capitalize"><strong>'.
+                    "There is an error incalculating the ytds, contact the Admin For Help.".
+                        "</strong><br /></span></div>";
+                // return response()->json(['success'=>'There is an error incalculating the ytds, contact the Admin For Help.']);
+                return response()->json(['success'=>$errorMessage]);
             }
             $averageThatBecomesytd = 0;
             //!getting the period of the kpi that is being asses.
@@ -414,8 +423,11 @@ class UserController extends Controller
                 );
                 $savingTheStrateicObjective->save();
             }
-
-        return response()->json(['success'=>'Data has been saved successsfully, Move to the Next Objective'.$kpiNumber]);
+            $errorMessage = '<div role="alert" class="alert alert-success" style="width:70%;text-align:center;margin-right:15%;margin-top:1%;margin-left:15%;"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><span class="text-capitalize"><strong>'.
+                    "Data has been saved successsfully, Move to the Next Objective".
+                        "</strong><br /></span></div>";
+        // return response()->json(['success'=>'Data has been saved successsfully, Move to the Next Objective'.$kpiNumber]);
+        return response()->json(['success'=>$errorMessage]);
     }
 
 
@@ -497,7 +509,11 @@ class UserController extends Controller
                     $savingNonConformity->save();
 
                     //  return "saved Data.";
-                    return response()->json(['success'=>'Root Cause, Correction and corrective actions successfully saved. Close PopUp To Continue.']);
+                    $errorMessage = '<div role="alert" class="alert alert-success" style="width:70%;text-align:center;margin-right:15%;margin-top:1%;margin-left:15%;"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><span class="text-capitalize"><strong>'.
+                    "Root Cause, Correction and corrective actions successfully saved. Close PopUp To Continue.'".$kpi->name.
+                        "</strong><br /></span></div>";
+                    // return response()->json(['success'=>'Root Cause, Correction and corrective actions successfully saved. Close PopUp To Continue.']);
+                    return response()->json(['success'=>$errorMessage]);
          } 
          else if ($countingReturnedNonConformities == 1){
              # code...
@@ -515,11 +531,20 @@ class UserController extends Controller
                 $NonConformityWithGivenKPI->program_id=$programId;
                 $NonConformityWithGivenKPI->save();
 
-                return response()->json(['success'=>'Root Cause, Correction and corrective actions successfully UPDATED. Close PopUp To Continue.']);
+                $errorMessage = '<div role="alert" class="alert alert-success" style="width:70%;text-align:center;margin-right:15%;margin-top:1%;margin-left:15%;"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><span class="text-capitalize"><strong>'.
+                    "'Root Cause, Correction and corrective actions successfully UPDATED. Close PopUp To Continue.".
+                        "</strong><br /></span></div>";
+
+                // return response()->json(['success'=>'Root Cause, Correction and corrective actions successfully UPDATED. Close PopUp To Continue.']);
+                return response()->json(['success'=>$errorMessage]);
              }
          }
          else{
-            return response()->json(['success'=>'Non conformity details cannot be accessed at this time. Kindly Contact Admin.']);
+            $errorMessage = '<div role="alert" class="alert alert-danger" style="width:70%;text-align:center;margin-right:15%;margin-top:1%;margin-left:15%;"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><span class="text-capitalize"><strong>'.
+            "Non conformity details cannot be accessed at this time. Kindly Contact Admin.".
+                "</strong><br /></span></div>";
+            // return response()->json(['success'=>'Non conformity details cannot be accessed at this time. Kindly Contact Admin.']);
+            return response()->json(['success'=>$errorMessage]);
          }        
     }
 
@@ -545,7 +570,10 @@ class UserController extends Controller
         );
         // dd($newStrategicObjective);
         $savingKPI->save();
-        return response()->json(['success'=>'New KPI Added. Close PopUp To Continue.']);
+        $errorMessage = '<div role="alert" class="alert alert-success" style="width:70%;text-align:center;margin-right:15%;margin-top:1%;margin-left:15%;"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><span class="text-capitalize"><strong>'.
+                    "New KPI Added. Close PopUp To Continue.".
+                        "</strong><br /></span></div>";
+        return response()->json(['success'=>$errorMessage]);
     }
  //! TTHIS IS THE CONTROLLER THAT IS USED TO HANDLE ALL THE DASHBOARD GRAPH GENERATION.
  

@@ -17,10 +17,10 @@ $(document).ready(function () {
             success: function (data) {
                 var html = "";
                 if (data.success) {
-                    html =
-                        '<div role="alert" class="alert alert-warning" style="width:70%;text-align:center;margin-right:15%;margin-top:1%;margin-left:15%;"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><span class="text-capitalize"><strong>' +
-                        data.success +
-                        "</strong><br /></span></div>";
+                    html = data.success
+                    // '<div role="alert" class="alert alert-warning" style="width:70%;text-align:center;margin-right:15%;margin-top:1%;margin-left:15%;"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><span class="text-capitalize"><strong>' +
+                    // data.success +
+                    // "</strong><br /></span></div>";
                 }
 
                 $("#" + alertName).html(html);

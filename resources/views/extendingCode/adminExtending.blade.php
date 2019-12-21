@@ -10,7 +10,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <title>ISO NC Tracker.</title>
   <!-- Tell the browser to be responsive to screen width -->
 
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+{{-- <meta http-equiv="refresh" content="10;/logOut" /> --}}
 <link rel="apple-touch-icon" sizes="180x180" href="{{asset("images/apple-touch-icon.png")}}">
 <link rel="icon" type="image/png" sizes="32x32" href="{{asset("images/favicon-32x32.png")}}">
 <link rel="icon" type="image/png" sizes="16x16" href="{{asset("images/favicon-16x16.png")}}">

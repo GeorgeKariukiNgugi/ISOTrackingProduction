@@ -570,10 +570,29 @@ class UserController extends Controller
         );
         // dd($newStrategicObjective);
         $savingKPI->save();
+        $responseArray = array();
         $errorMessage = '<div role="alert" class="alert alert-success" style="width:70%;text-align:center;margin-right:15%;margin-top:1%;margin-left:15%;"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><span class="text-capitalize"><strong>'.
-                    "New KPI Added. Close PopUp To Continue.".
+                    "New KPI  '".$savingKPI->name ."'   Has Been Added".
                         "</strong><br /></span></div>";
-        return response()->json(['success'=>$errorMessage]);
+
+        //! this section is used to get the active quater and then activate the correct quater.
+        $activeQuaters = QuaterActive::where('Active','=',1)->get();  
+        
+        foreach ($activeQuaters as $activeQuater) {
+
+            $quater = $activeQuater->Quater;
+            # code...
+        }
+        
+        array_push($responseArray,$errorMessage);                        
+        array_push($responseArray,$savingKPI->id);
+        array_push($responseArray,$savingKPI->name);               
+        array_push($responseArray,$savingKPI->arithmeticStructure);
+        array_push($responseArray,$savingKPI->target);
+        array_push($responseArray,$savingKPI->period);
+        array_push($responseArray,$quater);
+        
+        return response()->json(['success'=>$responseArray]);
     }
  //! TTHIS IS THE CONTROLLER THAT IS USED TO HANDLE ALL THE DASHBOARD GRAPH GENERATION.
  

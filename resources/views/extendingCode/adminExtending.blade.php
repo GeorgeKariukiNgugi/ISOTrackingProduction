@@ -9,7 +9,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>ISO NC Tracker.</title>
   <!-- Tell the browser to be responsive to screen width -->
-
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 {{-- <meta http-equiv="refresh" content="10;/logOut" /> --}}
 <link rel="apple-touch-icon" sizes="180x180" href="{{asset("images/apple-touch-icon.png")}}">
@@ -81,9 +80,9 @@ desired effect
     <!-- Logo -->
     <a href="/home" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>S</b>AF</span>
+      <span class="logo-mini"><b>I</b>SO</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg" style="font-family:'Times New Roman', Times, serif;"><b>Saf Iso NC Tracker</b></span>
+      <span class="logo-lg"><b style="font-family:'Times New Roman', Times, serif">ISO SCORECARD.</b></span>
     </a>
 
     <!-- Header Navbar -->
@@ -246,11 +245,12 @@ desired effect
   <footer class="main-footer">
     <!-- To the right -->
     <!-- Default to the left -->
-
-    @php
-        
-    @endphp
-    <strong>Copyright &copy; 2019 <a href="#">Safaricom PLC.</a></strong> All rights reserved.
+    <strong>Copyright &copy; 2019 - 
+      
+      <script>
+       document.write(new Date().getFullYear())
+        </script>
+      <a> Safaricom PLC.  </a></strong> All rights reserved.
   </footer>
 
   <!-- Control Sidebar -->

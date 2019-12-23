@@ -117,6 +117,9 @@
             @if ($numberOfKPI <= 0)
             <div>
                 <div class="box-body">
+                  
+                  <div id= "{{"addingNewKPIInStrategicObjectiveID".$strategicObjective->id}}">
+                  </div>
                     <h4 style="text-align:center;">There are no key perfomance indicators for this strategic objective. <b> Click on the add button to add the kpis.</b></h4>
                 </div>
               <div class="box-footer clearfix">
@@ -218,7 +221,7 @@
                                        <p class="text-center" style="font-size:16px;"><strong>Target Met ?</strong><br /></p>
                                    </div>
                                </div>
-                              
+                              <div id= "{{"addingNewKPIInStrategicObjectiveID".$strategicObjective->id}}">
                                @foreach ($kpis as $kpi)
 
                                @php
@@ -365,8 +368,9 @@
                                         </div>
                                         <input type="hidden" name = "{{"nonConformityFlag".$kpi->id}}" value= "2" id = "{{"nonConformityFlag".$kpi->id}}">
                                         <input type="hidden" name="{{"period".$kpi->id}}"  id="{{"period".$kpi->id}}" value="{{$kpi->period}}">
-                                      </div>
+                                      </div>                                  
                                @endforeach
+                                    </div>
                                <div class="box-footer">   
                                 {{-- Adding the Modal That is used to add the Key Perfomance Indicators.  --}}
                                 {{-- id="{{ "modal".$originalObjectiveName}} --}}                                                                    
@@ -388,8 +392,8 @@
                       <div class="modal-header" style="background-color:#a3e253" ><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                           <h4 class="text-center modal-title" style="font-family:'Times New Roman', Times, serif">Kindly Fill The Following Fields to Complete Assesing :: <strong>{{$kpiModal->name}}.</strong></h4>
                       </div>
-                      <div id="{{"NonConformitymodal".$kpiModal->id}}"></div>
                       <div class="modal-body" style="background-color:#cfeda8;">
+                        <div id="{{"NonConformitymodal".$kpiModal->id}}"></div>
                           <form id="{{"unmetTargetModal".$kpiModal->id}}" class = "{{"unmetTargetModal".$kpiModal->id}}">
                             {{ csrf_field() }}
                             <input type="hidden" name="nonConformitykpiId" value="{{$kpiModal->id}}">

@@ -19,6 +19,11 @@ use App\KeyPerfomanceIndicatorScore;
 use  App\Charts\DashBoardCharts;
 class HomeController extends Controller
 {
+
+    public function logOut(){
+        Auth::logout();
+        return redirect('/login');
+    }
     /**
      * Create a new controller instance.
      *

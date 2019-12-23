@@ -133,13 +133,13 @@ desired effect
               <img src="{{asset('images/index.png')}}" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
 
-              @if (Auth::user()->name == null)
+              @if (Auth::user() == null)
 
               @php
-                  return redirect('/login');
+                  return redirect('/logoutToLogIn');
               @endphp
             
-        @endif
+              @endif
 
               <span class="hidden-xs">{{ Auth::user()->name }}</span>
             </a>

@@ -146,4 +146,6 @@ Route::get('/reports/{id}','userController\reports@viewReports');
 
 Route::get('/adminReports', 'userController\reports@adminReports');
 
-Route::get('/logoutToLogIn','HomeController@logOut');
+Route::get('/logoutToLogIn','HomeController@logOut'); 
+
+Route::get('/trends','adminController\trends@trialTrends');

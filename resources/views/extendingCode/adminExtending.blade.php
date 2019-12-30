@@ -170,6 +170,8 @@ desired effect
         <li class="header" style="color:white;font-decoration:bold;">OPTIONS.</li>
         <br>
         <!-- Optionally, you can add icons to the links -->
+        <li><a href="/home"><i class="fa fa-home"></i> <span>Home</span></a></li>
+        <li><a href="/trends"><i class="fa fa-line-chart"></i> <span>Trends</span></a></li>
         <li><a href="/addingNewProramStep0"><i class="fa fa-plus"></i> <span>Add New Program</span></a></li>
         <li><a href="/assesmentCalender"><i class="fa fa-calendar-plus-o"></i> <span> Assesing Calender</span></a></li>
         <li><a href="/viewingAssesors"><i class="fa fa-users"></i> <span> Program Assesors.</span></a></li>

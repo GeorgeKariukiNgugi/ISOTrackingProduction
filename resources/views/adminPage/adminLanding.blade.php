@@ -49,6 +49,7 @@
                       <tr>
                           <th>Program</th>
                           <th>Assesed All KPIs??</th>
+                          <th>Actions</th>
                       </tr>
                   </thead>
                   <tbody>
@@ -68,6 +69,9 @@
                               {{$checkingIfAssesed[$i]. "  KPIs  for ".$activeYaer.'  '.$activeQuater."Have Not Been Assesed."}}
                               <b><i class=" fa  fa-adjust" style="color:orange;font-size:30px;"></i></b>
                             @endif
+                        </td>
+                        <td> 
+                          <a class="btn btn-success btn-sm" role="button" href="#"><i class="fa fa-send"></i><strong>Send Reminder Email.</strong></a>
                         </td>
                     </tr>
                     @endfor

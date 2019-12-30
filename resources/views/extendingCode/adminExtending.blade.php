@@ -203,10 +203,11 @@ desired effect
                 </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="{{"/programDetails/".$program->id}}">{{$program->shortHand}} Details.</a></li>
-              <li><a href="{{"/programMatrices/".$program->id}}">{{$program->shortHand}} Matrices</a></li>
-              <li><a href="{{"/scores/".$program->id}}">{{$program->shortHand}} Scores</a></li>
-              <li><a href="{{"/programDashboard/".$program->id}}">{{$program->shortHand}} Current Dashboard.</a></li>
+              <li><a href="#"><i class="fa fa-line-chart"></i> <span> Trends.</span></a></li>
+              <li><a href="{{"/programDetails/".$program->id}}"><i class="fa fa-th-list"></i>{{$program->shortHand}} Details.</a></li>
+              <li><a href="{{"/programMatrices/".$program->id}}"><i class="fa fa-edit"></i>{{$program->shortHand}} Matrices</a></li>
+              <li><a href="{{"/scores/".$program->id}}"><i class="fa fa-percent"></i>{{$program->shortHand}} Scores</a></li>
+              <li><a href="{{"/programDashboard/".$program->id}}"><i class="fa fa-dashboard"></i> {{$program->shortHand}} Current Dashboard.</a></li>
             </ul>
           </li>
         @endforeach        

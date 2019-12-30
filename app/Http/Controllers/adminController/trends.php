@@ -18,7 +18,7 @@ class trends extends Controller
         $data3 = [0,14,33];
         $data4 = [0,18,44];
         $data5 = [0,17,19];
-        $data6 = [0,45,50];
+        $data6 = [0,00,50];
         $trialCharts->labels(['2019 Q1', '2019 Q2', '2019 Q3']);
         $trialCharts->dataset('ISMS', 'line', $data1)->fill(false)->color("rgb(255, 99, 132)");
         $trialCharts->dataset('ITSMS', 'line', $data2)->fill(false)->color("rgb(0, 0, 255)");

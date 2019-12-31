@@ -40,21 +40,21 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>Perspectives ScoreCard.</th>
-                        <th></th>
+                        <th style="text-align:center;" colspan="2">Perspectives ScoreCard.</th>
+                        {{-- <th></th> --}}
                     </tr>
                 </thead>
                 <tbody>
                     @for ($i = 0; $i < $numberOfPerspectives; $i++)
                         <tr style="background-color:#F5F5F5;" >
-                            <td style="text-align:center;">
+                            <td style="text-align:center;" colspan="2">
                                 @php
                                      $name = str_replace('_', ' ',$perspectiveNameArray[$i]);
                                      $name = ucwords($name);
                                 @endphp
                                    <b>{{$name}}</b> 
                             </td>
-                            <td></td>
+                            
                         </tr>
                                 @php
                                     $counting = $i;
@@ -110,7 +110,7 @@
                             <h3 style="color:red;">FINAL SCORE:</h3>
                         </td>
                         <td>
-                                <h3 style="color:red;">{{$finalSScore."%"}}</h3>
+                                <h3 style="color:red;">{{sprintf("%.2f",$finalSScore)."%"}}</h3>
                         </td>
                         
                         

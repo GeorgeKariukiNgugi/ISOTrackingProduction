@@ -12,7 +12,7 @@ class StrategicObjectiveScore extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'score', 'year', 'strategicObjective_id', 'perspective_id'
+        'id', 'score', 'year', 'strategicObjective_id', 'perspective_id','quater'
     ];
 
     /**

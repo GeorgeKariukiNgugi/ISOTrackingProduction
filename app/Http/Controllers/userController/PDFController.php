@@ -14,7 +14,7 @@ class PDFController extends Controller
 {
     public function downloadPFD($id){
         $idRetrieved = $id;
-
+        // dd($id);
         $activeYaerCollections = YearActive::where('Active','=',1)->get();
         foreach($activeYaerCollections as $activeYaerCollection){
             $activeYaer = $activeYaerCollection->Year;
@@ -49,13 +49,20 @@ class PDFController extends Controller
                 # code...
                 $perspectiveId = $perspective->id;
                 $strategicObjectiveNumbers = count($perspective->strategicObjectives);
-                $strategicObjectiveScores = count($perspective->strategicObjectiveScores);
+                // $strategicObjectiveScores = count($perspective->strategicObjectiveScores);
 
-                if($strategicObjectiveScores == $strategicObjectiveNumbers){
+                //! this section of the code is used to get the strategic objectives that have been stored. 
+                $strategicObjectiveScores = StrategicObjectiveScore::where('year','=',$activeYaer)
+                                                                    ->where('quater','=',$activeQuater)
+                                                                    ->where('perspective_id','=',$perspectiveId)
+                                                                    ->get();
+
+                // dd(count($scoredStrategicObjectives));
+                if(count($strategicObjectiveScores) == $strategicObjectiveNumbers){
                     $strategicObjectivesSum = 0;
                     $strateicObjectiveAverage = 0;      
                     //!pushing the number of strategic objectives to the array.
-                    array_push($trackingNumberArray,count($perspective->strategicObjectiveScores));
+                    array_push($trackingNumberArray,count($strategicObjectiveScores));
                     //! pushing the perspective name to the array.
                     array_push($perspectiveNameArray,$perspective->name);
 
@@ -66,7 +73,7 @@ class PDFController extends Controller
                         array_push($strategicObjectiveNameArray,$strategicObjective->name);
 
                         //!getting the rhyming strategic objective scores.
-                        $trategicObjectiveScores = StrategicObjectiveScore::where('strategicObjective_id','=',$strategicObjective->id)->where('year','=',$activeYaer)->get();                        
+                        $trategicObjectiveScores = StrategicObjectiveScore::where('strategicObjective_id','=',$strategicObjective->id)->where('year','=',$activeYaer)->where('quater','=',$activeQuater)->get();                        
 
                         foreach ($trategicObjectiveScores as $trategicObjectiveScore) {
                             # code...

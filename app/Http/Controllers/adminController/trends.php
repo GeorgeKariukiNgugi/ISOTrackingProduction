@@ -112,4 +112,8 @@ class trends extends Controller
         $programs = Program::all();
         return view('adminPage.trends',['trialCharts'=>$trialCharts,'programs'=>$programs,'usersChart'=>$usersChart]);
     }
+
+    public function mainController(){
+        
+    }
 }

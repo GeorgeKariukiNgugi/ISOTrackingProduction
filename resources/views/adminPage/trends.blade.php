@@ -14,7 +14,7 @@
   <h3 style="text-align:left;font-family:'Times New Roman', Times, serif;">Trends Table Of Contents.</h3>
   <ol style="text-align:left;font-family:'Times New Roman', Times, serif;">
     <li>
-      <a href=""> Line Graph Trends For All Programs.</a>
+      <a href="#trendLineGraphs"> Line Graph Trends For All Programs.</a>
     </li>
     <li>
       <a href=""> Grouped Bar Chart 2019 Quaterly Trends Per Programs</a>
@@ -37,7 +37,7 @@
       </div>
 </div> 
 </div>
-<div class="row" style="">
+<div class="row" style="" id="trendLineGraphs">
   <div class="col-md-10 col-md-offset-1">
     <div class="box box-danger">
         <div class="box-header with-border text-center" >

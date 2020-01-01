@@ -171,7 +171,19 @@ desired effect
         <br>
         <!-- Optionally, you can add icons to the links -->
         <li><a href="/home"><i class="fa fa-home"></i> <span>Home</span></a></li>
-        <li><a href="/trends"><i class="fa fa-line-chart"></i> <span>Trends</span></a></li>
+        {{-- <li><a href="/trends"><i class="fa fa-line-chart"></i> <span>Trends</span></a></li> --}}
+        <li class="treeview">
+          <a href="#"><i class="fa fa-line-chart"></i> <span>Trends</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href = "/programTrends"> <i class="fa fa-line-chart"></i> <span>Programs Trends.</span></a></li>
+            <li><a href = "#"> <i class="fa fa-line-chart"></i>  <span>Perspectives Trends.</span></a></li>
+            <li><a href = "#"> <i class="fa fa-line-chart" ></i>  <span> other Trends Observed.</span></a></li>
+          </ul>
+        </li>
         <li><a href="/addingNewProramStep0"><i class="fa fa-plus"></i> <span>Add New Program</span></a></li>
         <li><a href="/assesmentCalender"><i class="fa fa-calendar-plus-o"></i> <span> Assesing Calender</span></a></li>
         <li><a href="/viewingAssesors"><i class="fa fa-users"></i> <span> Program Assesors.</span></a></li>

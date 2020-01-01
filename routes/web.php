@@ -149,3 +149,6 @@ Route::get('/adminReports', 'userController\reports@adminReports');
 Route::get('/logoutToLogIn','HomeController@logOut'); 
 
 Route::get('/trends','adminController\trends@trialTrends');
+
+//! this route is used to get the trends about the programs per quater.
+Route::get('/programTrends','adminController\trends@mainController');

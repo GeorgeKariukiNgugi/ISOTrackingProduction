@@ -141,7 +141,9 @@ class trends extends Controller
 
             $groupedBarChartForProgramProgress = new DashBoardCharts;
             $groupedBarChartForProgramProgress->minimalist(false);
-            // $groupedBarChartForProgramProgress->height(550);
+
+           
+            $groupedBarChartForProgramProgress->height(550);
 
             $quaterSubStr = substr($activeQuater,1); 
             $quaterSubStr = $quaterSubStr+0;
@@ -152,6 +154,7 @@ class trends extends Controller
                 # code...
                 // dd("data.");
                 $quaterScoresPerProgramArray = array();
+                
             foreach($programs as $program){
 
                 //! this is the array that is used to hold the program scores per quater.
@@ -196,9 +199,8 @@ class trends extends Controller
             $groupedBarChartForProgramProgress->dataset( $activeYaer.' Quater'.$i,'bar', $quaterScoresPerProgramArray)
             ->color($borderColors[$i])
             ->backgroundcolor($fillColors[$i]);
-
             }   
-
+           
             //! this section of the code is used to get the labels that will be used for the labels of the program.
             foreach($programs as $programLabel){
                 array_push($programsNames,$programLabel->shortHand);
@@ -210,11 +212,18 @@ class trends extends Controller
             //! THIS SECTION OF THE CODE IS USED TO GET THE GROUPED BAR CHART THAT IS BASED ON THE QUATERS. 
             $groupedBarChartForProgramProgressQuaterly = new DashBoardCharts;
             $groupedBarChartForProgramProgressQuaterly->minimalist(false);
-            // $groupedBarChartForProgramProgressQuaterly->height(550);
+            $groupedBarChartForProgramProgressQuaterly->height(550);
+
+
+            $groupedLineGraph = new DashBoardCharts;
+            $groupedLineGraph->minimalist(false);
+            $groupedLineGraph->height(550);
+
             $colorCode = 0;
             foreach($programs as $program){
                 $colorCode++;
                 $quaterScoresPerProgramArray = array();
+                $quaterScoresPerProgramArrayLineGraph = [0];
             for ($i=1; $i <= $quaterSubStr ; $i++) { 
 
                 $quater = 'Q'.$i;
@@ -247,16 +256,28 @@ class trends extends Controller
 
             }  
             array_push($quaterScoresPerProgramArray,$finalScore);
+            array_push($quaterScoresPerProgramArrayLineGraph,$finalScore);
+            
+            
         }  
         $groupedBarChartForProgramProgressQuaterly->dataset( $program->shortHand,'bar', $quaterScoresPerProgramArray)
         ->color($borderColors[$colorCode])
-        ->backgroundcolor($fillColors[$colorCode]);        
+        ->backgroundcolor($fillColors[$colorCode]);
+
+        $groupedLineGraph->dataset($program->shortHand, 'line', $quaterScoresPerProgramArrayLineGraph)->fill(false)->color($program->colorCode);
+
         }
         $quaterNames = array();
+        $quaterNamesForLineGraph = ['Start Of  '.$activeYaer];
         for ($i=1; $i <= $quaterSubStr ; $i++) { 
             array_push($quaterNames, $activeYaer. '   Q'.$i);
-        } 
-        $groupedBarChartForProgramProgressQuaterly->labels($quaterNames);  
-        return view('adminPage.trends.programTrend',['programs'=>$programs,'groupedBarChartForProgramProgressQuaterly'=>$groupedBarChartForProgramProgressQuaterly,'groupedBarChartForProgramProgress'=>$groupedBarChartForProgramProgress]);
+            array_push($quaterNamesForLineGraph, $activeYaer. '   Q'.$i);
+        }
+
+        $groupedBarChartForProgramProgressQuaterly->labels($quaterNames); 
+        $groupedLineGraph->labels($quaterNamesForLineGraph); 
+
+
+        return view('adminPage.trends.programTrend',['programs'=>$programs, 'year'=>$activeYaer,'groupedLineGraph'=>$groupedLineGraph,'groupedBarChartForProgramProgressQuaterly'=>$groupedBarChartForProgramProgressQuaterly,'groupedBarChartForProgramProgress'=>$groupedBarChartForProgramProgress]);
     }
 }

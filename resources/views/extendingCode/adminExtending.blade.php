@@ -180,7 +180,7 @@ desired effect
           </a>
           <ul class="treeview-menu">
             <li><a href = "/programTrends"> <i class="fa fa-line-chart"></i> <span>Programs Trends.</span></a></li>
-            <li><a href = "#"> <i class="fa fa-line-chart"></i>  <span>Perspectives Trends.</span></a></li>
+            <li><a href = "/perspetivesTrends"> <i class="fa fa-line-chart"></i>  <span>Perspectives Trends.</span></a></li>
             <li><a href = "#"> <i class="fa fa-line-chart" ></i>  <span> other Trends Observed.</span></a></li>
           </ul>
         </li>

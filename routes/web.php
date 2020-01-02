@@ -151,4 +151,7 @@ Route::get('/logoutToLogIn','HomeController@logOut');
 Route::get('/trends','adminController\trends@trialTrends');
 
 //! this route is used to get the trends about the programs per quater.
-Route::get('/programTrends','adminController\trends@mainController');
+Route::get('/programTrends','adminController\trends@mainController'); 
+
+//! this route is used to ge the trends that are related to the perspectives. 
+Route::get('/perspetivesTrends','adminController\trends@persectiveTrends');

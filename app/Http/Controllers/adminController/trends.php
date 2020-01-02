@@ -141,8 +141,6 @@ class trends extends Controller
 
             $groupedBarChartForProgramProgress = new DashBoardCharts;
             $groupedBarChartForProgramProgress->minimalist(false);
-
-           
             $groupedBarChartForProgramProgress->height(550);
 
             $quaterSubStr = substr($activeQuater,1); 
@@ -279,5 +277,122 @@ class trends extends Controller
 
 
         return view('adminPage.trends.programTrend',['programs'=>$programs, 'year'=>$activeYaer,'groupedLineGraph'=>$groupedLineGraph,'groupedBarChartForProgramProgressQuaterly'=>$groupedBarChartForProgramProgressQuaterly,'groupedBarChartForProgramProgress'=>$groupedBarChartForProgramProgress]);
+    }
+
+    public function persectiveTrends(){
+        $programs = Program::all();
+
+        $borderColors = [
+            "rgba(255, 99, 132, 1.0)",
+            "rgba(22,160,133, 1.0)",
+            "rgba(255, 205, 86, 1.0)",
+            "rgba(51,105,232, 1.0)",
+            "rgba(244,67,54, 1.0)",
+            "rgba(34,198,246, 1.0)",
+            "rgba(153, 102, 255, 1.0)",
+            "rgba(255, 159, 64, 1.0)",
+            "rgba(233,30,99, 1.0)",
+            "rgba(205,220,57, 1.0)"
+        ];
+        $fillColors = [
+            "rgba(255, 99, 132, 0.2)",
+            "rgba(22,160,133, 0.2)",
+            "rgba(255, 205, 86, 0.2)",
+            "rgba(51,105,232, 0.2)",
+            "rgba(244,67,54, 0.2)",
+            "rgba(34,198,246, 0.2)",
+            "rgba(153, 102, 255, 0.2)",
+            "rgba(255, 159, 64, 0.2)",
+            "rgba(233,30,99, 0.2)",
+            "rgba(205,220,57, 0.2)"
+        ];
+
+        $activeYaerCollections = YearActive::where('Active','=',1)->get();
+        foreach($activeYaerCollections as $activeYaerCollection){
+            $activeYaer = $activeYaerCollection->Year;
+            // dd($activeYaer);
+        }
+        $activeQuaterCollections = QuaterActive::where('Active','=',1)->get();
+            foreach($activeQuaterCollections as $activeQuaterCollection){
+                $activeQuater = $activeQuaterCollection->Quater;
+                // dd($activeQuater);
+        }
+
+            $groupedBarChartForPerspectiveProgress = new DashBoardCharts;
+            $groupedBarChartForPerspectiveProgress->minimalist(false);
+            $groupedBarChartForPerspectiveProgress->height(550);
+
+            $quaterSubStr = substr($activeQuater,1); 
+            $quaterSubStr = $quaterSubStr+0;
+            // dd($quaterSubStr); 
+            $programsNames = array();
+
+            // for ($i=1; $i <= $quaterSubStr ; $i++) { 
+                
+                $programColor = 0;
+                foreach($programs as $program){
+                    $programColor++;
+                    $quaterScoresPerProgramArray = array();
+                    $key = true;
+                    for ($j=1; $j <=4 ; $j++) { 
+                        # code...
+                        
+                        $quater = $activeQuater;
+                        $proramPersspectives = Perspective::where('program_id','=',$program->id)
+                                                ->where('perspective_group','=',$j)
+                                                ->get(); 
+                        $finalScore = 0;
+                        $track = 0;
+                        if (count($proramPersspectives) == 0) {
+                            # code...
+                            $key = false;
+                        } else {
+                            # code...
+                        
+                        
+                        foreach ($proramPersspectives as $proramPersspective) {
+                            # code...
+                            $strategicObjectivesSum = 0;
+                            $strateicObjectiveAverage = 0;
+                            $track++;
+                            $gettingStrategicObjectivesOfRelatedPerspective = StrategicObjectiveScore::where('perspective_id','=',$proramPersspective->id)->where('year','=',$activeYaer)->where('quater','=',$quater)->get();            
+
+
+                            if (count($gettingStrategicObjectivesOfRelatedPerspective) == 0) {
+                                # code...
+                                $strateicObjectiveAverage =1;
+                            } else {
+                                # code...
+                                foreach ($gettingStrategicObjectivesOfRelatedPerspective as $strategicObjective) {
+                                    # code...
+                                    $strategicObjectivesSum  += $strategicObjective->score;
+                                }
+                                $strateicObjectiveAverage= $strategicObjectivesSum/ count($gettingStrategicObjectivesOfRelatedPerspective);
+                            }
+                            $weight = $proramPersspective->weight;
+                            $finalScore += $strateicObjectiveAverage;
+                            // ($strateicObjectiveAverage*$weight)/100;
+
+                        }
+                    }
+                    if ($key == true) {
+                        # code...
+                        array_push($quaterScoresPerProgramArray,$finalScore);
+                    }
+                    }
+                    if ($key == true) {
+                        # code...
+                        $groupedBarChartForPerspectiveProgress->dataset( $program->shortHand,'bar', $quaterScoresPerProgramArray)
+                        ->color($borderColors[$programColor])
+                        ->backgroundcolor($fillColors[$programColor]);
+                    }
+                   
+                }
+            // }
+
+        
+        
+        $groupedBarChartForPerspectiveProgress->labels(['Financial Perspective','Customer Perpetive','Internal Business Perspetive','Learning And Growth Perspective']); 
+        return view('adminPage.trends.perspetiveTrend',['programs'=>$programs,'year'=>$activeYaer,'quater'=>$activeQuater,'groupedBarChartForPerspectiveProgress'=>$groupedBarChartForPerspectiveProgress]);
     }
 }

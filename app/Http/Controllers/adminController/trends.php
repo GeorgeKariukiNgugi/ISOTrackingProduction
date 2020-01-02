@@ -141,7 +141,7 @@ class trends extends Controller
 
             $groupedBarChartForProgramProgress = new DashBoardCharts;
             $groupedBarChartForProgramProgress->minimalist(false);
-            $groupedBarChartForProgramProgress->height(550);
+            // $groupedBarChartForProgramProgress->height(550);
 
             $quaterSubStr = substr($activeQuater,1); 
             $quaterSubStr = $quaterSubStr+0;
@@ -206,10 +206,57 @@ class trends extends Controller
             
             $groupedBarChartForProgramProgress->labels($programsNames);  
             
-            
+           
+            //! THIS SECTION OF THE CODE IS USED TO GET THE GROUPED BAR CHART THAT IS BASED ON THE QUATERS. 
+            $groupedBarChartForProgramProgressQuaterly = new DashBoardCharts;
+            $groupedBarChartForProgramProgressQuaterly->minimalist(false);
+            // $groupedBarChartForProgramProgressQuaterly->height(550);
+            $colorCode = 0;
+            foreach($programs as $program){
+                $colorCode++;
+                $quaterScoresPerProgramArray = array();
+            for ($i=1; $i <= $quaterSubStr ; $i++) { 
 
-            //! THI
+                $quater = 'Q'.$i;
+                $proramPersspectives = Perspective::where('program_id','=',$program->id)->get();                
+                $finalScore = 0;
+                $track = 0;
+        foreach ($proramPersspectives as $proramPersspective) {
+            $strategicObjectivesSum = 0;
+            $strateicObjectiveAverage = 0;
+            $track++;
+            //!the next step is to get the strateic objectives of the reated perspective. 
+            $gettingStrategicObjectivesOfRelatedPerspective = StrategicObjectiveScore::where('perspective_id','=',$proramPersspective->id)->where('year','=',$activeYaer)->where('quater','=',$quater)->get();            
+            if (count($gettingStrategicObjectivesOfRelatedPerspective) == 0) {
+                # code...
+                $strateicObjectiveAverage =1;
+            } else {
+                # code...
+                foreach ($gettingStrategicObjectivesOfRelatedPerspective as $strategicObjective) {
+                    # code...
+                    $strategicObjectivesSum  += $strategicObjective->score;
+                }
+                $strateicObjectiveAverage= $strategicObjectivesSum/ count($gettingStrategicObjectivesOfRelatedPerspective);
+            }
             
-        return view('adminPage.trends.programTrend',['programs'=>$programs,'groupedBarChartForProgramProgress'=>$groupedBarChartForProgramProgress]);
+            
+            //!the next step is to get its equivalent score in telation to its weight.
+    
+            $weight = $proramPersspective->weight;
+            $finalScore += ($strateicObjectiveAverage*$weight)/100;                
+
+            }  
+            array_push($quaterScoresPerProgramArray,$finalScore);
+        }  
+        $groupedBarChartForProgramProgressQuaterly->dataset( $program->shortHand,'bar', $quaterScoresPerProgramArray)
+        ->color($borderColors[$colorCode])
+        ->backgroundcolor($fillColors[$colorCode]);        
+        }
+        $quaterNames = array();
+        for ($i=1; $i <= $quaterSubStr ; $i++) { 
+            array_push($quaterNames, $activeYaer. '   Q'.$i);
+        } 
+        $groupedBarChartForProgramProgressQuaterly->labels($quaterNames);  
+        return view('adminPage.trends.programTrend',['programs'=>$programs,'groupedBarChartForProgramProgressQuaterly'=>$groupedBarChartForProgramProgressQuaterly,'groupedBarChartForProgramProgress'=>$groupedBarChartForProgramProgress]);
     }
 }

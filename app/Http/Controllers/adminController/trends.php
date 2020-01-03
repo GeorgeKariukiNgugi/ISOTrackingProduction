@@ -388,11 +388,18 @@ class trends extends Controller
                     }
                    
                 }
-            // }
-
-        
-        
+            // } 
         $groupedBarChartForPerspectiveProgress->labels(['Financial Perspective','Customer Perpetive','Internal Business Perspetive','Learning And Growth Perspective']); 
-        return view('adminPage.trends.perspetiveTrend',['programs'=>$programs,'year'=>$activeYaer,'quater'=>$activeQuater,'groupedBarChartForPerspectiveProgress'=>$groupedBarChartForPerspectiveProgress]);
-    }
-}
+         
+        //! this second section of the code is used to get thet grouped bar chart for the quaterly growth.
+         $groupedBarChartForPerspectiveProgressPerquater = new DashBoardCharts;
+         $groupedBarChartForPerspectiveProgressPerquater->minimalist(false);
+         $groupedBarChartForPerspectiveProgressPerquater->height(550);
+         
+         
+                    return view('adminPage.trends.perspetiveTrend',['groupedBarChartForPerspectiveProgressPerquater'=>$groupedBarChartForPerspectiveProgressPerquater,'programs'=>$programs,'year'=>$activeYaer,'quater'=>$activeQuater,'groupedBarChartForPerspectiveProgress'=>$groupedBarChartForPerspectiveProgress]);
+                 }
+                }
+                 
+             
+    //  $groupedLineGraph->labels($quaterNamesForLineGraph); 

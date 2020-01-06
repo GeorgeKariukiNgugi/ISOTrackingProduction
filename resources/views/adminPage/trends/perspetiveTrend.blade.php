@@ -4,6 +4,8 @@
 {!! $groupedBarChartForPerspectiveProgress->script() !!}
 {!! $groupedBarChartForPerspectiveProgressPerquater->script() !!}
 {!!$groupedBarChartForPerspectiveProgressProgramQuater->script()!!}
+{!!$groupedLineChartForPerspectiveProgressPerquater->script()!!}
+
 
 @endsection
 @section('section')
@@ -63,17 +65,37 @@
 
   <div class="row" id="groupByquater">
     <div class="col-md-10 col-md-offset-1">
-      <h2 style="font-family:'Times New Roman', Times, serif;text-align:center;"> 3.) This Grouped BarChart is a graphical representation of the perspectives perfomance per quater in the current year. (grouped per quater.) </h2>
+      <h2 style="font-family:'Times New Roman', Times, serif;text-align:center;"> 3.) This Grouped BarChart is a graphical representation of the perspectives perfomance per quater in the current year. (grouped per proram.) </h2>
       <br>
       
       <div class="box box-danger">
           <div class="box-header with-border text-center" >
-            <h3 class="box-title"> <span style="font-family:Georgia, 'Times New Roman', Times, serif">CURRENT YEAR PROGRAM QUATERLY TRENDS.</span></h3>
+            <h3 class="box-title"> <span style="font-family:Georgia, 'Times New Roman', Times, serif">CURRENT YEAR PERSPECTIVE QUATERLY TRENDS.</span></h3>
           </div>
           <p style="color:red;font-size:13px;font-style:italic;"> <span> <b>Disclaimer</b> If The Bars are at 1% then the proram has not been assesed for that quater. </span> </p>
           <div class="box-body">
             
                   {!! $groupedBarChartForPerspectiveProgressProgramQuater->container() !!}
+
+          </div>
+          <!-- /.box-body -->
+        </div>
+  </div> 
+  </div>
+
+  <div class="row" id="groupByquater">
+    <div class="col-md-10 col-md-offset-1">
+      <h2 style="font-family:'Times New Roman', Times, serif;text-align:center;"> 4.) This Grouped LineChart is a graphical representation of the perspectives perfomance per quater in the current year. (grouped per proram.) </h2>
+      <br>
+      
+      <div class="box box-danger">
+          <div class="box-header with-border text-center" >
+            <h3 class="box-title"> <span style="font-family:Georgia, 'Times New Roman', Times, serif">CURRENT YEAR PERSPECTIVE QUATERLY TRENDS.</span></h3>
+          </div>
+          <p style="color:red;font-size:13px;font-style:italic;"> <span> <b>Disclaimer</b> If The lines are at 1% then the proram has not been assesed for that quater. </span> </p>
+          <div class="box-body">
+            
+                  {!! $groupedLineChartForPerspectiveProgressPerquater->container() !!}
 
           </div>
           <!-- /.box-body -->

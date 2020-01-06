@@ -396,6 +396,10 @@ class trends extends Controller
          $groupedBarChartForPerspectiveProgressPerquater->minimalist(false);
          $groupedBarChartForPerspectiveProgressPerquater->height(550);
 
+         $groupedLineChartForPerspectiveProgressPerquater = new DashBoardCharts;
+         $groupedLineChartForPerspectiveProgressPerquater->minimalist(false);
+         $groupedLineChartForPerspectiveProgressPerquater->height(550);
+
 
          $quaterSubStr = substr($activeQuater,1); 
          $quaterSubStr = $quaterSubStr+0;
@@ -416,6 +420,8 @@ class trends extends Controller
                     }
                     // dd($numberOfNonProrams);
                     $storingArray = array();
+                    $storingLineArray = array();
+                    array_push($storingLineArray,0);
                     for ($j=1; $j <= $quaterSubStr ; $j++) { 
                         $scoreToPush = 0;
                         // $numberOfNonProrams = 0;
@@ -457,7 +463,8 @@ class trends extends Controller
                             //! number of programs that have the perapective. 
                             
                             array_push($storingArray,$strateicObjectiveAverage/(count($programs)-$numberOfNonProrams));
-                           
+                            array_push($storingLineArray,$strateicObjectiveAverage/(count($programs)-$numberOfNonProrams));
+                            
                     }
 
                     // dd($storingArray);
@@ -485,15 +492,19 @@ class trends extends Controller
                     $groupedBarChartForPerspectiveProgressPerquater->dataset( $name,'bar', $storingArray)
                     ->color($borderColors[$i])
                     ->backgroundcolor($fillColors[$i]);
-
+                    $groupedLineChartForPerspectiveProgressPerquater->dataset( $name,'line', $storingLineArray)
+                                                                     ->color($borderColors[$i])
+                                                                     ->fill(false);
                 }
                 $quaterNames = array();
+                $quaterNamesForLineGraph = array();
+                array_push($quaterNamesForLineGraph,'Start Of'.$activeYaer);
                 for ($i=1; $i <= $quaterSubStr ; $i++) { 
                     array_push($quaterNames, $activeYaer. '   Q'.$i);
-                    // array_push($quaterNamesForLineGraph, $activeYaer. '   Q'.$i);
+                    array_push($quaterNamesForLineGraph, $activeYaer. '   Q'.$i);
                 }
                 $groupedBarChartForPerspectiveProgressPerquater->labels($quaterNames);
-
+                $groupedLineChartForPerspectiveProgressPerquater->labels($quaterNamesForLineGraph); 
 
 
                 //! the next section of code is used to get the progress of the perspectives based in the quater. 
@@ -562,7 +573,7 @@ class trends extends Controller
                     ->backgroundcolor($fillColors[$j]);
                 }
                 $groupedBarChartForPerspectiveProgressProgramQuater->labels(['Financial Perspective','Customer Perpetive','Internal Business Perspetive','Learning And Growth Perspective']); 
-                    return view('adminPage.trends.perspetiveTrend',['groupedBarChartForPerspectiveProgressProgramQuater'=>$groupedBarChartForPerspectiveProgressProgramQuater,'groupedBarChartForPerspectiveProgressPerquater'=>$groupedBarChartForPerspectiveProgressPerquater,'programs'=>$programs,'year'=>$activeYaer,'quater'=>$activeQuater,'groupedBarChartForPerspectiveProgress'=>$groupedBarChartForPerspectiveProgress]);
+                    return view('adminPage.trends.perspetiveTrend',['groupedLineChartForPerspectiveProgressPerquater'=>$groupedLineChartForPerspectiveProgressPerquater,'groupedBarChartForPerspectiveProgressProgramQuater'=>$groupedBarChartForPerspectiveProgressProgramQuater,'groupedBarChartForPerspectiveProgressPerquater'=>$groupedBarChartForPerspectiveProgressPerquater,'programs'=>$programs,'year'=>$activeYaer,'quater'=>$activeQuater,'groupedBarChartForPerspectiveProgress'=>$groupedBarChartForPerspectiveProgress]);
                  }
                 }
                  

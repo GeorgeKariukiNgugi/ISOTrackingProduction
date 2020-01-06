@@ -360,7 +360,7 @@ class trends extends Controller
 
                             if (count($gettingStrategicObjectivesOfRelatedPerspective) == 0) {
                                 # code...
-                                $strateicObjectiveAverage =1;
+                                $strateicObjectiveAverage +=1;
                             } else {
                                 # code...
                                 foreach ($gettingStrategicObjectivesOfRelatedPerspective as $strategicObjective) {
@@ -395,9 +395,174 @@ class trends extends Controller
          $groupedBarChartForPerspectiveProgressPerquater = new DashBoardCharts;
          $groupedBarChartForPerspectiveProgressPerquater->minimalist(false);
          $groupedBarChartForPerspectiveProgressPerquater->height(550);
-         
-         
-                    return view('adminPage.trends.perspetiveTrend',['groupedBarChartForPerspectiveProgressPerquater'=>$groupedBarChartForPerspectiveProgressPerquater,'programs'=>$programs,'year'=>$activeYaer,'quater'=>$activeQuater,'groupedBarChartForPerspectiveProgress'=>$groupedBarChartForPerspectiveProgress]);
+
+
+         $quaterSubStr = substr($activeQuater,1); 
+         $quaterSubStr = $quaterSubStr+0;
+
+                for ($i=1; $i <= 4 ; $i++) { 
+                    //! this section is used to get the particular perspective groups.
+                    # code...
+                    $numberOfNonProrams = 0;
+                    foreach ($programs as $program) {                       
+                        $perspectivesToCount = Perspective::where('program_id','=',$program->id)
+                                                    ->where('perspective_group','=',$i)
+                                                    ->get();
+
+                        if(count($perspectivesToCount) == 0){
+                            $numberOfNonProrams++;
+                        }
+
+                    }
+                    // dd($numberOfNonProrams);
+                    $storingArray = array();
+                    for ($j=1; $j <= $quaterSubStr ; $j++) { 
+                        $scoreToPush = 0;
+                        // $numberOfNonProrams = 0;
+                        $quater = 'Q'.$j;
+
+                        $perspectives = Perspective::where('perspective_group','=',$i)                                                        
+                                                        ->get();
+
+                        $strateicObjectiveAverage = 0;
+                        $array = array();
+                        foreach ($perspectives as $perspective) {
+                            # code...
+                            $strategicObjectivesSum = 0;
+                            //! getting the strategic objective scores that match up to the strategic sjectives. 
+                            $gettingStrategicObjectivesOfRelatedPerspective = StrategicObjectiveScore::where('perspective_id','=',$perspective->id)
+                                                                                                        ->where('year','=',$activeYaer)
+                                                                                                        ->where('quater','=',$quater)
+                                                                                                        ->get();
+                            
+                            // foreach($gettingStrategicObjectivesOfRelatedPerspective as $strategicbjectiveScore){
+                                // dd(count($gettingStrategicObjectivesOfRelatedPerspective));
+                                
+                                if (count($gettingStrategicObjectivesOfRelatedPerspective) == 0) {
+                                    # code...
+                                    $strateicObjectiveAverage +=0;
+                                } else {
+                                    # code...
+                                    foreach ($gettingStrategicObjectivesOfRelatedPerspective as $strategicObjective) {
+                                        # code...
+                                        $strategicObjectivesSum  += $strategicObjective->score;
+                                        
+                                    }
+                                    $strateicObjectiveAverage += $strategicObjectivesSum/count($gettingStrategicObjectivesOfRelatedPerspective);                                    
+                                } 
+                                  
+                            }
+
+                            
+                            //! number of programs that have the perapective. 
+                            
+                            array_push($storingArray,$strateicObjectiveAverage/(count($programs)-$numberOfNonProrams));
+                           
+                    }
+
+                    // dd($storingArray);
+
+                    switch ($i) {
+                        case 1:
+                            # code...
+                            $name = 'Financial Perspetive';
+                            break;
+                            case 2:
+                                $name = 'Customer Perspetive';
+                            break;
+                            case 3: 
+                                $name = 'Inernel Business Perspective';
+                            break;
+                            case 4:  
+                                $name = 'Learning And Growth Perspetive';
+                            break;
+
+                        default:
+                            # code...
+                            $name = 'Not Known';
+                            break;
+                    }
+                    $groupedBarChartForPerspectiveProgressPerquater->dataset( $name,'bar', $storingArray)
+                    ->color($borderColors[$i])
+                    ->backgroundcolor($fillColors[$i]);
+
+                }
+                $quaterNames = array();
+                for ($i=1; $i <= $quaterSubStr ; $i++) { 
+                    array_push($quaterNames, $activeYaer. '   Q'.$i);
+                    // array_push($quaterNamesForLineGraph, $activeYaer. '   Q'.$i);
+                }
+                $groupedBarChartForPerspectiveProgressPerquater->labels($quaterNames);
+
+
+
+                //! the next section of code is used to get the progress of the perspectives based in the quater. 
+                $groupedBarChartForPerspectiveProgressProgramQuater = new DashBoardCharts;
+                $groupedBarChartForPerspectiveProgressProgramQuater->minimalist(false);
+                $groupedBarChartForPerspectiveProgressProgramQuater->height(550);
+                for ($j=1; $j <= $quaterSubStr ; $j++) {
+                    $quater = 'Q'.$j; 
+                    $storingArray = array();
+                    for ($i=1; $i <= 4 ; $i++) { 
+                        //! this section is used to get the particular perspective groups.
+                        # code...
+                        $numberOfNonProrams = 0;
+                        foreach ($programs as $program) {                       
+                            $perspectivesToCount = Perspective::where('program_id','=',$program->id)
+                                                        ->where('perspective_group','=',$i)
+                                                        ->get();
+    
+                            if(count($perspectivesToCount) == 0){
+                                $numberOfNonProrams++;
+                            }
+    
+                        }
+
+                        $perspectives = Perspective::where('perspective_group','=',$i)                                                        
+                                                        ->get();
+
+                        $strateicObjectiveAverage = 0;
+                        $array = array();
+                        foreach ($perspectives as $perspective) {
+                            # code...
+                            $strategicObjectivesSum = 0;
+                            //! getting the strategic objective scores that match up to the strategic sjectives. 
+                            $gettingStrategicObjectivesOfRelatedPerspective = StrategicObjectiveScore::where('perspective_id','=',$perspective->id)
+                                                                                                        ->where('year','=',$activeYaer)
+                                                                                                        ->where('quater','=',$quater)
+                                                                                                        ->get();
+                            
+                            // foreach($gettingStrategicObjectivesOfRelatedPerspective as $strategicbjectiveScore){
+                                // dd(count($gettingStrategicObjectivesOfRelatedPerspective));
+                                
+                                if (count($gettingStrategicObjectivesOfRelatedPerspective) == 0) {
+                                    # code...
+                                    $strateicObjectiveAverage +=0;
+                                } else {
+                                    # code...
+                                    foreach ($gettingStrategicObjectivesOfRelatedPerspective as $strategicObjective) {
+                                        # code...
+                                        $strategicObjectivesSum  += $strategicObjective->score;
+                                        
+                                    }
+                                    $strateicObjectiveAverage += $strategicObjectivesSum/count($gettingStrategicObjectivesOfRelatedPerspective);                                    
+                                } 
+                                  
+                            }
+
+                            
+                            //! number of programs that have the perapective. 
+                            
+                            array_push($storingArray,$strateicObjectiveAverage/(count($programs)-$numberOfNonProrams));
+                    }
+
+                    // dd($storingArray);
+                    $groupedBarChartForPerspectiveProgressProgramQuater->dataset($activeYaer.$quater,'bar', $storingArray)
+                    ->color($borderColors[$j])
+                    ->backgroundcolor($fillColors[$j]);
+                }
+                $groupedBarChartForPerspectiveProgressProgramQuater->labels(['Financial Perspective','Customer Perpetive','Internal Business Perspetive','Learning And Growth Perspective']); 
+                    return view('adminPage.trends.perspetiveTrend',['groupedBarChartForPerspectiveProgressProgramQuater'=>$groupedBarChartForPerspectiveProgressProgramQuater,'groupedBarChartForPerspectiveProgressPerquater'=>$groupedBarChartForPerspectiveProgressPerquater,'programs'=>$programs,'year'=>$activeYaer,'quater'=>$activeQuater,'groupedBarChartForPerspectiveProgress'=>$groupedBarChartForPerspectiveProgress]);
                  }
                 }
                  

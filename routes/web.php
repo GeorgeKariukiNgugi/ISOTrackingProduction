@@ -159,3 +159,5 @@ Route::get('/perspetivesTrends','adminController\trends@persectiveTrends');
 //! this section of the code will be used to get the other trends tab into the system. 
 Route::get('/otherTrends','adminController\otherTrend@otherTrends');
 
+//! this section of the code is used to generate the PDFs that are used for the UATs. 
+Route::get('/uatPdfs','adminController\uatPFD@UatPdfGeneration');

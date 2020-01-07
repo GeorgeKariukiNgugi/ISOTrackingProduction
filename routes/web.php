@@ -155,3 +155,7 @@ Route::get('/programTrends','adminController\trends@mainController');
 
 //! this route is used to ge the trends that are related to the perspectives. 
 Route::get('/perspetivesTrends','adminController\trends@persectiveTrends');
+
+//! this section of the code will be used to get the other trends tab into the system. 
+Route::get('/otherTrends','adminController\otherTrend@otherTrends');
+

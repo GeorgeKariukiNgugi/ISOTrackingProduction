@@ -568,7 +568,7 @@ class trends extends Controller
                     }
 
                     // dd($storingArray);
-                    $groupedBarChartForPerspectiveProgressProgramQuater->dataset($activeYaer.$quater,'bar', $storingArray)
+                    $groupedBarChartForPerspectiveProgressProgramQuater->dataset($activeYaer.'  '.$quater,'bar', $storingArray)
                     ->color($borderColors[$j])
                     ->backgroundcolor($fillColors[$j]);
                 }

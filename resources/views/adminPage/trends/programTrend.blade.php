@@ -27,7 +27,7 @@
  
     <div class="row" id="groupByProgram">
         <div class="col-md-10 col-md-offset-1">
-          <h3 style="font-family:'Times New Roman', Times, serif;text-align:center;"> 1.) This Grouped BarChart is a graphical representation of the program perfomance per quater in the current year. (grouped by program.)</h3>
+          <h2 style="font-family:'Times New Roman', Times, serif;text-align:center;"> 1.) This Grouped BarChart is a graphical representation of the program perfomance per quater in the current year. (grouped by program.)</h2>
           <br>
           
           <div class="box box-danger">

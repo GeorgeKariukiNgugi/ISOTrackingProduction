@@ -181,7 +181,7 @@ desired effect
           <ul class="treeview-menu">
             <li><a href = "/programTrends"> <i class="fa fa-line-chart"></i> <span>Programs Trends.</span></a></li>
             <li><a href = "/perspetivesTrends"> <i class="fa fa-line-chart"></i>  <span>Perspectives Trends.</span></a></li>
-            <li><a href = "#"> <i class="fa fa-line-chart" ></i>  <span> other Trends Observed.</span></a></li>
+            <li><a href = "/otherTrends"> <i class="fa fa-line-chart" ></i>  <span> Other Trends Observed.</span></a></li>
           </ul>
         </li>
         <li><a href="/addingNewProramStep0"><i class="fa fa-plus"></i> <span>Add New Program</span></a></li>

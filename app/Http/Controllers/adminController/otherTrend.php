@@ -70,6 +70,8 @@ class otherTrend extends Controller
             $quater = $activeQuater;
             $dougnutNames = array();
             $average = array();
+            $scoresInPercentages = array();
+            $scoresInPercentagesNames = array();
            for ($i=1; $i <=4 ; $i++) { 
                # code...
             $name = 'perspectiveDoughnut'.$i;
@@ -127,6 +129,7 @@ class otherTrend extends Controller
                     # code...
                     array_push($quaterScoresPerProgramArray,$finalScore);
                     array_push($arrayProgramNames,$program->shortHand);
+
                 }
 
                }
@@ -175,7 +178,9 @@ class otherTrend extends Controller
                $name->displaylegend(true);
                $name->labels($arrayProgramNames);
                array_push($dougnutNames,$name);
+               array_push($scoresInPercentages,$newquaterScoresPerProgramArray);
+               array_push($scoresInPercentagesNames,$arrayProgramNames);
            }
-        return view('adminPage.trends.otherTrends',['programs'=>$programs,'dougnutNames'=>$dougnutNames,'average'=>$average,'year'=>$activeYaer,'quater'=>$activeQuater]);
+        return view('adminPage.trends.otherTrends',['programs'=>$programs,'scoresInPercentagesNames'=>$scoresInPercentagesNames,'scoresInPercentages'=>$scoresInPercentages,'dougnutNames'=>$dougnutNames,'average'=>$average,'year'=>$activeYaer,'quater'=>$activeQuater]);
     }
 }

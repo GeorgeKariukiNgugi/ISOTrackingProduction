@@ -33,7 +33,7 @@ class trends extends Controller
         // $trialCharts->displaylegend(true);
         // $trialCharts->displayAxes(true, true);
         // $trialCharts->title('Users by Months', 30, "rgb(255, 99, 132)", true, 'Helvetica Neue');
-        $trialCharts->height(550);
+        $trialCharts->height(500);
         $trialCharts->labels(['2019 Q1', '2019 Q2', '2019 Q3']);
         $trialCharts->dataset('ISMS', 'line', $data1)->fill(false)->color("rgb(255, 99, 132)");
         $trialCharts->dataset('ITSMS', 'line', $data2)->fill(false)->color("rgb(0, 0, 255)");
@@ -73,7 +73,7 @@ class trends extends Controller
 
         $usersChart = new DashBoardCharts;
         $usersChart->minimalist(false);
-        $usersChart->height(550);
+        $usersChart->height(500);
         $usersChart->labels(['ITSMS 2019/2020 Quaterly Trends.', 'ISMS 2019/2020 Quaterly Trends.', 'QMS 2019/2020 Quaterly Trends.','EMS 2019/2020 Quaterly Trends.','CSR 2019/2020 Quaterly Trends.','BCMS 2019/2020 Quaterly Trends.']);
         // $usersChart->labels(['Jan1', 'Feb1', 'Mar1']);
 
@@ -141,7 +141,7 @@ class trends extends Controller
 
             $groupedBarChartForProgramProgress = new DashBoardCharts;
             $groupedBarChartForProgramProgress->minimalist(false);
-            $groupedBarChartForProgramProgress->height(550);
+            $groupedBarChartForProgramProgress->height(500);
 
             $quaterSubStr = substr($activeQuater,1); 
             $quaterSubStr = $quaterSubStr+0;
@@ -210,12 +210,12 @@ class trends extends Controller
             //! THIS SECTION OF THE CODE IS USED TO GET THE GROUPED BAR CHART THAT IS BASED ON THE QUATERS. 
             $groupedBarChartForProgramProgressQuaterly = new DashBoardCharts;
             $groupedBarChartForProgramProgressQuaterly->minimalist(false);
-            $groupedBarChartForProgramProgressQuaterly->height(550);
+            $groupedBarChartForProgramProgressQuaterly->height(500);
 
 
             $groupedLineGraph = new DashBoardCharts;
             $groupedLineGraph->minimalist(false);
-            $groupedLineGraph->height(550);
+            $groupedLineGraph->height(500);
 
             $colorCode = 0;
             foreach($programs as $program){
@@ -320,7 +320,7 @@ class trends extends Controller
 
             $groupedBarChartForPerspectiveProgress = new DashBoardCharts;
             $groupedBarChartForPerspectiveProgress->minimalist(false);
-            $groupedBarChartForPerspectiveProgress->height(550);
+            $groupedBarChartForPerspectiveProgress->height(500);
 
             $quaterSubStr = substr($activeQuater,1); 
             $quaterSubStr = $quaterSubStr+0;
@@ -394,11 +394,11 @@ class trends extends Controller
         //! this second section of the code is used to get thet grouped bar chart for the quaterly growth.
          $groupedBarChartForPerspectiveProgressPerquater = new DashBoardCharts;
          $groupedBarChartForPerspectiveProgressPerquater->minimalist(false);
-         $groupedBarChartForPerspectiveProgressPerquater->height(550);
+         $groupedBarChartForPerspectiveProgressPerquater->height(500);
 
          $groupedLineChartForPerspectiveProgressPerquater = new DashBoardCharts;
          $groupedLineChartForPerspectiveProgressPerquater->minimalist(false);
-         $groupedLineChartForPerspectiveProgressPerquater->height(550);
+         $groupedLineChartForPerspectiveProgressPerquater->height(500);
 
 
          $quaterSubStr = substr($activeQuater,1); 
@@ -510,7 +510,7 @@ class trends extends Controller
                 //! the next section of code is used to get the progress of the perspectives based in the quater. 
                 $groupedBarChartForPerspectiveProgressProgramQuater = new DashBoardCharts;
                 $groupedBarChartForPerspectiveProgressProgramQuater->minimalist(false);
-                $groupedBarChartForPerspectiveProgressProgramQuater->height(550);
+                $groupedBarChartForPerspectiveProgressProgramQuater->height(500);
                 for ($j=1; $j <= $quaterSubStr ; $j++) {
                     $quater = 'Q'.$j; 
                     $storingArray = array();

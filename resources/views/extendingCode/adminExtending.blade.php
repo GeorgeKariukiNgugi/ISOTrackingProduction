@@ -7,7 +7,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>ISO NC Tracker.</title>
+  <title>ISO ScoreCard.</title>
   <!-- Tell the browser to be responsive to screen width -->
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 {{-- <meta http-equiv="refresh" content="10;/logOut" /> --}}
@@ -170,6 +170,20 @@ desired effect
         <li class="header" style="color:white;font-decoration:bold;">OPTIONS.</li>
         <br>
         <!-- Optionally, you can add icons to the links -->
+        <li><a href="/home"><i class="fa fa-home"></i> <span>Home</span></a></li>
+        {{-- <li><a href="/trends"><i class="fa fa-line-chart"></i> <span>Trends</span></a></li> --}}
+        <li class="treeview">
+          <a href="#"><i class="fa fa-line-chart"></i> <span>Trends</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href = "/programTrends"> <i class="fa fa-line-chart"></i> <span>Programs Trends.</span></a></li>
+            <li><a href = "/perspetivesTrends"> <i class="fa fa-line-chart"></i>  <span>Perspectives Trends.</span></a></li>
+            <li><a href = "/otherTrends"> <i class="fa fa-line-chart" ></i>  <span> Other Trends Observed.</span></a></li>
+          </ul>
+        </li>
         <li><a href="/addingNewProramStep0"><i class="fa fa-plus"></i> <span>Add New Program</span></a></li>
         <li><a href="/assesmentCalender"><i class="fa fa-calendar-plus-o"></i> <span> Assesing Calender</span></a></li>
         <li><a href="/viewingAssesors"><i class="fa fa-users"></i> <span> Program Assesors.</span></a></li>
@@ -201,10 +215,11 @@ desired effect
                 </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="{{"/programDetails/".$program->id}}">{{$program->shortHand}} Details.</a></li>
-              <li><a href="{{"/programMatrices/".$program->id}}">{{$program->shortHand}} Matrices</a></li>
-              <li><a href="{{"/scores/".$program->id}}">{{$program->shortHand}} Scores</a></li>
-              <li><a href="{{"/programDashboard/".$program->id}}">{{$program->shortHand}} Current Dashboard.</a></li>
+              <li><a href="#"><i class="fa fa-line-chart"></i> <span> Trends.</span></a></li>
+              <li><a href="{{"/programDetails/".$program->id}}"><i class="fa fa-th-list"></i>{{$program->shortHand}} Details.</a></li>
+              <li><a href="{{"/programMatrices/".$program->id}}"><i class="fa fa-edit"></i>{{$program->shortHand}} Matrices</a></li>
+              <li><a href="{{"/scores/".$program->id}}"><i class="fa fa-percent"></i>{{$program->shortHand}} Scores</a></li>
+              <li><a href="{{"/programDashboard/".$program->id}}"><i class="fa fa-dashboard"></i> {{$program->shortHand}} Current Dashboard.</a></li>
             </ul>
           </li>
         @endforeach        

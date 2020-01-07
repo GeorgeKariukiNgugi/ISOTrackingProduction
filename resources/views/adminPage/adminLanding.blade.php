@@ -49,6 +49,7 @@
                       <tr>
                           <th>Program</th>
                           <th>Assesed All KPIs??</th>
+                          <th>Actions</th>
                       </tr>
                   </thead>
                   <tbody>
@@ -69,6 +70,9 @@
                               <b><i class=" fa  fa-adjust" style="color:orange;font-size:30px;"></i></b>
                             @endif
                         </td>
+                        <td> 
+                          <a class="btn btn-success btn-sm" role="button" href="#"><i class="fa fa-send"></i><strong>Send Reminder Email.</strong></a>
+                        </td>
                     </tr>
                     @endfor
                       
@@ -77,6 +81,7 @@
                       <tr>
                           <td><strong>Program</strong><br /></td>
                           <td><strong>Assesed All KPIs??</strong><br /></td>
+                          <td><strong>Actions</strong><br /></td>
                       </tr>
                   </tfoot>
               </table>

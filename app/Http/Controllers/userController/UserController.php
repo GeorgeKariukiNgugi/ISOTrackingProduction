@@ -139,9 +139,10 @@ class UserController extends Controller
                 $savingTheScoresRecorded->save();
             }
             
-            //? THE FOLLOWING STEP IS FOR ADDING THE DATA TO THE KEY PERFOMANCE INDICATORS TABLE.
+            //? THE FOLLOWING STEP IS FOR ADDING THE DATA TO THE KEY PERFOMANCE INDICATORS SCORES TABLE.
             //! selecting all the records from the scores recorded with a particular kpiId and also the same year. 
             $allKPIScoresWithSameYear = ScoreRecorded::where('year','=',$activeYaer)
+                                                     ->where('quater','=',$activeQuater)
                                                      ->where('keyPerfomanceIndicator_id','=',$idOfKPI)
                                                      ->get();
 
@@ -238,6 +239,10 @@ class UserController extends Controller
                             $kpiScore = 100;
                         } else {
                             # code...
+                            if ($kpiTarget == 0) {
+                                # code...
+                                $kpiTarget= 1;
+                            }
                             $kpiScore = ($averageThatBecomesytd/$kpiTarget)*100;
                         }
                         
@@ -330,6 +335,7 @@ class UserController extends Controller
             //! Adding the data into the kpi scores table, we first check if it is present, if so we update or else we insert. 
             $kpiscoresRecords = KeyPerfomanceIndicatorScore::where('kpi_id','=',$idOfKPI)
                                                             ->where('year','=',$activeYaer)
+                                                            ->where('quater','=',$activeQuater)                                                            
                                                             ->get();
                                     
             //!counting the records.
@@ -337,10 +343,12 @@ class UserController extends Controller
             // dd($numberOfKPIRecords);
             if($numberOfKPIRecords>0){
                 //!since there is a record in the DB, update the record.
+                // dd($activeQuater);
                 foreach($kpiscoresRecords as $kpiscoresRecord){
                     $kpiscoresRecord->year =$activeYaer;
                     $kpiscoresRecord->ytd =$averageThatBecomesytd;
                     $kpiscoresRecord->kpi_id =$idOfKPI;
+                    $kpiscoresRecord->quater =$activeQuater;
                     $kpiscoresRecord->strategic_objective_id =$strategicObjectiveIdFromForm;
                     $kpiscoresRecord->score = $kpiScore; 
                     $kpiscoresRecord->save();
@@ -359,6 +367,7 @@ class UserController extends Controller
                         'kpi_id' =>$idOfKPI,
                         'strategic_objective_id' =>$strategicObjectiveIdFromForm,
                         'score' => $kpiScore,
+                        'quater'=> $activeQuater,
                     )                    
                 );
                 
@@ -373,6 +382,7 @@ class UserController extends Controller
         // dd($strategicObjectiveIdFromForm);
         $gettingTheKPIScores = KeyPerfomanceIndicatorScore::where('strategic_objective_id','=',$strategicObjectiveIdFromForm)
                                                             ->where('year','=',$activeYaer)
+                                                            ->where('quater','=',$activeQuater)
                                                             ->get();
         $countingNoOfKPIScores = count($gettingTheKPIScores);
         // dd($countingNoOfKPIScores);
@@ -388,6 +398,7 @@ class UserController extends Controller
         //! checking if the data has has a value so as to see if the value has a duplicate so as to update.
             $gettingStrategicObjectiveRecord = StrategicObjectiveScore::where('strategicObjective_id','=',$strategicObjectiveIdFromForm)
                                                                         ->where('year','=',$activeYaer)
+                                                                        ->where('quater','=',$activeQuater)
                                                                         ->get();
             $countingTheNUmberOfReturnedStrategicObjective = count($gettingStrategicObjectiveRecord);
 
@@ -405,7 +416,7 @@ class UserController extends Controller
                     $StrategicObjectiveRecord->perspective_id= $perspectiveIddrawn;
                     $StrategicObjectiveRecord->score= $average ;
                     $StrategicObjectiveRecord->year = $activeYaer;
-
+                    $StrategicObjectiveRecord->quater = $activeQuater;
                     //! saving the changes.
                     $StrategicObjectiveRecord->save();
 
@@ -419,6 +430,7 @@ class UserController extends Controller
                                                 'perspective_id'=> $perspectiveIddrawn,
                                                 'score'=> $average,
                                                 'year'=>$activeYaer,
+                                                'quater'=>$activeQuater,
                                             )
                 );
                 $savingTheStrateicObjective->save();
@@ -629,6 +641,7 @@ class UserController extends Controller
             
             $perspectiveStrategicObjectives = StrategicObjectiveScore::where('perspective_id','=',$gettingThePerspectiveId)
                                                                       ->where('year','=',$activeYaer)
+                                                                      ->where('quater','=',$activeQuater)
                                                                       ->where('strategicObjective_id','=',$perspectiveStrategicObjectiveName->id)
                                                                       ->get();                                                                    
             //!this section is used to get the scores of the particular strateegic objective.
@@ -637,13 +650,20 @@ class UserController extends Controller
                 array_push($chartValues,0);
             }
             else{
+                $number = count($perspectiveStrategicObjectives);
+                $total = 0;
+                $average = 0;
                 foreach ($perspectiveStrategicObjectives as $perspectiveStrategicObjective) {
                     # code...
-                    array_push($chartValues,$perspectiveStrategicObjective->score);
+                    $total += $perspectiveStrategicObjective->score;
+                    
                 }
+
+                $average = $total/$number;
+                array_push($chartValues,$average);
             }
         }
-
+        // dd($chartValues);
         //Definig the chart instance that will hold the chart items.
         $borderColors = [
             "rgba(255, 99, 132, 1.0)",
@@ -692,7 +712,10 @@ class UserController extends Controller
         $strategicObjectivesSum = 0;
         $strateicObjectiveAverage = 0;
         //!the next step is to get the strateic objectives of the reated perspective. 
-        $gettingStrategicObjectivesOfRelatedPerspective = StrategicObjectiveScore::where('perspective_id','=',$proramPersspective->id)->where('year','=',$activeYaer)->get();
+        $gettingStrategicObjectivesOfRelatedPerspective = StrategicObjectiveScore::where('perspective_id','=',$proramPersspective->id)
+                                                                                 ->where('year','=',$activeYaer)
+                                                                                 ->where('quater','=',$activeQuater)
+                                                                                 ->get();
         if (count($gettingStrategicObjectivesOfRelatedPerspective) == 0) {
             # code...
             $strateicObjectiveAverage =0;
@@ -751,7 +774,8 @@ class UserController extends Controller
         // $dbSearch = KeyPerfomanceIndicatorScore::where('kpi_id','=',$allKPIsRetrieved[$i])->get();
         $dbSearch = ScoreRecorded::where('keyPerfomanceIndicator_id','=',$allKPIsRetrieved[$i])
                                  ->where('quater','=',$activeQuater)
-                                    ->get();
+                                 ->where('year','=',$activeYaer)
+                                 ->get();
         // dd(count($dbSearch));
         if(count($dbSearch) == 0){
             array_push($kpisNotScored,$allKPIsRetrieved[$i]);

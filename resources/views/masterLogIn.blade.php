@@ -33,7 +33,7 @@
       {{-- <a href="../../index2.html"><b>Admin</b>LTE</a> --}}
       
       <img src="{{asset('images/index.png')}}" class="user-image img-circle img-reponsive" width="100px" height="100px" alt="User Image">
-      <h3 style="font-family:'Times New Roman', Times, serif;">Safaricom ISOs Tracking Portal.</h3>
+      <h3 style="font-family:'Times New Roman', Times, serif;">Safaricom ISO ScoreCard.</h3>
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">

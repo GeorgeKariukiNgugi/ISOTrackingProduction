@@ -21,9 +21,9 @@ class HomeController extends Controller
 {
 
     public function logOut(){
-        // Auth::logout();
-        // return redirect('/login');
-        return "loging out.";
+        Auth::logout();
+        return redirect('/login');
+        //return "loging out.";
     }
     /**
      * Create a new controller instance.

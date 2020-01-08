@@ -18,7 +18,12 @@
 @section('overdue')
 <a href="{{"/nonconformities/".$id."/1"}}" data-toggle="tooltip" title=" Non-conformities out of date">
 @endsection
-
+@section('trends')
+<a href="{{"/programManager/".$id}}"><i class="fa fa-line-chart"></i> <span> Program Trends.</span></a>
+@endsection
+@section('perspectiveTrends')
+<a href="{{"/programManagerPerspective/".$id}}"><i class="fa fa-line-chart"></i> <span> Perspective Trends.</span></a>
+@endsection
 @section('inProgress')
 <a href="{{"/nonconformities/".$id."/0"}}" data-toggle="tooltip" title="Non Conformies In Proress.">
 @endsection

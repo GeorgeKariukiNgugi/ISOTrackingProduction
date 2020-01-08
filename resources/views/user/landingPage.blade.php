@@ -33,6 +33,12 @@
 <a href="{{"/reports/".$programId}}"><i class="fa fa-book"></i> <span> Reports</span></a>
 
 @endsection
+@section('trends')
+<a href="{{"/programManager/".$programId}}"><i class="fa fa-line-chart"></i> <span>Program Trends.</span></a>
+@endsection
+@section('perspectiveTrends')
+<a href="{{"/programManagerPerspective/".$programId}}"><i class="fa fa-line-chart"></i> <span>Perspecive Trends.</span></a>
+@endsection
 @section('section')
 <div id = "ajaxReload">
 @php

@@ -201,8 +201,8 @@ desired effect
           </ul>
         </li>
         
-        <li><a href="#"><i class="fa fa-edit"></i> <span>User Manual </span></a></li>
-        <li><a href="#"><i class="fa fa-video-camera"></i> <span>Video Sample</span></a></li>
+        {{-- <li><a href="#"><i class="fa fa-edit"></i> <span>User Manual </span></a></li> --}}
+        {{-- <li><a href="#"><i class="fa fa-video-camera"></i> <span>Video Sample</span></a></li> --}}
         <br>
         <li class="header" style="color:white;font-decoration:bold;">PROGRAMS.</li> 
         <br>
@@ -215,7 +215,21 @@ desired effect
                 </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="#"><i class="fa fa-line-chart"></i> <span> Trends.</span></a></li>
+              {{-- <li><a href="#"><i class="fa fa-line-chart"></i> <span> Trends.</span></a></li> --}}
+
+              <li class="treeview">
+                <a href="#"><i class="fa fa-line-chart"></i> <span>Trends</span>
+                  <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                  <li><a href = "/adminProgramProgress/{{$program->id}}"> <i class="fa fa-line-chart"></i> <span>{{$program->shortHand}} Trends.</span></a></li>
+                  <li><a href = "/adminProgramPerspective/{{$program->id}}"> <i class="fa fa-line-chart"></i>  <span>{{$program->shortHand}} Perpective Trends.</span></a></li>
+                  {{-- <li><a href = "/otherTrends"> <i class="fa fa-line-chart" ></i>  <span> Other Trends Observed.</span></a></li> --}}
+                </ul>
+              </li>
+
               <li><a href="{{"/programDetails/".$program->id}}"><i class="fa fa-th-list"></i>{{$program->shortHand}} Details.</a></li>
               <li><a href="{{"/programMatrices/".$program->id}}"><i class="fa fa-edit"></i>{{$program->shortHand}} Matrices</a></li>
               <li><a href="{{"/scores/".$program->id}}"><i class="fa fa-percent"></i>{{$program->shortHand}} Scores</a></li>

@@ -161,3 +161,15 @@ Route::get('/otherTrends','adminController\otherTrend@otherTrends');
 
 //! this section of the code is used to generate the PDFs that are used for the UATs. 
 Route::get('/uatPdfs','adminController\uatPFD@UatPdfGeneration');
+
+//! this route is used to generate the program progress. 
+Route::get('/adminProgramProgress/{id}','trendsController\programTrend@programTrends');
+
+//! this is used to generate the progress that is normally seen by the program manaer. 
+Route::get('/programManager/{id}','trendsController\programTrend@programTrends');
+
+//! this route is used to generate the program progress. 
+Route::get('/adminProgramPerspective/{id}','trendsController\programTrend@perspectiveTrends');
+
+//! this is used to generate the progress that is normally seen by the program manaer. 
+Route::get('/programManagerPerspective/{id}','trendsController\programTrend@perspectiveTrends');

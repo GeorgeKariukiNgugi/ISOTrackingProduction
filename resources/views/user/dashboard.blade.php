@@ -14,6 +14,15 @@
     </a>
   </li> 
 @endsection
+
+@section('trends')
+<a href="{{"/programManager/".$id}}"><i class="fa fa-line-chart"></i> <span>Program Trends.</span></a>
+@endsection
+
+@section('perspectiveTrends')
+<a href="{{"/programManagerPerspective/".$id}}"><i class="fa fa-line-chart"></i> <span>Perspective Trends.</span></a>
+@endsection
+
 @section('video')
 <a href="{{"/usersTutorial/".$id}}"><i class="fa fa-video-camera"></i> <span>Video Sample</span></a>
 @endsection

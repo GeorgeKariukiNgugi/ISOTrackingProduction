@@ -1,6 +1,8 @@
 @extends('extendingCode.usersExtending')
 @section('navigationBar')
 
+@section('navigationBar')
+
 <li>
     <a href="/home">
       <i class="fa fa-address-card"></i>
@@ -13,9 +15,6 @@
       <i class="fa fa-dashboard"></i>              
     </a>
   </li> 
-@endsection
-@section('video')
-<a href="{{"/usersTutorial/".$id}}"><i class="fa fa-video-camera"></i> <span>Video Sample</span></a>
 @endsection
 @section('trends')
 <a href="{{"/programManager/".$id}}"><i class="fa fa-line-chart"></i> <span>Program Trends.</span></a>
@@ -34,18 +33,13 @@
 @section('closed')
 <a href="{{"/nonconformities/".$id."/2"}}" data-toggle="tooltip" title="Closed Non Confrmities.">
 @endsection
+
+@section('video')
+<a href="{{"/usersTutorial/".$id}}"><i class="fa fa-video-camera"></i> <span>Video Sample</span></a>
+@endsection
+
 @section('reports')
 <a href="{{"/reports/".$id}}"><i class="fa fa-book"></i> <span> Reports</span></a>
 
 @endsection
-@section('section')
-
-<div class="container">
-    <div class="row" style="height:100vh;">
-        <div class="col-md-10 col-md-offset-1" style="height:75vh;">
-            <video controls style="width:100%;height:75vh;" src="{{asset('video/userVideo.mp4')}}"></video>
-        </div>
-    </div>
-</div>
-
-@endsection
+@include('Generaltrends.programInclude')

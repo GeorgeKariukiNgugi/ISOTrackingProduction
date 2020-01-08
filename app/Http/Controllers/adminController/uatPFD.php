@@ -16,10 +16,13 @@ class uatPFD extends Controller
 {
     public function UatPdfGeneration(){
 
-        $programDetails = Program::where('id','=',1)->get();
+        $programDetails = Program::where('id','=',226)->get();
         $pdf = PDF::loadView('adminPage.uatGeneration',['programDetails'=>$programDetails]);
-        $pdfNames = "first";
-        $pdf->save('reports/'.$pdfNames);        
+        foreach($programDetails as $programDetail){
+            $nameOfFile = $programDetail->shortHand;
+        }
+        $pdfNames = $nameOfFile;
+        // $pdf->save('reports/'.$pdfNames);        
         return $pdf->download($pdfNames);
 
     }

@@ -137,6 +137,7 @@
                     <caption style="font-size:20px;color:black;text-align:center;">{{$strname}}</caption>
                     <thead>
                         <tr>
+                            <th>CH</th>
                             <th>KPI Name</th>
                             <th>Target</th>
                             <th>Assesment Period</th>
@@ -146,7 +147,34 @@
                     <tbody>
                         @foreach ($kpisForStrategicObjectives as $kpisForStrategicObjective)
                         <tr>
-                            <td>{{$kpisForStrategicObjective->name}}</td>
+                            <td><input type="checkbox" name="" id=""></td>
+
+                            @if (strlen($kpisForStrategicObjective->name) <= 45)
+                                <td>{{$kpisForStrategicObjective->name}}</td>
+                            @else
+                            <td>
+                                {{-- @php
+                                     echo substr($kpisForStrategicObjective->name,0,45);
+                                     echo "</br>";
+                                     echo substr($kpisForStrategicObjective->name,46);
+                                @endphp --}}
+
+                                    @if (strlen($kpisForStrategicObjective->name) <= 90)
+                                    {{substr($kpisForStrategicObjective->name,0,45)}}
+                                    <br>
+                                    {{substr($kpisForStrategicObjective->name,45,45)}}
+                                    <br>  
+                                    @else
+                                    {{substr($kpisForStrategicObjective->name,0,45)}}
+                                    <br>
+                                    {{substr($kpisForStrategicObjective->name,45,45)}}
+                                    <br>  
+                                    {{substr($kpisForStrategicObjective->name,90,45)}}
+                                    @endif
+
+                            @endif
+                            </td>
+                            {{-- <td>{{$kpisForStrategicObjective->name}}</td> --}}
                             <td>{{$kpisForStrategicObjective->target}}</td>
 
                             @switch($kpisForStrategicObjective->period)

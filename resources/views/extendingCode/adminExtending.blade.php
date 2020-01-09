@@ -99,7 +99,7 @@ desired effect
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!-- The user image in the navbar-->
-              <img src="{{asset('images/index.png')}}" class="user-image" alt="User Image">
+              <img src="{{asset('images/HcMgk6Jq_400x400.jpg')}}" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
               @if (Auth::user() == null)
 
@@ -113,7 +113,7 @@ desired effect
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
-                <img src="{{asset('images/index.png')}}" class="img-circle" alt="User Image">
+                <img src="{{asset('images/HcMgk6Jq_400x400.jpg')}}" class="img-circle" alt="User Image">
 
                 <p>
                   {{ Auth::user()->name }}
@@ -155,7 +155,7 @@ desired effect
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="{{asset('images/index.png')}}" class="img-circle" alt="User Image">
+          <img src="{{asset('images/HcMgk6Jq_400x400.jpg')}}" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <p>{{ Auth::user()->name }}</p>

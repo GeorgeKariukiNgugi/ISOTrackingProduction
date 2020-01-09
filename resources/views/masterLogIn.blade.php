@@ -32,7 +32,7 @@
     <div class="login-logo" style="text-align:center;">
       {{-- <a href="../../index2.html"><b>Admin</b>LTE</a> --}}
       
-      <img src="{{asset('images/index.png')}}" class="user-image img-circle img-reponsive" width="100px" height="100px" alt="User Image">
+      <img src="{{asset('images/HcMgk6Jq_400x400.jpg')}}" class="user-image img-circle img-reponsive" width="100px" height="100px" alt="User Image">
       <h3 style="font-family:'Times New Roman', Times, serif;">Safaricom ISO ScoreCard.</h3>
     </div>
     <!-- /.login-logo -->

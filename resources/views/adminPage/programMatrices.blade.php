@@ -403,17 +403,18 @@
                                     <div class="col-md-6">
                                         <h4 style="font-family:'Times New Roman', Times, serif">Arithmetic Structure:</h4>
                                     </div>
-                                    <div class="col-md-6"><select name="arithmeticStructure" style="width:100%;height:35px;">
-                                        <optgroup label="Arithmetic Structure">
+                                    <div class="col-md-6">
+                                        <select name="arithmeticStructure" style="width:100%;height:35px;">
+                                        {{-- <optgroup label="Arithmetic Structure"> --}}
                                             @if ($kpiModal->arithmeticStructure == 0)
                                             <option value="1">Above</option>
                                             <option value="0" selected>Below</option>
                                             @elseif($kpiModal->arithmeticStructure == 1)
-                                            <option value="1">Above</option>
-                                            <option value="0" selected>Below</option>
+                                            <option value="1" selected>Above</option>
+                                            <option value="0" >Below</option> --}}                                            
                                             @endif
-                                            
-                                        </optgroup></select></div>
+                                    </select>
+                                </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">

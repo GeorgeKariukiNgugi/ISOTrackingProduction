@@ -98,8 +98,8 @@ desired effect
 
           <li class="dropdown notifications-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" title = "Non Conformities."aria-expanded="false">
-              <b>   Non Conformities.</b>
-              {{-- <i class="fa fa-flag text-yellow"></i> --}}
+              <i class="fa fa-flag text-yellow"></i> Non-Conformities
+              
               
               
               

@@ -2,17 +2,17 @@
 @section('navigationBar')
 <li>
     <a href="/home">
-      {{-- <i class="fa fa-address-card"></i> --}}
+      <i class="fa fa-address-card text-yellow"></i>
       
-      <b>Home</b>
+      Home
     </a>
 </li> 
 
 
 <li>            
     <a href="{{"/dashBoard/".$programId}}" data-toggle="tooltip" title=" Non-conformities out of date">
-      {{-- <i class="fa fa-dashboard"></i>               --}}
-      <b>Dashboard</b>
+      <i class="fa fa-dashboard text-yellow"></i>              
+     Dashboard
     </a>
   </li> 
 @endsection

@@ -3,16 +3,16 @@
 
 <li>
     <a href="/home">
-      {{-- <i class="fa fa-address-card"></i> --}}
-      <b>Home</b>
+      <i class="fa fa-address-card text-yellow"></i>
+      Home
     </a>
 </li> 
 
 
 <li>            
     <a href="{{"/dashBoard/".$id}}" ata-toggle="tooltip" title="DashBoard.">
-      {{-- <i class="fa fa-dashboard"></i>               --}}
-      <b>DashBoard</b>
+      <i class="fa fa-dashboard text-yellow"></i>              
+      DashBoard
     </a>
   </li> 
 @endsection
@@ -53,8 +53,8 @@
 
 @endsection
 @section('section')
-<h1 style="font-family:Georgia, 'Times New Roman', Times, serif;text-align:center;"> <i class="fa fa-book"></i>  Downloaded Reports  Tab. </h1>
-<div class="col-xs-12">
+{{-- <h1 style="font-family:Georgia, 'Times New Roman', Times, serif;text-align:center;"> <i class="fa fa-book"></i>  Downloaded Reports  Tab. </h1> --}}
+<div class="col-xs-12" style="margin-top:3%;">
         <div class="box box-solid box-success">
           <div class="box-header " style="text-align:center;">
             <h3 class="box-title" style="font-family:Georgia, 'Times New Roman', Times, serif;text-align:center;">Downloaded Reports.</h3>

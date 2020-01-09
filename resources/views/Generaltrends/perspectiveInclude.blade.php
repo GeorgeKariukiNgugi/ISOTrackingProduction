@@ -24,7 +24,7 @@
     <br> --}} 
 {{-- </div> --}} 
 
-<h1 style="font-size:30px; font-family:'Times New Roman', Times, serif;text-align:center;text-decoration:underline;color:#539AC2"> <b><b> {{$year."  Perspective Trends."}}</b>  </h1>
+<h1 style="font-size:30px; font-family:'Times New Roman', Times, serif;text-align:center;"> <b><b> {{$year."  Perspective Trends."}}</b>  </h1>
 <div class="row" id="groupByquater">
     <div class="col-md-10 col-md-offset-1">
       <h2 style="font-family:'Times New Roman', Times, serif;text-align:center;"> 1.)Perspectives Trend Grouped BarChart.(grouped per quater.) </h2>

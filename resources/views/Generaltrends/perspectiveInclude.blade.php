@@ -34,7 +34,7 @@
           <div class="box-header with-border text-center" >
             <h3 class="box-title"> <span style="font-family:Georgia, 'Times New Roman', Times, serif">CURRENT YEAR PROGRAM QUATERLY TRENDS.</span></h3>
           </div>
-          <p style="color:red;font-size:13px;font-style:italic;"> <span> <b>Disclaimer</b> If The Bars are at 1% then the proram has not been assesed for that quater. </span> </p>
+          <p style="color:red;font-size:13px;font-style:italic;"> <span> <b>Disclaimer</b> If The Bars are at 1% or 0% then the proram has not been assesed for that quater. </span> </p>
           <div class="box-body">
             
                   {!! $groupedBarChartForPerspectiveProgressPerquater->container() !!}
@@ -54,7 +54,7 @@
           <div class="box-header with-border text-center" >
             <h3 class="box-title"> <span style="font-family:Georgia, 'Times New Roman', Times, serif">CURRENT YEAR PERSPECTIVE QUATERLY TRENDS.</span></h3>
           </div>
-          <p style="color:red;font-size:13px;font-style:italic;"> <span> <b>Disclaimer</b> If The lines are at 1% then the proram has not been assesed for that quater. </span> </p>
+          <p style="color:red;font-size:13px;font-style:italic;"> <span> <b>Disclaimer</b> If The lines are at 1% or 0% then the proram has not been assesed for that quater. </span> </p>
           <div class="box-body">
             
                   {!! $groupedLineChartForPerspectiveProgressPerquater->container() !!}

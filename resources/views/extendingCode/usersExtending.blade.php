@@ -98,7 +98,10 @@ desired effect
 
           <li class="dropdown notifications-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" title = "Non Conformities."aria-expanded="false">
-              <i class="fa fa-flag text-yellow"></i>
+              <b>   Non Conformities.</b>
+              {{-- <i class="fa fa-flag text-yellow"></i> --}}
+              
+              
               
             </a>
             <ul class="dropdown-menu">
@@ -214,7 +217,7 @@ desired effect
         <!-- Optionally, you can add icons to the links -->
         {{-- <li class="active"><a href="#"><i class="fa fa-edit"></i> <span>User Manual </span></a></li> --}}
 
-        @yield('video')
+        
 
         <li>
           @yield('reports')
@@ -225,6 +228,7 @@ desired effect
         <li>
           @yield('perspectiveTrends')
         </li>
+        @yield('video')
         
         {{-- <li class="treeview">
           <a href="#"><i class="fa fa-book""></i> <span>Reports</span>

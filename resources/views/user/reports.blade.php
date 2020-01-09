@@ -3,14 +3,16 @@
 
 <li>
     <a href="/home">
-      <i class="fa fa-address-card"></i>
+      {{-- <i class="fa fa-address-card"></i> --}}
+      <b>Home</b>
     </a>
 </li> 
 
 
 <li>            
     <a href="{{"/dashBoard/".$id}}" ata-toggle="tooltip" title="DashBoard.">
-      <i class="fa fa-dashboard"></i>              
+      {{-- <i class="fa fa-dashboard"></i>               --}}
+      <b>DashBoard</b>
     </a>
   </li> 
 @endsection

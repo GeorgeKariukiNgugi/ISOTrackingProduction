@@ -60,29 +60,29 @@
  @if ($state == 1)
     @php
         $boxColor = "box-danger";
-        $text = "THE FOLLOWING ARE THE NONCONFORMITIES THAT ARE OVERDUE CLOSE THEM SOONEST !!!!";
+        $text = "Overdue Non-Conformities.";
     @endphp
      
  @elseif($state == 0)
  @php
      $boxColor = "box-info";
-     $text = "THE FOLLOWING NON CONFORMITIES NEED TO BE CLOSED."
+     $text = "Open Non-Conformities";
  @endphp
     @elseif($state == 2)
     @php
     $boxColor = "box-success";
-    $text = "THE FOLLOWING NON CONFORMITIES HAVE SUCCESSFULLY BEEN CLOSED."
+    $text = "Closed Non-Conformities";
 @endphp
  @endif
-    <h3 style="font-family:'Times New Roman', Times, serif;text-align:center;">{{$text}}</h3>
+    {{-- <h3 style="font-family:'Times New Roman', Times, serif;text-align:center;">{{$text}}</h3> --}}
 
     @foreach ($errors->all() as $error)
         {{-- {{$error}} --}}
         <div class="alert alert-danger" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><span id="text"><strong>{{$error}}  KINDLY CHECK THE ATTACHMENT SIZE. </strong></span></div>
     @endforeach
-<div class="box {{$boxColor}} box-solid">
+<div class="box {{$boxColor}} box-solid" style="margin-top:3%;">
     <div class="box-header with-border">
-            <h1 class="box-title" style="text-align:center;"> <b>Non Conformities Table For : {{$programmeName}}</b></h1>
+            <h1 class="box-title" style="text-align:center;"> <b>{{$text}}</b></h1>
 
             @if (count($nonConformities) > 0)
             <div class="box-tools pull-right">

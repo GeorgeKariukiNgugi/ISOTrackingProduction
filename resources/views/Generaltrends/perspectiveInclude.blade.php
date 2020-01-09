@@ -24,10 +24,10 @@
     <br> --}} 
 {{-- </div> --}} 
 
-<h1 style="font-size:30px; font-family:'Times New Roman', Times, serif;text-align:center;"> <b><b> {{$year."  Perspective Trends."}}</b>  </h1>
+<h1 style="font-size:30px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;"> <b><b> {{$year."  Perspective Trends."}}</b>  </h1>
 <div class="row" id="groupByquater">
     <div class="col-md-10 col-md-offset-1">
-      <h2 style="font-family:'Times New Roman', Times, serif;text-align:center;"> 1.)Perspectives Trend Grouped BarChart.(grouped per quater.) </h2>
+      <h2 style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;"> 1.)Perspectives Trend Grouped BarChart.(grouped per quater.) </h2>
       <br>
       
       <div class="box box-danger">
@@ -47,7 +47,7 @@
 
   <div class="row" id="lineGraphs">
     <div class="col-md-10 col-md-offset-1">
-      <h2 style="font-family:'Times New Roman', Times, serif;text-align:center;"> 2.) Perspectives Trends Grouped LineChart. (grouped per proram.) </h2>
+      <h2 style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;"> 2.) Perspectives Trends Grouped LineChart. (grouped per proram.) </h2>
       <br>
       
       <div class="box box-danger">

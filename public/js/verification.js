@@ -61,8 +61,11 @@ $(document).ready(function () {
                                     gettingModalName +
                                     '"> <i style = "font-size:20px;"class = "fa fa-times">   <b>NO</b> </i></a>'
                                 );
-                                // $(this).focus();
+                                // $(this).focus(); 
+                                console.log("these are the low era"); 
+                                $(this).css('background-color','#fba7a7');                      
                                 $("#modal" + slicedId).modal("show");
+                                    
                             } else {
                                 // !setting the flag to a negative.
                                 $("#" + nonConformityFlag + "").val(0);
@@ -73,6 +76,9 @@ $(document).ready(function () {
                                 $("#" + unmetTargetId + "").append(
                                     '<p style = "color:green;"> <i style = "font-size:20px;" class = "fa fa-check">   <b>YES</b> </i></p>'
                                 );
+                                $(this).css('background-color','#cfeda8'); 
+                                
+                                
                             }
                             break;
                         case "1":
@@ -93,7 +99,9 @@ $(document).ready(function () {
                                     gettingModalName +
                                     '"> <i style = "font-size:20px;"class = "fa fa-times">   <b>NO</b> </i></a>'
                                 );
+                                console.log("these are the low era"); 
                                 $("#modal" + slicedId).modal("show");
+                                
                                 // $(this).focus();
                             } else {
                                 console.log("1 IT GOOD.");

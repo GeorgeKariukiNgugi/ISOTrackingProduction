@@ -11,7 +11,16 @@ $(document).ready(function () {
     selectingQuaters.removeAttr("readonly");
     selectingQuaters.removeAttr("placeholder");
     selectingQuaters.attr("required", "true");
+    quaterForLooping = parseFloat(gettingTheQuaterNumber, 10);
 
+    console.log(quaterForLooping + typeof(quaterForLooping));
+
+    for (let index = 1; index <= quaterForLooping ; index++) {
+        
+        console.log(index);
+        //! the next section is to 
+        
+    }
     //!on loading the page successfully hide the two types of perspectives that will be used by the uer to bring the perspectives to li
 
     //! the next section isused to get the 

@@ -7,30 +7,30 @@
 
     {{-- <p>This is the progam trends blade template.</p> --}}
     
-    <h1 style="font-size:30px; font-family:'Times New Roman', Times, serif;text-align:center;text-decoration:underline;color:#539AC2"> <b><b>{{$programName}} </b>  </h1>
-    <h1 style="font-size:30px; font-family:'Times New Roman', Times, serif;text-align:center;text-decoration:underline;color:#539AC2"> <i class="fa fa-line-chart"></i> <b><b> {{$year}} </b> FINANCIAL YEAR PROGRAM QUATERLY TRENDS.</b>  </h1>
+    {{-- <h1 style="font-size:30px; font-family:'Times New Roman', Times, serif;text-align:center;text-decoration:underline;color:#539AC2"> <b><b>{{$programName}} </b>  </h1> --}}
+    {{-- <h1 style="font-size:30px; font-family:'Times New Roman', Times, serif;text-align:center;text-decoration:underline;color:#539AC2"> <i class="fa fa-line-chart"></i> <b><b> {{$year}} </b> FINANCIAL YEAR PROGRAM QUATERLY TRENDS.</b>  </h1> --}}
     
-    <div class="col-md-8 col-md-offset-2" >
+    {{-- <div class="col-md-8 col-md-offset-2" >
       
       {{-- <h2 style="font-family:'Times New Roman', Times, serif;color:darkblue;text-align:center;"></h2> --}}
-        <h2 style="font-family:'Times New Roman', Times, serif;color:darkblue;text-align:center;">This tab has 2 graphical representations of the the program trends for <b> {{$year}} </b> Financial year.</h2>
+        {{-- <h2 style="font-family:'Times New Roman', Times, serif;color:darkblue;text-align:center;">This tab has 2 graphical representations of the the program trends for <b> {{$year}} </b> Financial year.</h2>
         <br>
-        <ol>
+        <ol> --}}
            {{-- <a href="#groupByProgram"> <h4  style="font-family:'Times New Roman', Times, serif;color:darkblue;"> 1.) A grouped BarChart that shows the current year trend but grouped by programs <span style="font-style:italic;color:red;">(click to view.)</span> </h4> </a></li>  --}}
            {{-- <li> --}}
-            <a href="#groupByquater"> <h4 style="font-family:'Times New Roman', Times, serif;color:darkblue;"> 1.)  A grouped BarChart that shows the current year trend but grouped by quaters <span style="font-style:italic;color:red;">(click to view.)</span></h4> </a>
+            {{-- <a href="#groupByquater"> <h4 style="font-family:'Times New Roman', Times, serif;color:darkblue;"> 1.)  A grouped BarChart that shows the current year trend but grouped by quaters <span style="font-style:italic;color:red;">(click to view.)</span></h4> </a> --}}
            {{-- </li>  --}}
            {{-- <li> --}}
-            <a href="#lineGraphs"> <h4 style="font-family:'Times New Roman', Times, serif;color:darkblue;"> 2.) A grouped LineGraph that shows the current year in quaterly Fashion. <span style="font-style:italic;color:red;">(click to view.)</span></h4> </a>
+            {{-- <a href="#lineGraphs"> <h4 style="font-family:'Times New Roman', Times, serif;color:darkblue;"> 2.) A grouped LineGraph that shows the current year in quaterly Fashion. <span style="font-style:italic;color:red;">(click to view.)</span></h4> </a> --}}
            {{-- </li>  --}}
-        </ol>
+        {{-- </ol>
         <br>
         <br>
-    </div>
-
+    </div> --}}
+    <h1 style="font-size:30px; font-family:'Times New Roman', Times, serif;text-align:center;text-decoration:underline;color:#539AC2"> <b><b> {{$year."  Program Trends."}}</b>  </h1>
       <div class="row" id="groupByquater">
         <div class="col-md-10 col-md-offset-1">
-          <h2 style="font-family:'Times New Roman', Times, serif;text-align:center;"> 1.) This Grouped BarChart is a graphical representation of the program perfomance per quater in the current year. (grouped per quater.) </h2>
+          <h2 style="font-family:'Times New Roman', Times, serif;text-align:center;"> 1.)Program Trend Grouped BarChart.(grouped per quater.) </h2>
           <br>
           
           <div class="box box-danger">
@@ -49,7 +49,7 @@
 
       <div class="row" id="lineGraphs">
         <div class="col-md-10 col-md-offset-1">
-          <h2 style="font-family:'Times New Roman', Times, serif;text-align:center;"> 2.) This Grouped LineGraph is a graphical representation of the program perfomance per quater in the current year.</h2>
+          <h2 style="font-family:'Times New Roman', Times, serif;text-align:center;"> 2.) Program Trends Grouped LineChart. (grouped per proram.) </h2>
           <br>
           
           <div class="box box-danger">

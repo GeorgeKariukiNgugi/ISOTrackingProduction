@@ -63,13 +63,13 @@
 @endsection
 @section('section')
 
-<h1 style="font-family:Georgia, 'Times New Roman', Times, serif;text-align:center;"> {{$programDetailsArray[0]}}</h1>
-<h1 style="font-family:Georgia, 'Times New Roman', Times, serif;text-align:center;"> {{ $programDetailsArray[1]}}</h1>
+{{-- <h1 style="font-family:Georgia, 'Times New Roman', Times, serif;text-align:center;"> {{$programDetailsArray[0]}}</h1> --}}
+{{-- <h1 style="font-family:Georgia, 'Times New Roman', Times, serif;text-align:center;"> {{ $programDetailsArray[1]}}</h1> --}}
 <h1 style="font-family:Georgia, 'Times New Roman', Times, serif;text-align:center;color:darkblue;text-decoration:underline;"> {{  $activeYaer . '   '. $activeQuater. '   DashBoard.' }}</h1>
 <div class="col-md-8">
     <div class="box box-danger">
         <div class="box-header with-border text-center" >
-          <h3 class="box-title"> <span style="font-size:40px;font-family:Georgia, 'Times New Roman', Times, serif">CUMMULATIVE FINAL SCORES::</span> <span><b style="font-size:40px;font-family:Verdana, Geneva, Tahoma, sans-serif">{{ sprintf("%.2f", $finalScore)."%"}}</b></span></h3>
+          <h3 class="box-title"> <span style="font-size:28px;font-family:Georgia, 'Times New Roman', Times, serif">CUMMULATIVE FINAL SCORES::</span> <span><b style="font-size:40px;font-family:Verdana, Geneva, Tahoma, sans-serif">{{ sprintf("%.2f", $finalScore)."%"}}</b></span></h3>
         </div>
         <div class="box-body">
                 {!! $chart->container() !!}

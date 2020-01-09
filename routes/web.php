@@ -139,7 +139,7 @@ Route::post('/deleteStrObjective/{id}','adminController\programMatrices@deleteSt
 Route::post('editingStrObjective/{id}', 'adminController\programMatrices@editStrategicObjective');
 
 //! this route will be used to display the video tutorial.
-Route::get('/usersTutorial/{id}', 'userController\UserController@video');
+Route::get('/usersTutorial/{id}/{type}', 'userController\UserController@video');
 
 //! this route will be usedto get the reports view. 
 Route::get('/reports/{id}','userController\reports@viewReports');

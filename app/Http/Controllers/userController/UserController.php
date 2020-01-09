@@ -922,9 +922,9 @@ $closedNCEvidence->save();
     return back();
 }
 
-public function video($programId){
+public function video($id,$type){
     $programs = Program::all();
 
-    return view('user.video',['programs'=>$programs,'id'=>$programId]);
+    return view('user.video',['programs'=>$programs,'id'=>$id,'type'=>$type]);
 }
 }

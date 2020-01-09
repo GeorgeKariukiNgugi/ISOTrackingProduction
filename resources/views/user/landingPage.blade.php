@@ -27,8 +27,20 @@
 @endsection
 
 @section('video')
-<a href="{{"/usersTutorial/".$programId}}"><i class="fa fa-video-camera"></i> <span>Video Sample</span></a>
+<li class="treeview">
+  <a href="#"><i class="fa fa-video-camera"></i> <span>Video Tutorials</span>
+    <span class="pull-right-container">
+        <i class="fa fa-angle-left pull-right"></i>
+      </span>
+  </a>
+  <ul class="treeview-menu">
+    <li><a href="/usersTutorial/{{$programId}}/1"><i class="fa fa-video-camera"></i> <span>Scoring KPIS</span></a></li>
+    <li><a href="/usersTutorial/{{$programId}}/2"><i class="fa fa-video-camera"></i> <span>Closing Non-Confromities</span></a></li>
+    <li><a href="/usersTutorial/{{$programId}}/3"><i class="fa fa-video-camera"></i> <span>Program Dashboard.</span></a></li>
+  </ul>
+</li>
 @endsection
+
 @section('reports')
 <a href="{{"/reports/".$programId}}"><i class="fa fa-book"></i> <span> Reports</span></a>
 

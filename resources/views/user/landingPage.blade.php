@@ -418,7 +418,7 @@
                       
                       <div class="modal-body "  style="background-color:#cfeda8;">
                         <div id="{{"NonConformitymodal".$kpiModal->id}}"></div>
-                          <form id="{{"unmetTargetModal".$kpiModal->id}}" class = "{{"unmetTargetModal".$kpiModal->id}} modal-body-for-ncs">
+                          <form id="{{"unmetTargetModal".$kpiModal->id}}" class = "{{"unmetTargetModal".$kpiModal->id}} {{"modal-body-for-ncs".$kpiModal->id}}">
                             {{ csrf_field() }}
                             <input type="hidden" name="nonConformitykpiId" value="{{$kpiModal->id}}">
                               <div class="row" style="margin-bottom:1%;">
@@ -448,7 +448,7 @@
                                 <div class="col-lg-9 col-md-9"><input required class="form-control" name = "date" type="date"></div>
                             </div>
                           </div>
-                              <div class="modal-footer" style="background-color:#a3e253"><button class="btn btn-danger" type="button" data-dismiss="modal">Close</button><button class="btn btn-success modal-body-for-ncs" type="submit">Save</button></div>
+                              <div class="modal-footer" style="background-color:#a3e253"><button class="btn btn-danger" type="button" data-dismiss="modal">Close</button><button class="btn btn-success {{"modal-body-for-ncs".$kpiModal->id}}" type="submit">Save</button></div>
                           </form>
                                             
                   </div>

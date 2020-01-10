@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(function () {
 
     $('#primitive_perspective').hide();
     console.log('hiding the perspectives.');

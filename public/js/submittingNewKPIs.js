@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(function () {
     $("form[id^='modalSubmit']").on("submit", function (e) {
         e.preventDefault();
 

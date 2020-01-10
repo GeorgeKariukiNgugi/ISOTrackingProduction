@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(function() {
     $("a").tooltip();
     $(".box-title > a").click(function() {
         // console.log("clicked.");

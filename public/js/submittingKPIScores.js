@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(function () {
     // console.log("this is a submitting scores model.");
     $("form[id^='form']").on("submit", function (e) {
         e.preventDefault();

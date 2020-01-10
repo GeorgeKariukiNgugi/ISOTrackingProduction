@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(function () {
     var activeQuater = $("#activeQuater").val();
     var gettingTheQuaterNumber = activeQuater.substr(1);
     var quatersSelected = $("input[id*='Quater" + gettingTheQuaterNumber + "']");

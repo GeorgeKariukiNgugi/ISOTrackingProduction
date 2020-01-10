@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(function () {
     $("form[id^='unmetTargetModal']").on("submit", function (e) {
         e.preventDefault();
         var idOfForm = $(this).attr("id");

@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(function () {
     $(".tooltip").tooltip();
     //!this is getting which quaters are active and also which ones are n active and displaying them in the view.
     var activeQuater = $("#activeQuater").val();

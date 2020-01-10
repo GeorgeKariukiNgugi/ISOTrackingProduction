@@ -448,7 +448,7 @@
                                 <div class="col-lg-9 col-md-9"><input required class="form-control" name = "date" type="date"></div>
                             </div>
                           </div>
-                              <div class="modal-footer" style="background-color:#a3e253"><button class="btn btn-danger" type="button" data-dismiss="modal">Close</button><button class="btn btn-success {{"modal-body-for-ncs".$kpiModal->id}}" type="submit">Save</button></div>
+                              <div class="modal-footer" style="background-color:#a3e253"><button class="btn btn-danger" type="button" data-dismiss="modal">Close</button><button class="btn btn-success {{"modal-body-for-ncs".$kpiModal->id}} {{"unmetTargetModal".$kpiModal->id}} " type="submit">Save</button></div>
                           </form>
                                             
                   </div>

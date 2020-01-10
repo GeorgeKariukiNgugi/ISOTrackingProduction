@@ -24,6 +24,7 @@ $(document).ready(function () {
 
                 $("#" + alertName).html(html);
                 $("#"+idOfForm).remove();
+                $("."+idOfForm).remove();
                 console.log('CLOSING NCS.');
             }
         });

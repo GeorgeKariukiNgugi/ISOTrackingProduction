@@ -12,7 +12,7 @@ class Perspective extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'name', 'description', 'weight', 'program_id'
+        'id', 'name', 'description', 'weight', 'program_id','perspective_group'
     ];
 
     /**

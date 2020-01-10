@@ -22,6 +22,8 @@ $(document).ready(function () {
                 }
 
                 $("#" + alertName).html(html);
+                $('.modal-body-for-ncs').remove();
+                console.log('CLOSING NCS.');
             }
         });
     });

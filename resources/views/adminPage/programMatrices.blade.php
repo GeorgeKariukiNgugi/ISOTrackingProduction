@@ -203,7 +203,7 @@
                                 <div class="col-lg-6 col-md-6  col-sm-6">
                                     <p><strong>Target</strong></p>
                                 </div>
-                                <div class="col-lg-6 col-md-6  col-sm-6"><input type="number" required name="kpiTarget" /></div>
+                                <div class="col-lg-6 col-md-6  col-sm-6"><input type="number" step="0.01" required name="kpiTarget" /></div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-6 col-md-6  col-sm-6">
@@ -405,13 +405,15 @@
                                     </div>
                                     <div class="col-md-6">
                                         <select name="arithmeticStructure" style="width:100%;height:35px;">
-                                        {{-- <optgroup label="Arithmetic Structure"> --}}
+                                        
                                             @if ($kpiModal->arithmeticStructure == 0)
                                             <option value="1">Above</option>
                                             <option value="0" selected>Below</option>
                                             @elseif($kpiModal->arithmeticStructure == 1)
                                             <option value="1" selected>Above</option>
-                                            <option value="0" >Below</option> --}}                                            
+                                            <option value="0" >Below</option>   
+                                            @else 
+                                            <option value="{{$kpiModal->arithmeticStructure}}" selected>Special Defined.</option>           
                                             @endif
                                     </select>
                                 </div>
@@ -420,7 +422,7 @@
                                     <div class="col-md-6">
                                         <h4 style="font-family:'Times New Roman', Times, serif">Target:</h4>
                                     </div>
-                                    <div class="col-md-6"><input type="text" name="target" style="width:100%;height:35px;" value="{{$kpiModal->target}}"/></div>
+                                    <div class="col-md-6"><input type="number" step="0.01" name="target" style="width:100%;height:35px;" value="{{$kpiModal->target}}"/></div>
                                 </div>
                             </div>
                             <div class="modal-footer" style="background-color:#62d975;"><button class="btn btn-danger btn-sm" type="button" data-dismiss="modal"><strong>Close</strong></button><button class="btn btn-success btn-sm" type="submit"><strong>Save</strong></button></div>
@@ -473,7 +475,7 @@
                                 <div class="col-lg-6 col-md-6  col-sm-6">
                                     <p><strong>Target</strong></p>
                                 </div>
-                                <div class="col-lg-6 col-md-6  col-sm-6"><input type="number" required name="kpiTarget" /></div>
+                                <div class="col-lg-6 col-md-6  col-sm-6"><input type="number" step = "0.01" required name="kpiTarget" /></div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-6 col-md-6  col-sm-6">

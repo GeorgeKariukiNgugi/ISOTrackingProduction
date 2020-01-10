@@ -104,6 +104,13 @@
                             </div>
                         </div>
                     </div>
+
+                    @foreach ($programDetailsArray as $programDetailsArray)
+                    <input type="hidden" name="newProgramDetails[]" value="{{$programDetailsArray}}">
+                    @endforeach
+                    
+                    
+
             </form>
         </div>
     </div>   

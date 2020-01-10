@@ -122,6 +122,7 @@
           @foreach ($strategicObjectives as $strategicObjective)
           {{-- cleaning the data that is in the strategic objective for better visualisation. --}}
           @php
+              $kpiIncrementalNumber = 0;
               $perspetiveName= str_replace('_', ' ', $strategicObjective->name);
               $perspetiveName = ucwords($perspetiveName);
           @endphp
@@ -171,7 +172,7 @@
                                 <div class="col-lg-6 col-md-6  col-sm-6">
                                     <p><strong>Target</strong></p>
                                 </div>
-                                <div class="col-lg-6 col-md-6  col-sm-6"><input type="number" required name="kpiTarget" /></div>
+                                <div class="col-lg-6 col-md-6  col-sm-6"><input type="number"  step = "0.01" required name="kpiTarget" /></div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-6 col-md-6  col-sm-6">
@@ -310,7 +311,8 @@
                                         {{-- hidden input to et the value of the arithmetic structure. --}}
                                         <input type="hidden" id="{{"arithmeticStructure".$kpi->id}}" value = "{{$kpi->arithmeticStructure}}"/>
                                         <div class=" col-md-1"style="text-align:center">
-                                            <p>{{$kpi->id}}</p>
+                                            {{-- <p>{{$kpi->id}}</p> --}}
+                                            <p>{{++$kpiIncrementalNumber}}</p>
                                         </div>
                                         <div class=" col-md-3" style="text-align:left">
                                             <p>{{$name3}}</p>
@@ -413,9 +415,10 @@
                       <div class="modal-header" style="background-color:#a3e253" ><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                           <h4 class="text-center modal-title" style="font-family:'Times New Roman', Times, serif">Kindly Fill The Following Fields to Complete Assesing :: <strong>{{$kpiModal->name}}.</strong></h4>
                       </div>
-                      <div class="modal-body" style="background-color:#cfeda8;">
+                      
+                      <div class="modal-body "  style="background-color:#cfeda8;">
                         <div id="{{"NonConformitymodal".$kpiModal->id}}"></div>
-                          <form id="{{"unmetTargetModal".$kpiModal->id}}" class = "{{"unmetTargetModal".$kpiModal->id}}">
+                          <form id="{{"unmetTargetModal".$kpiModal->id}}" class = "{{"unmetTargetModal".$kpiModal->id}} modal-body-for-ncs">
                             {{ csrf_field() }}
                             <input type="hidden" name="nonConformitykpiId" value="{{$kpiModal->id}}">
                               <div class="row" style="margin-bottom:1%;">
@@ -445,7 +448,7 @@
                                 <div class="col-lg-9 col-md-9"><input required class="form-control" name = "date" type="date"></div>
                             </div>
                           </div>
-                              <div class="modal-footer" style="background-color:#a3e253"><button class="btn btn-danger" type="button" data-dismiss="modal">Close</button><button class="btn btn-success" type="submit">Save</button></div>
+                              <div class="modal-footer" style="background-color:#a3e253"><button class="btn btn-danger" type="button" data-dismiss="modal">Close</button><button class="btn btn-success modal-body-for-ncs" type="submit">Save</button></div>
                           </form>
                                             
                   </div>
@@ -476,7 +479,7 @@
                                 <div class="col-lg-6 col-md-6  col-sm-6">
                                     <p><strong>Target</strong></p>
                                 </div>
-                                <div class="col-lg-6 col-md-6  col-sm-6"><input type="number" required name="kpiTarget" /></div>
+                                <div class="col-lg-6 col-md-6  col-sm-6"><input type="number" step="0.01" required name="kpiTarget" /></div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-6 col-md-6  col-sm-6">

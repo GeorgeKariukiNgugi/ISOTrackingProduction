@@ -100,6 +100,7 @@ $(document).ready(function () {
                                     '"> <i style = "font-size:20px;"class = "fa fa-times">   <b>NO</b> </i></a>'
                                 );
                                 console.log("these are the low era"); 
+                                $(this).css('background-color','#fba7a7');
                                 $("#modal" + slicedId).modal("show");
                                 
                                 // $(this).focus();
@@ -114,6 +115,7 @@ $(document).ready(function () {
                                 $("#" + unmetTargetId + "").append(
                                     '<p style = "color:green;"> <i style = "font-size:20px;" class = "fa fa-check">   <b>YES</b> </i></p>'
                                 );
+                                $(this).css('background-color','#cfeda8'); 
                             }
                             break;
                         case "3":

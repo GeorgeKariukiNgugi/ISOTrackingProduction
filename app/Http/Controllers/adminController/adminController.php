@@ -47,18 +47,27 @@ class adminController extends Controller
             }
             
             //!this section of the code will be responsible for the submission of data into the database.
-            $newProram = new Program(
-                                        array(
-                                            'name'=>$name,
-                                            'description'=>$description,
-                                            'shortHand'=>$progamShortHand,
-                                            'programCode'=>$progamCode,
-                                            'colorCode'=>$color,
-                                            'imageLocation'=>$newName
-                                        )
-            );
-            $newProram->save();
+            // $newProram = new Program(
+            //                             array(
+            //                                 'name'=>$name,
+            //                                 'description'=>$description,
+            //                                 'shortHand'=>$progamShortHand,
+            //                                 'programCode'=>$progamCode,
+            //                                 'colorCode'=>$color,
+            //                                 'imageLocation'=>$newName
+            //                             )
+            // );
+            // $newProram->save();
+            $programDetailsArray = array();
+            array_push($programDetailsArray,$name);
+            array_push($programDetailsArray,$description);
+            array_push($programDetailsArray,$progamShortHand);
+            array_push($programDetailsArray,$progamCode);
+            array_push($programDetailsArray,$color);
+            array_push($programDetailsArray,$newName);
+            // $programDetailsArray = 22;
             //! getting the last inserted data in the table.  
+
 
             $lastIds = Program::where('shortHand','=',$progamShortHand)->get();
             $id = null;
@@ -70,10 +79,11 @@ class adminController extends Controller
             $unmetWeight = 0;
             $numbersSubmitted = 1;
             $sumOfWeight = 0;
-        return view('adminPage.addingNewProgramStep2',['programs'=>$programs,'sumOfWeight'=>$sumOfWeight,'numbersSubmitted'=>$numbersSubmitted,'unmetWeight'=>$unmetWeight,'id'=>$id,'name'=>$name,'progamShortHand'=>$progamShortHand,'progamCode'=>$progamCode]);
+        return view('adminPage.addingNewProgramStep2',['programDetailsArray'=>$programDetailsArray,'programs'=>$programs,'sumOfWeight'=>$sumOfWeight,'numbersSubmitted'=>$numbersSubmitted,'unmetWeight'=>$unmetWeight,'id'=>$id,'name'=>$name,'progamShortHand'=>$progamShortHand,'progamCode'=>$progamCode]);
     }
     public function submittingPerspectives(SubmittingPerspetive $request){
 
+        // dd($request->newProgramDetails);()
         //! to submit the data that has been presented we hould first get the type of radioi button that has been submitted.
 
         $perspective = $request->perspective;
@@ -104,25 +114,47 @@ class adminController extends Controller
             $perspectives = array();
             // dd($id);
             //!pushing data to array for easier insertion. 
+            // $newProgramDetails
+
+            $newProram = new Program(
+                                        array(
+                                            'name'=>$request->newProgramDetails[0],
+                                            'description'=>$request->newProgramDetails[1],
+                                            'shortHand'=>$request->newProgramDetails[2],
+                                            'programCode'=>$request->newProgramDetails[3],
+                                            'colorCode'=>$request->newProgramDetails[4],
+                                            'imageLocation'=>$request->newProgramDetails[5]
+                                        )
+            );
+            $newProram->save();
 
             array_push($perspectives,$financial);
             array_push($perspectives, $shortHand.'_'.'financial_perspective');
+            array_push($perspectives,1);
             array_push($perspectives,$customer);
             array_push($perspectives, $shortHand.'_'.'customer_perspective');
+            array_push($perspectives,2);
             array_push($perspectives,$learningAndgrowth );
             array_push($perspectives, $shortHand.'_'.'learning_and_growth_perspective');
+            array_push($perspectives,3);
             array_push($perspectives,$internalBusiness);
             array_push($perspectives, $shortHand.'_'.'internal_business_process_perspective');
+            array_push($perspectives,4);
 
-            
+            $lastIds = Program::where('shortHand','=',$request->newProgramDetails[2])->get();
+            $id = null;
+            foreach($lastIds as $lastId){
+                $id = $lastId->id;
+            }
                 # code...
-                for ($i=0; $i <count($perspectives) ; $i+=2) { 
+                for ($i=0; $i <count($perspectives) ; $i+=3) { 
                     # code...
                     $insertingPerspective = new Perspective(
 
                         array(
                             'name'=>$perspectives[$i+1],
                             'weight'=>$perspectives[$i], 
+                            'perspective_group'=>$perspectives[$i+2],
                             'program_id'=>$id,
                         )
                     );
@@ -166,6 +198,8 @@ class adminController extends Controller
                 } else {
 
                     // dd($id);
+                    $perspectivesAlreadyInserted = Perspective::all();
+                    $numberOfPerspectives = count($perspectivesAlreadyInserted);
                     for ($i=1; $i < $numbersSubmitted+1 ; $i++) { 
                         $weightname = 'customweight'.$i;
                         $perspectiveNamename = 'customname'.$i;
@@ -174,6 +208,22 @@ class adminController extends Controller
                          foreach($programShortHands as $programShortHand){
                             $shortHand = $programShortHand->shortHand ;
                          }
+                         $newProram = new Program(
+                            array(
+                                'name'=>$request->newProgramDetails[0],
+                                'description'=>$request->newProgramDetails[1],
+                                'shortHand'=>$request->newProgramDetails[2],
+                                'programCode'=>$request->newProgramDetails[3],
+                                'colorCode'=>$request->newProgramDetails[4],
+                                'imageLocation'=>$request->newProgramDetails[5]
+                            )
+                        );
+                        $newProram->save();
+                        $lastIds = Program::where('shortHand','=',$request->newProgramDetails[2])->get();
+            $id = null;
+            foreach($lastIds as $lastId){
+                $id = $lastId->id;
+            }
                          $insertingPerspective = new Perspective(
 
                             //! getting the shorthand of the program that has been inserted latest. 
@@ -182,6 +232,7 @@ class adminController extends Controller
                                 'name'=> $shortHand.'_'.$request->$perspectiveNamename,
                                 'weight'=>$request->$weightname, 
                                 'program_id'=>$id,
+                                'perspective_group'=>++$numberOfPerspectives
                             )
                         );
                         $insertingPerspective->save();

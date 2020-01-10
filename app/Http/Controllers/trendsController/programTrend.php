@@ -204,14 +204,24 @@ class programTrend extends Controller
                 $quaterSubStr = substr($activeQuater,1); 
                 $quaterSubStr = $quaterSubStr+0;
        
-                       for ($i=1; $i <= 4 ; $i++) { 
+
+                            # code...
+                        
                            //! this section is used to get the particular perspective groups.
                            # code...
                            $programId = 0;
                            $numberOfNonProrams = 0;
-                           foreach ($programz as $program) {                       
+                           $i = 0;
+                           $perspectives = Perspective::where('program_id','=',$id)                                                           
+                           ->get();
+                           foreach ($perspectives as $key => $perspective) { 
+                            $i++;
+                           foreach ($programz as $program) {  
+
+//    for ($i=1; $i <= count($perspectivesToCount) ; $i++) { 
+                                                    
                                $perspectivesToCount = Perspective::where('program_id','=',$program->id)
-                                                           ->where('perspective_group','=',$i)
+                                                           ->where('perspective_group','=',$perspective->perspective_group)
                                                            ->get();
                                 $programId = $program->id;
                                 $programName = $program->name;
@@ -229,7 +239,7 @@ class programTrend extends Controller
                                // $numberOfNonProrams = 0;
                                $quater = 'Q'.$j;
                                 
-                               $perspectives = Perspective::where('perspective_group','=',$i)
+                               $perspectives = Perspective::where('perspective_group','=',$perspective->perspective_group)
                                                             ->where('program_id','=',$programId)                                                        
                                                             ->get();
        
@@ -265,7 +275,7 @@ class programTrend extends Controller
        
                                    
                                    //! number of programs that have the perapective. 
-                                   
+                                //    dd($numberOfNonProrams);
                                    array_push($storingArray,$strateicObjectiveAverage/(count($programz)-$numberOfNonProrams));
                                    array_push($storingLineArray,$strateicObjectiveAverage/(count($programz)-$numberOfNonProrams));
                                    
@@ -273,7 +283,7 @@ class programTrend extends Controller
        
                            // dd($storingArray);
        
-                           switch ($i) {
+                           switch ($perspective->perspective_group) {
                                case 1:
                                    # code...
                                    $name = 'Financial Perspetive';
@@ -290,9 +300,11 @@ class programTrend extends Controller
        
                                default:
                                    # code...
-                                   $name = 'Not Known';
+                                   $name = $perspective->name;
                                    break;
                            }
+
+                            
                            $groupedBarChartForPerspectiveProgressPerquater->dataset( $name,'bar', $storingArray)
                            ->color($borderColors[$i])
                            ->backgroundcolor($fillColors[$i]);

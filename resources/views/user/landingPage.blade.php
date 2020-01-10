@@ -311,8 +311,8 @@
                                         {{-- hidden input to et the value of the arithmetic structure. --}}
                                         <input type="hidden" id="{{"arithmeticStructure".$kpi->id}}" value = "{{$kpi->arithmeticStructure}}"/>
                                         <div class=" col-md-1"style="text-align:center">
-                                            {{-- <p>{{$kpi->id}}</p> --}}
-                                            <p>{{++$kpiIncrementalNumber}}</p>
+                                            <p>{{$kpi->id}}</p>
+                                            {{-- <p>{{++$kpiIncrementalNumber}}</p> --}}
                                         </div>
                                         <div class=" col-md-3" style="text-align:left">
                                             <p>{{$name3}}</p>

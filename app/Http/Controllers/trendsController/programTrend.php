@@ -213,8 +213,10 @@ class programTrend extends Controller
                            $numberOfNonProrams = 0;
                            $i = 0;
                            $perspectives = Perspective::where('program_id','=',$id)                                                           
-                           ->get();
-                           foreach ($perspectives as $key => $perspective) { 
+                                                        ->get();
+
+                                                        // dd($perspectives);
+                           foreach ($perspectives as $perspective) { 
                             $i++;
                            foreach ($programz as $program) {  
 

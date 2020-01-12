@@ -136,10 +136,10 @@ class adminController extends Controller
             array_push($perspectives,2);
             array_push($perspectives,$learningAndgrowth );
             array_push($perspectives, $shortHand.'_'.'learning_and_growth_perspective');
-            array_push($perspectives,3);
+            array_push($perspectives,4);
             array_push($perspectives,$internalBusiness);
             array_push($perspectives, $shortHand.'_'.'internal_business_process_perspective');
-            array_push($perspectives,4);
+            array_push($perspectives,3);
 
             $lastIds = Program::where('shortHand','=',$request->newProgramDetails[2])->get();
             $id = null;

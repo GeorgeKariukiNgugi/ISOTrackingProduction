@@ -36,9 +36,9 @@
         }
     }
 @endphp
-<h4 style="font-size:40px;font-family:Georgia, 'Times New Roman', Times, serif;text-align:center;color:#4B94BF;"> <i class="fa fa-trophy"></i> <span> {{$name}} Details. </span> <span><b style="font-size:40px;font-family:Verdana, Geneva, Tahoma, sans-serif"></b></span></h4>
-<div class="col-md-12" style="font-family:Georgia, 'Times New Roman', Times, serif;">
-        <div class="box box-solid box-info" style="font-family:Georgia, 'Times New Roman', Times, serif;" class="col-md-8 col-md-offset-2">
+<h4 style="font-size:40px;font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;text-align:center;"> <i class="fa fa-trophy"></i> <span> {{$name}} Details </span> <span><b style="font-size:40px;font-family:Verdana, Geneva, Tahoma, sans-serif"></b></span></h4>
+<div class="col-md-12" style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
+        <div class="box box-solid box-info" style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;" class="col-md-8 col-md-offset-2">
           <div class="box-header with-border">
             <i class="fa fa-trophy"></i>
 
@@ -50,57 +50,57 @@
               </div>
           </div>
           <div class="box-body">
-                <div style="font-family:'Times New Roman', Times, serif;" >
+                <div style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;" >
 
                         <div class=" table-responsive no-padding col-md-12 col-md-8 col-md-offset-2">
                                 <table class="table table-hover table-striped table-bordered table-condensed">
                                   <tbody>               
                                     <td>
-                                     <h4 style="font-family:Georgia, 'Times New Roman', Times, serif;">Program Official Name</h4>  
+                                     <h4 style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">Program Official Name</h4>  
                                     </td>
                                     <td>
-                                      <h4 style="font-family:Georgia, 'Times New Roman', Times, serif;">{{$name}}</h4>  
+                                      <h4 style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">{{$name}}</h4>  
                                     </td>                 
                                   </tr>
                                   <tr>
                                       <td>
-                                            <h4 style="font-family:Georgia, 'Times New Roman', Times, serif;">Program Code.</h4>  
+                                            <h4 style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">Program Code.</h4>  
                                       </td>
                                       <td>
-                                            <h4 style="font-family:Georgia, 'Times New Roman', Times, serif;">{{$programCode}}</h4>
-                                      </td>
-                                  </tr>
-                                  <tr>
-                                      <td>
-                                            <h4 style="font-family:Georgia, 'Times New Roman', Times, serif;">Program Short Hand.</h4>
-                                      </td>
-                                      <td>
-                                            <h4 style="font-family:Georgia, 'Times New Roman', Times, serif;">{{$shortHand}}</h4>
+                                            <h4 style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">{{$programCode}}</h4>
                                       </td>
                                   </tr>
                                   <tr>
                                       <td>
-                                            <h4 style="font-family:Georgia, 'Times New Roman', Times, serif;">Number Of Perspectives</h4>
+                                            <h4 style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">Program Short Hand.</h4>
                                       </td>
                                       <td>
-                                            <h4 style="font-family:Georgia, 'Times New Roman', Times, serif;">{{$perspectivesNumber}}</h4>
+                                            <h4 style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">{{$shortHand}}</h4>
                                       </td>
                                   </tr>
                                   <tr>
                                       <td>
-                                            <h4 style="font-family:Georgia, 'Times New Roman', Times, serif;">Number Of Strategic Objectives<br /></h4>
+                                            <h4 style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">Number Of Perspectives</h4>
                                       </td>
                                       <td>
-                                            <h4 style="font-family:Georgia, 'Times New Roman', Times, serif;">{{$perspectivesNumber}}</h4>
+                                            <h4 style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">{{$perspectivesNumber}}</h4>
+                                      </td>
+                                  </tr>
+                                  <tr>
+                                      <td>
+                                            <h4 style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">Number Of Strategic Objectives<br /></h4>
+                                      </td>
+                                      <td>
+                                            <h4 style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">{{$perspectivesNumber}}</h4>
                                       </td>
 
                                   </tr>
                                   <tr>
                                       <td>
-                                            <h4 style="font-family:Georgia, 'Times New Roman', Times, serif;">Number Of KPIs</h4>
+                                            <h4 style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">Number Of KPIs</h4>
                                       </td>
                                       <td>
-                                            <h4 style="font-family:Georgia, 'Times New Roman', Times, serif;">{{$kpiNUmbers}}</h4>
+                                            <h4 style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">{{$kpiNUmbers}}</h4>
                                       </td>
                                   </tr>
                                 </tbody></table>

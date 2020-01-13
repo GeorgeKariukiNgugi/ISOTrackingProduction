@@ -15,7 +15,7 @@
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
 
-        <h2 style="font-family:'Times New Roman', Times, serif;text-align:center;"> 1.) These Charts give a graphical representation of the program contribution to the overall perfomance of the perspectve for  <b>{{$year.'   '.$quater}}</b></h2>
+        <h2 style="font-family:'Times New Roman', Times, serif;text-align:center;"> Program Contribution To Perspective Final Score <b>{{$year.'   '.$quater}}</b></h2>
       </div>
     </div>
    

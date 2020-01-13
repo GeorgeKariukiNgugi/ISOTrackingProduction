@@ -1,7 +1,7 @@
 @extends('extendingCode.adminExtending')
 @section('section')
-<h1 class="text-center" style="font-family:Georgia,Times New Roman,Times,serif;">   <i class="fa fa-group"></i>   Programs Assesors Tab.</h1>
-<div class="row">
+{{-- <h1 class="text-center" style="font-family:Georgia,Times New Roman,Times,serif;">   <i class="fa fa-group"></i>   Programs Assesors Tab.</h1> --}}
+<div class="row" style="padding-top:3%;">
         <div class="col-xs-12">
           <div class="box box-solid box-success">
             <div class="box-header">

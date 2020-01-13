@@ -26,12 +26,12 @@
     $typeString= 'closed';
 @endphp
  @endif
- <h3 style="font-family:'Times New Roman', Times, serif;text-align:center;">{{$text}}</h3>
- <div class="row" style="font-family:'Times New Roman', Times, serif;">
+ {{-- <h3 style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;text-align:center;">{{$text}}</h3> --}}
+ <div class="row" style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;padding-top:3%;">
         <div class="col-xs-12">
           <div class="box box-solid {{$boxColor}}">
             <div class="box-header">
-              <h3 class="box-title" style="font-family:'Times New Roman', Times, serif;">{{$text}}</h3>
+              <h3 class="box-title" style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">{{$text}}</h3>
               <div class="box-tools">
                   
                     @if (count($nonConformities) > 0)
@@ -108,7 +108,7 @@
                 </thead>
                 <tbody>
                     @if (count($nonConformities) == 0)
-                    <h3 style="font-family:'Times New Roman', Times, serif;text-align:center;">THERE ARE NO NON CONFORMITIES FOR THIS PRORAM.</h3>
+                    <h3 style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;text-align:center;">THERE ARE NO NON CONFORMITIES FOR THIS PRORAM.</h3>
                     @endif
                 @php
                     $sno = 1;

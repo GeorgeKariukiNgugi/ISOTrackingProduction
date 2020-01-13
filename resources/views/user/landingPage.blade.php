@@ -75,9 +75,9 @@
 
 
 <div style="margin-bottom:5%;margin-top:5%"id="heading">
-<h1 class="text-center" style="font-family:Times New Roman;">{{$name}} Score Card.  ({{$programShortHand}})  </h1>
-    <h1 class="text-center" style="font-family:Times New Roman;"> <b>{{$activeYaer}}</b></h1>
-    <h2 class="text-center" style="font-family:Times New Roman;">Update the <b>{{$activeQuater}}</b> Scores based on the perspectives that have been listed below :</h2>
+<h1 class="text-center" style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">{{$name}} Score Card.  ({{$programShortHand}})  </h1>
+    <h1 class="text-center" style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;"> <b>{{$activeYaer}}</b></h1>
+    <h2 class="text-center" style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">Update the <b>{{$activeQuater}}</b> Scores based on the perspectives that have been listed below :</h2>
 </div>
     
 <div class="panel-group" id="accordion" role="tablist">  
@@ -96,7 +96,7 @@
 
 <div class="panel box box-warning box-solid">
   <div class="box-header with-border">
-    <h4 class="box-title" style="width:100%;font-family:'Times New Roman', Times, serif">
+    <h4 class="box-title" style="width:100%;font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">
       <a data-toggle="collapse" style="padding-right:10px;" data-parent="#accordion" href="{{"#collapseOne".$increment2}}" aria-expanded="true" aria-controls="collapseOne">
         {{$name2}} <i style = "float:right;"class="accordion_icon fa fa-plus"></i>
       </a>
@@ -129,7 +129,7 @@
           
           <div class="box box-primary box-solid">
             <div class="box-header with-border text-center"style="text-align:center">
-            <h3 class="box-title text-center" style="font-family:'Times New Roman', Times, serif;">{{$perspetiveName}}</h3>
+            <h3 class="box-title text-center" style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">{{$perspetiveName}}</h3>
             </div>
             {{-- getting the key perfomance indicators for the specific strategic objectives. --}}
             @php
@@ -311,8 +311,8 @@
                                         {{-- hidden input to et the value of the arithmetic structure. --}}
                                         <input type="hidden" id="{{"arithmeticStructure".$kpi->id}}" value = "{{$kpi->arithmeticStructure}}"/>
                                         <div class=" col-md-1"style="text-align:center">
-                                            <p>{{$kpi->id}}</p>
-                                            {{-- <p>{{++$kpiIncrementalNumber}}</p> --}}
+                                            {{-- <p>{{$kpi->id}}</p> --}}
+                                            <p>{{++$kpiIncrementalNumber}}</p>
                                         </div>
                                         <div class=" col-md-3" style="text-align:left">
                                             <p>{{$name3}}</p>
@@ -413,7 +413,7 @@
               <div class="modal-dialog modal-lg" role="document">
                   <div class="modal-content">
                       <div class="modal-header" style="background-color:#a3e253" ><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                          <h4 class="text-center modal-title" style="font-family:'Times New Roman', Times, serif">Kindly Fill The Following Fields to Complete Assesing :: <strong>{{$kpiModal->name}}.</strong></h4>
+                          <h4 class="text-center modal-title" style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Kindly Fill The Following Fields to Complete Assesing :: <strong>{{$kpiModal->name}}.</strong></h4>
                       </div>
                       
                       <div class="modal-body "  style="background-color:#cfeda8;">
@@ -436,7 +436,7 @@
                               
                               <div class="row" style="margin-bottom:1%;">
                                   <div class="col-lg-3 col-md-3">
-                                      <p class="text-center">Cottective Action</p>
+                                      <p class="text-center">Corrective Action</p>
                                   </div>
                                   <div class="col-lg-9 col-md-9"><textarea class="form-control" name="permanentSolution" required="" placeholder="Permanent Solution To Non Conformity."></textarea></div>
                               </div>

@@ -438,10 +438,11 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header" style="background-color:#fc5d5d;"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                                <h4 class="modal-title"><strong>Delete KPI: {{$kpiModal->name}}</strong></h4>
+                                <h4 class="modal-title"><strong>Delete KPI: {{ str_replace("_", " ", $kpiModal->name)}} </strong></h4>
                             </div>
                             <div class="modal-body" style="background-color:#f78686;">
-                                <h3 class="text-center" style="color:white">Confirmation:: Are You Sure You Want To Delete The  KPI:: {{$kpiModal->name}} ??</h3>
+                                <h3 class="text-center" style="color:white">Confirmation:: Are You Sure You Want To Delete The  KPI:: {{ str_replace("_", " ", $kpiModal->name)}} ??</h3>
+                                <strong>All Entries From The past years will permanently be deleted.</strong>
                             </div>
                             <form action="{{"/deletingKPI/".$kpiModal->id}}" method="POST">
                                 {{ csrf_field() }}

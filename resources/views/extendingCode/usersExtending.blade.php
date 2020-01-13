@@ -144,9 +144,9 @@ desired effect
               @endphp
             
               @endif
-@php
+{{-- @php
     pick();
-@endphp
+@endphp --}}
               <span class="hidden-xs">{{ Auth::user()->name }}</span>
             </a>
             <ul class="dropdown-menu">

@@ -57,18 +57,53 @@ $(function () {
                                     $(this).css('background-color','#FFFFFF');
                                 }
                         break;
-                        case"2":
-                        
-                        break;
                         case"3":
+                        if (inputValue > targetValue) {
+                            $(this).css('background-color','#fba7a7');
+                        } else if(inputValue >= targetValue){
+                            $(this).css('background-color','#cfeda8'); 
+                        }
+                        else{
+                            $(this).css('background-color','#FFFFFF');
+                        }
                         break;
                         case "4":
+                            if (inputValue < targetValue) {
+                                $(this).css('background-color','#fba7a7');
+                            } else if(inputValue >= targetValue){
+                                $(this).css('background-color','#cfeda8'); 
+                            } else{
+                                $(this).css('background-color','#FFFFFF');
+                            }
+                            
                         break;
                         case "5":
+                            
+                            if (inputValue > targetValue) {
+                                $(this).css('background-color','#fba7a7');
+                            } else if(inputValue >= targetValue){
+                                $(this).css('background-color','#cfeda8'); 
+                            } else{
+                                $(this).css('background-color','#FFFFFF');
+                            }
                         break;
                         case "6":
+                            if (inputValue > targetValue) {
+                                $(this).css('background-color','#fba7a7');
+                            } else if(inputValue >= targetValue){
+                                $(this).css('background-color','#cfeda8'); 
+                            } else{
+                                $(this).css('background-color','#FFFFFF');
+                            }
                         break;
                         case "7":
+                            if (inputValue > targetValue) {
+                                $(this).css('background-color','#fba7a7');
+                            } else if(inputValue >= targetValue){
+                                $(this).css('background-color','#cfeda8'); 
+                            } else{
+                                $(this).css('background-color','#FFFFFF');
+                            }
                         break;
                     default:
                         break;

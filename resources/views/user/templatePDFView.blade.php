@@ -87,14 +87,32 @@
                             </tr>
                                 @for ($k = $startingPoint; $k < $endpoint ; $k++)
                                 <tr>
-                                    <td>
+                                    
                                         @php                                            
                                      $strname = str_replace('_', ' ',$strategicObjectiveNameArray[$k]);
                                      $strname = ucwords($strname);                                
                                         @endphp
-                                        {{$strname}} 
+                                        {{-- {{$strname}}  --}}
+                                        @if (strlen($strname) <= 80)
+                                        <td>{{$strname}}</td>
+                                    @else
+                                    <td>                                       
+                                            @if (strlen($strname) <= 160)
+                                            {{substr($strname,0,80)}}
+                                            <br>
+                                            {{substr($strname,80,160)}}
+                                            <br>  
+                                            @else
+                                            {{substr($strname,0,80)}}
+                                            <br>
+                                            {{substr($strname,80,160)}}
+                                            <br>  
+                                            {{substr($strname,160,240)}}
+                                            @endif
+                                        </td>
+                                    @endif
                                     
-                                    </td>
+                                    
                                     <td>
                                         @php
                                             $number = number_format($strategicObjectiveScoresArray[$k], 2)

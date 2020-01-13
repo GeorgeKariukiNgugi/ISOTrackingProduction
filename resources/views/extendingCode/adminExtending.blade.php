@@ -73,7 +73,7 @@ desired effect
 |               | sidebar-mini                            |
 |---------------------------------------------------------|
 -->
-<body class="hold-transition  skin-green  sidebar-mini" style="font-family:'Times New Roman', Times, serif;">
+<body class="hold-transition  skin-green  sidebar-mini" style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">
 <div class="wrapper">
 
   <!-- Main Header -->
@@ -84,7 +84,7 @@ desired effect
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>I</b>SO</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b style="font-family:'Times New Roman', Times, serif">ISO SCORECARD.</b></span>
+      <span class="logo-lg"><b style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">ISO SCORECARD.</b></span>
     </a>
 
     <!-- Header Navbar -->

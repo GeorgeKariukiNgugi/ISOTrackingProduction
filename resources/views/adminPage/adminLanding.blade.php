@@ -5,7 +5,7 @@
 
 @endsection
 @section('section')
-<h2 style="font-family:Georgia, 'Times New Roman', Times, serif;text-align:center;"> CUMMULATIVE PROGRAM SCORE SUMMARY FOR {{$activeYaer}}.</h2>
+<h2 style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;text-align:center;"> CUMMULATIVE PROGRAM SCORE SUMMARY FOR {{$activeYaer}}.</h2>
 <br>
 <div class="row">
     @for ($i = 0; $i < count($programScores); $i++)
@@ -15,7 +15,7 @@
               <div class="inner">
                 <h3>{{ sprintf("%.2f", $programScores[$i])."%"}}</h3>
       
-                <h4 style="font-family:Georgia, 'Times New Roman', Times, serif;"> <b> {{$programShorthand[$i]}} </b></h4>
+                <h4 style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"> <b> {{$programShorthand[$i]}} </b></h4>
               </div>
               <div class="icon">
                 <i class="fa  fa-trophy"></i>
@@ -29,7 +29,7 @@
         <div class="col-md-6">
           <div class="box box-danger">
               <div class="box-header with-border text-center" >
-                <h3 class="box-title"> <span style="font-family:Georgia, 'Times New Roman', Times, serif">GRAPHICAL REPRESENTATION OF NCs.</span></h3>
+                <h3 class="box-title"> <span style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">GRAPHICAL REPRESENTATION OF NCs.</span></h3>
               </div>
               <div class="box-body">
                       {!! $ncsCharts->container() !!}
@@ -41,10 +41,10 @@
       <div class="col-md-6">
         <div class="box box-danger">
             <div class="box-header with-border text-center" >
-              <h3 class="box-title"> <span style="font-family:Georgia, 'Times New Roman', Times, serif">PRORAM ASSESMENT FOR: {{$activeQuater}} {{$activeYaer}}</span></h3>
+              <h3 class="box-title"> <span style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">PRORAM ASSESMENT FOR: {{$activeQuater}} {{$activeYaer}}</span></h3>
             </div>
             <div class="table-responsive">
-              <table class="table table-striped table-bordered table-hover"style="font-family:Georgia, 'Times New Roman', Times, serif" style="font-family:Georgia, 'Times New Roman', Times, serif">
+              <table class="table table-striped table-bordered table-hover"style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif" style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">
                   <thead>
                       <tr>
                           <th>Program</th>
@@ -95,7 +95,7 @@
       <div class="col-md-6">
         <div class="box box-danger">
             <div class="box-header with-border text-center" >
-              <h3 class="box-title"> <span style="font-family:Georgia, 'Times New Roman', Times, serif">GRAPHICAL REPRESENTATION OF NCs PER PROGRAM.</span></h3>
+              <h3 class="box-title"> <span style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">GRAPHICAL REPRESENTATION OF NCs PER PROGRAM.</span></h3>
             </div>
             <div class="box-body">
                     {!! $ncsperProgramCharts->container() !!}
@@ -106,11 +106,11 @@
       <div class="col-md-6">
               <div class="box box-danger">
                   <div class="box-header with-border text-center" >
-                    <h3 class="box-title"> <span style="font-family:Georgia, 'Times New Roman', Times, serif">TABULAR REPRESENTATION OF NCs.</span></h3>
+                    <h3 class="box-title"> <span style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">TABULAR REPRESENTATION OF NCs.</span></h3>
                   </div>
                   <div class="box-body">
                           <div class="table-responsive">
-                                  <table class="table table-striped table-bordered table-hover" style="font-family:Georgia, 'Times New Roman', Times, serif">
+                                  <table class="table table-striped table-bordered table-hover" style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">
                                       <thead>
                                           <tr>
                                               <th>NC TYPE</th>

@@ -68,13 +68,13 @@ class PDFController extends Controller
 
                     //!getting the strategic objectives of the particular perspective. 
                     $strategicObjectives = StrategicObjective::where('perspective_id','=',$perspective->id)->get();
-
+                    // dd($strategicObjectives);
                     foreach($strategicObjectives as $strategicObjective){
                         array_push($strategicObjectiveNameArray,$strategicObjective->name);
 
                         //!getting the rhyming strategic objective scores.
                         $trategicObjectiveScores = StrategicObjectiveScore::where('strategicObjective_id','=',$strategicObjective->id)->where('year','=',$activeYaer)->where('quater','=',$activeQuater)->get();                        
-
+                        // dd($trategicObjectiveScores);
                         foreach ($trategicObjectiveScores as $trategicObjectiveScore) {
                             # code...
                             array_push($strategicObjectiveScoresArray,$trategicObjectiveScore->score);
@@ -84,7 +84,15 @@ class PDFController extends Controller
                         }
                         
                     }
-                    $strateicObjectiveAverage = $strategicObjectivesSum/count($strategicObjectives);
+                    // dd($strategicObjectivesSum);
+                    if (count($strategicObjectives) == 0) {
+                        # code...
+                        $divisor = 1;
+                    }
+                    else {
+                        $divisor = count($strategicObjectives);
+                    }
+                    $strateicObjectiveAverage = $strategicObjectivesSum/$divisor;
                     // dd($strateicObjectiveAverage);
                     $weight = $perspective->weight;
                     $finalSScore += ($strateicObjectiveAverage*$weight)/100;
@@ -92,6 +100,7 @@ class PDFController extends Controller
                     // $finalSScore += $strateicObjectiveAverage;
                     
                 }
+                
                 else{
                     return "THERE ARE SOME STRATEGIC OBJECTIVES THAT HAVE NOT BEEN SCORED.";
                 }

@@ -139,12 +139,14 @@ desired effect
               @if (Auth::user() == null)
 
               @php
-             
+                
                   return redirect('/');
               @endphp
             
               @endif
-
+@php
+    pick();
+@endphp
               <span class="hidden-xs">{{ Auth::user()->name }}</span>
             </a>
             <ul class="dropdown-menu">

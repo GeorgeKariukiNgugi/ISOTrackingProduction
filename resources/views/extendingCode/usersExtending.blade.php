@@ -139,7 +139,8 @@ desired effect
               @if (Auth::user() == null)
 
               @php
-                  return redirect('/logoutToLogIn');
+             
+                  return redirect('/');
               @endphp
             
               @endif

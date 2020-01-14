@@ -136,18 +136,18 @@ desired effect
               <img src="{{asset('images/HcMgk6Jq_400x400.jpg')}}" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
 
-              @if (Auth::user() == null)
-
               @php
-                
-                  return redirect('/');
+                  try {
+                // Validate the value...
+               echo"<span class=\"hidden-xs\">".Auth::user()->name ."</span>";
+            } catch (Exception $e) {
+                // report($e);
+        
+                return redirect("/logoutToLogIn");
+            }
               @endphp
-            
-              @endif
-{{-- @php
-    pick();
-@endphp --}}
-              <span class="hidden-xs">{{ Auth::user()->name }}</span>
+              
+              
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->

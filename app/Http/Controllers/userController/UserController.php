@@ -871,7 +871,10 @@ public function closingNonConformity(submittingClosingNonConfromity $request){
     //getting the names of the submitted data.
     // dd("checking.");
     //! checking if the file input has the data that is needed.
-    if ($request->hasFile('attachment')) {        
+
+    try {
+        //code...
+        if ($request->hasFile('attachment')) {
         $fileFullName = $request->attachment->getClientOriginalName();         
         $fileNameWithoutExtension = pathinfo($request->attachment->getClientOriginalName(), PATHINFO_FILENAME);
 
@@ -889,37 +892,40 @@ public function closingNonConformity(submittingClosingNonConfromity $request){
         $newName = "N/A";
 
     }
-
-    //! getting the values that will be inserted into the closure of non conformites table. 
-    $nonConformity_id= $request->nonConformityId;
-    $clossureDate = $request->closureDate;
-    $briefDescription= $request->briefDescription;
-    $locationOfEvidence= $newName;
+        //! getting the values that will be inserted into the closure of non conformites table. 
+        $nonConformity_id= $request->nonConformityId;
+        $clossureDate = $request->closureDate;
+        $briefDescription= $request->briefDescription;
+        $locationOfEvidence= $newName;
+        
+        // dd($nonConformity_id);
+        //! first changing the status of the nc to closed.
+        $closedNCCollection = NonConformities::where('id','=',$nonConformity_id)->get();
     
-    // dd($nonConformity_id);
-    //! first changing the status of the nc to closed.
-    $closedNCCollection = NonConformities::where('id','=',$nonConformity_id)->get();
-
-    foreach ($closedNCCollection as $closedNC) {
-        # code...
-        $closedNC->openClosed = 'closed';
-        $closedNC->save();
+        foreach ($closedNCCollection as $closedNC) {
+            # code...
+            $closedNC->openClosed = 'closed';
+            $closedNC->save();
+        }
+    
+    //! inserting the data into the non conformities table. 
+    $closedNCEvidence = new closedNonConformityEvidence(
+                                array(
+                                        'clossureDate'=> $clossureDate,
+                                        'briefDescription'=>$briefDescription,
+                                        'locationOfEvidence'=>$locationOfEvidence,
+                                        'nonConformity_id'=>$nonConformity_id
+                                    )
+    );
+    $closedNCEvidence->save();
+    
+        Alert::success(' <h4 style = "color:green;">Congartulations    <i class="fa fa-thumbs-up"></i></h4>', 'The Non Conformity Has Successfully Been Closed.');
+    
+        return back();
+    } catch (\Throwable $th) {
+        //throw $th;
+        return back()->with('msg', 'The Message');
     }
-
-//! inserting the data into the non conformities table. 
-$closedNCEvidence = new closedNonConformityEvidence(
-                            array(
-                                    'clossureDate'=> $clossureDate,
-                                    'briefDescription'=>$briefDescription,
-                                    'locationOfEvidence'=>$locationOfEvidence,
-                                    'nonConformity_id'=>$nonConformity_id
-                                )
-);
-$closedNCEvidence->save();
-
-    Alert::success(' <h4 style = "color:green;">Congartulations    <i class="fa fa-thumbs-up"></i></h4>', 'The Non Conformity Has Successfully Been Closed.');
-
-    return back();
 }
 
 public function video($id,$type){

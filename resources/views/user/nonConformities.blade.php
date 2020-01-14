@@ -80,6 +80,11 @@
         {{-- {{$error}} --}}
         <div class="alert alert-danger" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><span id="text"><strong>{{$error}}  KINDLY CHECK THE ATTACHMENT SIZE. </strong></span></div>
     @endforeach
+
+@if (isset($msg))
+<div class="alert alert-danger" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><span id="text"><strong>THE NON CONFORMITY HAS NOT BEEN CLOSED KINDLY RECLOSE THE NC, n.b check attachment size. </strong></span></div>
+@endif
+
 <div class="box {{$boxColor}} box-solid" style="margin-top:3%;">
     <div class="box-header with-border">
             <h1 class="box-title" style="text-align:center;"> <b>{{$text}}</b></h1>

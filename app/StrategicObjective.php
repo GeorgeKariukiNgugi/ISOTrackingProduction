@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Activitylog\Traits\CausesActivity;
 
 class StrategicObjective extends Model
 {
@@ -11,6 +13,10 @@ class StrategicObjective extends Model
      *
      * @var array
      */
+    use LogsActivity;
+    use CausesActivity;
+    protected static $logFillable = true;
+    protected static $logName = 'strategic_objectives';
     protected $fillable = [
         'id', 'name', 'description', 'perspective_id'
     ];

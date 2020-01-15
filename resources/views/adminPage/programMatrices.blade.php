@@ -49,7 +49,7 @@
       <a data-toggle="collapse" style="padding-right:10px;color:white;font-family:'Times New Roman', Times, serif;" data-parent="#accordion" href="{{"#collapseOne".$increment2}}" aria-expanded="true" aria-controls="collapseOne">
         {{$name2}}  <i style = "float:right;"class="accordion_icon fa fa-plus"></i>
       </a>
-      <button class="info">this s </button>
+      <a class="btn btn-success btn-sm" role="button" href="#"><i class="fa fa-send"></i></a>
     </h4>
   </div>
   <div id="{{"collapseOne".$increment2}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">

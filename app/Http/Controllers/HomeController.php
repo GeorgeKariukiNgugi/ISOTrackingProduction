@@ -54,7 +54,7 @@ class HomeController extends Controller
 
     public function programRedirect(){
         // return $id;
-
+        
         $loggedInemail = Auth::user()->email;
         $programids = AssesorPerProgram::where('email','=',$loggedInemail)->get();
         $countingid = count($programids);
@@ -282,7 +282,8 @@ class HomeController extends Controller
                          
                     }
                     // dd($checkingIfAssesed);
-                    
+                    activity()->log('Logged In As Admin   '.Auth::user()->email);
+                            // Auth::user()->email;
 
                     return view('adminPage.adminLanding',['programs'=>$programs,'programIds'=>$programIds,'checkingIfAssesed'=>$checkingIfAssesed,'ncsperProgramCharts'=>$ncsperProgramCharts,'ncsArray'=>$ncsArray,'ncsCharts'=>$ncsCharts,'activeYaer'=>$activeYaer,'activeQuater'=>$activeQuater,'programScores'=>$programScores,'programShorthand'=>$programShorthand,'programColors'=>$programColors]);
                 }
@@ -295,11 +296,13 @@ class HomeController extends Controller
                     $perspectives = $program->perspectives;
                     
                 }
-                
+                activity()->log('Logged In As User   '.Auth::user()->email);
                 return view('user.landingPage',['programId'=>$id,'quaterOne'=>$quaterOne,'quaterTwo'=>$quaterTwo,'quaterthree'=>$quaterthree,'quaterfour'=>$quaterfour,'perspectives'=>$perspectives,'activeYaer'=>$activeYaer,'activeQuater'=>$activeQuater,'keyPerfomanceIndicatorsScores'=>$keyPerfomanceIndicatorsScores,'programName'=>$programName,'programShortHand'=>$programShortHand]);
             }
         }
         else{
+            // dd("users");
+            activity()->log('User Tried To Log In   '.Auth::user()->email);
             return view('forbidden');
         }
         

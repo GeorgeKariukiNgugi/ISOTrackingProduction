@@ -25,7 +25,7 @@ Auth::routes();
 
 Route::get('/home','HomeController@programRedirect');
 Route::get('/forbidden', function () {
-    
+    activity()->log('User Tried To Log In   '.Auth::user()->email);
     return view('forbidden');
 });
 

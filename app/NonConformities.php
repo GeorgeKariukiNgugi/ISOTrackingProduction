@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Activitylog\Traits\CausesActivity;
 
 class NonConformities extends Model
 {
@@ -11,10 +13,17 @@ class NonConformities extends Model
      *
      * @var array
      */
+    use LogsActivity;
+    use CausesActivity;
+    protected static $logFillable = true;
+    protected static $logName = 'non_conformities';
     protected $fillable = [
         'id', 'year', 'date', 'quater', 'rootCause', 'openClosed', 'correction', 'correctiveAction', 'keyPerfomanceIndicator_id', 'strategicObjective_id', 'perspective_id', 'program_id'
     ];
-
+    
+    
+    
+    
     /**
      * The attributes that should be mutated to dates.
      *

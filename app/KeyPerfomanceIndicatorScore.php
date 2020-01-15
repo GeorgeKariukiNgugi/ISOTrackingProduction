@@ -3,7 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Activitylog\Traits\CausesActivity;
 class KeyPerfomanceIndicatorScore extends Model
 {
     /**
@@ -11,6 +12,12 @@ class KeyPerfomanceIndicatorScore extends Model
      *
      * @var array
      */
+    use LogsActivity;
+    use CausesActivity;
+
+    protected static $logFillable = true;
+    protected static $logName = 'key_perfomance_indicator_scores';
+
     protected $fillable = [
         'id', 'year', 'ytd', 'kpi_id', 'strategic_objective_id', 'score','quater'
     ];

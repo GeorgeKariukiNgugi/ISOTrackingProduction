@@ -15,6 +15,7 @@ use App\ScoreRecorded;
 use App\KeyPerfomanceIndicatorScore;
 use App\StrategicObjectiveScore;
 use App\closedNonConformityEvidence;
+use Auth;
 //!DASHBOARD CLASS.
 use App\Http\Requests\submittingClosingNonConfromity;
 use  App\Charts\DashBoardCharts;
@@ -122,6 +123,7 @@ class UserController extends Controller
 
                     //!saving the updates. 
                     $scoreRecord->save();
+                    activity()->log('Scores Recorded By   '.Auth::user()->email);                              
                 }
                 
             } else {
@@ -137,6 +139,7 @@ class UserController extends Controller
                     )
                 );
                 $savingTheScoresRecorded->save();
+                activity()->log('Scores Recorded By   '.Auth::user()->email); 
             }
             
             //? THE FOLLOWING STEP IS FOR ADDING THE DATA TO THE KEY PERFOMANCE INDICATORS SCORES TABLE.
@@ -352,6 +355,7 @@ class UserController extends Controller
                     $kpiscoresRecord->strategic_objective_id =$strategicObjectiveIdFromForm;
                     $kpiscoresRecord->score = $kpiScore; 
                     $kpiscoresRecord->save();
+                    // activity()->log('KPI Scores Recorded By   '.Auth::user()->email.'  for  '.$programShortHand); 
                     // dd($strategicObjectiveIdFromForm);
                     // return response()->json(['success'=>''.$strategicObjectiveIdFromForm.'UPDATED successsfully, Move to the Next Objective']);                 
                 }
@@ -372,6 +376,7 @@ class UserController extends Controller
                 );
                 
                 $savingKPIcore->save();
+                // activity()->log('KPI Scores Recorded By   '.Auth::user()->email.'  for  '.$programShortHand); 
                 // dd($kpiScore);
                 // return response()->json(['success'=>''.$strategicObjectiveIdFromForm.'saved successsfully, Move to the Next Objective']);
             }
@@ -490,6 +495,7 @@ class UserController extends Controller
 
             foreach($retrievingTheProgramIds as $retrievingTheProgramId){
                 $programId = $retrievingTheProgramId->program_id;
+                
                 // dd($programId);
             }
 

@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Activitylog\Traits\CausesActivity;
 
 class Perspective extends Model
 {
@@ -11,10 +13,15 @@ class Perspective extends Model
      *
      * @var array
      */
+    use LogsActivity;
+    use CausesActivity;
+    protected static $logFillable = true;
+    protected static $logName = 'perspectives';
     protected $fillable = [
         'id', 'name', 'description', 'weight', 'program_id','perspective_group'
     ];
 
+    
     /**
      * The attributes that should be mutated to dates.
      *

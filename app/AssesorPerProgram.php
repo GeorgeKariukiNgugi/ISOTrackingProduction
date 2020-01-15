@@ -7,8 +7,8 @@ use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\Traits\CausesActivity;
 class AssesorPerProgram extends Model
 {
-    use LogsActivity;
-    use CausesActivity;
+    // use LogsActivity;
+    // use CausesActivity;
     
     protected $guarded = ['id'];
     protected $fillable = ['created_at','updated_at','email','program_id'];

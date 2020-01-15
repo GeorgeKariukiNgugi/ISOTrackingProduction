@@ -123,7 +123,7 @@ class UserController extends Controller
 
                     //!saving the updates. 
                     $scoreRecord->save();
-                    activity()->log('Scores Recorded By   '.Auth::user()->email);                              
+                    // activity()->log('Scores Recorded By   '.Auth::user()->email);                              
                 }
                 
             } else {
@@ -139,7 +139,7 @@ class UserController extends Controller
                     )
                 );
                 $savingTheScoresRecorded->save();
-                activity()->log('Scores Recorded By   '.Auth::user()->email); 
+                // activity()->log('Scores Recorded By   '.Auth::user()->email); 
             }
             
             //? THE FOLLOWING STEP IS FOR ADDING THE DATA TO THE KEY PERFOMANCE INDICATORS SCORES TABLE.

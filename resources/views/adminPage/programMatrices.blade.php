@@ -45,11 +45,13 @@
 
 <div class="panel box box-solid">
   <div class="box-header with-border" style="background-color:tomato;">
-    <h4 class="box-title" style="width:100%;">
-      <a data-toggle="collapse" style="padding-right:10px;color:white;font-family:'Times New Roman', Times, serif;" data-parent="#accordion" href="{{"#collapseOne".$increment2}}" aria-expanded="true" aria-controls="collapseOne">
+    <a class="btn btn-success btn-sm" role="button" href="#"><i class="glyphicon glyphicon-edit"></i></a>
+      <a class="btn btn-success btn-sm" role="button" href="#"><i class="glyphicon glyphicon-trash"></i></a>
+    <h4 class="box-title" style="width:100%;text-align:center;">
+      <b><a data-toggle="collapse" style="padding-right:10px;color:white;font-family:'Times New Roman', Times, serif;" data-parent="#accordion" href="{{"#collapseOne".$increment2}}" aria-expanded="true" aria-controls="collapseOne">
         {{$name2}}  <i style = "float:right;"class="accordion_icon fa fa-plus"></i>
-      </a>
-      <a class="btn btn-success btn-sm" role="button" href="#"><i class="fa fa-send"></i></a>
+      </a></b>
+      
     </h4>
   </div>
   <div id="{{"collapseOne".$increment2}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">

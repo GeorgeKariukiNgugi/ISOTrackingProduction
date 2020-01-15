@@ -52,9 +52,9 @@ class HomeController extends Controller
         return view('sample');
     }
 
-    public function programRedirect(Request $request){
+    public function programRedirect(){
         // return $id;
-        // dd($request->ip());
+        
         $loggedInemail = Auth::user()->email;
         $programids = AssesorPerProgram::where('email','=',$loggedInemail)->get();
         $countingid = count($programids);
@@ -282,10 +282,10 @@ class HomeController extends Controller
                          
                     }
                     // dd($checkingIfAssesed);
-                    activity()->log('Logged In As Admin   '.Auth::user()->email);
+                    // activity()->log('Logged In As Admin   '.Auth::user()->email);
                             // Auth::user()->email;
 
-                    // return view('adminPage.adminLanding',['programs'=>$programs,'programIds'=>$programIds,'checkingIfAssesed'=>$checkingIfAssesed,'ncsperProgramCharts'=>$ncsperProgramCharts,'ncsArray'=>$ncsArray,'ncsCharts'=>$ncsCharts,'activeYaer'=>$activeYaer,'activeQuater'=>$activeQuater,'programScores'=>$programScores,'programShorthand'=>$programShorthand,'programColors'=>$programColors]);
+                    return view('adminPage.adminLanding',['programs'=>$programs,'programIds'=>$programIds,'checkingIfAssesed'=>$checkingIfAssesed,'ncsperProgramCharts'=>$ncsperProgramCharts,'ncsArray'=>$ncsArray,'ncsCharts'=>$ncsCharts,'activeYaer'=>$activeYaer,'activeQuater'=>$activeQuater,'programScores'=>$programScores,'programShorthand'=>$programShorthand,'programColors'=>$programColors]);
                 }
                 $programs = Program::where('id','=',$id)->get();
 

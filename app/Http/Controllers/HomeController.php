@@ -52,9 +52,9 @@ class HomeController extends Controller
         return view('sample');
     }
 
-    public function programRedirect(){
+    public function programRedirect(Request $request){
         // return $id;
-        
+        // dd($request->ip());
         $loggedInemail = Auth::user()->email;
         $programids = AssesorPerProgram::where('email','=',$loggedInemail)->get();
         $countingid = count($programids);

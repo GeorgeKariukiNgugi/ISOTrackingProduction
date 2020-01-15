@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\AssesorPerProgram;
 use Illuminate\Http\Request;
-
+use Spatie\Activitylog\Traits\LogsActivity;
 class AssesorPerProgramController extends Controller
 {
+    use LogsActivity;
     /**
      * Display a listing of the resource.
      *

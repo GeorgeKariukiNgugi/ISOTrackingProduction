@@ -285,7 +285,7 @@ class HomeController extends Controller
                     activity()->log('Logged In As Admin   '.Auth::user()->email);
                             // Auth::user()->email;
 
-                    return view('adminPage.adminLanding',['programs'=>$programs,'programIds'=>$programIds,'checkingIfAssesed'=>$checkingIfAssesed,'ncsperProgramCharts'=>$ncsperProgramCharts,'ncsArray'=>$ncsArray,'ncsCharts'=>$ncsCharts,'activeYaer'=>$activeYaer,'activeQuater'=>$activeQuater,'programScores'=>$programScores,'programShorthand'=>$programShorthand,'programColors'=>$programColors]);
+                    // return view('adminPage.adminLanding',['programs'=>$programs,'programIds'=>$programIds,'checkingIfAssesed'=>$checkingIfAssesed,'ncsperProgramCharts'=>$ncsperProgramCharts,'ncsArray'=>$ncsArray,'ncsCharts'=>$ncsCharts,'activeYaer'=>$activeYaer,'activeQuater'=>$activeQuater,'programScores'=>$programScores,'programShorthand'=>$programShorthand,'programColors'=>$programColors]);
                 }
                 $programs = Program::where('id','=',$id)->get();
 
@@ -296,13 +296,13 @@ class HomeController extends Controller
                     $perspectives = $program->perspectives;
                     
                 }
-                activity()->log('Logged In As User   '.Auth::user()->email);
+                // activity()->log('Logged In As User   '.Auth::user()->email);
                 return view('user.landingPage',['programId'=>$id,'quaterOne'=>$quaterOne,'quaterTwo'=>$quaterTwo,'quaterthree'=>$quaterthree,'quaterfour'=>$quaterfour,'perspectives'=>$perspectives,'activeYaer'=>$activeYaer,'activeQuater'=>$activeQuater,'keyPerfomanceIndicatorsScores'=>$keyPerfomanceIndicatorsScores,'programName'=>$programName,'programShortHand'=>$programShortHand]);
             }
         }
         else{
             // dd("users");
-            activity()->log('User Tried To Log In   '.Auth::user()->email);
+            // activity()->log('User Tried To Log In   '.Auth::user()->email);
             return view('forbidden');
         }
         

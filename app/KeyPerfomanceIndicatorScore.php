@@ -12,8 +12,8 @@ class KeyPerfomanceIndicatorScore extends Model
      *
      * @var array
      */
-    use LogsActivity;
-    use CausesActivity;
+    // use LogsActivity;
+    // use CausesActivity;
 
     protected static $logFillable = true;
     protected static $logName = 'key_perfomance_indicator_scores';

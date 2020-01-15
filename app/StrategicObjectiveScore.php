@@ -13,8 +13,8 @@ class StrategicObjectiveScore extends Model
      *
      * @var array
      */
-    use LogsActivity;
-    use CausesActivity;
+    // use LogsActivity;
+    // use CausesActivity;
     protected static $logFillable = true;
     protected static $logName = 'reports_generateds';
     protected $fillable = [

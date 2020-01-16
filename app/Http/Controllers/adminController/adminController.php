@@ -200,10 +200,7 @@ class adminController extends Controller
                     // dd($id);
                     $perspectivesAlreadyInserted = Perspective::all();
                     $numberOfPerspectives = count($perspectivesAlreadyInserted);
-                    for ($i=1; $i < $numbersSubmitted+1 ; $i++) { 
-                        $weightname = 'customweight'.$i;
-                        $perspectiveNamename = 'customname'.$i;
-                         $request->$weightname;
+
                          $programShortHands = Program::where('id','=',$id)->get();
                          foreach($programShortHands as $programShortHand){
                             $shortHand = $programShortHand->shortHand ;
@@ -224,6 +221,10 @@ class adminController extends Controller
             foreach($lastIds as $lastId){
                 $id = $lastId->id;
             }
+            for ($i=1; $i < $numbersSubmitted+1 ; $i++) { 
+                $weightname = 'customweight'.$i;
+                $perspectiveNamename = 'customname'.$i;
+                 $request->$weightname;
                          $insertingPerspective = new Perspective(
 
                             //! getting the shorthand of the program that has been inserted latest. 

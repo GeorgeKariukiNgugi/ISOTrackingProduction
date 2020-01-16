@@ -260,6 +260,9 @@
                                        <p class="text-center" style="font-size:16px;"><strong>Actions</strong><br /></p>
                                    </div>
                                </div>
+                               @php
+                                   
+                               @endphp
                               
                                @foreach ($kpis as $kpi)
 
@@ -271,6 +274,7 @@
                                @php
                                $score = "number";
                                $kpiOriginalName = $kpi->name;
+                            //    dd($kpi->name);
                                $name3 = $kpi->name;
                                $name3 = str_replace('_', ' ', $name3);
                                $name3 = ucwords($name3);
@@ -526,7 +530,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header" style="background-color:#bbc1f5;font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <h4 class="modal-title" style="text-align:center;color:red;"><strong>Deletinig Perspective: {{$name3}}</strong></h4>
+                <h4 class="modal-title" style="text-align:center;color:red;"><strong>Deletinig Perspective: {{$perspective->name}}</strong></h4>
             </div>
             <div class="modal-body" style="background-color:#d4d8fb;font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">
                 <h3 class="text-center">Kindly Weigh The perspectives In OrderTo Delete The Selected One.</h3>

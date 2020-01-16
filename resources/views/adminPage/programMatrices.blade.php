@@ -580,7 +580,7 @@
             </div>
             <div class="modal-footer" style="background-color:#bbc1f5;font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">
                 <button class="btn btn-success" type="button" data-dismiss="modal">Close</button>
-                <button class="btn btn-danger" id="{{"submitButton"Remove}}" disabled type="submit"><strong>Delete</strong></button>
+                <button class="btn btn-danger" id="{{"submitButton"}}" disabled type="submit"><strong>Delete</strong></button>
             </div>
         </form>
         </div>

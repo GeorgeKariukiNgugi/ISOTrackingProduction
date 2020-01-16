@@ -558,7 +558,7 @@
                         <p>{{$perspectiveIncrement++}}</p>
                     </div>
                     <div class="col-md-9">
-                        <p>{{$perspectiveName}} <span style="color:red;"> <b>(Perspective Selected for deletion. Previous Weight <i class="fa fa-hand-o-right"></i> )</b></span></p>
+                        <p>{{$perspectiveName}} <span style="color:red;"> <b>Perspective Selected for deletion. Previous Weight <i class="fa fa-hand-o-right"></i> </b></span></p>
                     </div>
                     <div class="col-md-2"><input type="text" style="width:80px;" disabled value="{{$perspectiveToBeDeleted->weight}}" /></div>
                 </div>

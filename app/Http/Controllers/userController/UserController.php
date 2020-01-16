@@ -376,7 +376,7 @@ class UserController extends Controller
                 );
                 
                 $savingKPIcore->save();
-                // activity()->log('KPI Scores Recorded By   '.Auth::user()->email.'  for  '.$programShortHand); 
+                //  ()->log('KPI Scores Recorded By   '.Auth::user()->email.'  for  '.$programShortHand); 
                 // dd($kpiScore);
                 // return response()->json(['success'=>''.$strategicObjectiveIdFromForm.'saved successsfully, Move to the Next Objective']);
             }

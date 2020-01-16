@@ -45,14 +45,15 @@
 
 <div class="panel box box-solid">
   <div class="box-header with-border" style="background-color:tomato;">
-    <a class="btn btn-success btn-sm" role="button" href="#"><i class="glyphicon glyphicon-edit"></i></a>
-      <a class="btn btn-success btn-sm" role="button" href="#"><i class="glyphicon glyphicon-trash"></i></a>
-    <h4 class="box-title" style="width:100%;text-align:center;">
-      <b><a data-toggle="collapse" style="padding-right:10px;color:white;font-family:'Times New Roman', Times, serif;" data-parent="#accordion" href="{{"#collapseOne".$increment2}}" aria-expanded="true" aria-controls="collapseOne">
+    
+    <button class="btn btn-success" data-target="{{"#deletingPerspective".$perspective->id}}" data-toggle="modal" type="button"><span class="fa fa-trash"></span></button>
+    <button class="btn btn-success" type="button"><span class="fa fa-edit"></span></button>
+
+    <b><h4 class="box-title" style="width:100%;text-align:center;display:inline">
+      <a data-toggle="collapse" style="padding-right:10px;color:white;font-family:'Times New Roman', Times, serif;" data-parent="#accordion" href="{{"#collapseOne".$increment2}}" aria-expanded="true" aria-controls="collapseOne">
         {{$name2}}  <i style = "float:right;"class="accordion_icon fa fa-plus"></i>
-      </a></b>
-      
-    </h4>
+      </a>      
+    </h4></b>
   </div>
   <div id="{{"collapseOne".$increment2}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
     <div class="panel-body">
@@ -519,6 +520,67 @@
 
     </div>
   </div>
+</div>
+
+<div role="dialog" tabindex="-1" class="modal fade" style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif" id="{{"deletingPerspective".$perspective->id}}">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#bbc1f5;font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title" style="text-align:center;color:red;"><strong>Deletinig Perspective: {{$name3}}</strong></h4>
+            </div>
+            <div class="modal-body" style="background-color:#d4d8fb;font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">
+                <h3 class="text-center">Kindly Weigh The perspectives In OrderTo Delete The Selected One.</h3>
+                <h6 style="color:red;text-decoration:bold;">The Weights should Add up to 100.</h6>
+                <div class="row">
+                    <div class="col-md-1">
+                        <h3>Sno</h3>
+                    </div>
+                    <div class="col-md-9">
+                        <h3>Perspective Name</h3>
+                    </div>
+                    <div class="col-md-2">
+                        <h3>Weight</h3>
+                    </div>
+                </div>
+                @php
+                    $perspectiveIncrement = 1;
+                @endphp
+                @foreach ($perspectives as $perspectiveToBeDeleted)
+
+                @php
+                               $perspectiveName = str_replace('_', ' ', $perspectiveToBeDeleted->name);
+                               $perspectiveName = ucwords($perspectiveName);
+                @endphp
+                <form action="" method="POST">
+                @if ($perspective->id == $perspectiveToBeDeleted->id)
+                <div class="row">
+                    <div class="col-md-1">
+                        <p>{{$perspectiveIncrement++}}</p>
+                    </div>
+                    <div class="col-md-9">
+                        <p>{{$perspectiveName}} <span style="color:red;"> <b>(Perspective Selected for deletion. Previous Weight <i class="fa fa-hand-o-right"></i> )</b></span></p>
+                    </div>
+                    <div class="col-md-2"><input type="text" style="width:80px;" disabled value="{{$perspectiveToBeDeleted->weight}}" /></div>
+                </div>
+                @else
+                <div class="row">
+                    <div class="col-md-1">
+                        <p>{{$perspectiveIncrement++}}</p>
+                    </div>
+                    <div class="col-md-9">
+                        <p>{{$perspectiveName}}</p>
+                    </div>
+                    <div class="col-md-2"><input type="text" style="width:80px;" value="{{$perspectiveToBeDeleted->weight}}" /></div>
+                </div>
+                @endif
+            
+                @endforeach
+
+            </div>
+            <div class="modal-footer" style="background-color:#bbc1f5;font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"><button class="btn btn-success" type="button" data-dismiss="modal">Close</button><button class="btn btn-danger" id="{{"submitButton".}}" disabled type="submit"><strong>Delete</strong></button></div>
+        </form>
+        </div>
+    </div>
 </div>
 @endforeach
 </div>

@@ -34,7 +34,7 @@
   </a>
   <ul class="treeview-menu">
     <li><a href="/usersTutorial/{{$id}}/1"><i class="fa fa-video-camera"></i> <span>Scoring KPIS</span></a></li>
-    <li><a href="/usersTutorial/{{$id}}/2"><i class="fa fa-video-camera"></i> <span>Closing Non-Confromities</span></a></li>
+    <li><a href="/usersTutorial/{{$id}}/2"><i class="fa fa-video-camera"></i> <span>Closing Non-Conformities</span></a></li>
     <li><a href="/usersTutorial/{{$id}}/3"><i class="fa fa-video-camera"></i> <span>Program Dashboard.</span></a></li>
   </ul>
 </li>
@@ -80,7 +80,7 @@
 <div class="col-md-4">
     <div class="box box-danger">
         <div class="box-header with-border">
-          <h3 class="box-title"> Non Assesed KPIS.</h3>
+          <h3 class="box-title"> Non Assessed KPIS.</h3>
         </div>
         <div class="box-body">
           @if (count($kpiNotScoredNames) == 0)

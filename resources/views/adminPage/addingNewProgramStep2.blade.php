@@ -53,8 +53,8 @@
                 <input type="hidden" name="code" value="{{$progamCode}}">
                 <div class="radio" style="margin-left:35%;"><label><input type="radio" id="primitivePerspectiveRadio" required name = "perspective" value="primitive"/>Apply Primitive Perspectives:<br /></label></div>
                 <ol style="margin-left:35%;">
-                    <li>Finanacial Perspective.</li>
-                    <li>Customer Perspetive.</li>
+                    <li>Financial Perspective.</li>
+                    <li>Customer Perspective.</li>
                     <li>Internal business process perspective</li>
                     <li>Learning_and_growth perspective</li>
                 </ol>
@@ -63,12 +63,12 @@
                         <h3 style="text-align:center;font-size:18px;font-family:Georgia, 'Times New Roman', Times, serif;"> <b>The weights should add up to 100.</b></h3>
                     <div class="row">
                         <div class="col-md-4 col-md-offset-1">
-                            <p>Finanacial Perspective.<br /></p>
+                            <p>Financial Perspective.<br /></p>
                         </div>
                         <div class="col-md-4 col-md-offset-1"><input type="number"  id="perspectivePrimitivef" name="perspectivePrimitivef" placeholder="number"/></div><br /><br /></div>
                     <div class="row">
                         <div class="col-md-4 col-md-offset-1">
-                            <p>Customer Perspetive.<br /></p>
+                            <p>Customer Perspective.<br /></p>
                         </div>
                         <div class="col-md-4 col-md-offset-1"><input type="number" id="perspectivePrimitivec" name="perspectivePrimitivec" placeholder="number"/></div><br /><br /></div>
                     <div class="row">

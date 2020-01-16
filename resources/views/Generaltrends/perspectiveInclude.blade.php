@@ -16,9 +16,9 @@
     {{-- <h2 style="font-family:'Times New Roman', Times, serif;color:darkblue;text-align:center;">This tab has 3 graphical representations of the the perspective trends for <b> {{$year.'   '.$quater}} </b> Financial year.</h2>
     <br>
     <ol>
-        {{-- <a href="#groupByProgram"> <h4  style="font-family:'Times New Roman', Times, serif;color:darkblue;"> 1.) A grouped BarChart that shows the current quater perspective trend but grouped by programs <span style="font-style:italic;color:red;">(click to view.)</span> </h4> </a></li>         --}}
-        {{-- <a href="#groupByquater"> <h4 style="font-family:'Times New Roman', Times, serif;color:darkblue;"> 1.)  A grouped BarChart that shows the current quater perspective trend but grouped by quaters <span style="font-style:italic;color:red;">(click to view.)</span></h4> </a>              
-        <a href="#lineGraphs"> <h4 style="font-family:'Times New Roman', Times, serif;color:darkblue;"> 2.) A grouped LineGraph that shows the current quater perspective trend in  quaterly Fashion. <span style="font-style:italic;color:red;">(click to view.)</span></h4> </a>       
+        {{-- <a href="#groupByProgram"> <h4  style="font-family:'Times New Roman', Times, serif;color:darkblue;"> 1.) A grouped BarChart that shows the current quarter perspective trend but grouped by programs <span style="font-style:italic;color:red;">(click to view.)</span> </h4> </a></li>         --}}
+        {{-- <a href="#groupByquater"> <h4 style="font-family:'Times New Roman', Times, serif;color:darkblue;"> 1.)  A grouped BarChart that shows the current quarter perspective trend but grouped by quaters <span style="font-style:italic;color:red;">(click to view.)</span></h4> </a>              
+        <a href="#lineGraphs"> <h4 style="font-family:'Times New Roman', Times, serif;color:darkblue;"> 2.) A grouped LineGraph that shows the current quarter perspective trend in  quarterly Fashion. <span style="font-style:italic;color:red;">(click to view.)</span></h4> </a>       
     </ol>
     <br>
     <br> --}} 
@@ -35,7 +35,7 @@
           <div class="box-header with-border text-center" >
             <h3 class="box-title"> <span style="font-family:Georgia, 'Times New Roman', Times, serif">CURRENT YEAR PROGRAM QUATERLY TRENDS.</span></h3>
           </div>
-          <p style="color:red;font-size:13px;font-style:italic;"> <span> If The Bars are at 1% , program not assesed</p>
+          <p style="color:red;font-size:13px;font-style:italic;"> <span> If The Bars are at 1% , program not assessed</p>
           <div class="box-body">
             
                   {!! $groupedBarChartForPerspectiveProgressPerquater->container() !!}
@@ -55,7 +55,7 @@
           <div class="box-header with-border text-center" >
             <h3 class="box-title"> <span style="font-family:Georgia, 'Times New Roman', Times, serif">CURRENT YEAR PERSPECTIVE QUATERLY TRENDS.</span></h3>
           </div>
-          <p style="color:red;font-size:13px;font-style:italic;"> <span> If The Bars are at 1% , program not assesed</p>
+          <p style="color:red;font-size:13px;font-style:italic;"> <span> If The Bars are at 1% , program not assessed</p>
           <div class="box-body">
             
                   {!! $groupedLineChartForPerspectiveProgressPerquater->container() !!}

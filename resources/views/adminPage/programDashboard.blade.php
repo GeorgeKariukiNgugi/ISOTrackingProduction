@@ -26,7 +26,7 @@
 <div class="col-md-4">
     <div class="box box-danger">
         <div class="box-header with-border">
-          <h3 class="box-title"> Non Assesed KPIS.</h3>
+          <h3 class="box-title"> Non Assessed KPIS.</h3>
         </div>
         <div class="box-body">
           @if (count($kpiNotScoredNames) == 0)
@@ -34,10 +34,10 @@
               <a href="{{"/samplePDF/".$id}}"> <i class="fa fa-download"></i> Download Report Card.</a>   
 
           @elseif (count($kpiNotScoredNames) == count($allKpis))
-          <h3 style="text-align:center;"> <b>NO KPI HAS BEEN ASSESSED FOR {{$activeQuater}} Quater {{$activeYaer}}</b> </h3>
+          <h3 style="text-align:center;"> <b>NO KPI HAS BEEN ASSESSED FOR {{$activeQuater}} Quarter {{$activeYaer}}</b> </h3>
           {{-- <h3 style="text-align:center;"> <a href="/home">CLICK ME</a> TO MOVE TO SCORECARD FOR ASSESMENT.</h3> --}}
         @else
-          <h4 style="text-align:center;"> <b>{{count($kpiNotScoredNames) }} KPIs Have Not Been Assessed For {{$activeQuater}} Quater {{$activeYaer}}</b></h4>
+          <h4 style="text-align:center;"> <b>{{count($kpiNotScoredNames) }} KPIs Have Not Been Assessed For {{$activeQuater}} Quarter {{$activeYaer}}</b></h4>
           @for ($i = 0; $i < count($kpiNotScoredNames); $i++)
               <p>{{$i+1 .'.   '.  $kpiNotScoredNames[$i]}}</p>
               

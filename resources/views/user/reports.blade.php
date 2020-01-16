@@ -43,7 +43,7 @@
   </a>
   <ul class="treeview-menu">
     <li><a href="/usersTutorial/{{$id}}/1"><i class="fa fa-video-camera"></i> <span>Scoring KPIS</span></a></li>
-    <li><a href="/usersTutorial/{{$id}}/2"><i class="fa fa-video-camera"></i> <span>Closing Non-Confromities</span></a></li>
+    <li><a href="/usersTutorial/{{$id}}/2"><i class="fa fa-video-camera"></i> <span>Closing Non-Conformities</span></a></li>
     <li><a href="/usersTutorial/{{$id}}/3"><i class="fa fa-video-camera"></i> <span>Program Dashboard.</span></a></li>
   </ul>
 </li>
@@ -64,9 +64,9 @@
             <table class="table table-hover">
               <tbody><tr>
                 <th>S<sub>no</sub></th>
-                <th>Proram</th>
+                <th>Program</th>
                 <th>Year</th>
-                <th>Quater</th>
+                <th>Quarter</th>
                 <th>Report In PDF Format.</th>
               </tr>
 @php
@@ -74,7 +74,7 @@
 @endphp
 
               @if (count($reports) == 0)
-                  <h3 style="text-align:center;font-family:'Times New Roman', Times, serif;color:red"> You Have Not Yet Downloaded Any Reports Kindly Go To The Dashboard And Download If You Have Finished Assesing Your Program For This Quater.</h3>
+                  <h3 style="text-align:center;font-family:'Times New Roman', Times, serif;color:red"> You Have Not Yet Downloaded Any Reports Kindly Go To The Dashboard And Download If You Have Finished Assessing Your Program For This Quarter.</h3>
               @endif
               @foreach ($reports as $report)
               <tr>

@@ -1,11 +1,11 @@
 @extends('extendingCode.adminExtending')
 @section('section')
-{{-- <h1 class="text-center" style="font-family:Georgia,Times New Roman,Times,serif;">   <i class="fa fa-group"></i>   Programs Assesors Tab.</h1> --}}
+{{-- <h1 class="text-center" style="font-family:Georgia,Times New Roman,Times,serif;">   <i class="fa fa-group"></i>   Programs Assessors Tab.</h1> --}}
 <div class="row" style="padding-top:3%;">
         <div class="col-xs-12">
           <div class="box box-solid box-success">
             <div class="box-header">
-              <h3 class="box-title">Program Assesors Table.</h3>
+              <h3 class="box-title">Program Assessors Table.</h3>
 
               <div class="box-tools">
                 <div class="input-group input-group-sm hidden-xs" style="width: 150px;">
@@ -24,8 +24,8 @@
                 <tbody><tr>
                   <th>S <sub>no</sub></th>
                   <th>Program Name</th>
-                  <th>Programe Code</th>
-                  <th>Assesor Email.</th>
+                  <th>Program Code</th>
+                  <th>Assessor Email.</th>
                   <th>Action</th>
                 </tr>
                @php
@@ -39,8 +39,8 @@
                         <td>{{$programDetails[$i+2]}}</td>
                         <td>
                                 <div class="btn-group" role="group">
-                                    <button class="btn btn-danger" type="button" data-target = "{{"#deleteAssesor".$increment}}" data-toggle = "modal"><strong>Delete Assesor</strong></button>
-                                    <button class="btn btn-primary" type="button" data-target = "{{"#editAssesor".$increment}}" data-toggle = "modal"><strong>Edit Assesor</strong></button></div>
+                                    <button class="btn btn-danger" type="button" data-target = "{{"#deleteAssesor".$increment}}" data-toggle = "modal"><strong>Delete Assessor</strong></button>
+                                    <button class="btn btn-primary" type="button" data-target = "{{"#editAssesor".$increment}}" data-toggle = "modal"><strong>Edit Assessor</strong></button></div>
                         </td>
                     </tr>
                     {{-- THIS SECTOPN OF THE CODE IS USED TO CREATE THE MODAL THAT IS USED TO ADD THE DELETING MODAL. --}}
@@ -51,7 +51,7 @@
                                         <h4 class="modal-title"><strong>Confirmation !!!</strong></h4>
                                     </div>
                                     <div class="modal-body" style="background-color:#e04d4d;">
-                                        <p><strong>Are You Sure You Want To Delete The Assesor  {{$programDetails[$i+2]}} ????</strong></p>
+                                        <p><strong>Are You Sure You Want To Delete The Assessor  {{$programDetails[$i+2]}} ????</strong></p>
                                     </div>
                                     <form action="/deletingAssesor" method = "POST">
                                         {{ csrf_field() }}
@@ -67,7 +67,7 @@
                           <div class="modal-dialog" role="document">
                               <div class="modal-content">
                                   <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                                      <h4 class="modal-title">Editing An Assesor.</h4>
+                                      <h4 class="modal-title">Editing An Assessor.</h4>
                                   </div>
                                   <div class="modal-body">
                                     <form action="/editingUser" method="POST">
@@ -75,7 +75,7 @@
                                       <input type="hidden" name="assesorId" value="{{$programDetails[$i+3]}}">
                                       <div class="row">
                                           <div class="col-md-4">
-                                              <p>Assesor Email:</p>
+                                              <p>Assessor Email:</p>
                                           </div>
                                           <div class="col-md-8"><input type="email" name="email" style="width:100%;height:30px;" value="{{$programDetails[$i+2]}}"/></div>
                                       </div><br />
@@ -111,7 +111,7 @@
                                 {{ csrf_field() }}                              
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <p>Assesor Email:</p>
+                                        <p>Assessor Email:</p>
                                     </div>
                                     <div class="col-md-8"><input type="email" name="email" style="width:100%;height:30px;"/></div>
                                 </div><br />

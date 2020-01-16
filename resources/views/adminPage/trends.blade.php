@@ -17,7 +17,7 @@
       <a href="#trendLineGraphs"> Line Graph Trends For All Programs.</a>
     </li>
     <li>
-      <a href=""> Grouped Bar Chart 2019 Quaterly Trends Per Programs</a>
+      <a href=""> Grouped Bar Chart 2019 Quarterly Trends Per Programs</a>
     </li>
     <li>
       <a href=""> Grouped Bar Chart For </a>
@@ -43,7 +43,7 @@
         <div class="box-header with-border text-center" >
           <h3 class="box-title"> <span style="font-family:Georgia, 'Times New Roman', Times, serif">TRENDS PER PROGRAM PER QUATER PER YEAR.</span></h3>
         </div>
-        <p style="color:red;text-align:center;">This greph is not giving a full picture:</p>
+        <p style="color:red;text-align:center;">This graph is not giving a full picture:</p>
         <div class="box-body">
           
                 {!!$trialCharts->container()!!}

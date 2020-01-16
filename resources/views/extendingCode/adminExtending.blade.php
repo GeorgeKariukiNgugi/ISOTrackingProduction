@@ -190,8 +190,8 @@ desired effect
           </ul>
         </li>
         <li><a href="/addingNewProramStep0"><i class="fa fa-plus"></i> <span>Add New Program</span></a></li>
-        <li><a href="/assesmentCalender"><i class="fa fa-calendar-plus-o"></i> <span> Assesing Calender</span></a></li>
-        <li><a href="/viewingAssesors"><i class="fa fa-users"></i> <span> Program Assesors.</span></a></li>
+        <li><a href="/assesmentCalender"><i class="fa fa-calendar-plus-o"></i> <span> Assessing Calender</span></a></li>
+        <li><a href="/viewingAssesors"><i class="fa fa-users"></i> <span> Program Assessors.</span></a></li>
         <li> <a href="/adminReports"> <i class="fa fa-book"></i> <span> All Downloaded Reports.</span> </a></li>
         <li class="treeview">
           <a href="#"><i class="fa fa-warning""></i> <span>Non Cnformities</span>
@@ -200,9 +200,9 @@ desired effect
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="/nonConformitiesAdmin/0/0"> <i class="fa fa-warning text-green"></i> <span>Closed Non-Confromities</span></a></li>
-            <li><a href="/nonConformitiesAdmin/1/0"> <i class="fa fa-warning text-blue"></i>  <span>Non-Confromities In Progress</span></a></li>
-            <li><a href="/nonConformitiesAdmin/2/0"> <i class="fa fa-warning text-red" ></i>  <span>Non-Confromities Overdue</span></a></li>
+            <li><a href="/nonConformitiesAdmin/0/0"> <i class="fa fa-warning text-green"></i> <span>Closed Non-Conformities</span></a></li>
+            <li><a href="/nonConformitiesAdmin/1/0"> <i class="fa fa-warning text-blue"></i>  <span>Non-Conformities In Progress</span></a></li>
+            <li><a href="/nonConformitiesAdmin/2/0"> <i class="fa fa-warning text-red" ></i>  <span>Non-Conformities Overdue</span></a></li>
           </ul>
           
         </li>

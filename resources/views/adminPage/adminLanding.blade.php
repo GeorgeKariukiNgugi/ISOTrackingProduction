@@ -48,7 +48,7 @@
                   <thead>
                       <tr>
                           <th>Program</th>
-                          <th>Assesed All KPIs??</th>
+                          <th>Assessed All KPIs??</th>
                           <th>Actions</th>
                       </tr>
                   </thead>
@@ -58,15 +58,15 @@
                         <td>{{$checkingIfAssesed[$i+1]}}</td>
                         <td>
                             @if ($checkingIfAssesed[$i] == 0)
-                            {{"All Kpis  for ".$activeYaer.'  '.$activeQuater."Have Been Assesed."}}
+                            {{"All Kpis  for ".$activeYaer.'  '.$activeQuater."Have Been Assessed."}}
                             <b><i class=" fa  fa-check" style="color:green;font-size:30px;"></i></b>
                             
                             @elseif($checkingIfAssesed[$i] == -1)
-                            {{ "No Kpi  for ".$activeYaer.'  '.$activeQuater."Has Been Assesed ."}}
+                            {{ "No Kpi  for ".$activeYaer.'  '.$activeQuater."Has Been Assessed ."}}
                             <b><i class=" fa fa-times" style="color:red;font-size:30px;"></i></b>
                             
                             @else
-                              {{$checkingIfAssesed[$i]. "  KPIs  for ".$activeYaer.'  '.$activeQuater."Have Not Been Assesed."}}
+                              {{$checkingIfAssesed[$i]. "  KPIs  for ".$activeYaer.'  '.$activeQuater."Have Not Been Assessed."}}
                               <b><i class=" fa  fa-adjust" style="color:orange;font-size:30px;"></i></b>
                             @endif
                         </td>
@@ -80,7 +80,7 @@
                   <tfoot>
                       <tr>
                           <td><strong>Program</strong><br /></td>
-                          <td><strong>Assesed All KPIs??</strong><br /></td>
+                          <td><strong>Assessed All KPIs??</strong><br /></td>
                           <td><strong>Actions</strong><br /></td>
                       </tr>
                   </tfoot>

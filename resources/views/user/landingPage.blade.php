@@ -38,7 +38,7 @@
   </a>
   <ul class="treeview-menu">
     <li><a href="/usersTutorial/{{$programId}}/1"><i class="fa fa-video-camera"></i> <span>Scoring KPIS</span></a></li>
-    <li><a href="/usersTutorial/{{$programId}}/2"><i class="fa fa-video-camera"></i> <span>Closing Non-Confromities</span></a></li>
+    <li><a href="/usersTutorial/{{$programId}}/2"><i class="fa fa-video-camera"></i> <span>Closing Non-Conformities</span></a></li>
     <li><a href="/usersTutorial/{{$programId}}/3"><i class="fa fa-video-camera"></i> <span>Program Dashboard.</span></a></li>
   </ul>
 </li>
@@ -142,7 +142,7 @@
                   
                   <div id= "{{"addingNewKPIInStrategicObjectiveID".$strategicObjective->id}}">
                   </div>
-                    <h4 style="text-align:center;">There are no key perfomance indicators for this strategic objective. <b> Click on the add button to add the kpis.</b></h4>
+                    <h4 style="text-align:center;">There are no key performance indicators for this strategic objective. <b> Click on the add button to add the kpis.</b></h4>
                 </div>
               <div class="box-footer clearfix">
                   <div style="text-align:left" class="col-md-6  col-sm-6">
@@ -176,7 +176,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-6 col-md-6  col-sm-6">
-                                    <p><strong>Arithmtic Structure</strong></p>
+                                    <p><strong>Arithmetic Structure</strong></p>
                                 </div>
                                 <div class="col-lg-6 col-md-6  col-sm-6"><select required name="arithmeticStructure"><optgroup label="Arithmetic Structure"><option value="1">Above</option><option value="0">Below</option></optgroup></select></div>
                             </div>
@@ -187,9 +187,9 @@
                               <div class="col-lg-6 col-md-6  col-sm-6">
                                   <select required name="period">
                                       <optgroup label="Select Period.">
-                                          <option value="4">Quaterly</option>
-                                          <option value="2">Semi Anually</option>
-                                          <option value="1">Anually</option>
+                                          <option value="4">Quarterly</option>
+                                          <option value="2">Semi Annually</option>
+                                          <option value="1">Annually</option>
                                       </optgroup>
                                   </select>
                               </div>
@@ -216,10 +216,10 @@
                                        <p class="text-center" style="font-size:16px;"><strong>No</strong></p>
                                    </div>
                                    <div class=" col-md-3 ">
-                                       <p  style="font-size:16px;text-align:left;"><strong>Key Perfomance Indicator</strong><br /></p>
+                                       <p  style="font-size:16px;text-align:left;"><strong>Key Performance Indicator</strong><br /></p>
                                    </div>
                                    <div class=" col-md-1">
-                                    <p  style="font-size:16px;text-align:left;"><strong>Assesment Period.</strong><br /></p> 
+                                    <p  style="font-size:16px;text-align:left;"><strong>Assessment Period.</strong><br /></p> 
                                 </div>
                                    <div class="col-md-1">
                                        <p class="text-center" style="font-size:16px;"><strong>Score</strong><br /></p>
@@ -483,7 +483,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-6 col-md-6  col-sm-6">
-                                    <p><strong>Arithmtic Structure</strong></p>
+                                    <p><strong>Arithmetic Structure</strong></p>
                                 </div>
                                 <div class="col-lg-6 col-md-6  col-sm-6"><select required name="arithmeticStructure"><optgroup label="Arithmetic Structure"><option value="1">Above</option><option value="0">Below</option></optgroup></select></div>
                             </div>
@@ -494,9 +494,9 @@
                               <div class="col-lg-6 col-md-6  col-sm-6">
                                   <select required name="period">
                                       <optgroup label="Select Period.">
-                                          <option value="4">Quaterly</option>
-                                          <option value="2">Semi Anually</option>
-                                          <option value="1">Anually</option>
+                                          <option value="4">Quarterly</option>
+                                          <option value="2">Semi Annually</option>
+                                          <option value="1">Annually</option>
                                       </optgroup>
                                   </select>
                               </div>

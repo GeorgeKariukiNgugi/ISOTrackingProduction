@@ -20,7 +20,7 @@
 <div style="margin-bottom:5%;margin-top:5%"id="heading">
 <h1 class="text-center" style="font-family:Times New Roman;">{{$name}}</h1>
     <h1 class="text-center" style="font-family:Times New Roman;">{{$programShortHand}}</h1>
-    <h2 class="text-center" style="font-family:Times New Roman;"><b>Martices (Perspectives, Strategic Objectives and Key Perfomance Indicators.)</b></h2>
+    <h2 class="text-center" style="font-family:Times New Roman;"><b>Matrices (Perspectives, Strategic Objectives and Key Performance Indicators.)</b></h2>
 </div>
     
 <div class="panel-group" id="accordion" role="tablist"> 
@@ -176,7 +176,7 @@
             @if ($numberOfKPI <= 0)
             <div>
                 <div class="box-body">
-                    <h4 style="text-align:center;">There are no key perfomance indicators for this strategic objective. <b> Click on the add button to add the kpis.</b></h4>
+                    <h4 style="text-align:center;">There are no key performance indicators for this strategic objective. <b> Click on the add button to add the kpis.</b></h4>
                 </div>
               
             </div> 
@@ -211,7 +211,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-6 col-md-6  col-sm-6">
-                                    <p><strong>Arithmtic Structure</strong></p>
+                                    <p><strong>Arithmetic Structure</strong></p>
                                 </div>
                                 <div class="col-lg-6 col-md-6  col-sm-6"><select required name="arithmeticStructure"><optgroup label="Arithmetic Structure"><option value="1">Above</option><option value="0">Below</option></optgroup></select></div>
                             </div>
@@ -222,9 +222,9 @@
                                     <div class="col-lg-6 col-md-6  col-sm-6">
                                         <select required name="period">
                                             <optgroup label="Select Period.">
-                                                <option value="4">Quaterly</option>
-                                                <option value="2">Semi Anually</option>
-                                                <option value="1">Anually</option>
+                                                <option value="4">Quarterly</option>
+                                                <option value="2">Semi Annually</option>
+                                                <option value="1">Annually</option>
                                             </optgroup>
                                         </select>
                                     </div>
@@ -248,10 +248,10 @@
                                        <p class="text-center" style="font-size:16px;"><strong>No</strong></p>
                                    </div>
                                    <div class=" col-md-4 ">
-                                       <p  style="font-size:16px;text-align:left;"><strong>Key Perfomance Indicator</strong><br /></p>
+                                       <p  style="font-size:16px;text-align:left;"><strong>Key Performance Indicator</strong><br /></p>
                                    </div>
                                    <div class=" col-md-2">
-                                    <p  style="font-size:16px;text-align:left;"><strong>Assesment Period.</strong><br /></p> 
+                                    <p  style="font-size:16px;text-align:left;"><strong>Assessment Period.</strong><br /></p> 
                                 </div>
                                    <div class="col-md-1">
                                        <p class="text-center" style="font-size:16px;"><strong>Target</strong><br /></p>
@@ -385,23 +385,23 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <h4 style="font-family:'Times New Roman', Times, serif">KPI Assesment Period:</h4>
+                                        <h4 style="font-family:'Times New Roman', Times, serif">KPI Assessment Period:</h4>
                                     </div>
                                     <div class="col-md-6">
                                     <select name="period" style="height:35px;width:100%;">
                                         <optgroup label="Assesment Period.">
                                             @if ($kpiModal->period == 4)
                                             <option value="4" selected >Quater</option>
-                                            <option value="2">Semi Anually</option>
-                                            <option value="1" >Anually</option>
+                                            <option value="2">Semi Annually</option>
+                                            <option value="1" >Annually</option>
                                             @elseif($kpiModal->period == 2)
-                                            <option value="4">Quater</option>
-                                            <option value="2" selected>Semi Anually</option>
-                                            <option value="1">Anually</option>
+                                            <option value="4">Quarter</option>
+                                            <option value="2" selected>Semi Annually</option>
+                                            <option value="1">Annually</option>
                                             @elseif($kpiModal->period == 1)
-                                            <option value="4">Quater</option>
-                                            <option value="2">Semi Anually</option>
-                                            <option value="1" selected>Anually</option>
+                                            <option value="4">Quarter</option>
+                                            <option value="2">Semi Annually</option>
+                                            <option value="1" selected>Annually</option>
                                             @endif
                                         </optgroup>
                                     </select>
@@ -488,7 +488,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-6 col-md-6  col-sm-6">
-                                    <p><strong>Arithmtic Structure</strong></p>
+                                    <p><strong>Arithmetic Structure</strong></p>
                                 </div>
                                 <div class="col-lg-6 col-md-6  col-sm-6"><select required name="arithmeticStructure"><optgroup label="Arithmetic Structure"><option value="1">Above</option><option value="0">Below</option></optgroup></select></div>
                             </div>
@@ -499,9 +499,9 @@
                                     <div class="col-lg-6 col-md-6  col-sm-6">
                                         <select required name="period">
                                             <optgroup label="Select Period.">
-                                                <option value="4">Quaterly</option>
-                                                <option value="2">Semi Anually</option>
-                                                <option value="1">Anually</option>
+                                                <option value="4">Quarterly</option>
+                                                <option value="2">Semi Annually</option>
+                                                <option value="1">Annually</option>
                                             </optgroup>
                                         </select>
                                     </div>
@@ -530,7 +530,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header" style="background-color:#bbc1f5;font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <h4 class="modal-title" style="text-align:center;color:red;"><strong>Deletinig Perspective: {{$perspective->name}}</strong></h4>
+                <h4 class="modal-title" style="text-align:center;color:red;"><strong>Deleting Perspective: {{$perspective->name}}</strong></h4>
             </div>
             <div class="modal-body" style="background-color:#d4d8fb;font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">
                 <h3 class="text-center">Kindly Weigh The perspectives In OrderTo Delete The Selected One.</h3>

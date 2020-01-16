@@ -15,11 +15,11 @@
 <br>
 
 <div style="background-color:#D7E0EB;border-radius:50px;padding-top:5%;padding-bottom:5%" class="col-md-10 col-md-offset-1">
-        <h4 style="font-size:25px;font-family:Georgia, 'Times New Roman', Times, serif;text-align:center;"> Kindly Add The Assesor Of The Program.</h4>    
+        <h4 style="font-size:25px;font-family:Georgia, 'Times New Roman', Times, serif;text-align:center;"> Kindly Add The Assessor Of The Program.</h4>    
     <br>
         <div class="row">
                 <div class="col-md-4 col-md-offset-1">
-                    <h3 style="font-family:Georgia, 'Times New Roman', Times, serif;">Assesor Email:</h3>
+                    <h3 style="font-family:Georgia, 'Times New Roman', Times, serif;">Assessor Email:</h3>
                 </div>
                 <div class="col-md-4 col-md-offset-1">
                     <form action="/submittingEmailAddress" method="POST">

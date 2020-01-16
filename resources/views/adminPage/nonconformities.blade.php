@@ -91,7 +91,7 @@
                   <th>S <sub>no</sub> </th>
                   <th>KPI Name</th>
                   <th>Program Name</th>
-                  <th> Quater NC Was Identified.</th>
+                  <th> Quarter NC Was Identified.</th>
 
                   @if ($type == 0)
                   <th> Evidence Provided.</th>
@@ -162,7 +162,7 @@
                             echo $location;
                         } else {
                             # code...
-                            echo "<a href = '/storage/evidence/".$evidence."''> Click To Download The Document Supplid.</a>";
+                            echo "<a href = '/storage/evidence/".$evidence."''> Click To Download The Document Supplied.</a>";
                         }
                         
                     @endphp
@@ -227,7 +227,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <p><strong>Correcive Action</strong></p>
+                                            <p><strong>Corrective Action</strong></p>
                                         </div>
                                         <div class="col-md-8">
                                             <p>{{$nonConformity->correctiveAction}}</p>
@@ -245,7 +245,7 @@
                     <th>S <sub>no</sub> </th>
                     <th>KPI Name</th>
                     <th>Program Name</th>
-                    <th> Quater NC Was Identified.</th>
+                    <th> Quarter NC Was Identified.</th>
 
                     @if ($type == 0)
                     <th> Evidence Provided.</th>

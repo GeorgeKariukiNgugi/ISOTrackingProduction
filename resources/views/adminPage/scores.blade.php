@@ -113,7 +113,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-6 col-md-6  col-sm-6">
-                                    <p><strong>Arithmtic Structure</strong></p>
+                                    <p><strong>Arithmetic Structure</strong></p>
                                 </div>
                                 <div class="col-lg-6 col-md-6  col-sm-6"><select required name="arithmeticStructure"><optgroup label="Arithmetic Structure"><option value="1">Above</option><option value="0">Below</option></optgroup></select></div>
                             </div>
@@ -139,10 +139,10 @@
                                        <p class="text-center" style="font-size:16px;"><strong>No</strong></p>
                                    </div>
                                    <div class=" col-md-3 ">
-                                       <p  style="font-size:16px;text-align:left;"><strong>Key Perfomance Indicator</strong><br /></p>
+                                       <p  style="font-size:16px;text-align:left;"><strong>Key Performance Indicator</strong><br /></p>
                                    </div>
                                    {{-- <div class=" col-md-1">
-                                    <p  style="font-size:16px;text-align:left;"><strong>Assesment Period.</strong><br /></p> 
+                                    <p  style="font-size:16px;text-align:left;"><strong>Assessment Period.</strong><br /></p> 
                                 </div> --}}
                                    <div class="col-md-1">
                                        <p class="text-center" style="font-size:16px;"><strong>Score</strong><br /></p>
@@ -223,7 +223,7 @@
                                             <p>{{$name3}}</p>
                                         </div>
                                         {{-- <div class=" col-md-1" style="text-align:left">
-                                          <p>Quaterly</p>
+                                          <p>Quarterly</p>
                                       </div> --}}
                                         <div class=" col-md-1" style="text-align:center"><p>{{$score}}</p></div>
                                         <div class=" col-md-1"style="text-align:center">
@@ -304,7 +304,7 @@
               <div class="modal-dialog modal-lg" role="document">
                   <div class="modal-content">
                       <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                          <h4 class="text-center modal-title">Kindly Fill The Following Fields to Complete Assesing :: <strong>{{$kpiModal->name}}.</strong></h4>
+                          <h4 class="text-center modal-title">Kindly Fill The Following Fields to Complete Assessing :: <strong>{{$kpiModal->name}}.</strong></h4>
                       </div>
                       <div id="{{"NonConformitymodal".$kpiModal->id}}"></div>
                       <div class="modal-body">
@@ -319,7 +319,7 @@
                               </div>
                               <div class="row" style="margin-bottom:1%;">
                                   <div class="col-lg-3 col-md-3">
-                                      <p class="text-center">Corretive Action To Meet The Target.&nbsp;</p>
+                                      <p class="text-center">Corrective Action To Meet The Target.&nbsp;</p>
                                   </div>
                                   <div class="col-lg-9 col-md-9"><textarea class="form-control" name="correctiveAction" required="" placeholder="Corrective Action For The Non Conformity."></textarea></div>
                               </div>

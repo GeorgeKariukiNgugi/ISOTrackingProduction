@@ -19,7 +19,7 @@
 <input type = "hidden" value="{{$activeYaer}}" name = "activeYear" id="activeYear">
 <div style="margin-bottom:5%;margin-top:5%"id="heading">
 <h1 class="text-center" style="font-family:Times New Roman;">{{$name}}</h1>
-    <h1 class="text-center" style="font-family:Times New Roman;">({{$programShortHand}})</h1>
+    <h1 class="text-center" style="font-family:Times New Roman;">{{$programShortHand}}</h1>
     <h2 class="text-center" style="font-family:Times New Roman;"><b>Martices (Perspectives, Strategic Objectives and Key Perfomance Indicators.)</b></h2>
 </div>
     
@@ -552,6 +552,7 @@
                                $perspectiveName = ucwords($perspectiveName);
                 @endphp
                 <form action="" method="POST">
+                    
                 @if ($perspective->id == $perspectiveToBeDeleted->id)
                 <div class="row">
                     <div class="col-md-1">
@@ -577,7 +578,10 @@
                 @endforeach
 
             </div>
-            <div class="modal-footer" style="background-color:#bbc1f5;font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"><button class="btn btn-success" type="button" data-dismiss="modal">Close</button><button class="btn btn-danger" id="{{"submitButton".}}" disabled type="submit"><strong>Delete</strong></button></div>
+            <div class="modal-footer" style="background-color:#bbc1f5;font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">
+                <button class="btn btn-success" type="button" data-dismiss="modal">Close</button>
+                <button class="btn btn-danger" id="{{"submitButton"Remove}}" disabled type="submit"><strong>Delete</strong></button>
+            </div>
         </form>
         </div>
     </div>

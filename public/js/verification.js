@@ -62,10 +62,10 @@ $(function () {
                                     '"> <i style = "font-size:20px;"class = "fa fa-times">   <b>NO</b> </i></a>'
                                 );
                                 // $(this).focus(); 
-                                console.log("these are the low era"); 
-                                $(this).css('background-color','#fba7a7');                      
+                                console.log("these are the low era");
+                                $(this).css('background-color', '#fba7a7');
                                 $("#modal" + slicedId).modal("show");
-                                    
+
                             } else {
                                 // !setting the flag to a negative.
                                 $("#" + nonConformityFlag + "").val(0);
@@ -76,9 +76,9 @@ $(function () {
                                 $("#" + unmetTargetId + "").append(
                                     '<p style = "color:green;"> <i style = "font-size:20px;" class = "fa fa-check">   <b>YES</b> </i></p>'
                                 );
-                                $(this).css('background-color','#cfeda8'); 
-                                
-                                
+                                $(this).css('background-color', '#cfeda8');
+
+
                             }
                             break;
                         case "1":
@@ -99,10 +99,10 @@ $(function () {
                                     gettingModalName +
                                     '"> <i style = "font-size:20px;"class = "fa fa-times">   <b>NO</b> </i></a>'
                                 );
-                                console.log("these are the low era"); 
-                                $(this).css('background-color','#fba7a7');
+                                console.log("these are the low era");
+                                $(this).css('background-color', '#fba7a7');
                                 $("#modal" + slicedId).modal("show");
-                                
+
                                 // $(this).focus();
                             } else {
                                 console.log("1 IT GOOD.");
@@ -115,7 +115,7 @@ $(function () {
                                 $("#" + unmetTargetId + "").append(
                                     '<p style = "color:green;"> <i style = "font-size:20px;" class = "fa fa-check">   <b>YES</b> </i></p>'
                                 );
-                                $(this).css('background-color','#cfeda8'); 
+                                $(this).css('background-color', '#cfeda8');
                             }
                             break;
                         case "3":
@@ -135,7 +135,7 @@ $(function () {
                                     gettingModalName +
                                     '"> <i style = "font-size:20px;"class = "fa fa-times">   <b>NO</b> </i></a>'
                                 );
-                                // $(this).focus();
+                                $(this).css('background-color', '#fba7a7');
                                 $("#modal" + slicedId).modal("show");
                             } else {
                                 console.log("1 IT GOOD.");
@@ -147,6 +147,7 @@ $(function () {
                                 $("#" + unmetTargetId + "").append(
                                     '<p style = "color:green;"> <i style = "font-size:20px;" class = "fa fa-check">   <b>YES</b> </i></p>'
                                 );
+                                $(this).css('background-color', '#cfeda8');
                             }
                             break;
                         case "4":
@@ -168,6 +169,7 @@ $(function () {
                                 );
                                 console.log(id);
                                 // $("#" + id).focus();
+                                $(this).css('background-color', '#fba7a7');
                                 $("#modal" + slicedId).modal("show");
                             } else {
                                 console.log("1 IT GOOD.");
@@ -176,6 +178,7 @@ $(function () {
                                 console.log($("#" + nonConformityFlag + "").val());
 
                                 $("#" + unmetTargetId + "").empty();
+                                $(this).css('background-color', '#cfeda8');
                                 $("#" + unmetTargetId + "").append(
                                     '<p style = "color:green;"> <i style = "font-size:20px;" class = "fa fa-check">   <b>YES</b> </i></p>'
                                 );
@@ -199,6 +202,7 @@ $(function () {
                                     '"> <i style = "font-size:20px;"class = "fa fa-times">   <b>NO</b> </i></a>'
                                 );
                                 // $(this).focus();
+                                $(this).css('background-color', '#fba7a7');
                                 $("#modal" + slicedId).modal("show");
                             } else {
                                 console.log("1 IT GOOD.");
@@ -207,6 +211,7 @@ $(function () {
                                 console.log($("#" + nonConformityFlag + "").val());
 
                                 $("#" + unmetTargetId + "").empty();
+                                $(this).css('background-color', '#cfeda8');
                                 $("#" + unmetTargetId + "").append(
                                     '<p style = "color:green;"> <i style = "font-size:20px;" class = "fa fa-check">   <b>YES</b> </i></p>'
                                 );
@@ -230,6 +235,7 @@ $(function () {
                                     '"> <i style = "font-size:20px;"class = "fa fa-times">   <b>NO</b> </i></a>'
                                 );
                                 // $(this).focus();
+                                $(this).css('background-color', '#fba7a7');
                                 $("#modal" + slicedId).modal("show");
                             } else {
                                 console.log("1 IT GOOD.");
@@ -238,6 +244,7 @@ $(function () {
                                 console.log($("#" + nonConformityFlag + "").val());
 
                                 $("#" + unmetTargetId + "").empty();
+                                $(this).css('background-color', '#cfeda8');
                                 $("#" + unmetTargetId + "").append(
                                     '<p style = "color:green;"> <i style = "font-size:20px;" class = "fa fa-check">   <b>YES</b> </i></p>'
                                 );
@@ -261,6 +268,7 @@ $(function () {
                                     '"> <i style = "font-size:20px;"class = "fa fa-times">   <b>NO</b> </i></a>'
                                 );
                                 // $(this).focus();
+                                $(this).css('background-color', '#fba7a7');
                                 $("#modal" + slicedId).modal("show");
                             } else {
                                 console.log("1 IT GOOD.");
@@ -269,6 +277,7 @@ $(function () {
                                 console.log($("#" + nonConformityFlag + "").val());
 
                                 $("#" + unmetTargetId + "").empty();
+                                $(this).css('background-color', '#cfeda8');
                                 $("#" + unmetTargetId + "").append(
                                     '<p style = "color:green;"> <i style = "font-size:20px;" class = "fa fa-check">   <b>YES</b> </i></p>'
                                 );

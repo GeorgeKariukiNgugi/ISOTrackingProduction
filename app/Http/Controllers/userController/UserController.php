@@ -838,7 +838,7 @@ class UserController extends Controller
         //! this isthe section that will look for the nonconformities thatare out of date.
         $nonConformities = NonConformities::where('openClosed', '=', 'open')
                                             ->whereDate('date', '<=',$todaysdate)
-                                            ->where('year','=',$activeYaer)
+                                            // ->where('year','=',$activeYaer)
                                             ->where('program_id','=',$id)
                                             ->orderBy('date', 'asc')
                                             ->get();
@@ -849,7 +849,7 @@ class UserController extends Controller
     } else if ($closed == 0){
         $nonConformities = NonConformities::where('openClosed', '=', 'open')
                                             ->whereDate('date', '>=',$todaysdate)
-                                            ->where('year','=',$activeYaer)
+                                            // ->where('year','=',$activeYaer)
                                             ->where('program_id','=',$id)
                                             ->orderBy('date', 'asc')
                                             ->get();

@@ -168,4 +168,69 @@ class programMatrices extends Controller
     }
 
 
+    //! this section of the code is used to delete the selected perspective. 
+
+    public function deletePerspectives(Request $request){ 
+
+        //! the number of perspetives that have been submitted. 
+        $numberOfPerspectives = $request->numberOfPerspecives;
+        //! the perspective id of the program that has been clicked. 
+        $deletingPerspeciveId = $request->deletingId;
+        //! program id.
+        $programId = $request->hiddenProgramId;
+
+        $sum = 0;
+        for ($i=1; $i <= $numberOfPerspectives ; $i++) { 
+            # code...
+            $requestName = 'perspective'.$programId .$i;
+            $sum+= $request->$requestName;
+        }
+         
+        if ($sum != 100) {
+            # code...
+            //! return the user back to the screen because he escaped the javascript validation.
+
+        } else {
+            # code...
+            //!  in this section of the code, we udpate the perpetives with the correct data after re-assesment. 
+
+            for ($j=1; $j <= $numberOfPerspectives ; $j++) { 
+                # code...
+                //! getting the perspective id. 
+                $perspectiveRequestName = 'hiddenPerspectiveId'.$j;
+                $perspectiveId = $request->$perspectiveRequestName;
+                $requestNameOfPerspective = 'perspective'.$programId .$j;
+                //! selecting the data from the database that concerns the perspective. 
+
+                $perspectiveSelected = Perspective::where('id','=',$perspectiveId)
+                                                    ->where('program_id','=',$programId)
+                                                    ->get();
+                foreach($perspectiveSelected as $perspective){
+
+                    $perspective->weight = $request->$requestNameOfPerspective;
+                    $perspective->save();
+                }
+
+            }
+
+            //! this section is to delete the selected perspectives. 
+            $idOfDeletingId = $request->deletingId;
+            $deletingPerspectiveSelected = Perspective::where('id','=',$idOfDeletingId)
+                                                        ->get();
+            foreach ($deletingPerspectiveSelected as $deletingPerspective) {
+                # code...
+                $deletingPerspective->delete();
+            }
+            $Message = '<div role="alert" class="alert alert-success" style="width:70%;text-align:center;margin-right:15%;margin-top:1%;margin-left:15%;"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><span class="text-capitalize"><strong>'.
+            "The perspective selected, has successfully been deleted, kindly refresh your browser to get the latest updates.
+                </strong><br /></span></div>";
+            // return response()->json(['success'=>' SCORES NOT SUBMITTED. Kindly Add The Non conformity reasons for the kpi  '.$kpi->name]);
+            return response()->json(['success'=>$Message]);
+
+        }
+        
+        
+
+
+    }
 }

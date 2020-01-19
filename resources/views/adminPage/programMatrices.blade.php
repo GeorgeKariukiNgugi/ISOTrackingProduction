@@ -46,7 +46,7 @@
 <div class="panel box box-solid">
   <div class="box-header with-border" style="background-color:tomato;">
     
-    <button class="btn btn-success" data-target="{{"#deletingPerspective".$perspective->id}}" data-toggle="modal" type="button"><span class="fa fa-trash"></span></button>
+    <button class="btn btn-success" id="{{"buttonToDeletePerspectives".$perspective->id}}" data-target="{{"#deletingPerspective".$perspective->id}}" data-toggle="modal" type="button"><span class="fa fa-trash"></span></button>
     <button class="btn btn-success" type="button"><span class="fa fa-edit"></span></button>
 
     <b><h4 class="box-title" style="width:100%;text-align:center;display:inline">
@@ -382,7 +382,7 @@
                                         <h4 style="font-family:'Times New Roman', Times, serif;">KPI Name:</h4>
                                     </div>
                                     <div class="col-md-6"><input type="text" name="name" style="width:100%;height:35px;" value="{{$kpiName}}"/></div>
-                                </div>
+                                </div>()
                                 <div class="row">
                                     <div class="col-md-6">
                                         <h4 style="font-family:'Times New Roman', Times, serif">KPI Assessment Period:</h4>
@@ -532,9 +532,11 @@
             <div class="modal-header" style="background-color:#bbc1f5;font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                 <h4 class="modal-title" style="text-align:center;color:red;"><strong>Deleting Perspective: {{$perspective->name}}</strong></h4>
             </div>
-            <div class="modal-body" style="background-color:#d4d8fb;font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">
+            <div  id="{{"holdingContainer".$perspective->id}}" class="modal-body" style="background-color:#d4d8fb;font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">
+                <div id = "{{"alert".$perspective->id}}"></div>
+                {{-- <div>                 --}}
                 <h3 class="text-center">Kindly Weigh The perspectives In OrderTo Delete The Selected One.</h3>
-                <h6 style="color:red;text-decoration:bold;">The Weights should Add up to 100.</h6>
+                <b><h4 style="color:red;text-decoration:bold;text-align:center;font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">The New Weights should Add up to 100.</h4></b>                
                 <div class="row">
                     <div class="col-md-1">
                         <h3>Sno</h3>
@@ -548,14 +550,21 @@
                 </div>
                 @php
                     $perspectiveIncrement = 1;
+                    $numberOfPerspecives = 0;
                 @endphp
+                <form class="{{"deletingProgramPerspectives".$perspective->id}}">
+                    <input type="hidden" name="hiddenProgramId" value="{{$programId}}">
+                    
                 @foreach ($perspectives as $perspectiveToBeDeleted)
 
                 @php
+                               
                                $perspectiveName = str_replace('_', ' ', $perspectiveToBeDeleted->name);
                                $perspectiveName = ucwords($perspectiveName);
                 @endphp
-                <form action="" method="POST">
+            
+                
+                {{ csrf_field() }}
                     
                 @if ($perspective->id == $perspectiveToBeDeleted->id)
                 <div class="row">
@@ -567,7 +576,15 @@
                     </div>
                     <div class="col-md-2"><input type="text" style="width:80px;" disabled value="{{$perspectiveToBeDeleted->weight}}" /></div>
                 </div>
+
+                <input type="hidden" name="deletingId" value="{{$perspective->id}}">
+
                 @else
+
+                @php
+                    $numberOfPerspecives++;
+                @endphp
+
                 <div class="row">
                     <div class="col-md-1">
                         <p>{{$perspectiveIncrement++}}</p>
@@ -575,22 +592,25 @@
                     <div class="col-md-9">
                         <p>{{$perspectiveName}}</p>
                     </div>
-                    <div class="col-md-2"><input type="text" style="width:80px;" value="{{$perspectiveToBeDeleted->weight}}" /></div>
+                    <input type="hidden" name="{{"hiddenPerspectiveId".$numberOfPerspecives}}" value="{{$perspectiveToBeDeleted->id}}">
+                    <div class="col-md-2"><input type="number" name="{{"perspective".$programId.$numberOfPerspecives}}" class="{{"perspectiveWeight".$perspective->id}}" style="width:80px;" value="{{$perspectiveToBeDeleted->weight}}" /></div>
                 </div>
                 @endif
             
-                @endforeach
-
-            </div>
+                @endforeach            
+            <input type="hidden" name="numberOfPerspecives" value="{{ $numberOfPerspecives }}">
+        </div>
             <div class="modal-footer" style="background-color:#bbc1f5;font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">
-                <button class="btn btn-success" type="button" data-dismiss="modal">Close</button>
-                <button class="btn btn-danger" id="{{"submitButton"}}" disabled type="submit"><strong>Delete</strong></button>
+                <button class="btn btn-success" id="{{"closeButton".$perspective->id}}" type="button" data-dismiss="modal">Close</button>
+                <button class="btn btn-danger" disabled id="{{"submitButton".$perspective->id}}" type="submit"><strong>Delete</strong></button>
             </div>
         </form>
-        </div>
+            
+            </div>
     </div>
-</div>
+    </div>
 @endforeach
+
 </div>
 <script src="design/assets/js/jquery.min.js"></script>
 </div>

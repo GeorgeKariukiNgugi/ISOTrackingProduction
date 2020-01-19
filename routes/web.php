@@ -173,3 +173,6 @@ Route::get('/adminProgramPerspective/{id}','trendsController\programTrend@perspe
 
 //! this is used to generate the progress that is normally seen by the program manaer. 
 Route::get('/programManagerPerspective/{id}','trendsController\programTrend@perspectiveTrends');
+
+//! this route is used to delete the perspectve that has been selected by the users. 
+Route::post('/deletingPespectives','adminController\programMatrices@deletePerspectives');

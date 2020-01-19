@@ -16,7 +16,7 @@ class uatPFD extends Controller
 {
     public function UatPdfGeneration(){
 
-        $programDetails = Program::where('id','=',226)->get();
+        $programDetails = Program::where('id','=',248)->get();
         $pdf = PDF::loadView('adminPage.uatGeneration',['programDetails'=>$programDetails]);
         foreach($programDetails as $programDetail){
             $nameOfFile = $programDetail->shortHand;

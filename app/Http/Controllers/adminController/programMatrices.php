@@ -274,4 +274,58 @@ class programMatrices extends Controller
        return back();
 
     }
+    public function addingNewPerspetive(Request $request){
+
+        $perspectiveName = $request->newPerspectiveWeightname;
+        $perspectiveWeight = $request->newPerspectiveWeight;
+        $programId = $request->proramId;
+        $perspectiveType = $request->perspectiveType;
+        $lastGroup = 0;
+        if($perspectiveType == 0){
+            $takingLatPerspectives = Perspective::where('id','>',0)
+                                              ->orderBy('id','asc')
+                                              ->limit(1)
+                                              ->get();
+            foreach ($takingLatPerspectives as $takingLatPerspective) {
+                # code...
+                $lastGroup = $takingLatPerspective->perspective_group;
+            }
+        }
+
+        $newProgram = new Perspective(
+            array(
+                'name'=>$perspectiveName,
+                'weight'=>$perspectiveWeight,
+                'program_id'=>$programId,  
+                'perspective_group'=>$lastGroup,         
+            )
+        );        
+        $newProgram->save();
+
+
+
+        //? getting the number of perspectives that should be edited.         
+        $incrementalNumberEdit = $request->numberOfPerspectives;
+        // dd($incrementalNumberEdit);
+        for ($i=1; $i <= $incrementalNumberEdit; $i++) { 
+            # code...
+            //? gettin the hidden value that holds the perspective id. 
+            $hiddenPerspeciveId = 'perspectiveId'.$i;
+            $hiddenPerspeciveId = $request->$hiddenPerspeciveId;
+            // dd($hiddenPerspeciveId);
+            //? getting the perspective input value 
+            $perspectiveInputValue = 'addingNewPerspectives'.$i;
+            $perspectiveInputValue = $request->$perspectiveInputValue;
+            // dd($perspectiveInputValue);
+            $perspectives = Perspective::where('id','=',$hiddenPerspeciveId)->get();
+            foreach($perspectives as $perspective){
+
+                $perspective->weight = $perspectiveInputValue;
+                $perspective->save();
+            }
+        }
+
+        Alert::success(' <h4 style = "color:green;">Congartulations    <i class="fa fa-thumbs-up"></i></h4>', 'Added Perspective Successfully.');
+        return back();
+    }
 }

@@ -179,3 +179,6 @@ Route::post('/deletingPespectives','adminController\programMatrices@deletePerspe
 
 //! this route is used to post the editing of a perspective, 
 Route::post('/editingPerspective','adminController\programMatrices@editingPerspectiveName');
+
+//! this route is used to post the adding new perspective modal.
+Route::post('/addingNewPerspective','adminController\programMatrices@addingNewPerspetive');

@@ -22,7 +22,87 @@
     <h1 class="text-center" style="font-family:Times New Roman;">{{$programShortHand}}</h1>
     <h2 class="text-center" style="font-family:Times New Roman;"><b>Matrices (Perspectives, Strategic Objectives and Key Performance Indicators.)</b></h2>
 </div>
-    
+<div>
+    <button  style="float:right; margin-right:5%;" data-target="#addingPerspectives" data-toggle="modal" class="btn btn-success" type="button"><i class="glyphicon glyphicon-plus"></i><strong>ADD PERSPECTIVE.</strong><br /></button>
+    <br>
+    <br>
+</div>
+<div style="clear:both;"></div>
+
+<div role="dialog" tabindex="-1" class="modal fade" id="addingPerspectives">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="color:rgb(0,0,0);background-color:rgb(171,146,223);"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="text-center modal-title">Adding Perspectives.</h4>
+            </div>
+            <div class="modal-body" style="background-color:rgb(223,211,249);">
+                <form action="/addingNewPerspective" method="POST" id="addingNewPerpsectivesForm">
+                    <input type="hidden" name="proramId" value="{{$programId}}">
+                    @csrf
+                <div>
+                    <div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h4>Name :</h4>
+                            </div>
+                            <div class="col-md-9" style="height:56.4;"><input required name="newPerspectiveWeightname" type="text" style="width:100%;height:30px;" /></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h4>Weight :</h4>
+                            </div>
+                            <div class="col-md-9" style="height:56.4;"><input required name="newPerspectiveWeight" id="newPerspectiveWeight" type="number" style="width:100%;height:30px;" /></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h4>Perspective Type:</h4>
+                            </div>
+                            
+                            <div class="col-md-9">
+                                <select required name="perspectiveType">
+                                    <option value="1">Financial Perspective</option>
+                                    <option value="2">Customer Perspective</option>
+                                    <option value="3">Internal Business Process Process Perspective</option>
+                                    <option value="4">Leaning And Growth Perspective</option>
+                                    <option value="0" selected>Unique Perspective</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="text-center">Previous Perspectives And Weight</h4>
+                        <h4 class="text-center" style="font-family:&#39;monotype corsiva&#39;;color:rgb(255,0,0);">Kindly Re-Weight Your Perspectives To Get To 100.</h4>
+                        
+                        <div id="errorHandlingAddingPerspectives"> </div>
+
+                        @php
+                            $addingPerspectiveIncrementalNumber = 0;
+                        @endphp
+                       @foreach ($perspectives as $perspective)
+                       <div class="row">
+                        <div class="col-md-2">
+                            <p>{{++$addingPerspectiveIncrementalNumber}}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{$perspective->name}}</p>                          
+                        </div>
+                        <div class="col-md-4">
+                            <input type="hidden" name="{{"perspectiveId".$addingPerspectiveIncrementalNumber}}" value="{{$perspective->id}}">
+                            <input type="number" required name="{{"addingNewPerspectives".$addingPerspectiveIncrementalNumber}}" id="" class="addingNewPerspectives" value="{{$perspective->weight}}"> 
+                        </div>
+                    </div>
+                       @endforeach
+                       <input type="hidden" name="numberOfPerspectives" value="{{$addingPerspectiveIncrementalNumber}}">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer" style="background-color:rgb(171,146,223);"><button class="btn btn-success" type="button" data-dismiss="modal">Close</button>
+                <button class="btn btn-danger" type="submit">Save</button></div>
+        </form>
+        </div>
+    </div>
+</div>
+
 <div class="panel-group" id="accordion" role="tablist"> 
     
     @if (count($perspectives) == 0)

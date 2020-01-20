@@ -17,6 +17,14 @@
   </li> 
 @endsection
 
+@if ($valueOfEditing == 1)
+@section('userEditingMatrices')
+<li>
+  <a href="{{"/userMatrices/".$id}}"><i class="fa fa-edit"></i> <span> Editing Matrices.</span></a>
+</li>
+@endsection
+@endif
+
 @section('overdue')
 <a href="{{"/nonconformities/".$id."/1"}}" data-toggle="tooltip" title=" Non-conformities out of date">
 @endsection

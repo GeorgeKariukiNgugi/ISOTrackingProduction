@@ -814,8 +814,14 @@ class UserController extends Controller
         array_push($programDetailsArray,$proramDetail->shortHand);
     }
 
+    $gettingUserEditings = Userediting::all();
+    $valueOfEditing = 0;
+    foreach($gettingUserEditings as $gettingUserEditing){
 
-    return view('user.dashboard',['programDetailsArray'=>$programDetailsArray,'activeYaer'=>$activeYaer,'activeQuater'=>$activeQuater,'chart'=>$chart,'kpiNotScoredNames'=>$kpiNotScoredNames,'allKpis'=>$allKPIsRetrieved,'finalScore'=>$finalScore,'id'=>$id,'charts'=>$charts,'proramPersspectives'=>$proramPersspectives ]);
+        $valueOfEditing = $gettingUserEditing->value;
+    }
+    
+    return view('user.dashboard',['valueOfEditing'=>$valueOfEditing,'programDetailsArray'=>$programDetailsArray,'activeYaer'=>$activeYaer,'activeQuater'=>$activeQuater,'chart'=>$chart,'kpiNotScoredNames'=>$kpiNotScoredNames,'allKpis'=>$allKPIsRetrieved,'finalScore'=>$finalScore,'id'=>$id,'charts'=>$charts,'proramPersspectives'=>$proramPersspectives ]);
  }
 
  public function nonConformities($id, $closed){
@@ -845,7 +851,13 @@ class UserController extends Controller
                                             ->get();
 
         // dd("Overdue  ".count( $nonConformities ));  
-        return view('user.nonConformities',['status'=> 'open','nonConformities'=>$nonConformities,'id'=>$id,'state'=>$closed,'programmeName'=>$proramenameValue]);
+        $gettingUserEditings = Userediting::all();
+              $valueOfEditing = 0;
+              foreach($gettingUserEditings as $gettingUserEditing){
+
+                  $valueOfEditing = $gettingUserEditing->value;
+              }
+        return view('user.nonConformities',['valueOfEditing'=>$valueOfEditing,'status'=> 'open','nonConformities'=>$nonConformities,'id'=>$id,'state'=>$closed,'programmeName'=>$proramenameValue]);
 
     } else if ($closed == 0){
         $nonConformities = NonConformities::where('openClosed', '=', 'open')
@@ -854,7 +866,14 @@ class UserController extends Controller
                                             ->where('program_id','=',$id)
                                             ->orderBy('date', 'asc')
                                             ->get();
-        return view('user.nonConformities',['status'=> 'open','nonConformities'=>$nonConformities,'id'=>$id,'state'=>$closed,'programmeName'=>$proramenameValue]);  
+              
+              $gettingUserEditings = Userediting::all();
+              $valueOfEditing = 0;
+              foreach($gettingUserEditings as $gettingUserEditing){
+
+                  $valueOfEditing = $gettingUserEditing->value;
+              }
+        return view('user.nonConformities',['valueOfEditing'=>$valueOfEditing,'status'=> 'open','nonConformities'=>$nonConformities,'id'=>$id,'state'=>$closed,'programmeName'=>$proramenameValue]);  
 
     }
     else if ($closed == 2){
@@ -864,9 +883,17 @@ class UserController extends Controller
         ->orderBy('date', 'asc')
         ->get();
 
+              $gettingUserEditings = Userediting::all();
+              $valueOfEditing = 0;
+              foreach($gettingUserEditings as $gettingUserEditing){
+
+                  $valueOfEditing = $gettingUserEditing->value;
+              }
+
         //! getting the details that will be sent to the closed non conformities.
-            $closedNonConformities = closedNonConformityEvidence::all();        
-return view('user.nonConformities',['status'=> 'closed','closedNonConformities'=>$closedNonConformities,'nonConformities'=>$nonConformities,'id'=>$id,'state'=>$closed,'programmeName'=>$proramenameValue]);
+            $closedNonConformities = closedNonConformityEvidence::all(); 
+                   
+return view('user.nonConformities',['valueOfEditing'=>$valueOfEditing,'status'=> 'closed','closedNonConformities'=>$closedNonConformities,'nonConformities'=>$nonConformities,'id'=>$id,'state'=>$closed,'programmeName'=>$proramenameValue]);
     }     
  }
 

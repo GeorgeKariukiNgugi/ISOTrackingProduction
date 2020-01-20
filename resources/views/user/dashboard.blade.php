@@ -61,6 +61,16 @@
 <a href="{{"/reports/".$id}}"><i class="fa fa-book"></i> <span>Downloaded Reports</span></a>
 
 @endsection
+
+@if ($valueOfEditing == 1)
+@section('userEditingMatrices')
+<li>
+  <a href="{{"/userMatrices/".$id}}"><i class="fa fa-edit"></i> <span> Editing Matrices.</span></a>
+</li>
+@endsection
+
+@endif
+
 @section('section')
 
 {{-- <h1 style="font-family:Georgia, 'Times New Roman', Times, serif;text-align:center;"> {{$programDetailsArray[0]}}</h1> --}}

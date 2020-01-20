@@ -227,10 +227,51 @@ class programMatrices extends Controller
             // return response()->json(['success'=>' SCORES NOT SUBMITTED. Kindly Add The Non conformity reasons for the kpi  '.$kpi->name]);
             return response()->json(['success'=>$Message]);
 
-        }
-        
-        
+        }                
+    }
 
+    //! this controller method is used to edit the name of the perspectve. 
+    public function editingPerspectiveName(Request $request){
+        
+        //? getting the name that wil be changed.
+        $perspectiveIdToEdit =$request->perspectiveIdToEdit;
+        $perspectiveName = $request->nameOfPerspecrive;
+
+        $editingPerspectiveNames = Perspective::where('id','=',$perspectiveIdToEdit)->get();
+
+        // dd($perspectiveName);
+        foreach($editingPerspectiveNames as $editingPerspectiveName){
+            $editingPerspectiveName->name = $perspectiveName;
+            $editingPerspectiveName->save();
+        }
+
+        //? getting the perspective id. 
+        $perspectiveId = $request->perspectiveIdToEdit;
+
+        //? getting the number of perspectives that should be edited. 
+        $numberOfPerspectivesToBeEdited = $request->numberOfPerspectivesEdited;
+        $incrementalNumberEdit = $request->numberOfPerspectivesEdited;
+        // dd($incrementalNumberEdit);
+        for ($i=1; $i <= $incrementalNumberEdit; $i++) { 
+            # code...
+            //? gettin the hidden value that holds the perspective id. 
+            $hiddenPerspeciveId = 'hiddenPerspectiveWeight'.$i;
+            $hiddenPerspeciveId = $request->$hiddenPerspeciveId;
+            // dd($hiddenPerspeciveId);
+            //? getting the perspective input value 
+            $perspectiveInputValue = 'editingWeight'.$i;
+            $perspectiveInputValue = $request->$perspectiveInputValue;
+
+            $perspectives = Perspective::where('id','=',$hiddenPerspeciveId)->get();
+            foreach($perspectives as $perspective){
+
+                $perspective->weight = $perspectiveInputValue;
+                $perspective->save();
+            }
+        }
+
+       Alert::success(' <h4 style = "color:green;">Congartulations    <i class="fa fa-thumbs-up"></i></h4>', 'Perspectives Edited Successfully.');
+       return back();
 
     }
 }

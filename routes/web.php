@@ -176,3 +176,6 @@ Route::get('/programManagerPerspective/{id}','trendsController\programTrend@pers
 
 //! this route is used to delete the perspectve that has been selected by the users. 
 Route::post('/deletingPespectives','adminController\programMatrices@deletePerspectives');
+
+//! this route is used to post the editing of a perspective, 
+Route::post('/editingPerspective','adminController\programMatrices@editingPerspectiveName');

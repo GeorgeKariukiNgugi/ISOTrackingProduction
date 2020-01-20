@@ -19,10 +19,16 @@ $(function () {
             if (value === null) {
                 console.log("The value is null.");
                 $(this).css('background-color', '#fba7a7');
+                $("#submitButton" + slicedId).attr({
+                    'disabled': 'disabled',
+                })
             } else {
-                if (value == "") {
+                if (value === " ") {
                     console.log("The value is blank.");
                     $(this).css('background-color', '#fba7a7');
+                    $("#submitButton" + slicedId).attr({
+                        'disabled': 'disabled',
+                    })
                 } else {
                     value = parseFloat(value, 10);
                     number += value;

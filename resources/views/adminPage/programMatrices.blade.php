@@ -37,7 +37,7 @@
     @php
         $perspectiveId = $perspective->id;
         $name2 = $perspective->name;
-        $nameOfPerspective = substr($name2,$shorthandLength);
+        $nameOfPerspective = $name2;
         $name2 = str_replace('_', ' ', $nameOfPerspective);
         $name2 = ucwords($name2);
         $increment2++;               
@@ -47,7 +47,7 @@
   <div class="box-header with-border" style="background-color:tomato;">
     
     <button class="btn btn-success" id="{{"buttonToDeletePerspectives".$perspective->id}}" data-target="{{"#deletingPerspective".$perspective->id}}" data-toggle="modal" type="button"><span class="fa fa-trash"></span></button>
-    <button class="btn btn-success" type="button"><span class="fa fa-edit"></span></button>
+    <button class="btn btn-success" data-target="{{"#editingPerspective".$perspective->id}}" data-toggle="modal" type="button"><span class="fa fa-edit"></span></button>
 
     <b><h4 class="box-title" style="width:100%;text-align:center;display:inline">
       <a data-toggle="collapse" style="padding-right:10px;color:white;font-family:'Times New Roman', Times, serif;" data-parent="#accordion" href="{{"#collapseOne".$increment2}}" aria-expanded="true" aria-controls="collapseOne">
@@ -608,6 +608,64 @@
             
             </div>
     </div>
+    </div>
+
+
+
+    {{-- THIS SECTION OF THE CODE IS USED TO UPDATE THE NAME OD THE PERSPECTIVE.  --}}
+
+    <div role="dialog" tabindex="-1" class="modal fade" id="{{"editingPerspective".$perspective->id}}">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="color:rgb(0,0,0);background-color:rgb(171,146,223);"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="text-center modal-title">Editing Perspective Name.</h4>
+                </div>
+                <div class="modal-body" style="background-color:rgb(223,211,249);">
+                    <form name="" action="/editingPerspective" method="POST" class="{{"editingPerspective".$perspective->id}}">
+                        @csrf
+                        <input type="hidden" name="perspectiveIdToEdit" value="{{$perspective->id}}">
+                        <div>
+                            <div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <h3>Name</h3>
+                                    </div>
+                                    <div class="col-md-9" style="height:56.4;"><input name="nameOfPerspecrive" type="text" value="{{$perspective->name}}" style="width:100%;margin-top:4%;height:36px;" /></div>
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="text-center">Editing Weight Of Perspective.</h3>
+                                <p style="color:red;text-align:center;font-style:italic;font-family:'monotype corsiva'"> <b>N.B The Weights should Add Up To 100%.</b> </p>
+                                <div id="{{"containingDiv".$perspective->id}}"></div>
+                                @php
+                                    $incrementalNumberEdit = 0;
+                                @endphp
+
+                                @foreach ($perspectives as $perspectiveToBeEdited)
+                                <div class="row">
+                                    <div class="col-md-1">
+                                        <p>{{$incrementalNumberEdit++}}</p>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <p>{{$perspectiveToBeEdited->name}}</p>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <input type="hidden" name="{{"hiddenPerspectiveWeight".$incrementalNumberEdit}}" value="{{$perspectiveToBeEdited->id}}">
+                                        <input type="number" class="{{"editingWeight".$perspective->id}}" name="{{"editingWeight".$incrementalNumberEdit}}" id="" value="{{$perspectiveToBeEdited->weight}}">
+                                    </div>
+                                </div>
+                                @endforeach
+                                <input type="hidden" name="numberOfPerspectivesEdited" class="numberOfPerspectivesEdited" value="{{$incrementalNumberEdit}}">
+                            </div>
+                        </div>
+                </div>
+                <div class="modal-footer" style="background-color:rgb(171,146,223);">
+                    <button class="btn btn-success" type="button" data-dismiss="modal">Close</button>
+                    <button class="btn btn-danger"  type="submit">Save</button> 
+                </div>
+            </form>
+            </div>
+        </div>
     </div>
 @endforeach
 

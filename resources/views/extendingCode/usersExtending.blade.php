@@ -314,6 +314,8 @@ desired effect
 <script src="{{asset('js/submittingClosingNonConformity.js')}}"></script>
 <script src="{{asset('js/deletingPerspetive.js')}}"></script>
 <script src="{{asset('js/submittingDeletingPerspectives.js')}}"></script>
+<script src="{{asset('js/editingPerspective.js')}}"></script>
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
 @include('sweetalert::alert')

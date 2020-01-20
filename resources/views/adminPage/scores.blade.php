@@ -33,7 +33,7 @@
     @php
         $perspectiveId = $perspective->id;
         $name2 = $perspective->name;
-        $nameOfPerspective = substr($name2,$shorthandLength);
+        $nameOfPerspective = $name2;
         $name2 = str_replace('_', ' ', $nameOfPerspective);
         $name2 = ucwords($name2);
         $increment2++;               

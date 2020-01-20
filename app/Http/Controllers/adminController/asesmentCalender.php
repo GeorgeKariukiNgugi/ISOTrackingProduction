@@ -4,6 +4,7 @@ namespace App\Http\Controllers\adminController;
 
 use Illuminate\Http\Request;
 use App\Program;
+use App\Userediting;
 use App\YearActive;
 use App\QuaterActive;
 use App\Http\Requests\submittingCalender;
@@ -48,13 +49,31 @@ class asesmentCalender extends Controller
             }
 
             //! next, insert the new year and activate.
-            $insertYear = new YearActive(
-                        array(
-                            'Year'=>$request->year,
-                            'Active'=> 1,
-                        )
-            );
-            $insertYear->save();
+            //? first check if there is an year with the exact year. 
+
+            $repeatYears = YearActive::where('Year','=',$request->year)->get(); 
+
+            //?counting the number of years. 
+
+            if (count($repeatYears) == 0) {
+                # code...
+                $insertYear = new YearActive(
+                    array(
+                        'Year'=>$request->year,
+                        'Active'=> 1,
+                    )
+        );
+        $insertYear->save();
+            } else {
+                # code...
+                foreach ($repeatYears as $repeatYear) {
+                    # code...
+                    $repeatYear->Year = $request->year;
+                    $repeatYear->Active = 1;
+                    $repeatYear->save();
+                }
+            }
+            
         }
 
         //! the next stage is to insert the quater active.
@@ -75,6 +94,13 @@ class asesmentCalender extends Controller
             $activatingQuater->Active = 1;
             $activatingQuater->save();
 
+        }
+
+        $editingValues = Userediting::all();
+
+        foreach($editingValues as $editingValue){
+            $editingValue->value = 0;
+            $editingValue->save();
         }
 
         Alert::success(' <h4 style = "color:green;">Congartulations    <i class="fa fa-thumbs-up"></i></h4>', 'Calender Assesment Period Activated');

@@ -328,9 +328,9 @@
                                         <div class=" col-md-1" style="text-align:left">
                                           <p>{{$period}}</p>
                                       </div>
-                                        <div class=" col-md-1" style="text-align:center"><p>{{$score}}</p></div>
+                                        <div class=" col-md-1" style="text-align:center"><p>{{$score.' '.$kpi->units}}</p></div>
                                         <div class=" col-md-1"style="text-align:center">
-                                            <p id = "{{"target".$kpi->id}}" class ="{{"target".$kpi->id}}" >{{$kpi->target}}</p>
+                                            <p id = "{{"target".$kpi->id}}" class ="{{"target".$kpi->id}}" >{{$kpi->target.' '.$kpi->units}}</p>
                                         </div>
 
 

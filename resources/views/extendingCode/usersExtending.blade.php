@@ -231,6 +231,7 @@ desired effect
         <li>
           @yield('perspectiveTrends')
         </li>
+        @yield('userEditingMatrices')
         @yield('video')
         
         {{-- <li class="treeview">

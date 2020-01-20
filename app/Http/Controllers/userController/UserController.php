@@ -12,6 +12,7 @@ use App\Perspective;
 use App\Program;
 use App\KeyPerfomaceIndicator;
 use App\ScoreRecorded;
+use App\Userediting;
 use App\KeyPerfomanceIndicatorScore;
 use App\StrategicObjectiveScore;
 use App\closedNonConformityEvidence;
@@ -936,7 +937,12 @@ public function closingNonConformity(submittingClosingNonConfromity $request){
 
 public function video($id,$type){
     $programs = Program::all();
+    $gettingUserEditings = Userediting::all();
+    $valueOfEditing = 0;
+    foreach($gettingUserEditings as $gettingUserEditing){
 
-    return view('user.video',['programs'=>$programs,'id'=>$id,'type'=>$type]);
+        $valueOfEditing = $gettingUserEditing->value;
+    }
+    return view('user.video',['valueOfEditing'=>$valueOfEditing,'programs'=>$programs,'id'=>$id,'type'=>$type]);
 }
 }

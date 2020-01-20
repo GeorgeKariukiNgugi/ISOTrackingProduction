@@ -11,7 +11,7 @@ use App\QuaterActive;
 use App\YearActive;
 use App\NonConformities;
 use App\Perspective;
-// use App\Program;
+use App\Userediting;
 use App\KeyPerfomaceIndicator;
 use App\ScoreRecorded;
 use App\KeyPerfomanceIndicatorScore;
@@ -143,7 +143,14 @@ class programTrend extends Controller
     if (strpos($URLstring,$programManager) !== false) {
         # code...
         // dd('I Am A Program Manager.');
-        return view('user.trends.particularProgramTrends',['programName'=>$programName,'programs'=>$programs,'year'=>$activeYaer,'id'=>$id,'groupedLineGraph'=>$groupedLineGraph,'groupedBarChartForProgramProgressQuaterly'=>$groupedBarChartForProgramProgressQuaterly]);
+        $gettingUserEditings = Userediting::all();
+                $valueOfEditing = 0;
+                foreach($gettingUserEditings as $gettingUserEditing){
+
+                    $valueOfEditing = $gettingUserEditing->value;
+                }
+
+        return view('user.trends.particularProgramTrends',['programName'=>$programName,'valueOfEditing'=>$valueOfEditing,'programs'=>$programs,'year'=>$activeYaer,'id'=>$id,'groupedLineGraph'=>$groupedLineGraph,'groupedBarChartForProgramProgressQuaterly'=>$groupedBarChartForProgramProgressQuaterly]);
     }
     }
 
@@ -333,8 +340,13 @@ class programTrend extends Controller
 
                         if (strpos($URLstring,$programManager) !== false) {
                             # code...
-                            // dd('I Am A Program Manager.');
-                            return view('user.trends.particularPerspective',['programName'=>$programName,'programs'=>$programs,'quater'=>$activeQuater,'year'=>$activeYaer,'id'=>$id,'groupedLineChartForPerspectiveProgressPerquater'=>$groupedLineChartForPerspectiveProgressPerquater,'groupedBarChartForPerspectiveProgressPerquater'=>$groupedBarChartForPerspectiveProgressPerquater]);
+                            $gettingUserEditings = Userediting::all();
+                            $valueOfEditing = 0;
+                            foreach($gettingUserEditings as $gettingUserEditing){
+
+                                $valueOfEditing = $gettingUserEditing->value;
+                            }
+                            return view('user.trends.particularPerspective',['valueOfEditing'=>$valueOfEditing,'programName'=>$programName,'programs'=>$programs,'quater'=>$activeQuater,'year'=>$activeYaer,'id'=>$id,'groupedLineChartForPerspectiveProgressPerquater'=>$groupedLineChartForPerspectiveProgressPerquater,'groupedBarChartForPerspectiveProgressPerquater'=>$groupedBarChartForPerspectiveProgressPerquater]);
                         }
                         }
     // return view();

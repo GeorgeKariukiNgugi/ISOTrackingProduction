@@ -16,6 +16,14 @@
     </a>
   </li> 
 @endsection
+@if ($valueOfEditing == 1)
+@section('userEditingMatrices')
+<li>
+  <a href="{{"/"}}"><i class="fa fa-edit"></i> <span> Editing Matrices.</span></a>
+</li>
+@endsection
+
+@endif
 @section('trends')
 <a href="{{"/programManager/".$id}}"><i class="fa fa-line-chart"></i> <span>Program Trends.</span></a>
 @endsection

@@ -8,11 +8,18 @@ use App\reportsGenerated;
 use App\QuaterActive;
 use App\YearActive;
 use App\Program;
+use App\Userediting;
 
 class reports extends Controller
 {
     public function viewReports($id){
 
+        $gettingUserEditings = Userediting::all();
+        $valueOfEditing = 0;
+        foreach($gettingUserEditings as $gettingUserEditing){
+
+            $valueOfEditing = $gettingUserEditing->value;
+        }
         //! this ection is used to get the reports that have been stored in the system after being downloaded.
         $reports = reportsGenerated::where('program_id','=',$id)->orderBy('year','desc')->get();
 
@@ -29,14 +36,14 @@ class reports extends Controller
             }
         }
 // dd($programNamesArray);
-        return view('user.reports',['id'=>$id,'reports'=>$reports,'programNamesArray'=>$programNamesArray]);
+        return view('user.reports',['id'=>$id,'reports'=>$reports,'programNamesArray'=>$programNamesArray,'valueOfEditing'=>$valueOfEditing]);
     }
 
     public function adminReports(){
 
         $programs = Program::all();
                 //! this ection is used to get the reports that have been stored in the system after being downloaded.
-                $reports = reportsGenerated::where('id','>',0)->orderBy('program_id','desc')->orderBy('year','desc')->get();
+                $reports = reportsGenerated::where('id','>=',0)->orderBy('program_id','desc')->orderBy('year','desc')->get();
 
 
                 //! this section is used to get the program name of the report. 
@@ -51,6 +58,7 @@ class reports extends Controller
                     }
                 }
 
+                // dd($programNamesArray);
         return view('adminPage.adminReports',['programs'=>$programs,'reports'=>$reports,'programNamesArray'=>$programNamesArray]);
     }
 }

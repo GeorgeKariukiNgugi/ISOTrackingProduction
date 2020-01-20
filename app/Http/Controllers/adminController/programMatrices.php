@@ -23,6 +23,7 @@ use App\KeyPerfomaceIndicator;
 use App\Http\Requests\AddingNewStrstegicObjective;
 use RealRashid\SweetAlert\Facades\Alert;
 use  App\Charts\DashBoardCharts;
+use App\Userediting;
 class programMatrices extends Controller
 {
     public function proramMatrices($id){
@@ -62,8 +63,24 @@ class programMatrices extends Controller
                                         
                                     }
           $programs = Program::all();                          
-                                    
-    return view('adminPage.programMatrices',['programId'=>$id,'programs'=>$programs,'quaterOne'=>$quaterOne,'quaterTwo'=>$quaterTwo,'quaterthree'=>$quaterthree,'quaterfour'=>$quaterfour,'perspectives'=>$perspectives,'activeYaer'=>$activeYaer,'activeQuater'=>$activeQuater,'keyPerfomanceIndicatorsScores'=>$keyPerfomanceIndicatorsScores,'programName'=>$programName,'programShortHand'=>$programShortHand]);
+          $URLstring = url()->current();
+          $admin = 'programMatrices';
+          $programManager = 'userMatrices';
+          if(strpos($URLstring,$admin) !== false){
+            return view('adminPage.programMatrices',['activeQuater'=>$activeQuater,'programId'=>$id,'programName'=>$programName,'programs'=>$programs,'quaterOne'=>$quaterOne,'quaterTwo'=>$quaterTwo,'quaterthree'=>$quaterthree,'quaterfour'=>$quaterfour,'perspectives'=>$perspectives,'activeYaer'=>$activeYaer,'activeQuater'=>$activeQuater,'keyPerfomanceIndicatorsScores'=>$keyPerfomanceIndicatorsScores,'programName'=>$programName,'programShortHand'=>$programShortHand]);
+          }
+
+          if (strpos($URLstring,$programManager) !== false) {
+              # code...
+              $gettingUserEditings = Userediting::all();
+              $valueOfEditing = 0;
+              foreach($gettingUserEditings as $gettingUserEditing){
+
+                  $valueOfEditing = $gettingUserEditing->value;
+              }
+              return  view('user.matrices.programMatrices',['activeQuater'=>$activeQuater,'id'=>$id,'valueOfEditing'=>$valueOfEditing,'programId'=>$id,'programName'=>$programName,'programs'=>$programs,'quaterOne'=>$quaterOne,'quaterTwo'=>$quaterTwo,'quaterthree'=>$quaterthree,'quaterfour'=>$quaterfour,'perspectives'=>$perspectives,'activeYaer'=>$activeYaer,'activeQuater'=>$activeQuater,'keyPerfomanceIndicatorsScores'=>$keyPerfomanceIndicatorsScores,'programName'=>$programName,'programShortHand'=>$programShortHand]);
+          }
+   
         
     }
 

@@ -43,6 +43,14 @@
   </ul>
 </li>
 @endsection
+@if ($valueOfEditing == 1)
+@section('userEditingMatrices')
+<li>
+  <a href="{{"/userMatrices/".$programId}}"><i class="fa fa-edit"></i> <span> Editing Matrices.</span></a>
+</li>
+@endsection
+
+@endif
 
 @section('reports')
 <a href="{{"/reports/".$programId}}"><i class="fa fa-book"></i> <span> Reports</span></a>
@@ -88,7 +96,7 @@
     @php
         $perspectiveId = $perspective->id;
         $name2 = $perspective->name;
-        $nameOfPerspective = substr($name2,$shorthandLength);
+        $nameOfPerspective = $name2;
         $name2 = str_replace('_', ' ', $nameOfPerspective);
         $name2 = ucwords($name2);
         $increment2++;               

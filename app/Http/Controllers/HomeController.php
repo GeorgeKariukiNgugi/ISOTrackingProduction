@@ -15,7 +15,7 @@ use App\Perspective;
 use App\NonConformities;
 use App\StrategicObjective;
 use App\KeyPerfomanceIndicatorScore;
-
+use App\Userediting;
 use  App\Charts\DashBoardCharts;
 class HomeController extends Controller
 {
@@ -296,8 +296,14 @@ class HomeController extends Controller
                     $perspectives = $program->perspectives;
                     
                 }
-                // activity()->log('Logged In As User   '.Auth::user()->email);
-                return view('user.landingPage',['programId'=>$id,'quaterOne'=>$quaterOne,'quaterTwo'=>$quaterTwo,'quaterthree'=>$quaterthree,'quaterfour'=>$quaterfour,'perspectives'=>$perspectives,'activeYaer'=>$activeYaer,'activeQuater'=>$activeQuater,'keyPerfomanceIndicatorsScores'=>$keyPerfomanceIndicatorsScores,'programName'=>$programName,'programShortHand'=>$programShortHand]);
+                //! getting wherther the activation of the editing has happened. 
+                $gettingUserEditings = Userediting::all();
+                $valueOfEditing = 0;
+                foreach($gettingUserEditings as $gettingUserEditing){
+
+                    $valueOfEditing = $gettingUserEditing->value;
+                }
+                return view('user.landingPage',['valueOfEditing'=>$valueOfEditing,'programId'=>$id,'quaterOne'=>$quaterOne,'quaterTwo'=>$quaterTwo,'quaterthree'=>$quaterthree,'quaterfour'=>$quaterfour,'perspectives'=>$perspectives,'activeYaer'=>$activeYaer,'activeQuater'=>$activeQuater,'keyPerfomanceIndicatorsScores'=>$keyPerfomanceIndicatorsScores,'programName'=>$programName,'programShortHand'=>$programShortHand]);
             }
         }
         else{

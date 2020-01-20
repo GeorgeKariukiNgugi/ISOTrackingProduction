@@ -1,20 +1,12 @@
 @extends('extendingCode.usersExtending')
 @section('navigationBar')
-@if ($valueOfEditing == 1)
-@section('userEditingMatrices')
-<li>
-  <a href="{{"/"}}"><i class="fa fa-edit"></i> <span> Editing Matrices.</span></a>
-</li>
-@endsection
-
-@endif
 
 @section('navigationBar')
 
 <li>
     <a href="/home">
       <i class="fa fa-address-card text-yellow"></i>
-    Home
+      Home
     </a>
 </li> 
 
@@ -22,10 +14,20 @@
 <li>            
     <a href="{{"/dashBoard/".$id}}" ata-toggle="tooltip" title="DashBoard.">
       <i class="fa fa-dashboard text-yellow"></i>              
-    DashBoard
+      DashBoard
     </a>
   </li> 
 @endsection
+
+@if ($valueOfEditing == 1)
+@section('userEditingMatrices')
+<li>
+  <a href="{{"/userMatrices"}}"><i class="fa fa-edit"></i> <span> Editing Matrices.</span></a>
+</li>
+@endsection
+
+@endif
+
 @section('trends')
 <a href="{{"/programManager/".$id}}"><i class="fa fa-line-chart"></i> <span>Program Trends.</span></a>
 @endsection
@@ -63,4 +65,4 @@
 <a href="{{"/reports/".$id}}"><i class="fa fa-book"></i> <span> Reports</span></a>
 
 @endsection
-@include('Generaltrends.programInclude')
+@include('programMatrices.programMatrices')

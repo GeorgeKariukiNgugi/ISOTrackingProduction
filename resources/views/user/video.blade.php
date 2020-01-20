@@ -16,6 +16,14 @@
     </a>
   </li> 
 @endsection
+@if ($valueOfEditing == 1)
+@section('userEditingMatrices')
+<li>
+  <a href="{{"/"}}"><i class="fa fa-edit"></i> <span> Editing Matrices.</span></a>
+</li>
+@endsection
+
+@endif
 @section('video')
 <li class="treeview">
   <a href="#"><i class="fa fa-video-camera"></i> <span>Video Tutorials</span>

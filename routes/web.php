@@ -123,6 +123,9 @@ Route::get('/programDashboard/{id}','adminController\Programdashboard@programDas
 //! this route will be used to get the proram matrices of all the prorams that are in a particular program.
 Route::get('/programMatrices/{id}','adminController\programMatrices@proramMatrices');
 
+//! this is the duplicate program matrices that will be used for the users.
+Route::get('/userMatrices/{id}','adminController\programMatrices@proramMatrices');
+
 //! this route will be used to submit the adding of a new strategic objective.
 Route::post('/addingNewStrstegicObjective/{id}', 'adminController\programMatrices@addStrategicObjective');
 

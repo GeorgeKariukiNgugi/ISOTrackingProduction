@@ -24,7 +24,7 @@ class editingAssesor extends FormRequest
     public function rules()
     {
         return [
-            //
+            'image'=>'image|max:2048'
         ];
     }
 }

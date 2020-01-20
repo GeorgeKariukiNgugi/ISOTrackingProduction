@@ -142,7 +142,7 @@
                             <span style="color:red;font-size:12px;">*edit the required fields only.*</span>
                         </div>
                         <div class="modal-body" style="background-color:#d8e5f9;">
-                            <form action="/eitingTheProgram" method="POST">
+                            <form action="/eitingTheProgram" method="POST" enctype="multipart/form-data">
                                 {{ csrf_field() }}
                                 <input type="hidden" name="programId" value="{{$programId}}">
                                     <div class="row">
@@ -163,6 +163,19 @@
                                             </div>
                                             <div class="col-md-6"><input type="text" name="programShortHand" value="{{$shortHand }}"  style="width:100%;height:35px;" /></div>
                                         </div><br />
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h4>Program Image Holder</h4>
+                                            </div>
+                                            <div class="col-md-6"><input type="file" name="image"/></div>
+                                        </div><br />
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h4>Program Color</h4>
+                                            </div>
+                                            <div class="col-md-6"><input type="color" name="color" style="width:15%;height:35px;" /></div>
+                                        </div><br />
+
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <h4>Program Description</h4>

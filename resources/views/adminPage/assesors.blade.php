@@ -84,10 +84,12 @@
                                               <p>Program:</p>
                                           </div>
                                           <div class="col-md-8"><select style="width:100%;height:30px;" name="program">
-                                            <option value="0">SELECT A PROGRAM. </option>
+                                            <option value="">SELECT A PROGRAM. </option>
+                                            
                                             @foreach ($programs as $program)
                                             <option value="{{$program->id}}">{{$program->shortHand}}</option>
                                             @endforeach
+                                            <option value="0"> Admin</option>
                                           </select></div>
                                       </div>
                                   </div>
@@ -124,6 +126,7 @@
                                       @foreach ($programs as $program)
                                       <option value="{{$program->id}}">{{$program->shortHand}}</option>
                                       @endforeach
+                                      <option value="0"> Admin</option>
                                     </select></div>
                                 </div>
                             </div>

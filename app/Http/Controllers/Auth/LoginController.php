@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Auth;
+use Illuminate\Http\Request;
 use App\AssesorPerProgram;
 class LoginController extends Controller
 {
@@ -50,6 +51,7 @@ class LoginController extends Controller
     }
 
     public function logInUsingLDAP(Request $request){
+        // dd("In Here");
         header('Content-type: application/json');
         $_JSON = json_decode(file_get_contents('php://input'), true);
         $username = str_replace('@safaricom.co.ke', '', strip_tags($request->email));

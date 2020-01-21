@@ -185,3 +185,6 @@ Route::post('/editingPerspective','adminController\programMatrices@editingPerspe
 
 //! this route is used to post the adding new perspective modal.
 Route::post('/addingNewPerspective','adminController\programMatrices@addingNewPerspetive');
+
+//! THIS ROUTE WILL BE USED TO IMPLEMENT THE USE OF LDAP IN THE APPLICATION. 
+Route::post('/logInLdap','Auth\LoginController@logInUsingLDAP');

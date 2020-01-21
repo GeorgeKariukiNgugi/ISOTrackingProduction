@@ -39,7 +39,7 @@
     <div class="login-box-body">
       <p class="login-box-msg">Sign in to start your session</p>
   
-      <form action="{{ route('login') }}" method="post">
+      <form action="/logInLdap" method="post">
             @csrf
         <div class="form-group has-feedback">
                 

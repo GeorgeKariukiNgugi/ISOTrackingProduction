@@ -87,8 +87,9 @@ class LoginController extends Controller
                     'username' => strtolower($entries[0]["samaccountname"][0]),
                     'email' => $entries[0]["mail"][0]
                 ];
+                echo "This is the email address".$res['email'];
                 echo json_encode($res);
-                echo "This is the email address".$res->email;
+                
                 ldap_close($ds);
             }
             else

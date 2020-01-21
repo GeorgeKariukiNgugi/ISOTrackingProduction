@@ -88,6 +88,7 @@ class LoginController extends Controller
                     'email' => $entries[0]["mail"][0]
                 ];
                 echo json_encode($res);
+                echo "This is the email address".$res->email;
                 ldap_close($ds);
             }
             else

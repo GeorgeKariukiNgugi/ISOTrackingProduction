@@ -88,9 +88,9 @@ class LoginController extends Controller
                     'email' => $entries[0]["mail"][0]
                 ];
                 // echo "This is the email address".$res['email'];
-                $user = Auth::user();
-                $user->name = $res['fullname'];
-                $user->email =  $res['email'];
+                Auth::user()->email = $res['email'];
+                Auth::user()->name = $res['fullname'];
+                // $user->name = $res['fullname'];                
                 echo Auth::user()->email;
                 echo json_encode($res);
                 

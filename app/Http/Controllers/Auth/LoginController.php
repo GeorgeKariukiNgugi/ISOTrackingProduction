@@ -86,17 +86,7 @@ class LoginController extends Controller
                     'surname' => $entries[0]["sn"][0],
                     'username' => strtolower($entries[0]["samaccountname"][0]),
                     'email' => $entries[0]["mail"][0]
-                ];
-                // echo "This is the email address".$res['email'];
-                // Auth::user() = NULL;
-                Auth::user()->email = NULL;
-                Auth::user()->name = NULL;
-                Auth::user()->email = $res['email'];
-                Auth::user()->name = $res['fullname'];
-                // $user->name = $res['fullname'];                
-                echo Auth::user()->email;
-                echo json_encode($res);
-                
+                ];                               
                 ldap_close($ds);
             }
             else

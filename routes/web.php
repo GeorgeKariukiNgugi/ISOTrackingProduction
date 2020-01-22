@@ -22,7 +22,7 @@ Route::get('/','LogInController@logIn');
 Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/trial','HomeController@trial');
+Route::get('/trial','HomeController@trial')->name('home');
 Route::get('/home','HomeController@programRedirect');
 Route::get('/forbidden', function () {
     activity()->log('User Tried To Log In   '.Auth::user()->email);

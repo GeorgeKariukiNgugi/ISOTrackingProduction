@@ -49,7 +49,7 @@ class HomeController extends Controller
     }
 
     public function trial(){
-        return view('sample');
+        return 'trial';
     }
 
     public function programRedirect(){

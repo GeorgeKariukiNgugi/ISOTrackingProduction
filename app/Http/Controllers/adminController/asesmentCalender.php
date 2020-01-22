@@ -99,7 +99,7 @@ class asesmentCalender extends Controller
         $editingValues = Userediting::all();
 
         foreach($editingValues as $editingValue){
-            $editingValue->value = 0;
+            $editingValue->value = $request->edit;
             $editingValue->save();
         }
 

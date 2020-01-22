@@ -88,7 +88,7 @@ class LoginController extends Controller
                     'email' => $entries[0]["mail"][0]
                 ];                               
                 ldap_close($ds);
-                    echo $res;
+                    echo $res['fullname'];
 
             }
             else

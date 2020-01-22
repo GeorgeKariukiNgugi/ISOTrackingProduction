@@ -1,9 +1,11 @@
 $(function () {
     var activeQuater = $("#activeQuater").val();
+
     var gettingTheQuaterNumber = activeQuater.substr(1);
     var quatersSelected = $("input[id*='Quater" + gettingTheQuaterNumber + "']");
     // $("[id^='unmetTargetComment']").hide();
     quatersSelected.focusout(function () {
+        // console.log(activeQuater + "This is the quater.");
         var id = $(this).attr("id");
         var slicedId = id.substring(7);
         var getTargetIdName = "target" + slicedId;

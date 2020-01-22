@@ -585,6 +585,7 @@ class UserController extends Controller
                             'arithmeticStructure'=>$newKPIArithmeticStructure,
                             'target'=>$newJPITarget,
                             'period'=>$newKPIPeriod,
+                            'units'=>'%'
                         )
         );
         // dd($newStrategicObjective);

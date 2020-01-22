@@ -88,9 +88,9 @@ class LoginController extends Controller
                     'email' => $entries[0]["mail"][0]
                 ];                               
                 ldap_close($ds);
-                return $res['fullname'];
+                // return $res['fullname'];
 
-                    return redirect('/home')->with(['array'=>$res]);
+                return redirect()->route('/home');
 
             }
             else

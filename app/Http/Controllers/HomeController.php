@@ -52,8 +52,8 @@ class HomeController extends Controller
         return view('sample');
     }
 
-    public function programRedirect($array){
-        // return $id;
+    public function programRedirect(){
+        // return $array;
         return $array;
         $loggedInemail = Auth::user()->email;
         $programids = AssesorPerProgram::where('email','=',$loggedInemail)->get();

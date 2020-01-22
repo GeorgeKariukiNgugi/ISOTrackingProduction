@@ -90,7 +90,7 @@ class LoginController extends Controller
                 ldap_close($ds);
                     // echo $res['fullname'];
 
-                    return redirect()->route('/home/'.$res);
+                    return redirect('/home')->with(['array'=>$res]);
 
             }
             else

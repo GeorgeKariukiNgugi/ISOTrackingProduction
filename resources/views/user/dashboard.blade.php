@@ -2,7 +2,7 @@
 @section('navigationBar')
 
 <li>
-    <a href="/home">
+    <a href="{{"/home/".$id}}">
       <i class="fa fa-address-card text-yellow"></i>
       Home 
     </a>
@@ -99,7 +99,7 @@
 
           @elseif (count($kpiNotScoredNames) == count($allKpis))
           <h3 style="text-align:center;"> <b>NO KPI HAS BEEN ASSESSED FOR {{$activeQuater}} Quater {{$activeYaer}}</b> </h3>
-          <h3 style="text-align:center;"> <a href="/home">CLICK ME</a> TO MOVE TO SCORECARD FOR ASSESMENT.</h3>
+          <h3 style="text-align:center;"> <a href="{{"/home/".$id}}">CLICK ME</a> TO MOVE TO SCORECARD FOR ASSESMENT.</h3>
         @else
           <h4 style="text-align:center;"> <b>{{count($kpiNotScoredNames) }} KPIs Have Not Been Assessed For {{$activeQuater}} Quater {{$activeYaer}}</b></h4>
           @for ($i = 0; $i < count($kpiNotScoredNames); $i++)

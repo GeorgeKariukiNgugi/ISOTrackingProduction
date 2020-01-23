@@ -13,7 +13,7 @@
 @section('navigationBar')
 
 <li>
-    <a href="/home">
+    <a href="{{"/home/".$id}}">
       <i class="fa fa-address-card text-yellow"></i>
     Home
     </a>

@@ -1,7 +1,7 @@
 @extends('extendingCode.usersExtending')
 @section('navigationBar')
 <li>
-    <a href="/home">
+    <a href="{{"/home/".$programId}}">
       <i class="fa fa-address-card text-yellow"></i>
       
       Home

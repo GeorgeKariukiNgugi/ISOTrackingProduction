@@ -273,7 +273,7 @@ class adminController extends Controller
 
         Alert::success(' <h4 style = "color:green;">Congartulations    <i class="fa fa-thumbs-up"></i></h4>', 'You Have Added A New Program');
 
-        return redirect('/home');
+        return redirect('/home/0');
         
 
     }

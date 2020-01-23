@@ -1,8 +1,4 @@
 <!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
 <html>
 <head>
   <meta charset="utf-8">
@@ -10,7 +6,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <title>ISO ScoreCard.</title>
   <!-- Tell the browser to be responsive to screen width -->
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-{{-- <meta http-equiv="refresh" content="10;/logOut" /> --}}
 <link rel="apple-touch-icon" sizes="180x180" href="{{asset("images/apple-touch-icon.png")}}">
 <link rel="icon" type="image/png" sizes="32x32" href="{{asset("images/favicon-32x32.png")}}">
 <link rel="icon" type="image/png" sizes="16x16" href="{{asset("images/favicon-16x16.png")}}">
@@ -102,18 +97,7 @@ desired effect
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!-- The user image in the navbar-->
               <img src="{{asset('images/HcMgk6Jq_400x400.jpg')}}" class="user-image" alt="User Image">
-              <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              @php
-                  try {
-                // Validate the value...
-               echo"<span class=\"hidden-xs\">".Auth::user()->name ."</span>";
-            } catch (Exception $e) {
-                // report($e);
-        
-                return redirect("/logoutToLogIn");
-            }
-              @endphp
-              {{-- <span class="hidden-xs">{{ Auth::user()->name }}</span> --}}
+              <span>{{ Session::get('name')}}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
@@ -121,28 +105,15 @@ desired effect
                 <img src="{{asset('images/HcMgk6Jq_400x400.jpg')}}" class="img-circle" alt="User Image">
 
                 <p>
-                  {{ Auth::user()->name }}
-                  {{-- <small>Member since Nov. 2012</small> --}}
+               {{ Session::get('name')}}
                 </p>
               </li>
-              <!-- Menu Body -->              
-              <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  {{-- <a href="#" class="btn btn-default btn-flat">Sign out</a> --}}
-                  <a class="btn btn-default btn-flat" href="{{ route('logout') }}"
-                  onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();">
-                   {{ __('Logout') }}
-               </a>
-
-               <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                   @csrf
-                   {{ csrf_field() }}
-               </form>
+                <a href="/loggingOutUsers" class="btn btn-default btn-flat">LogOut</a>
                 </div>
               </li>
             </ul>
@@ -163,8 +134,6 @@ desired effect
           <img src="{{asset('images/HcMgk6Jq_400x400.jpg')}}" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>{{ Auth::user()->name }}</p>
-          <!-- Status -->
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
@@ -175,7 +144,7 @@ desired effect
         <li class="header" style="color:white;font-decoration:bold;">OPTIONS.</li>
         <br>
         <!-- Optionally, you can add icons to the links -->
-        <li><a href="/home"><i class="fa fa-home"></i> <span>Home</span></a></li>
+        <li><a href="/home/0"><i class="fa fa-home"></i> <span>Home</span></a></li>
         {{-- <li><a href="/trends"><i class="fa fa-line-chart"></i> <span>Trends</span></a></li> --}}
         <li class="treeview">
           <a href="#"><i class="fa fa-line-chart"></i> <span>Trends</span>

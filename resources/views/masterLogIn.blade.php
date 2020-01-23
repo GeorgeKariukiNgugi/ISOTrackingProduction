@@ -38,21 +38,22 @@
     <!-- /.login-logo -->
     <div class="login-box-body">
       <p class="login-box-msg">Sign in to start your session</p>
-  
-      <form action="{{ route('login') }}" method="post">
+      <P style="margin-top:0%;color:red;text-align:center;"> <b>Use Active Directory Credentials.</b></p>
+      <form action= "logInLdap" method="post">
             @csrf
         <div class="form-group has-feedback">
                 
                         <input id="email" type="email" placeholder="Email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+
+                        @foreach($errors->all() as $error)
+                          <p style="color:red;" > <b>{{$error}}</b> </p>
+                        @endforeach
                         @error('email')
                             <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
+                                <strong>{{ $errors->first()}}</strong>
                             </span>
-                        @enderror
-                    
-          {{-- <input type="email" class="form-control" placeholder="Email"> --}}
-          {{-- <span class="glyphicon glyphicon-envelope form-control-feedback"></span> --}}
+                        @enderror                          
         </div>
         <div class="form-group has-feedback">
 
@@ -62,10 +63,7 @@
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
-                        @enderror
-
-          {{-- <input type="password" class="form-control" placeholder="Password"> --}}
-          
+                        @enderror                    
         </div>
         <div class="row">
           <div class="col-xs-8">
@@ -75,7 +73,6 @@
             <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
           </div>
           <!-- /.col -->
-          <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
         </div>
       </form>
     </div>

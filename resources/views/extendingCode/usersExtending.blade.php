@@ -135,29 +135,17 @@ desired effect
               <!-- The user image in the navbar-->
               <img src="{{asset('images/HcMgk6Jq_400x400.jpg')}}" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-
-              @php
-                  try {
-                // Validate the value...
-               echo"<span class=\"hidden-xs\">".Auth::user()->name ."</span>";
-            } catch (Exception $e) {
-                // report($e);
-        
-                return redirect("/logoutToLogIn");
-            }
-              @endphp
-              
-              
-            </a>
+              <span>{{ Session::get('name')}}</span>
+             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
                 <img src="{{asset('images/HcMgk6Jq_400x400.jpg')}}" class="img-circle" alt="User Image">
 
                 <p>
-                  {{ Auth::user()->name }}
-                  {{-- <small>Member since Nov. 2012</small> --}}
+               {{ Session::get('name')}}
                 </p>
+
               </li>
               <!-- Menu Body -->              
               <!-- Menu Footer-->
@@ -166,16 +154,7 @@ desired effect
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  {{-- <a href="#" class="btn btn-default btn-flat">Sign out</a> --}}
-                  <a class="btn btn-default btn-flat" href="{{ route('logout') }}"
-                  onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();">
-                   {{ __('Logout') }}
-               </a>
-
-               <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                   @csrf
-               </form>
+                <a href="/loggingOutUsers" class="btn btn-default btn-flat">LogOut</a>
                 </div>
               </li>
             </ul>
@@ -196,7 +175,7 @@ desired effect
           <img src="{{asset('images/HcMgk6Jq_400x400.jpg')}}" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>{{ Auth::user()->name }}</p>
+          <p>{{ Session::get('name')}}</p>
           <!-- Status -->
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>

@@ -21,9 +21,9 @@ Route::get('/','LogInController@logIn');
 
 Auth::routes();
 
-// Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home/{id}', 'Auth\LoginController@redirectTo');
 Route::get('/trial','HomeController@trial');
-Route::get('/home','HomeController@programRedirect');
+Route::get('/homePage','HomeController@programRedirect')->name('homePage');
 Route::get('/forbidden', function () {
     activity()->log('User Tried To Log In   '.Auth::user()->email);
     return view('forbidden');
@@ -188,3 +188,6 @@ Route::post('/addingNewPerspective','adminController\programMatrices@addingNewPe
 
 //! THIS ROUTE WILL BE USED TO IMPLEMENT THE USE OF LDAP IN THE APPLICATION. 
 Route::post('/logInLdap','Auth\LoginController@logInUsingLDAP');
+
+//! this route is used to logIut The users. 
+Route::get('/loggingOutUsers','logOutFunctionality@loggingOut');

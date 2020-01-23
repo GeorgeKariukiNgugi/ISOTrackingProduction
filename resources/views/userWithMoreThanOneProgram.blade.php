@@ -46,7 +46,7 @@
                 @php
                     $btnColor = 'btn-danger';
                 @endphp
-            @else
+            @elseif(($i / 2) == 1)
             @php
                 $btnColor = 'btn-success';
             @endphp            

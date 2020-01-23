@@ -39,16 +39,20 @@
     <div class="login-box-body">
       <p class="login-box-msg">Choose A Program to start your session</p>
       <p class="login-box-msg" style="color:royalblue"> <strong>{{ Session::get('name')}}</strong></p>
+      @php
+          $j = 1;
+      @endphp
       @for ($i = 0; $i < count($programId); $i++)
       <div class="row">
           <div class="col-md-4 col-md-offset-4">
-          @if (($i / 2) == 0)
+          @if (($j / 2) == 0)
                 @php
                     $btnColor = 'btn-danger';
                 @endphp
-            @elseif(($i / 2) == 1)
+            @elseif(($j / 2) == 1)
             @php
                 $btnColor = 'btn-success';
+                $j++;
             @endphp            
             @endif
             <a  href = "{{"/home/".$programId[$i]}}" class="btn btn-block {{$btnColor}} btn-flat"><strong> {{$programShortHand[$i]}} <i class="fa fa-sign-in"></i> </strong></a>

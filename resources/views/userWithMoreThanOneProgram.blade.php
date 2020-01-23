@@ -38,6 +38,7 @@
     <!-- /.login-logo -->
     <div class="login-box-body">
       <p class="login-box-msg">Choose A Program to start your session</p>
+      <p class="login-box-msg" style="color:royalblue"> <strong>{{ Session::get('name')}}</strong></p>
       @for ($i = 0; $i < count($programId); $i++)
       <div class="row">
           <div class="col-md-4 col-md-offset-4">

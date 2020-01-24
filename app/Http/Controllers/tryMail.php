@@ -9,7 +9,7 @@ class tryMail extends Controller
 {
     public function trySendingMial(){
 
-        Mail::to('gkngugi@safaricom.co.ke')->send(new TestMail);
+        Mail::to('gkngugi@safaricom.co.ke')->send(new TestMail)->getTransport()->stop();;
         return "sent.";
 
     }

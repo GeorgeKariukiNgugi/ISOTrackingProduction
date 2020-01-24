@@ -9,8 +9,16 @@ class tryMail extends Controller
 {
     public function trySendingMial(){
 
-        Mail::to('gkngugi@safaricom.co.ke')->send(new TestMail)->getTransport()->stop();;
+        try {
+            //code...
+            Mail::to('gkngugi@safaricom.co.ke')->send(new TestMail)->getTransport()->stop();;
         return "sent.";
+        } catch (\Throwable $th) {
+            //throw $th;
+            return "Error Thrown.";
+        }
+
+        
 
     }
 }

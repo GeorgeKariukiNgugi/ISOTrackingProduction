@@ -128,7 +128,8 @@ desired effect
               </li>              
             </ul>
           </li>
-          <!-- User Account Menu -->
+          @if (   Session::get('name'))
+                        <!-- User Account Menu -->
           <li class="dropdown user user-menu">
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -159,6 +160,12 @@ desired effect
               </li>
             </ul>
           </li>
+          @else
+              <script type="text/javascript">
+                window.location = "{{ url('/login') }}";//here double curly bracket
+              </script>
+          @endif
+
         </ul>
       </div>
     </nav>

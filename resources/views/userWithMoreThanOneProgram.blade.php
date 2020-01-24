@@ -52,7 +52,7 @@
                 $btnColor = 'btn-success';
             @endphp            
             @endif
-            <a  href = "{{"/home/".$programId[$i]}}" class="btn btn-block {{$btnColor}} btn-flat"><strong> {{$programShortHand[$i]}} <i class="fa fa-sign-in"></i> </strong></a>
+            <a  href = "{{"/home/".$programId[$i]}}" class="btn btn-block {{$btnColor}} btn-flat"> {{$programShortHand[$i]}}</a>
     
               {{-- <a class="btn btn-success btn-block btn-lg" href = "{{"/home/".$programId[$i]}}" style="font-size:30px;"><strong>{{$programShortHand[$i]}}</strong></a> --}}
           </div>
@@ -63,7 +63,7 @@
   
       <div class="row">
           <div class="col-md-4 col-md-offset-4">
-            <a  href = "/" class="btn btn-block btn-info btn-flat"><strong> <i class="fa fa-backward"></i> GO BACK.</strong></a>
+            <a  href = "/" class="btn btn-block btn-info btn-flat">  GO BACK.</a>
           </div>
       </div>  
     </div>

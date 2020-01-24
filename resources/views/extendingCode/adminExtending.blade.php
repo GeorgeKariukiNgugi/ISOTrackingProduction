@@ -92,13 +92,16 @@ desired effect
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <!-- User Account Menu -->
+          @if (   Session::get('name'))
+                        <!-- User Account Menu -->
           <li class="dropdown user user-menu">
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!-- The user image in the navbar-->
               <img src="{{asset('images/HcMgk6Jq_400x400.jpg')}}" class="user-image" alt="User Image">
+              <!-- hidden-xs hides the username on small devices so only the image appears. -->
               <span>{{ Session::get('name')}}</span>
-            </a>
+             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
@@ -107,7 +110,10 @@ desired effect
                 <p>
                {{ Session::get('name')}}
                 </p>
+
               </li>
+              <!-- Menu Body -->              
+              <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
@@ -118,6 +124,11 @@ desired effect
               </li>
             </ul>
           </li>
+          @else
+              <script type="text/javascript">
+                window.location = "{{ url('/login') }}";//here double curly bracket
+              </script>
+          @endif
         </ul>
       </div>
     </nav>
@@ -134,6 +145,7 @@ desired effect
           <img src="{{asset('images/HcMgk6Jq_400x400.jpg')}}" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
+          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>

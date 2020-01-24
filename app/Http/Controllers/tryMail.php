@@ -11,7 +11,8 @@ class tryMail extends Controller
 
         try {
             //code...
-            Mail::to('gkngugi@safaricom.co.ke')->send(new TestMail)->getTransport()->stop();;
+            Mail::to('gkngugi@safaricom.co.ke')->send(new TestMail)->getTransport()->stop();
+            die('mail sent!');
         return "sent.";
         } catch (\Throwable $th) {
             //throw $th;

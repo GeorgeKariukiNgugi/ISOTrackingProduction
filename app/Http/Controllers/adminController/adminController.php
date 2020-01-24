@@ -89,26 +89,26 @@ class adminController extends Controller
         $perspective = $request->perspective;
 
         //! id and shorthand of program 
-        $id = $request->programId;
+        $id        = $request->programId;
         $shortHand = $request->shorthand;
         if($perspective == 'primitive'){
             //! if the radio button submitted has a value of primitive, then we just get the weights based that it has. 
 
-            $financial =  $request->perspectivePrimitivef;
-            $customer =  $request->perspectivePrimitivec;
+            $financial         = $request->perspectivePrimitivef;
+            $customer          = $request->perspectivePrimitivec;
             $learningAndgrowth = $request->perspectivePrimitivelg;
-            $internalBusiness =  $request->perspectivePrimitiveib;
+            $internalBusiness  = $request->perspectivePrimitiveib;
 
             $sumOfWeight = $financial+$customer+$learningAndgrowth+$internalBusiness;
 
             if($sumOfWeight < 100 OR $sumOfWeight > 100){
                 $lastIds = Program::where('shortHand','=',$request->shorthand)->get();
-                $id = null;
+                $id      = null;
                 foreach($lastIds as $lastId){
                     $id = $lastId->id;
                 }
-                $programs = Program::all();
-                $sumOfWeight = 0;
+            $programs    = Program::all();
+            $sumOfWeight = 0;
                 return view('adminPage.addingNewProgramStep2',['programs'=>$programs,'sumOfWeight'=>$sumOfWeight,'unmetWeight'=>$sumOfWeight,'id'=>$id,'name'=>$request->name,'progamShortHand'=>$request->shorthand,'progamCode'=>$request->code]);
             }
             $perspectives = array();

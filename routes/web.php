@@ -191,3 +191,6 @@ Route::post('/logInLdap','Auth\LoginController@logInUsingLDAP');
 
 //! this route is used to logIut The users. 
 Route::get('/loggingOutUsers','logOutFunctionality@loggingOut');
+
+//! this route is used to get the test mail up and running. 
+Route::get('/sendingMail','tryMail@trySendingMial');

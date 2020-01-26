@@ -1,6 +1,6 @@
 Options +FollowSymLinks -Indexes
 RewriteEngine On
-
+RewriteBase /
 RewriteCond %{HTTP:Authorization} .
 RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 

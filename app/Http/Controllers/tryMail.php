@@ -8,9 +8,15 @@ use App\Mail\TestMail;
 class tryMail extends Controller
 {
     public function trySendingMial(){
-
-        Mail::to('gkngugi@safaricom.co.ke')->send(new TestMail)->getTransport()->stop();;
+        try{
+	Mail::to('gkngugi@safaricom.co.ke')->send(new TestMail);
         return "sent.";
+	}
+	catch(Exception $e){
+
+	return "Error";
+	}
+
 
     }
 }

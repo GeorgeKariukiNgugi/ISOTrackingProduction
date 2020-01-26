@@ -17,6 +17,5 @@ class tryMail extends Controller
 	return "Error";
 	}
 
-
     }
 }

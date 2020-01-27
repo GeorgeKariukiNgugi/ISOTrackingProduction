@@ -80,7 +80,7 @@
 {{-- GETTING THE QUATER THAT IS ACTIVE AND ALSO THE YEAR THAT IS ACTIVE. --}}
 <input type = "hidden" value="{{$activeQuater}}" name = "activeQuater" id = "activeQuater">
 <input type = "hidden" value="{{$activeYaer}}" name = "activeYear" id="activeYear">
-
+<input type = "hidden" value="{{$activeQuater}}" name = "activeQuaterForVerification" id = "activeQuaterForVerification">
 
 <div style="margin-bottom:5%;margin-top:5%"id="heading">
 <h1 class="text-center" style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">{{$name}} Score Card.  ({{$programShortHand}})  </h1>
@@ -215,9 +215,11 @@
                   
             @else
             <form id = "{{"form".$strategicObjective->id}}" method="POST" name = "{{"form".$strategicObjective->id}}" >
+              <input type = "hidden" value="{{$activeQuater}}" name = "activeQuaterForSubmission" id = "{{"activeQuaterForubmission".$strategicObjective->id}}">
               <div id = "{{"alert".$strategicObjective->id}}"></div>
               {{ csrf_field() }}
-              <input type = "hidden" value ="{{$strategicObjective->id}}" name="strategicObjective"/>
+              <input type = "hidden" value ="{{$strategicObjective->id}}" name="strategicObjective" />
+
                                {{-- <input type="hidden" name = "objectiveName" value="{{$objevtiveId}}"> --}}
                                <div class="row">
                                    <div class="col-md-1">
@@ -313,9 +315,10 @@
                                }
                                @endphp
                                
-                                      <div class="row" style="margin-bottom:0.5%;">
+                                      <div class="row" style="margin-bottom:0.5%;" id="{{$strategicObjective->id}}">
                                         {{-- <input type = "hidden" value="{{$originalObjectiveName}}" id = "{{"hiddenKPIObective".$kpiOriginalName}} name = "{{"hiddenObjectiveName".$originalObjectiveName}}"/> --}}
                                         
+                                      <input type="hidden" name="activeQuaterForSubmision" id="{{"activeQuater".$strategicObjective->id}}" value = {{$activeQuater}}>
                                         {{-- hidden input to et the value of the arithmetic structure. --}}
                                         <input type="hidden" id="{{"arithmeticStructure".$kpi->id}}" value = "{{$kpi->arithmeticStructure}}"/>
                                         <div class=" col-md-1"style="text-align:center">
@@ -330,7 +333,7 @@
                                       </div>
                                         <div class=" col-md-1" style="text-align:center"><p>{{$score.' '.$kpi->units}}</p></div>
                                         <div class=" col-md-1"style="text-align:center">
-                                            <p id = "{{"target".$kpi->id}}" class ="{{"target".$kpi->id}}" >{{$kpi->target.' '.$kpi->units}}</p>
+                                            <p id = "{{"target".$kpi->id}}" class ="{{"target".$kpi->id}}"> {{$kpi->target.' '.$kpi->units}}</p>
                                         </div>
 
 
@@ -393,12 +396,13 @@
                                         <div class=" col-md-1"><input   value="{{$Q1Value}}" type = "number" step=".01"  name = "{{"Quater1".$kpi->id}}" id = "{{"Quater1".$kpi->id}}" readonly placeholder="Inactive" class="form-control {{"strtegicObjective".$strategicObjective->id}} {{"Quater1".$strategicObjective->id}} {{"Quater1".$kpiOriginalName}}" /></div>
                                         <div class=" col-md-1"><input   value="{{$Q2Value}}" type = "number" step=".01"  name = "{{"Quater2".$kpi->id}}" id = "{{"Quater2".$kpi->id}}" readonly placeholder="Inactive" class="form-control {{"strtegicObjective".$strategicObjective->id}} {{"Quater2".$strategicObjective->id}} {{"Quater2".$kpiOriginalName}}" /></div>
                                         <div class=" col-md-1"><input   value="{{$Q3Value}}" type = "number" step=".01"  name = "{{"Quater3".$kpi->id}}" id = "{{"Quater3".$kpi->id}}" readonly placeholder="Inactive" class="form-control {{"strtegicObjective".$strategicObjective->id}} {{"Quater3".$strategicObjective->id}} {{"Quater3".$kpiOriginalName}}" /></div>
-                                        <div class=" col-md-1"><input   value="{{$Q4Value}}" type = "number" step=".01"  name = "{{"Quater4".$kpi->id}}" id = "{{"Quater4".$kpi->id}}" readonly placeholder="Inactive"class="form-control  {{"strtegicObjective".$strategicObjective->id}} {{"Quater4".$strategicObjective->id}}{{"Quater4".$kpiOriginalName}}" /></div>                                                                              
+                                        <div class=" col-md-1"><input   value="{{$Q4Value}}" type = "number" step=".01"  name = "{{"Quater4".$kpi->id}}" id = "{{"Quater4".$kpi->id}}" readonly placeholder="Inactive"class="form-control  {{"strtegicObjective".$strategicObjective->id}} {{"Quater4".$strategicObjective->id}} {{"Quater4".$kpiOriginalName}}" /></div>                                                                              
                                         <div id="{{"unmetTargetComment".$kpi->id}}" class = "col-md-1 text-center unmetTargetComment">
                                           {{-- <a data-toggle="modal" href = "" data-target="{{"#modal".$kpi->id}}"> COMMENT</a> --}}
                                         </div>
                                         <input type="hidden" name = "{{"nonConformityFlag".$kpi->id}}" value= "2" id = "{{"nonConformityFlag".$kpi->id}}">
                                         <input type="hidden" name="{{"period".$kpi->id}}"  id="{{"period".$kpi->id}}" value="{{$kpi->period}}">
+                                        <input type="hidden" name="activeQuaterForVerification" value="{{ $activeQuater}}" id="{{"activeQuater".$strategicObjective->id}}">
                                       </div>                                  
                                @endforeach
                                     </div>
@@ -428,6 +432,7 @@
                         <div id="{{"NonConformitymodal".$kpiModal->id}}"></div>
                           <form id="{{"unmetTargetModal".$kpiModal->id}}" class = "{{"unmetTargetModal".$kpiModal->id}} {{"modal-body-for-ncs".$kpiModal->id}}">
                             {{ csrf_field() }}
+                            <input type="hidden" name="" id="{{"strategicObjective".$kpiModal->id}}" value= "{{$strategicObjective->id}}" >
                             <input type="hidden" name="nonConformitykpiId" value="{{$kpiModal->id}}">
                               <div class="row" style="margin-bottom:1%;">
                                   <div class="col-lg-3 col-md-3">

@@ -4,10 +4,15 @@ $(function () {
         var idOfForm = $(this).attr("id");
         var objective = idOfForm.substring(16);
         var alertName = "NonConformitymodal" + objective;
-        var closingModalForm = "modal-body-for-ncs".objective
-        // console.log("THE ID OF THE FORM IS "+idOfForm);
+        var closingModalForm = "modal-body-for-ncs".objective;
+        var objectiveName = "strategicObjective" + objective;
+        objectiveName = $("#" + objectiveName).val();
+        var quater = $("#activeQuater" + objectiveName).val();
+
+        // console.log(quater);
+
         $.ajax({
-            url: "/submitNonConformities",
+            url: "/submitNonConformities/" + quater,
             method: "POST",
             data: new FormData(this),
             contentType: false,
@@ -23,8 +28,8 @@ $(function () {
                 }
 
                 $("#" + alertName).html(html);
-                $("#"+idOfForm).remove();
-                $("."+idOfForm).remove();
+                $("#" + idOfForm).remove();
+                $("." + idOfForm).remove();
                 console.log('CLOSING NCS.');
             }
         });

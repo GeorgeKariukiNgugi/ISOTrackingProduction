@@ -5,9 +5,10 @@ $(function () {
         var idOfForm = $(this).attr("id");
         var objective = idOfForm.substring(4);
         var alertName = "alert" + objective;
-        // console.log("THE ID OF THE FORM IS "+idOfForm);
+        var quater = $("#activeQuater" + objective).val();
+        console.log("THE VALUE OF THE HIDDEN INPUT. " + quater);
         $.ajax({
-            url: "/submitScores",
+            url: "/submitScores/" + quater,
             method: "POST",
             data: new FormData(this),
             contentType: false,

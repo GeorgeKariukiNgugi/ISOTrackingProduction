@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+use Illuminate\Http\Request;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
@@ -32,10 +32,10 @@ Route::get('/forbidden', function () {
 
 //! submission of kpi scores 
 
-Route::post('submitScores','userController\UserController@submittingKPIScores');
+Route::post('submitScores/{value}','userController\UserController@submittingKPIScores');
 
 //! submitting the nonconformities values. 
-Route::post('submitNonConformities','userController\UserController@submittingNonConformities');
+Route::post('submitNonConformities/{value}','userController\UserController@submittingNonConformities');
 
 //! this is the function that is used to store the new kpis that have been generated.
 Route::post('submittingKPI','userController\UserController@submittingNewKPIs');

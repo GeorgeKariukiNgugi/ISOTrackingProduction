@@ -443,8 +443,8 @@ class UserController extends Controller
                 );
                 $savingTheStrateicObjective->save();
             }
-            $errorMessage = '<div role="alert" class="alert alert-success" style="width:70%;text-align:center;margin-right:15%;margin-top:1%;margin-left:15%;"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><span class="text-capitalize"><strong>'.
-            $activeQuater."Data has been saved successsfully, Move to the Next Objective".
+            $errorMessage = '<div role="alert" class="alert alert-success" style="width:70%;text-align:center;margin-right:15%;margin-top:1%;margin-left:15%;"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><span class="text-capitalize"><strong>    '.
+            $activeQuater."    Data has been saved successsfully, Move to the Next Objective".
                         "</strong><br /></span></div>";
         // return response()->json(['success'=>'Data has been saved successsfully, Move to the Next Objective'.$kpiNumber]);
         return response()->json(['success'=>$errorMessage]);

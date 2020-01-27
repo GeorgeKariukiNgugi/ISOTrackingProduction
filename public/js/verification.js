@@ -22,7 +22,8 @@ $(function () {
         var strategicObjectiveId = $(this).closest('div').parent().attr('id');
         var gettingThevalue = $("#activeQuater" + strategicObjectiveId).val();
         var newIdToCheck = 'Quater' + gettingThevalue.substring(1) + slicedId;
-
+        var gettingTheQuaterNumber = gettingThevalue.substring(1);
+        console.log("The getting quater number is: "+ gettingTheQuaterNumber);
         console.log("The strategic objective id is:  " + $(this).closest('div').parent().attr('id'));
         console.log("This is the Old ID.   " + id);
         console.log("This is the new Id.  " + newIdToCheck);

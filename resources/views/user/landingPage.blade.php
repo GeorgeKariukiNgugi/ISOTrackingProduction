@@ -10,7 +10,7 @@
 
 
 <li>            
-    <a href="{{"/dashBoard/".$programId}}" data-toggle="tooltip" title=" Non-conformities out of date">
+    <a href="{{"/dashBoard/".$programId}}" data-toggle="tooltip" title=" Issues out of date">
       <i class="fa fa-dashboard text-yellow"></i>              
      Dashboard
     </a>
@@ -18,15 +18,15 @@
 @endsection
 
 @section('overdue')
-<a href="{{"/nonconformities/".$programId."/1"}}" data-toggle="tooltip" title=" Non-conformities out of date">
+<a href="{{"/nonconformities/".$programId."/1"}}" data-toggle="tooltip" title=" Issues out of date">
 @endsection
 
 @section('inProgress')
-<a href="{{"/nonconformities/".$programId."/0"}}" data-toggle="tooltip" title="Non Conformies In Proress.">
+<a href="{{"/nonconformities/".$programId."/0"}}" data-toggle="tooltip" title="Issues In Proress.">
 @endsection
 
 @section('closed')
-<a href="{{"/nonconformities/".$programId."/2"}}" data-toggle="tooltip" title="Closed Non Confrmities.">
+<a href="{{"/nonconformities/".$programId."/2"}}" data-toggle="tooltip" title="Issues Confrmities.">
 @endsection
 
 @section('video')
@@ -38,7 +38,7 @@
   </a>
   <ul class="treeview-menu">
     <li><a href="/usersTutorial/{{$programId}}/1"><i class="fa fa-video-camera"></i> <span>Scoring KPIS</span></a></li>
-    <li><a href="/usersTutorial/{{$programId}}/2"><i class="fa fa-video-camera"></i> <span>Closing Non-Conformities</span></a></li>
+    <li><a href="/usersTutorial/{{$programId}}/2"><i class="fa fa-video-camera"></i> <span>Closing Issues</span></a></li>
     <li><a href="/usersTutorial/{{$programId}}/3"><i class="fa fa-video-camera"></i> <span>Program Dashboard.</span></a></li>
   </ul>
 </li>
@@ -440,27 +440,27 @@
                             <input type="hidden" name="nonConformitykpiId" value="{{$kpiModal->id}}">
                               <div class="row" style="margin-bottom:1%;">
                                   <div class="col-lg-3 col-md-3">
-                                      <p class="text-center">Root Cause.</p>
+                                      <p class="text-center">Reason.</p>
                                   </div>
-                                  <div class="col-lg-9 col-md-9"><textarea class="form-control" name="rootCause" required="" placeholder="Root Cause For Non Conformity."></textarea></div>
+                                  <div class="col-lg-9 col-md-9"><textarea class="form-control" name="rootCause" required="" placeholder="Root Cause For Issue."></textarea></div>
                               </div>
                               <div class="row" style="margin-bottom:1%;">
                                   <div class="col-lg-3 col-md-3">
-                                      <p class="text-center">Correction.&nbsp;</p>
+                                      <p class="text-center">Action.&nbsp;</p>
                                   </div>
-                                  <div class="col-lg-9 col-md-9"><textarea class="form-control" name="correctiveAction" required="" placeholder="Immediate remediation to non confromity or Temporary Solution."></textarea></div>
+                                  <div class="col-lg-9 col-md-9"><textarea class="form-control" name="correctiveAction" required="" placeholder="Immediate remediation to Issue or Temporary Solution."></textarea></div>
                               </div>
                               
-                              <div class="row" style="margin-bottom:1%;">
+                              {{-- <div class="row" style="margin-bottom:1%;">
                                   <div class="col-lg-3 col-md-3">
                                       <p class="text-center">Corrective Action</p>
                                   </div>
-                                  <div class="col-lg-9 col-md-9"><textarea class="form-control" name="permanentSolution" required="" placeholder="Permanent Solution To Non Conformity."></textarea></div>
-                              </div>
-
+                                  <div class="col-lg-9 col-md-9"><textarea class="form-control" name="permanentSolution" required="" placeholder="Permanent Solution To Issue."></textarea></div>
+                              </div> --}}
+                              <input type="hidden" name="permanentSolution" value="null">
                               <div class="row" style="margin-bottom:1%;">
                                 <div class="col-lg-3 col-md-3">
-                                    <p class="text-center">Completion Date of Corrective Action.</p>
+                                    <p class="text-center"> Date.</p>
                                 </div>
                                 <div class="col-lg-9 col-md-9"><input required class="form-control" name = "date" type="date"></div>
                             </div>

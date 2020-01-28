@@ -18,7 +18,8 @@
         "realrashid/sweet-alert": "^3.0",
 	"phpmailer/phpmailer": "^6.1",
         "spatie/laravel-activitylog": "^3.9",
-        "zizaco/entrust": "dev-master"
+        "zizaco/entrust": "dev-master",
+        "phpmailer/phpmailer": "~6.1"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

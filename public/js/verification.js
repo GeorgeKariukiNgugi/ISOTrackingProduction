@@ -94,7 +94,7 @@ $(function () {
                                     // $(this).focus(); 
                                     console.log("these are the low era");
                                     $(this).css('background-color', '#fba7a7');
-                                    $("#modal" + slicedId).modal("show");
+                                    $("#modal" + slicedId+gettingThevalue.substring(1)).modal("show");
 
                                 } else {
                                     // !setting the flag to a negative.
@@ -131,7 +131,7 @@ $(function () {
                                     );
                                     console.log("these are the low era");
                                     $(this).css('background-color', '#fba7a7');
-                                    $("#modal" + slicedId).modal("show");
+                                    $("#modal" + slicedId+gettingThevalue.substring(1)).modal("show");
 
                                     // $(this).focus();
                                 } else {
@@ -166,7 +166,7 @@ $(function () {
                                         '"> <i style = "font-size:20px;"class = "fa fa-times">   <b>NO</b> </i></a>'
                                     );
                                     $(this).css('background-color', '#fba7a7');
-                                    $("#modal" + slicedId).modal("show");
+                                    $("#modal" + slicedId+gettingThevalue.substring(1)).modal("show");
                                 } else {
                                     console.log("1 IT GOOD.");
                                     // !setting the flag to a negative.
@@ -200,7 +200,7 @@ $(function () {
                                     console.log(id);
                                     // $("#" + id).focus();
                                     $(this).css('background-color', '#fba7a7');
-                                    $("#modal" + slicedId).modal("show");
+                                    $("#modal" + slicedId+gettingThevalue.substring(1)).modal("show");
                                 } else {
                                     console.log("1 IT GOOD.");
                                     // !setting the flag to a negative.
@@ -233,7 +233,7 @@ $(function () {
                                     );
                                     // $(this).focus();
                                     $(this).css('background-color', '#fba7a7');
-                                    $("#modal" + slicedId).modal("show");
+                                    $("#modal" + slicedId+gettingThevalue.substring(1)).modal("show");
                                 } else {
                                     console.log("1 IT GOOD.");
                                     // !setting the flag to a negative.
@@ -266,7 +266,7 @@ $(function () {
                                     );
                                     // $(this).focus();
                                     $(this).css('background-color', '#fba7a7');
-                                    $("#modal" + slicedId).modal("show");
+                                    $("#modal" + slicedId+gettingThevalue.substring(1)).modal("show");
                                 } else {
                                     console.log("1 IT GOOD.");
                                     // !setting the flag to a negative.
@@ -299,7 +299,7 @@ $(function () {
                                     );
                                     // $(this).focus();
                                     $(this).css('background-color', '#fba7a7');
-                                    $("#modal" + slicedId).modal("show");
+                                    $("#modal" + slicedId+gettingThevalue.substring(1)).modal("show");
                                 } else {
                                     console.log("1 IT GOOD.");
                                     // !setting the flag to a negative.

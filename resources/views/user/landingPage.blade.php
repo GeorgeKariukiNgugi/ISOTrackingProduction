@@ -421,7 +421,11 @@
             </form> 
             {{-- inserting the modals that will be thrown once the targets are not reached. --}}
             @foreach ($kpis as $kpiModal)
-            <div class="modal fade" role="dialog" tabindex="-1" id="{{"modal".$kpiModal->id}}">
+
+            {{-- looping thought the 4 quaters. --}}
+
+            @for ($i = 1; $i <= 4; $i++)
+            <div class="modal fade" role="dialog" tabindex="-1" id="{{"modal".$kpiModal->id.$i}}">
               <div class="modal-dialog modal-lg" role="document">
                   <div class="modal-content">
                       <div class="modal-header" style="background-color:#a3e253" ><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
@@ -429,8 +433,8 @@
                       </div>
                       
                       <div class="modal-body "  style="background-color:#cfeda8;">
-                        <div id="{{"NonConformitymodal".$kpiModal->id}}"></div>
-                          <form id="{{"unmetTargetModal".$kpiModal->id}}" class = "{{"unmetTargetModal".$kpiModal->id}} {{"modal-body-for-ncs".$kpiModal->id}}">
+                        <div id="{{"NonConformitymodal".$kpiModal->id.$i}}"></div>
+                          <form id="{{"unmetTargetModal".$i.$kpiModal->id}}" class = "{{"unmetTargetModal".$kpiModal->id}} {{"modal-body-for-ncs".$kpiModal->id}}">
                             {{ csrf_field() }}
                             <input type="hidden" name="" id="{{"strategicObjective".$kpiModal->id}}" value= "{{$strategicObjective->id}}" >
                             <input type="hidden" name="nonConformitykpiId" value="{{$kpiModal->id}}">
@@ -461,12 +465,14 @@
                                 <div class="col-lg-9 col-md-9"><input required class="form-control" name = "date" type="date"></div>
                             </div>
                           </div>
-                              <div class="modal-footer" style="background-color:#a3e253"><button class="btn btn-danger" type="button" data-dismiss="modal">Close</button><button class="btn btn-success {{"modal-body-for-ncs".$kpiModal->id}} {{"unmetTargetModal".$kpiModal->id}} " type="submit">Save</button></div>
+                              <div class="modal-footer" style="background-color:#a3e253"><button class="btn btn-danger" type="button" data-dismiss="modal">Close</button><button class="btn btn-success {{"modal-body-for-ncs".$kpiModal->id}} {{"unmetTargetModal".$i.$kpiModal->id}} " type="submit">Save</button></div>
                           </form>
                                             
                   </div>
               </div>
-            </div>
+            </div> 
+            @endfor
+
             @endforeach
           </div>
 

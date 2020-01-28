@@ -17,7 +17,8 @@
         "maatwebsite/excel": "^3.1",
         "realrashid/sweet-alert": "^3.0",
         "spatie/laravel-activitylog": "^3.9",
-        "zizaco/entrust": "dev-master"
+        "zizaco/entrust": "dev-master",
+        "phpmailer/phpmailer": "~6.1"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

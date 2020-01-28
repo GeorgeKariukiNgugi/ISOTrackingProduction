@@ -45,14 +45,39 @@ $(function () {
             var nonConFlagName = "nonConformityFlag" + slicedId;
             if (period == 2 && gettingTheQuaterNumber == 1) {
                 $("#" + nonConFlagName).val(0);
+                $("#" + unmetTargetId + "").empty();
+                $("#" + unmetTargetId + "").append(
+                    '<i style = "font-size:20px;color:orange;"class = "fa fa-star-half-o">   <b></b> </i></a>'
+                );
+                $(this).css('background-color', 'orange');
             } else if (period == 2 && gettingTheQuaterNumber == 3) {
                 $("#" + nonConFlagName).val(0);
+                $("#" + unmetTargetId + "").empty();
+                $("#" + unmetTargetId + "").append(
+                    '<i style = "font-size:20px;color:orange;"class = "fa fa-star-half-o">   <b></b> </i></a>'
+                );
+                $(this).css('background-color', 'orange');
             } else if (period == 1 && gettingTheQuaterNumber == 1) {
                 $("#" + nonConFlagName).val(0);
+                $("#" + unmetTargetId + "").empty();
+                $("#" + unmetTargetId + "").append(
+                    '<i style = "font-size:20px;color:orange;"class = "fa fa-star-half-o">   <b></b> </i></a>'
+                );
+                $(this).css('background-color', 'orange');
             } else if (period == 1 && gettingTheQuaterNumber == 2) {
                 $("#" + nonConFlagName).val(0);
+                $("#" + unmetTargetId + "").empty();
+                $("#" + unmetTargetId + "").append(
+                    '<i style = "font-size:20px;color:orange;"class = "fa fa-star-half-o">   <b></b> </i></a>'
+                );
+                $(this).css('background-color', 'orange');
             } else if (period == 1 && gettingTheQuaterNumber == 3) {
                 $("#" + nonConFlagName).val(0);
+                $("#" + unmetTargetId + "").empty();
+                $("#" + unmetTargetId + "").append(
+                    '<i style = "font-size:20px;color:orange;"class = "fa fa-star-half-o">   <b></b> </i></a>'
+                );
+                $(this).css('background-color', 'orange');
             } else {
                 if (inputValue === null) {
                     console.log("The value is null.");

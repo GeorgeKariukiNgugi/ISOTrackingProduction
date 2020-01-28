@@ -83,7 +83,7 @@
 <input type = "hidden" value="{{$activeQuater}}" name = "activeQuaterForVerification" id = "activeQuaterForVerification">
 
 <div style="margin-bottom:5%;margin-top:5%"id="heading">
-<h1 class="text-center" style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">{{$name}} Score Card.  ({{$programShortHand}})  </h1>
+<h1 class="text-center" style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">{{$name}} Score Card.  ({{$programShortHand ."."}})  </h1>
     <h1 class="text-center" style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;"> <b>{{$activeYaer}}</b></h1>
     <h2 class="text-center" style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">Update the <b>{{$activeQuater}}</b> Scores based on the perspectives that have been listed below :</h2>
 </div>

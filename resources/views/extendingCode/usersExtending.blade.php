@@ -98,30 +98,30 @@ desired effect
 
           <li class="dropdown notifications-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" title = "Non Conformities."aria-expanded="false">
-              <i class="fa fa-flag text-yellow"></i> Non-Conformities
+              <i class="fa fa-flag text-yellow"></i> Issues
               
               
               
               
             </a>
             <ul class="dropdown-menu">
-              <li class="header">The Following Are Your NonConformities.</li>
+              <li class="header">The Following Are Your Issues.</li>
               <li>
                 <!-- inner menu: contains the actual data -->
                 <ul class="menu">
                   <li>
                     @yield('closed')
-                      <i class="fa fa-warning text-green"></i> Non-Conformities Closed.
+                      <i class="fa fa-warning text-green"></i> Issues Closed.
                     </a>
                   </li>
                   <li>
                     @yield('inProgress')
-                      <i class="fa fa-warning text-yellow"></i> Non-Conformities In Progress.
+                      <i class="fa fa-warning text-yellow"></i> Issues In Progress.
                     </a>
                   </li>
                   <li>
                     @yield('overdue')
-                      <i class="fa fa-warning text-red"></i> OverDue-Non Conformities.
+                      <i class="fa fa-warning text-red"></i> OverDue Issues.
                     </a>
                   </li>                  
                 </ul>

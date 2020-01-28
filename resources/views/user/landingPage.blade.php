@@ -394,6 +394,7 @@
          
                                         @endphp
 
+                                        {{-- this is the section to get the  --}}
                                         <div class=" col-md-1"><input   data-toggle="tooltip" title=" Issues out of date" value="{{$Q1Value}}" type = "number" step=".01"  name = "{{"Quater1".$kpi->id}}" id = "{{"Quater1".$kpi->id}}" readonly placeholder="Inactive" class="form-control {{"strtegicObjective".$strategicObjective->id}} {{"Quater1".$strategicObjective->id}} {{"Quater1".$kpiOriginalName}}" /></div>
                                         <div class=" col-md-1"><input   data-toggle="tooltip" title=" Issues out of date" value="{{$Q2Value}}" type = "number" step=".01"  name = "{{"Quater2".$kpi->id}}" id = "{{"Quater2".$kpi->id}}" readonly placeholder="Inactive" class="form-control {{"strtegicObjective".$strategicObjective->id}} {{"Quater2".$strategicObjective->id}} {{"Quater2".$kpiOriginalName}}" /></div>
                                         <div class=" col-md-1"><input   data-toggle="tooltip" title=" Issues out of date" value="{{$Q3Value}}" type = "number" step=".01"  name = "{{"Quater3".$kpi->id}}" id = "{{"Quater3".$kpi->id}}" readonly placeholder="Inactive" class="form-control {{"strtegicObjective".$strategicObjective->id}} {{"Quater3".$strategicObjective->id}} {{"Quater3".$kpiOriginalName}}" /></div>

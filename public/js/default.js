@@ -11,6 +11,7 @@ $(function () {
     selectingQuaters.removeAttr("readonly");
     selectingQuaters.removeAttr("placeholder");
     selectingQuaters.attr("required", "true");
+    selectingQuaters.css('border','3px solid #3C8DBC');
     quaterForLooping = parseFloat(gettingTheQuaterNumber, 10);
 
     console.log(quaterForLooping + typeof (quaterForLooping));
@@ -33,7 +34,7 @@ $(function () {
                 var period = $("#period" + slicedId).val();
                 var arithmeticStructure = $("#arithmeticStructure" + slicedId);
                 var arithmeticStructureValue = arithmeticStructure.val();
-
+                
                 switch (arithmeticStructureValue) {
                     case "0":
                             

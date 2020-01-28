@@ -238,7 +238,7 @@
                                        <p class="text-center" style="font-size:16px;"><strong>Target</strong><br /></p>
                                    </div>
                                    <div class="col-md-1">
-                                       <p class="text-center" style="font-size:16px;"> <a href="" id="{{"customQuater".$strategicObjective->id}}" class="1" ><strong>Q1</strong></a> <br /></p>
+                                       <p class="text-center" style="font-size:16px;"> <a href=""  id="{{"customQuater".$strategicObjective->id}}" class="1" ><strong>Q1</strong></a> <br /></p>
                                    </div>
                                    <div class="col-md-1">
                                        <p class="text-center" style="font-size:16px;"><a href="" id="{{"customQuater".$strategicObjective->id}}" class="2" ><strong>Q2</strong></a><br/></p>

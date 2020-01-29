@@ -277,7 +277,9 @@ class LoginController extends Controller
                
                                    $valueOfEditing = $gettingUserEditing->value;
                                }
-                               return view('user.landingPage',['valueOfEditing'=>$valueOfEditing,'programId'=>$id,'quaterOne'=>$quaterOne,'quaterTwo'=>$quaterTwo,'quaterthree'=>$quaterthree,'quaterfour'=>$quaterfour,'perspectives'=>$perspectives,'activeYaer'=>$activeYaer,'activeQuater'=>$activeQuater,'keyPerfomanceIndicatorsScores'=>$keyPerfomanceIndicatorsScores,'programName'=>$programName,'programShortHand'=>$programShortHand]);
+                               //! this section is used to send the non-conformities that have been identified by the application. 
+                                $nonConformities =  NonConformities::all();
+                               return view('user.landingPage',['nonConformities'=>$nonConformities,'valueOfEditing'=>$valueOfEditing,'programId'=>$id,'quaterOne'=>$quaterOne,'quaterTwo'=>$quaterTwo,'quaterthree'=>$quaterthree,'quaterfour'=>$quaterfour,'perspectives'=>$perspectives,'activeYaer'=>$activeYaer,'activeQuater'=>$activeQuater,'keyPerfomanceIndicatorsScores'=>$keyPerfomanceIndicatorsScores,'programName'=>$programName,'programShortHand'=>$programShortHand]);
                            }                
     public function logInUsingLDAP(Request $request){        
         header('Content-type: application/json');

@@ -311,6 +311,7 @@ desired effect
 <script src="{{asset('js/editingPerspective.js')}}"></script>
 <script src="{{asset('js/addingNewPerpsectives.js')}}"></script>
 <script src="{{asset('js/validatingTheYear.js')}}"></script>
+<script src="{{asset('js/editingStrategicObjective.js')}}"></script>
 
 
 

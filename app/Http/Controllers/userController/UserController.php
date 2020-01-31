@@ -415,11 +415,13 @@ class UserController extends Controller
 
             foreach($gettingStrategicObjetive as $StrategicObjetive){
                 $perspectiveIddrawn = $StrategicObjetive->perspective_id;
+                $strategicObjectiveWeight = $StrategicObjetive->weight;
             }
 
             if($countingTheNUmberOfReturnedStrategicObjective >=1){
                 foreach($gettingStrategicObjectiveRecord as $StrategicObjectiveRecord){
 
+                    $average = (($average/100)*$strategicObjectiveWeight);
                     $StrategicObjectiveRecord->strategicObjective_id= $strategicObjectiveIdFromForm;
                     $StrategicObjectiveRecord->perspective_id= $perspectiveIddrawn;
                     $StrategicObjectiveRecord->score= $average ;
@@ -573,7 +575,7 @@ class UserController extends Controller
     //! This is the function that is used to store the the new kpis. 
 
     public function submittingNewKPIs(Request $request){
-        
+        dd("cow");
         $newKPIPerspective = $request->perpective;
         $newStrategicObjective = $request->strategicObjective;        
         $newKPIName = $request->kpiName;
@@ -591,7 +593,7 @@ class UserController extends Controller
                             'units'=>'%'
                         )
         );
-        // dd($newStrategicObjective);
+        
         $savingKPI->save();
         $responseArray = array();
         $errorMessage = '<div role="alert" class="alert alert-success" style="width:70%;text-align:center;margin-right:15%;margin-top:1%;margin-left:15%;"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><span class="text-capitalize"><strong>'.
@@ -667,10 +669,18 @@ class UserController extends Controller
                 foreach ($perspectiveStrategicObjectives as $perspectiveStrategicObjective) {
                     # code...
                     $total += $perspectiveStrategicObjective->score;
-                    
+                   
                 }
-
+                $weight = $perspectiveStrategicObjectiveName->weight;
+                // dd($weight);
                 $average = $total/$number;
+                // dd($number);
+                if ($weight == 0) {
+                    # code...
+                    // $weight = 1;
+                } 
+                
+                $average = ($average/$weight)*100;
                 array_push($chartValues,$average);
             }
         }
@@ -736,14 +746,15 @@ class UserController extends Controller
                 # code...
                 $strategicObjectivesSum  += $strategicObjective->score;
             }
-            $strateicObjectiveAverage= $strategicObjectivesSum/count($gettingStrategicObjectivesOfRelatedPerspective);
+            // $strateicObjectiveAverage= $strategicObjectivesSum/count($gettingStrategicObjectivesOfRelatedPerspective);
         }
         
         
         //!the next step is to get its equivalent score in telation to its weight.
 
-        $weight = $proramPersspective->weight;
-        $finalScore += ($strateicObjectiveAverage*$weight)/100;
+        // $weight = $proramPersspective->weight;
+        // $finalScore += ($strateicObjectiveAverage*$weight)/100;
+        $finalScore += $strategicObjectivesSum;
         
     }
 

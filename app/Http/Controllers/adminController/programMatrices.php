@@ -85,15 +85,44 @@ class programMatrices extends Controller
     }
 
     public function addStrategicObjective(AddingNewStrstegicObjective $request, $id){
+        // dd($request->strategicObjectiveForAdditionNumber);
         $newStrstegicObjective = new StrategicObjective(
                         array(
                             'perspective_id'=> $id,
                             'name'=>$name =$request->strName,
                             'shortHand'=> substr($request->strName,0,20),
+                            'weight'=> $request->newObjWeight,
                         )
         );
         $newStrstegicObjective->save();
 
+                   //! this section of the code will be used to get the editing of the strategic objective weights. 
+                   $numberOfStrategicObjectives = $request->strategicObjectiveForAdditionNumber;
+                    //   dd( $request->perspectiveWeightForHiddenAddition);
+                      $str = array();
+                      $values = array();
+                   $perspectiveId = $request->perspectiveIdForAddition;   
+                   for ($i=1; $i <= $numberOfStrategicObjectives ; $i++) { 
+                       # code...
+                       $newStrategicObjectiveId = "strategicObjectiveForAddition".$perspectiveId.$i;
+                       dd( $request->perspectiveIdForAddition);
+                       $newStrategicObjectiveId = $request->$newStrategicObjectiveId;
+                       $strategicObjectiveWeightInputField = "strategicObjectiveForAddition".$perspectiveId.$i;
+                       $strategicObjectiveWeight = $request->$strategicObjectiveWeightInputField;
+           
+                       array_push($str,$newStrategicObjectiveId );
+                       array_push($values, $strategicObjectiveWeight);
+                       // dd($newStrategicObjectiveId . "   ".$strategicObjectiveWeight );
+           
+                       $strategicObjectivesChangeInWeight = StrategicObjective::where('id','=',$newStrategicObjectiveId)->get();
+           
+                       foreach ($strategicObjectivesChangeInWeight as $strategicObjectivesChange) {
+                           # code...
+                           $strategicObjectivesChange->weight = $strategicObjectiveWeight;
+                           $strategicObjectivesChange->save();
+                       }
+                   }
+            dd($str);
         Alert::success(' <h4 style = "color:green;">Congartulations    <i class="fa fa-thumbs-up"></i></h4>', 'New Strategic Objective Has Been Added.');
         return back();
 
@@ -180,6 +209,32 @@ class programMatrices extends Controller
                $strategicObjective->save();
            }
 
+           //! this section of the code will be used to get the editing of the strategic objective weights. 
+           $numberOfStrategicObjectives = $request->numberOfStrategicObjectives;
+        //    dd($numberOfStrategicObjectives);
+           $str = array();
+           $values = array();
+        for ($i=1; $i <= $numberOfStrategicObjectives ; $i++) { 
+            # code...
+            $newStrategicObjectiveId = "strategicObjectiveId".$i;
+            $newStrategicObjectiveId = $request->$newStrategicObjectiveId;
+            $strategicObjectiveWeightInputField = "strategicObjectiveWeight".$i;
+            $strategicObjectiveWeight = $request->$strategicObjectiveWeightInputField;
+
+            array_push($str,$newStrategicObjectiveId );
+            array_push($values, $strategicObjectiveWeight);
+            // dd($newStrategicObjectiveId . "   ".$strategicObjectiveWeight );
+
+            $strategicObjectivesChangeInWeight = StrategicObjective::where('id','=',$newStrategicObjectiveId)->get();
+
+            foreach ($strategicObjectivesChangeInWeight as $strategicObjectivesChange) {
+                # code...
+                $strategicObjectivesChange->weight = $strategicObjectiveWeight;
+                $strategicObjectivesChange->save();
+            }
+        }
+
+            // dd($values);
            Alert::success(' <h4 style = "color:green;">Congartulations    <i class="fa fa-thumbs-up"></i></h4>','Strategic Objective Successfully Edited.');
            return back();
     }

@@ -403,6 +403,9 @@ class UserController extends Controller
         $average = $sum/$countingNoOfKPIScores;
         // dd($average);
 
+        
+
+
         //! checking if the data has has a value so as to see if the value has a duplicate so as to update.
             $gettingStrategicObjectiveRecord = StrategicObjectiveScore::where('strategicObjective_id','=',$strategicObjectiveIdFromForm)
                                                                         ->where('year','=',$activeYaer)
@@ -419,7 +422,10 @@ class UserController extends Controller
 
             if($countingTheNUmberOfReturnedStrategicObjective >=1){
                 foreach($gettingStrategicObjectiveRecord as $StrategicObjectiveRecord){
+                    //! IN THIS SECTION OF THE CODE, WE ARE EQUATING THE VALUE THAT IS THE AVERAGE TO THE STRATEGIC OBJEVTIVE WEIGHT.
 
+                    $average = ($average/100) * $StrategicObjectiveRecord;
+                    
                     $StrategicObjectiveRecord->strategicObjective_id= $strategicObjectiveIdFromForm;
                     $StrategicObjectiveRecord->perspective_id= $perspectiveIddrawn;
                     $StrategicObjectiveRecord->score= $average ;

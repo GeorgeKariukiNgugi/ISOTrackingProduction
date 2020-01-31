@@ -25,7 +25,7 @@ class UserController extends Controller
 {
     public function submittingKPIScores($quater,Request $request){        
 
-        // dd($quater);
+        dd($quater);
         //! getting the active year and active quater from the database.
         $activeYaerCollections = YearActive::where('Active','=',1)->get();
         foreach($activeYaerCollections as $activeYaerCollection){

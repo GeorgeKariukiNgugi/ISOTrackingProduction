@@ -592,6 +592,7 @@
 </div>
 @endforeach
 </div>
-<script src="design/assets/js/jquery.min.js"></script>
+{{-- <script src="design/assets/js/jquery.min.js"></script> --}}
+<script src="{{asset('AdminLTE-master/bower_components/jquery/dist/jquery.min.js')}}"></script>
 </div>
 @endsection

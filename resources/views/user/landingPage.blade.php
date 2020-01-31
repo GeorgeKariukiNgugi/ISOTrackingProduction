@@ -239,16 +239,16 @@
                                    </div>
 
                                    <div class="col-md-1">
-                                       <p class="text-center" style="font-size:16px;"> <a href=""  id="{{"customQuater".$strategicObjective->id}}" class="1" ><strong>Q1</strong></a> <br /></p>
+                                       <p class="text-center" style="font-size:16px;"> <a href=""  data-toggle="tooltip" title="CLICK TO ACTIVATE QUATER ONE." id="{{"customQuater".$strategicObjective->id}}" class="1" ><strong>Q1</strong></a> <br /></p>
                                    </div>
                                    <div class="col-md-1">
-                                       <p class="text-center" style="font-size:16px;"><a href="" id="{{"customQuater".$strategicObjective->id}}" class="2" ><strong>Q2</strong></a><br/></p>
+                                       <p class="text-center" style="font-size:16px;"><a href="" data-toggle="tooltip" title="CLICK TO ACTIVATE QUATER TWO." id="{{"customQuater".$strategicObjective->id}}" class="2" ><strong>Q2</strong></a><br/></p>
                                    </div>
                                    <div class="col-md-1">
-                                       <p class="text-center" style="font-size:16px;"><a href="" id="{{"customQuater".$strategicObjective->id}}" class="3" ><strong>Q3</strong></a><br /></p>
+                                       <p class="text-center" style="font-size:16px;"><a href="" data-toggle="tooltip" title="CLICK TO ACTIVATE QUATER THREE." id="{{"customQuater".$strategicObjective->id}}" class="3" ><strong>Q3</strong></a><br /></p>
                                    </div>
                                    <div class="col-md-1">
-                                       <p class="text-center" style="font-size:16px;"><a href="" id="{{"customQuater".$strategicObjective->id}}" class="4" ><strong>Q4</strong></a><br /></p>
+                                       <p class="text-center" style="font-size:16px;"><a href="" data-toggle="tooltip" title="CLICK TO ACTIVATE QUATER FOUR." id="{{"customQuater".$strategicObjective->id}}" class="4" ><strong>Q4</strong></a><br /></p>
                                    </div>
                                    <div class="col-md-1">
                                        <p class="text-center" style="font-size:16px;"><strong>Target Met ?</strong><br /></p>
@@ -394,11 +394,56 @@
          
                                         @endphp
 
-                                        {{-- this is the section to get the  --}}
-                                        <div class=" col-md-1"><input   data-toggle="tooltip" title=" Issues out of date" value="{{$Q1Value}}" type = "number" step=".01"  name = "{{"Quater1".$kpi->id}}" id = "{{"Quater1".$kpi->id}}" readonly placeholder="Inactive" class="form-control {{"strtegicObjective".$strategicObjective->id}} {{"Quater1".$strategicObjective->id}} {{"Quater1".$kpiOriginalName}}" /></div>
-                                        <div class=" col-md-1"><input   data-toggle="tooltip" title=" Issues out of date" value="{{$Q2Value}}" type = "number" step=".01"  name = "{{"Quater2".$kpi->id}}" id = "{{"Quater2".$kpi->id}}" readonly placeholder="Inactive" class="form-control {{"strtegicObjective".$strategicObjective->id}} {{"Quater2".$strategicObjective->id}} {{"Quater2".$kpiOriginalName}}" /></div>
-                                        <div class=" col-md-1"><input   data-toggle="tooltip" title=" Issues out of date" value="{{$Q3Value}}" type = "number" step=".01"  name = "{{"Quater3".$kpi->id}}" id = "{{"Quater3".$kpi->id}}" readonly placeholder="Inactive" class="form-control {{"strtegicObjective".$strategicObjective->id}} {{"Quater3".$strategicObjective->id}} {{"Quater3".$kpiOriginalName}}" /></div>
-                                        <div class=" col-md-1"><input   data-toggle="tooltip" title=" Issues out of date" value="{{$Q4Value}}" type = "number" step=".01"  name = "{{"Quater4".$kpi->id}}" id = "{{"Quater4".$kpi->id}}" readonly placeholder="Inactive"class="form-control  {{"strtegicObjective".$strategicObjective->id}} {{"Quater4".$strategicObjective->id}} {{"Quater4".$kpiOriginalName}}" /></div>                                                                              
+                                        {{-- this is the section to get the  non-conformities of the application. --}}
+
+                                        @php
+                                            
+                                            $quater1NC = "";
+                                            $quater2NC = "";
+                                            $quater3NC = "";
+                                            $quater4NC = "";
+
+                                            foreach ($nonConformities as $nonConformity) {
+                                              # code...
+                                              if ($nonConformity->keyPerfomanceIndicator_id == $kpi->id) {
+                                                # code...
+                                                if ($nonConformity->quater == 'Q1') {
+                                                  # code...
+                                                  $quater1NC .= "Reason   :  :  ";
+                                                  $quater1NC .= "   ".$nonConformity->rootCause."";
+                                                  $quater1NC  .= "HOW To Fix Errors   :  :  ";   
+                                                  $quater1NC .= "".$nonConformity->correctiveAction.""; 
+                                                                      
+                          
+                                                } else if ($nonConformity->quater == 'Q2'){
+                                                  # code...
+                                                  $quater2NC .= "Reason   :  :  ";
+                                                  $quater2NC .= "   ".$nonConformity->rootCause."    ";
+                                                  $quater2NC  .= "HOW To Fix Errors   :  :  ";   
+                                                  $quater2NC .= "   ".$nonConformity->correctiveAction."   ";                        
+                                                } else if ($nonConformity->quater == 'Q3'){
+                                                  # code...
+                                                  $quater3NC .= "Reason   :  :  ";
+                                                  $quater3NC .= "".$nonConformity->rootCause."";
+                                                  $quater3NC  .= "HOW To Fix Errors   :  :  ";   
+                                                  $quater3NC .= "".$nonConformity->correctiveAction."";                        
+                                                }else if ($nonConformity->quater == 'Q4'){
+                                                  # code...
+                                                  $quater4NC .= "Reason   :  :  ";
+                                                  $quater4NC .= "".$nonConformity->rootCause."";
+                                                  $quater4NC  .= "HOW To Fix Errors   :  :  ";   
+                                                  $quater4NC .= "".$nonConformity->correctiveAction."";                        
+                                                }
+                                                
+                                              } 
+                                              
+                                            }
+
+                                        @endphp
+                                        <div class=" col-md-1"><input   data-toggle="tooltip" title="{{$quater1NC}}" value="{{$Q1Value}}" type = "number" step=".01"  name = "{{"Quater1".$kpi->id}}" id = "{{"Quater1".$kpi->id}}" readonly placeholder="Inactive" class="form-control {{"strtegicObjective".$strategicObjective->id}} {{"Quater1".$strategicObjective->id}} {{"Quater1".$kpiOriginalName}}" /></div>
+                                        <div class=" col-md-1"><input   data-toggle="tooltip" title=" {{$quater2NC}}" value="{{$Q2Value}}" type = "number" step=".01"  name = "{{"Quater2".$kpi->id}}" id = "{{"Quater2".$kpi->id}}" readonly placeholder="Inactive" class="form-control {{"strtegicObjective".$strategicObjective->id}} {{"Quater2".$strategicObjective->id}} {{"Quater2".$kpiOriginalName}}" /></div>
+                                        <div class=" col-md-1"><input   data-toggle="tooltip" title=" {{$quater3NC}}" value="{{$Q3Value}}" type = "number" step=".01"  name = "{{"Quater3".$kpi->id}}" id = "{{"Quater3".$kpi->id}}" readonly placeholder="Inactive" class="form-control {{"strtegicObjective".$strategicObjective->id}} {{"Quater3".$strategicObjective->id}} {{"Quater3".$kpiOriginalName}}" /></div>
+                                        <div class=" col-md-1"><input   data-toggle="tooltip" title=" {{$quater4NC}}" value="{{$Q4Value}}" type = "number" step=".01"  name = "{{"Quater4".$kpi->id}}" id = "{{"Quater4".$kpi->id}}" readonly placeholder="Inactive"class="form-control  {{"strtegicObjective".$strategicObjective->id}} {{"Quater4".$strategicObjective->id}} {{"Quater4".$kpiOriginalName}}" /></div>                                                                              
                                         <div id="{{"unmetTargetComment".$kpi->id}}" class = "col-md-1 text-center unmetTargetComment">
                                           {{-- <a data-toggle="modal" href = "" data-target="{{"#modal".$kpi->id}}"> COMMENT</a> --}}
                                         </div>

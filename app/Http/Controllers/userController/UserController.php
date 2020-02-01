@@ -250,8 +250,7 @@ class UserController extends Controller
                     foreach($findingQ2Value as $Value){
                         $scoreFetched2 = $Value->score;
                     }
-                    $averageThatBecomesytd = ($score+$scoreFetched+$scoreFetched2);
-                    dd($averageThatBecomesytd);
+                    $averageThatBecomesytd = ($score+$scoreFetched+$scoreFetched2);                    
                 }else if($prefixOfTheActiveQuater == 4){
                     $scoreFetched = 0;
                     $scoreFetched2=0;

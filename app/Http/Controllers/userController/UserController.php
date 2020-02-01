@@ -32,7 +32,7 @@ class UserController extends Controller
         }
         $activeQuater =  $quater;
         $strategicObjectiveIdFromForm = $request->strategicObjective;
-
+        dd($strategicObjectiveIdFromForm);
         $strategicObjectivesKpis = StrategicObjective::where('id','=',$strategicObjectiveIdFromForm)->get();
         //!getting the key perfomance indicators of the strategic objectuve.
         foreach($strategicObjectivesKpis as $strategicObjectivesKpi){
@@ -40,7 +40,7 @@ class UserController extends Controller
             $kpiNumber = count($kpis);
             
         }
-                   dd($kpi);     
+                      
         //! looping through the kpis so as to check the value of the flag. 
         foreach($kpis as $kpi){
             $idOfKPI = $kpi->id;

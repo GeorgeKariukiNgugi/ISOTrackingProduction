@@ -34,77 +34,197 @@ $(function () {
                 var period = $("#period" + slicedId).val();
                 var arithmeticStructure = $("#arithmeticStructure" + slicedId);
                 var arithmeticStructureValue = arithmeticStructure.val();
-                
+                var period = $("#period"+slicedId).val();
+                period = parseFloat(period);
+                var definigThis = $(this);
                 switch (arithmeticStructureValue) {
                     case "0":
-                            
-                                if (inputValue > targetValue) {
-                                    $(this).css('background-color','#fba7a7');
-                                } else if(inputValue <= targetValue){
-                                    $(this).css('background-color','#cfeda8'); 
-                                }
-                                else{
-                                    $(this).css('background-color','#FFFFFF');
-                                }
+
+                    function validationCase0() {
+                        if (inputValue > targetValue) {
+                            definigThis.css('background-color','#fba7a7');
+                        } else if(inputValue <= targetValue){
+                            definigThis.css('background-color','#cfeda8'); 
+                        }
+                        else{
+                            definigThis.css('background-color','#FFFFFF');
+                        }
+
+                        return "something";
+                    }
+
+                    switch (period) {
+                        case 1:
+                            validationCase0();                          
+                        case 2:
+                            validationCase0();                            
+                        case 4:
+                            validationCase0();                            
+                        default:
+                            break;
+                    }                                
 
                         break;
                     case "1":
+
+                        function validationCase1() {
+                            if (inputValue < targetValue) {
+                                definigThis.css('background-color','orange');
+                            } else if(inputValue >= targetValue){
+                                definigThis.css('background-color','#cfeda8'); 
+                            }
+                            else{
+                                definigThis.css('background-color','#FFFFFF');
+                            }
+                        }
+                            
+                        switch (period) {
+                            case 1:
+                                validationCase1();
+                                break;
+                            case 2:
+                                validationCase1();
+                                break;
+                            case 4:
+                                // validationCase1();
                                 if (inputValue < targetValue) {
-                                    $(this).css('background-color','#fba7a7');
+                                    definigThis.css('background-color','#fba7a7');
                                 } else if(inputValue >= targetValue){
-                                    $(this).css('background-color','#cfeda8'); 
+                                    definigThis.css('background-color','#cfeda8'); 
                                 }
                                 else{
-                                    $(this).css('background-color','#FFFFFF');
+                                    definigThis.css('background-color','#FFFFFF');
                                 }
+                                break;
+                            default:
+                                break;
+                        }
                         break;
                         case"3":
-                        if (inputValue > targetValue) {
-                            $(this).css('background-color','#fba7a7');
-                        } else if(inputValue >= targetValue){
-                            $(this).css('background-color','#cfeda8'); 
+                        function validationCase2(params) {
+                            if (inputValue > targetValue) {
+                                definigThis.css('background-color','#fba7a7');
+                            } else if(inputValue >= targetValue){
+                                definigThis.css('background-color','#cfeda8'); 
+                            }
+                            else{
+                                definigThis.css('background-color','#FFFFFF');
+                            }
                         }
-                        else{
-                            $(this).css('background-color','#FFFFFF');
+                        switch (period) {
+                            case 1:
+                                validationCase2();
+                                break;
+                            case 2:
+                                validationCase2();
+                                break;
+                            case 4:
+                                validationCase2();
+                                break;
+                            default:
+                                break;
                         }
                         break;
                         case "4":
-                            if (inputValue < targetValue) {
-                                $(this).css('background-color','#fba7a7');
-                            } else if(inputValue >= targetValue){
-                                $(this).css('background-color','#cfeda8'); 
-                            } else{
-                                $(this).css('background-color','#FFFFFF');
+                            function validationCase3() {
+                                if (inputValue < targetValue) {
+                                    definigThis.css('background-color','#fba7a7');
+                                } else if(inputValue >= targetValue){
+                                    definigThis.css('background-color','#cfeda8'); 
+                                } else{
+                                    definigThis.css('background-color','#FFFFFF');
+                                }
                             }
                             
+                            switch (period) {
+                                case 1:
+                                    validationCase3();
+                                    break;
+                                case 2:
+                                    validationCase3();
+                                    break;
+                                case 4:
+                                    validationCase3();
+                                    break;
+                                default: 
+                                break;
+                            }
                         break;
                         case "5":
+                            function validationCase4() {
+                                if (inputValue > targetValue) {
+                                    definigThis.css('background-color','#fba7a7');
+                                } else if(inputValue >= targetValue){
+                                    definigThis.css('background-color','#cfeda8'); 
+                                } else{
+                                    definigThis.css('background-color','#FFFFFF');
+                                }
+                            }
                             
-                            if (inputValue > targetValue) {
-                                $(this).css('background-color','#fba7a7');
-                            } else if(inputValue >= targetValue){
-                                $(this).css('background-color','#cfeda8'); 
-                            } else{
-                                $(this).css('background-color','#FFFFFF');
+                            switch (period) {
+                                case 1:
+                                    validationCase4();
+                                    break;
+                                case 2:
+                                    validationCase4();
+                                    break;
+                                case 4:
+                                    validationCase4();
+                                    break;
+                                default: 
+                                break;
                             }
                         break;
                         case "6":
-                            if (inputValue > targetValue) {
-                                $(this).css('background-color','#fba7a7');
-                            } else if(inputValue >= targetValue){
-                                $(this).css('background-color','#cfeda8'); 
-                            } else{
-                                $(this).css('background-color','#FFFFFF');
+
+                            function validationCase5() {
+                                if (inputValue > targetValue) {
+                                    definigThis.css('background-color','#fba7a7');
+                                } else if(inputValue >= targetValue){
+                                    definigThis.css('background-color','#cfeda8'); 
+                                } else{
+                                    definigThis.css('background-color','#FFFFFF');
+                                } 
+                            }
+
+                            switch (period) {
+                                case 1:
+                                    validationCase5();
+                                    break;
+                                case 2:
+                                    validationCase5();
+                                    break;
+                                case 4:
+                                    validationCase5();
+                                    break;
+                                default: 
+                                break;
                             }
                         break;
                         case "7":
+
+                        function validationCase6(params) {
                             if (inputValue > targetValue) {
-                                $(this).css('background-color','#fba7a7');
+                                definigThis.css('background-color','#fba7a7');
                             } else if(inputValue >= targetValue){
-                                $(this).css('background-color','#cfeda8'); 
+                                definigThis.css('background-color','#cfeda8'); 
                             } else{
-                                $(this).css('background-color','#FFFFFF');
+                                definigThis.css('background-color','#FFFFFF');
                             }
+                        }
+                        switch (period) {
+                            case 1:
+                                validationCase6();
+                                break;
+                            case 2:
+                                validationCase6();
+                                break;
+                            case 4:
+                                validationCase6();
+                                break;
+                            default: 
+                            break;
+                        }
                         break;
                     default:
                         break;

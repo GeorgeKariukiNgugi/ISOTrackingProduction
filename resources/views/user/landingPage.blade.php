@@ -158,14 +158,14 @@
                   </div>
               </div>
             </div> 
-            {{-- <div role="dialog" tabindex="-1" class="modal fade" id="{{"modal".$strategicObjective->id}}">
+            <div role="dialog" tabindex="-1" class="modal fade" id="{{"modal".$strategicObjective->id}}">
               <div class="modal-dialog" role="document">
                   <div class="modal-content">
                       <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                           <h4 class="modal-title" style="text-align:center;">Add a new KPI to the Strategic Objective : <strong>{{$perspetiveName}}</strong></h4>
                       </div>
                       <div class="modal-body">
-                        <form method="POST" id = "{{"modalSubmit".$strategicObjective->id}}">
+                        <form  id = "{{"modalSubmit".$strategicObjective->id}}">
                             <div id="{{"KPIalert".$strategicObjective->id}}"></div>
                           {{ csrf_field() }}
                             <input type="hidden" name="perpective" value="{{$perspectiveId}}">
@@ -210,7 +210,7 @@
                       
                   </div>
               </div>
-          </div>  --}}
+          </div> 
           </div>  
                   
             @else
@@ -523,7 +523,7 @@
             @endforeach
           </div>
 
-           {{-- <div role="dialog" tabindex="-1" class="modal fade" id="{{"modal".$strategicObjective->id}}">
+           <div role="dialog" tabindex="-1" class="modal fade" id="{{"modal".$strategicObjective->id}}">
               <div class="modal-dialog" role="document">
                   <div class="modal-content">
                       <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
@@ -576,7 +576,7 @@
                       
                   </div>
               </div>
-          </div>       --}}
+          </div>      
           @endif  
           {{-- this section is used to add the modal for adding a new KPI. --}}
           @php

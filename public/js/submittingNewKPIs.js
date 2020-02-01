@@ -1,7 +1,7 @@
 $(function () {
     $("form[id^='modalSubmit']").on("submit", function (e) {
-        console.lo("SUBMITTING A NEW KPI.");
-        // e.preventDefault();
+        // console.lo("SUBMITTING A NEW KPI.");
+        e.preventDefault();
 
         
         var modalId = $(this).attr("id");
@@ -9,7 +9,7 @@ $(function () {
         var alertName = "KPIalert" + slicedModalId;
 
         $.ajax({
-            url: "submittingKPI",
+            url: "/submittingKPI",
             method: "POST",
             data: new FormData(this),
             contentType: false,

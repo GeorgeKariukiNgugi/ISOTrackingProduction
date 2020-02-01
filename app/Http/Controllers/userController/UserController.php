@@ -182,9 +182,18 @@ class UserController extends Controller
                     ->where('quater','=','Q2')
                     ->get();
 
-                    foreach($findingQ2Value as $Value){
-                        $averageThatBecomesytd = $Value->score;
+                    //! this section of the code is used to get the data that going to be inserted.
+                    if (count($findingQ2Value) == 0) {
+                        # code...
+                        $averageThatBecomesytd = 100;
+                    } else {
+                        # code...
+                        foreach($findingQ2Value as $Value){
+                            $averageThatBecomesytd = $Value->score;
+                        }
                     }
+                    
+                    
                 }
                 elseif($prefixOfTheActiveQuater == 2){
                     $averageThatBecomesytd = $score;

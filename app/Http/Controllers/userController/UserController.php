@@ -91,6 +91,7 @@ class UserController extends Controller
                 $scoreInputName = "Quater".$prefixOfTheActiveQuater.$idOfKPI;
                 // dd($scoreInputName);
                 $score = $request->$scoreInputName;
+                dd($score);
                 $gettingTheScoreRecordedCollection = ScoreRecorded::where('keyPerfomanceIndicator_id','=',$idOfKPI)
                                                                     ->where('quater','=',$activeQuater)
                                                                     ->where('year','=',$activeYaer)
@@ -159,7 +160,7 @@ class UserController extends Controller
 
             //!counting the number of records returned. 
 
-            dd("INSERTING DATA INTO KPI TABLE.");
+            
             // dd(count($allKPIScoresWithSameYear));
             $numberOfReturnedScores = count($allKPIScoresWithSameYear);
             if($numberOfReturnedScores<1){

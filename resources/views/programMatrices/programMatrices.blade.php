@@ -586,7 +586,9 @@
                                             <option value="1" selected>Above</option>
                                             <option value="0" >Below</option>   
                                             @else 
-                                            <option value="{{$kpiModal->arithmeticStructure}}" selected>Special Defined.</option>           
+                                            <option value="{{$kpiModal->arithmeticStructure}}" selected>Special Defined.</option>
+                                            <option value="1">Above</option>
+                                            <option value="0" >Below</option>           
                                             @endif
                                     </select>
                                 </div>

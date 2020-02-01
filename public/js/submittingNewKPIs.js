@@ -1,7 +1,7 @@
 $(function () {
     $("form[id^='modalSubmit']").on("submit", function (e) {
         // console.lo("SUBMITTING A NEW KPI.");
-        // e.preventDefault();
+        e.preventDefault();
 
         
         var modalId = $(this).attr("id");

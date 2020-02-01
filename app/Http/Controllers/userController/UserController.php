@@ -159,6 +159,7 @@ class UserController extends Controller
 
             //!counting the number of records returned. 
 
+            dd("INSERTING DATA INTO KPI TABLE.");
             // dd(count($allKPIScoresWithSameYear));
             $numberOfReturnedScores = count($allKPIScoresWithSameYear);
             if($numberOfReturnedScores<1){
@@ -249,7 +250,7 @@ class UserController extends Controller
                         $scoreFetched2 = $Value->score;
                     }
                     $averageThatBecomesytd = ($score+$scoreFetched+$scoreFetched2);
-                    dd($averageThatBecomesytd);
+                    // dd($averageThatBecomesytd);
                 }else if($prefixOfTheActiveQuater == 4){
                     $findingQ2Value = ScoreRecorded::where('year','=',$activeYaer)
                     ->where('keyPerfomanceIndicator_id','=',$idOfKPI)

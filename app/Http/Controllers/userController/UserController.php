@@ -40,7 +40,7 @@ class UserController extends Controller
             $kpiNumber = count($kpis);
             
         }
-                        
+                   dd($kpi);     
         //! looping through the kpis so as to check the value of the flag. 
         foreach($kpis as $kpi){
             $idOfKPI = $kpi->id;
@@ -74,7 +74,7 @@ class UserController extends Controller
                 }
             } 
             else if ($formFlagInputValue == 2){
-                dd($quater);
+                
                 //!if the flag is neither positive or negative, that is, its null, just update the score.
                 $prefixOfTheActiveQuater = substr($activeQuater,1);
                 $scoreInputName = "Quater".$prefixOfTheActiveQuater.$idOfKPI;

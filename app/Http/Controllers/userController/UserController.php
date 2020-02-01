@@ -25,22 +25,12 @@ class UserController extends Controller
 {
     public function submittingKPIScores($quater,Request $request){        
 
-        dd($quater);
-        // return "cow";
         //! getting the active year and active quater from the database.
         $activeYaerCollections = YearActive::where('Active','=',1)->get();
         foreach($activeYaerCollections as $activeYaerCollection){
-            $activeYaer = $activeYaerCollection->Year;
-            // dd($activeYaer);
+            $activeYaer = $activeYaerCollection->Year;            
         }
-
-        // $activeQuaterCollections = QuaterActive::where('Active','=',1)->get();
-        // foreach($activeQuaterCollections as $activeQuaterCollection){
-        //     $activeQuater = $activeQuaterCollection->Quater;
-        //     // dd($activeQuater);
-        // }
         $activeQuater =  $quater;
-        // $activeYaer = $request->activeQuaterForSubmision;
         $strategicObjectiveIdFromForm = $request->strategicObjective;
 
         $strategicObjectivesKpis = StrategicObjective::where('id','=',$strategicObjectiveIdFromForm)->get();
@@ -66,12 +56,10 @@ class UserController extends Controller
             
             //!checking if the flag value is positive or negative.
             if ($formFlagInputValue == 1) {                
-                if($numberOfReturnedNonConformities == 0){
-                    // dd($numberOfReturnedNonConformities . "The kpiId =  ".$idOfKPI. " Active Quater =  ".$activeQuater. "The Year is " .$activeYaer);
+                if($numberOfReturnedNonConformities == 0){                    
                     $errorMessage = '<div role="alert" class="alert alert-danger" style="width:70%;text-align:center;margin-right:15%;margin-top:1%;margin-left:15%;"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><span class="text-capitalize"><strong>'.
                     "SCORES NOT SUBMITTED. Kindly Add The Non conformity reasons for the kpi   ".$kpi->name.
-                        "</strong><br /></span></div>";
-                    // return response()->json(['success'=>' SCORES NOT SUBMITTED. Kindly Add The Non conformity reasons for the kpi  '.$kpi->name]);
+                        "</strong><br /></span></div>";                    
                     return response()->json(['success'=>$errorMessage]);
 
                 }                
@@ -86,6 +74,7 @@ class UserController extends Controller
                 }
             } 
             else if ($formFlagInputValue == 2){
+                dd($quater);
                 //!if the flag is neither positive or negative, that is, its null, just update the score.
                 $prefixOfTheActiveQuater = substr($activeQuater,1);
                 $scoreInputName = "Quater".$prefixOfTheActiveQuater.$idOfKPI;

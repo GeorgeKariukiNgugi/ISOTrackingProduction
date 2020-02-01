@@ -38,7 +38,7 @@ Route::post('submitScores/{value}','userController\UserController@submittingKPIS
 Route::post('submitNonConformities/{value}','userController\UserController@submittingNonConformities');
 
 //! this is the function that is used to store the new kpis that have been generated.
-Route::post('/submittingKPI','userController\UserController@submittingNewKPIs');
+Route::post('submittingKPI','userController\UserController@submittingNewKPIs');
 
 
 //!this is the route that is used to generate the dashboard graphs amoung others. 

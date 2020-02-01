@@ -165,7 +165,7 @@
                           <h4 class="modal-title" style="text-align:center;">Add a new KPI to the Strategic Objective : <strong>{{$perspetiveName}}</strong></h4>
                       </div>
                       <div class="modal-body">
-                        <form  id = "{{"modalSubmit".$strategicObjective->id}}">
+                        <form  method="POST" id = "{{"modalSubmit".$strategicObjective->id}}">
                             <div id="{{"KPIalert".$strategicObjective->id}}"></div>
                           {{ csrf_field() }}
                             <input type="hidden" name="perpective" value="{{$perspectiveId}}">

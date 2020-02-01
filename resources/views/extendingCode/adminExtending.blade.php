@@ -303,7 +303,7 @@ desired effect
 <script src="{{asset('js/default.js')}}"></script>
 <script src="{{asset('js/submittingKPIScores.js')}}"></script>
 <script src="{{asset('js/submitNonConformities.js')}}"></script>
-<script src="{{asset('js/submittingNewKPIs.js')}}"></script>
+{{-- <script src="{{asset('js/submittingNewKPIs.js')}}"></script> --}}
 <script src="{{asset('js/submittingClosingNonConformity.js')}}"></script>
 <script src="{{asset('js/addingPerspectives.js')}}"></script>
 <script src="{{asset('js/deletingPerspetive.js')}}"></script>

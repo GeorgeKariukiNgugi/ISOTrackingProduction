@@ -158,7 +158,7 @@
                   </div>
               </div>
             </div> 
-            <div role="dialog" tabindex="-1" class="modal fade" id="{{"modal".$strategicObjective->id}}">
+            {{-- <div role="dialog" tabindex="-1" class="modal fade" id="{{"modal".$strategicObjective->id}}">
               <div class="modal-dialog" role="document">
                   <div class="modal-content">
                       <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
@@ -210,7 +210,7 @@
                       
                   </div>
               </div>
-          </div> 
+          </div>  --}}
           </div>  
                   
             @else
@@ -523,7 +523,7 @@
             @endforeach
           </div>
 
-           <div role="dialog" tabindex="-1" class="modal fade" id="{{"modal".$strategicObjective->id}}">
+           {{-- <div role="dialog" tabindex="-1" class="modal fade" id="{{"modal".$strategicObjective->id}}">
               <div class="modal-dialog" role="document">
                   <div class="modal-content">
                       <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
@@ -576,7 +576,7 @@
                       
                   </div>
               </div>
-          </div>      
+          </div>       --}}
           @endif  
           {{-- this section is used to add the modal for adding a new KPI. --}}
           @php

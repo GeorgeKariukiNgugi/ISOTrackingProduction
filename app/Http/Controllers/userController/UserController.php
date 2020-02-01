@@ -25,7 +25,8 @@ class UserController extends Controller
 {
     public function submittingKPIScores($quater,Request $request){        
 
-        dd($quater);
+        // dd($quater);
+        // return "cow";
         //! getting the active year and active quater from the database.
         $activeYaerCollections = YearActive::where('Active','=',1)->get();
         foreach($activeYaerCollections as $activeYaerCollection){
@@ -106,6 +107,9 @@ class UserController extends Controller
             //! if no reasonable reason is found, then we can now insert the data into the scoresrecorded table. 
             $prefixOfTheActiveQuater = substr($activeQuater,1);
             $scoreInputName = "Quater".$prefixOfTheActiveQuater.$idOfKPI;
+            // dd($scoreInputName);
+
+            // dd($request);
             $score = $request->$scoreInputName;
             
             //! CHECKING IF THERE IS THE SAME RECORD IS FOUND IN THE DATABASE SO AS TO AVOID DUPLICATION OF DATA.
@@ -578,7 +582,8 @@ class UserController extends Controller
     //! This is the function that is used to store the the new kpis. 
 
     public function submittingNewKPIs(Request $request){
-        dd("cow");
+        // dd("cow");
+        return "posting successfuly.";
         $newKPIPerspective = $request->perpective;
         $newStrategicObjective = $request->strategicObjective;        
         $newKPIName = $request->kpiName;

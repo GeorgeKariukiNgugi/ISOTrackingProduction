@@ -145,14 +145,62 @@
                             <h4 class="text-center modal-title"><strong>Add A New STRATEGIC OBJECTIVE.</strong></h4>
                         </div>
                         <div class="modal-body" style="background-color:#2af3ff;">
-                                <form action="{{"/addingNewStrstegicObjective/".$perspective->id}}" method="POST">
+                                <form action="{{"/addingNewStrstegicObjective/".$perspective->id}}"  class="{{"addingStrategicObjective".$perspective->id}}" method="POST">
                                     {{ csrf_field() }}
                             <div class="row">
                                 <div class="col-md-6">
                                     <h4>Strategic Objective Name.</h4>
                                 </div>
-                                <div class="col-md-6"><input type="text" style="width:100%;height:35px;" name="strName"/></div>
+                                <div class="col-md-6"><input required type="text" style="width:100%;height:35px;" name="strName"/></div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h4>Strategic Objective Weight.</h4>
+                                </div>
+                                <div class="col-md-6"><input required type="number" id="{{"newStrategicObjectiveValue".$perspective->id}}" style="width:100%;height:35px;" name="newObjWeight"/></div>
+                            </div>
+
+                            <h4 style="text-align:center;color:red;font-family:'Times New Roman', Times, serif">Kindly Reweigh The Strategic Objectives So As To Save .</h4>
+                            <h4 style="text-align:center;color:red;font-family:'Monotype Corsiva'"> Re-weigh the perspectives to get to: {{$perspective->weight}}</h4>
+
+                            <div id="{{"containigDivUsedForAddingPerspectives".$perspective->id}}"></div>
+
+                            <input type="hidden" name="perspectiveWeightForHiddenAddition" id="{{"perspectiveWeightForHiddenAddition".$perspective->id}}" value="{{$perspective->weight}}">
+                            <input type="hidden" name="perspectiveIdForAddition" value="name">
+
+                            @php
+                                $strategicObjectivesForAdditions = $perspective->strategicObjectives;
+                                $incrementNo = 0;
+                            @endphp
+                                <div class="row">
+                                    <div class="col-md-1">
+                                        <h5 class="text">No :</h5>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <h5 class="text">Strategic Objective Name :</h5>
+                                    </div>
+                                    <div class="col-md-4" style="">
+                                        {{-- <input type="text" value="{{$strategicObjective->name}}" style="width:80%;height:45px;" name="name" required /> --}}
+                                        <h5 class="text">Strategic Objective Weight :</h5>
+                                    </div>                                                
+                                </div>                            
+                            @foreach ($strategicObjectivesForAdditions as $strategicObjectiveforAddition)
+                            <div class="row">
+                                <div class="col-md-1">
+                                    <h5 class="text">{{++$incrementNo}}</h5>
+                                </div>
+                                <div class="col-md-7">
+                                    <h5 class="text">{{$strategicObjectiveforAddition->name}}</h5>
+                                </div>
+                                <div class="col-md-4" style="">
+                                    {{-- <input type="text" value="{{$strategicObjective->name}}" style="width:80%;height:45px;" name="name" required /> --}}
+                                    {{-- <h5 class="text">{{$strategicObjectiveforAddition->weight}}</h5> --}}
+                                    <input type="number" required id="{{"strategicObjectiveForAddition".$perspective->id.$incrementNo}}" name="{{"WeightstrategicObjectiveForAddition".$perspective->id.$incrementNo}}" value="{{$strategicObjectiveforAddition->weight}}">
+                                    <input type="hidden"  value="{{$strategicObjectiveforAddition->id}} "                                name="{{"strategicObjectiveIdForAddition".$perspective->id.$incrementNo}}">
+                                </div>                                                
+                            </div> 
+                            @endforeach
+                            <input type="hidden" id="{{"numberOfStrategicObjectivesForAddition".$perspective->id}}" name="{{"strategicObjectiveForAdditionNumber"}}" value="{{$incrementNo}}">
                         </div>
                         <div class="modal-footer" style="background-color:#23bac3;"><button class="btn btn-danger" type="button" data-dismiss="modal">Close</button><button class="btn btn-success" type="submit">Save</button></div>
                         </form>
@@ -165,7 +213,6 @@
       @php
           $strategicObjectives = $perspective->strategicObjectives;
           $number = count($strategicObjectives);
-
       @endphp
 
       @if ($number < 1)
@@ -201,11 +248,11 @@
 
             {{-- implementing the modal that will be used to edit the strategic objective --}}
 
-            <div role="dialog" tabindex="-1" class="modal fade" id="{{"editStrategicObjective".$strategicObjective->id}}">
+            <div role="dialog" tabindex="-1" class="modal modal-md fade" id="{{"editStrategicObjective".$strategicObjective->id}}">
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
                             <div class="modal-header" style="background-color:#bbc1f5;font-family:'Times New Roman', Times, serif;"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                                <h3 class="modal-title">Edit The Strategic Objective: {{$strategicObjective->name}}</h3>
+                                <h3 class="modal-title" style="text-align:center;">Edit The Strategic Objective: {{$strategicObjective->name}}</h3>
                             </div>
                             <div class="modal-body" style="background-color:#d4d8fb;font-family:'Times New Roman', Times, serif;" >
                                 @foreach ($errors->all() as $error)
@@ -213,14 +260,54 @@
                                         {{$error}}
                                 </p>
                                 @endforeach
-                                <form action="{{"/editingStrObjective/".$strategicObjective->id}}" method="POST">
+                                <form action="{{"/editingStrObjective/".$strategicObjective->id}}" class = "{{"editingStrategicObjectiveForm".$strategicObjective->id}}" method="POST">
                                     {{ csrf_field() }}
                                         <div class="row">
                                                 <div class="col-md-4">
-                                                    <h3 class="text-center">Strategic Objective Name :</h3>
+                                                    <h5 class="text-center">Strategic Objective Name :</h5>
                                                 </div>
-                                                <div class="col-md-8" style="margin-top:2%;"><input type="text" value="{{$strategicObjective->name}}" style="width:80%;height:45px;" name="name" required /></div>
+                                                <div class="col-md-8" style=""><input type="text" value="{{$strategicObjective->name}}" style="width:80%;" name="name" required /></div>                                                
                                             </div>
+                                            <h4 style="text-align:center;">Editing Strategic Objective Weight.</h4>
+                                            <h4 class="text-center" style="color:red;">Kindly ReWeigh The Strategic Objectives to add up to the perspective Weight of : <span style="color:darkblue;text-decoration:bold;">{{$perspective->weight}}</span></h4>
+                                            <div id="{{"containingDiv".$strategicObjective->id}}"></div>
+                                            <input type="hidden" id="{{"perspectiveWeight".$strategicObjective->id}}" name="perspectiveWeight" value="{{$perspective->weight}}">
+                                            <div class="row">
+                                                <div class="col-md-1">
+                                                    <h4 class="text">No :</h4>
+                                                </div>
+                                                <div class="col-md-7">
+                                                    <h4 class="text">Strategic Objective Name :</h4>
+                                                </div>
+                                                <div class="col-md-4" style="">
+                                                    {{-- <input type="text" value="{{$strategicObjective->name}}" style="width:80%;height:45px;" name="name" required /> --}}
+                                                    <h4 class="text">Strategic Objective Weight :</h4>
+                                                </div>                                                
+                                            </div>
+
+                                            @php
+                                                $incrementalNumberForStrategicObjectices = 0;
+                                            @endphp
+                                            @foreach ($strategicObjectives as $strategicObjectiveEditWeight)
+                                            
+
+
+                                            <div class="row">
+                                                <div class="col-md-1">
+                                                    {{++$incrementalNumberForStrategicObjectices}}
+                                                </div>
+                                                <div class="col-md-7">
+                                                    <h4 class="text">{{$strategicObjectiveEditWeight->name}}</h4>
+                                                </div>
+                                                <div class="col-md-4" style="">
+                                                    <input type="number" value="{{$strategicObjectiveEditWeight->weight}}" id="{{"strategicObjectiveWeight".$strategicObjective->id.$incrementalNumberForStrategicObjectices}}" style="width:80%;" step=".01" name="{{"strategicObjectiveWeight".$incrementalNumberForStrategicObjectices}}" required />
+                                                    <input type="hidden" name="{{"strategicObjectiveId".$incrementalNumberForStrategicObjectices}}" value="{{$strategicObjectiveEditWeight->id}}">
+                                                    {{-- <h4 class="text">{{$strategicObjectiveEditWeight->weight}}</h4> --}}
+
+                                                </div>                                                
+                                            </div>
+                                            @endforeach
+                                            <input type="hidden" name="numberOfStrategicObjectives"  id="{{"numberOfStrategicObjectives".$strategicObjective->id}}" value="{{$incrementalNumberForStrategicObjectices}}" id="numberOfStrategicObjectives">
                                         </div>
                                             <div class="modal-footer" style="background-color:#bbc1f5;"><button class="btn btn-danger" type="button" data-dismiss="modal"><strong>Close</strong></button><button class="btn btn-success" type="submit"><strong>Save</strong></button></div>
                                 </form>
@@ -237,7 +324,7 @@
                                         <h4 class="modal-title"><strong>Delete Strategic Objective: {{$strategicObjective->name}}</strong></h4>
                                     </div>
                                     <div class="modal-body" style="background-color:#f78686;">
-                                        <h3 class="text-center" style="color:white">Confirmation:: Are You Sure You Want To Delete The  Strategic Objective::: {{$strategicObjective->name}} ??</h3>
+                                        <h3 class="text-center" style="color:white">Confirmation:: Are You Sure You Want To Delete The  Strategic Objective::: {{$strategicObjective->name}} ??</h3>
                                     </div>
                                     <form action="{{"/deleteStrObjective/".$strategicObjective->id}}" method="POST">
                                         {{ csrf_field() }}
@@ -360,7 +447,6 @@
                                $increment3++;
                                $kpiId = $kpi->id;
                                $scoreRecordedNumberReturned = count($keyPerfomanceIndicatorsScores);
-
                               //!  getting the score of the particular strategic objective.
                                if(is_null($keyPerfomanceIndicatorsScores)){
                                 $score = 0;
@@ -528,7 +614,7 @@
                                 <h4 class="modal-title"><strong>Delete KPI: {{ str_replace("_", " ", $kpiModal->name)}} </strong></h4>
                             </div>
                             <div class="modal-body" style="background-color:#f78686;">
-                                <h3 class="text-center" style="color:white">Confirmation:: Are You Sure You Want To Delete The  KPI:: {{ str_replace("_", " ", $kpiModal->name)}} ??</h3>
+                                <h3 class="text-center" style="color:white">Confirmation:: Are You Sure You Want To Delete The  KPI:: {{ str_replace("_", " ", $kpiModal->name)}} ??</h3>
                                 <strong>All Entries From The past years will permanently be deleted.</strong>
                             </div>
                             <form action="{{"/deletingKPI/".$kpiModal->id}}" method="POST">

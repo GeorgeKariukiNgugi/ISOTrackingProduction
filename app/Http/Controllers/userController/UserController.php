@@ -583,7 +583,7 @@ class UserController extends Controller
 
     public function submittingNewKPIs(Request $request){
         // dd("cow");
-        // return "posting successfuly.";
+        return "posting successfuly.";
         $newKPIPerspective = $request->perpective;
         $newStrategicObjective = $request->strategicObjective;        
         $newKPIName = $request->kpiName;

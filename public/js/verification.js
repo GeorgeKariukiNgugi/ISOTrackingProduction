@@ -113,7 +113,7 @@ $(function () {
 
                                     $("#" + unmetTargetId + "").append(
                                         '<a href = "#" style = "color:red;" data-toggle="modal" data-target= "#' +
-                                        gettingModalName +
+                                        gettingModalName +gettingThevalue.substring(1)+
                                         '"> <i style = "font-size:20px;"class = "fa fa-times">   <b>NO</b> </i></a>'
                                     );
                                     // $(this).focus(); 
@@ -151,7 +151,7 @@ $(function () {
                                     $("#" + unmetTargetId + "").empty();
                                     $("#" + unmetTargetId + "").append(
                                         '<a href = "#" style = "color:red;" data-toggle="modal" data-target= "#' +
-                                        gettingModalName +
+                                        gettingModalName +gettingThevalue.substring(1)+
                                         '"> <i style = "font-size:20px;"class = "fa fa-times">   <b>NO</b> </i></a>'
                                     );
                                     console.log("these are the low era");
@@ -187,7 +187,7 @@ $(function () {
                                     $("#" + unmetTargetId + "").empty();
                                     $("#" + unmetTargetId + "").append(
                                         '<a href = "#" style = "color:red;" data-toggle="modal" data-target= "#' +
-                                        gettingModalName +
+                                        gettingModalName +gettingThevalue.substring(1)+
                                         '"> <i style = "font-size:20px;"class = "fa fa-times">   <b>NO</b> </i></a>'
                                     );
                                     $(this).css('background-color', '#fba7a7');
@@ -219,7 +219,7 @@ $(function () {
                                     $("#" + unmetTargetId + "").empty();
                                     $("#" + unmetTargetId + "").append(
                                         '<a href = "#" style = "color:red;" data-toggle="modal" data-target= "#' +
-                                        gettingModalName +
+                                        gettingModalName +gettingThevalue.substring(1)+
                                         '"> <i style = "font-size:20px;"class = "fa fa-times">   <b>NO</b> </i></a>'
                                     );
                                     console.log(id);
@@ -253,7 +253,7 @@ $(function () {
                                     $("#" + unmetTargetId + "").empty();
                                     $("#" + unmetTargetId + "").append(
                                         '<a href = "#" style = "color:red;" data-toggle="modal" data-target= "#' +
-                                        gettingModalName +
+                                        gettingModalName +gettingThevalue.substring(1)+
                                         '"> <i style = "font-size:20px;"class = "fa fa-times">   <b>NO</b> </i></a>'
                                     );
                                     // $(this).focus();
@@ -286,7 +286,7 @@ $(function () {
                                     $("#" + unmetTargetId + "").empty();
                                     $("#" + unmetTargetId + "").append(
                                         '<a href = "#" style = "color:red;" data-toggle="modal" data-target= "#' +
-                                        gettingModalName +
+                                        gettingModalName +gettingThevalue.substring(1)+
                                         '"> <i style = "font-size:20px;"class = "fa fa-times">   <b>NO</b> </i></a>'
                                     );
                                     // $(this).focus();
@@ -319,7 +319,7 @@ $(function () {
                                     $("#" + unmetTargetId + "").empty();
                                     $("#" + unmetTargetId + "").append(
                                         '<a href = "#" style = "color:red;" data-toggle="modal" data-target= "#' +
-                                        gettingModalName +
+                                        gettingModalName +gettingThevalue.substring(1)+
                                         '"> <i style = "font-size:20px;"class = "fa fa-times">   <b>NO</b> </i></a>'
                                     );
                                     // $(this).focus();

@@ -107,7 +107,12 @@ class LoginController extends Controller
                                            $perspectiveSumValue = 0;
                                            $particularPerspectiveValue =0;
                                            $perspectiveWeight = $perspective->weight;
-                                           $scores = StrategicObjectiveScore::where('perspective_id','=',$perspective->id)->get();
+                                        //    $strategicObjectives = StrategicObjective::where('perspective_id','=',$perspective->id)->get();
+
+                                           $scores = StrategicObjectiveScore::where('perspective_id','=',$perspective->id)
+                                                                                ->where('year','=',$activeYaer)
+                                                                                ->where('quater','=',$activeQuater)    
+                                                                                ->get();
                                            
                                            if(count($scores) == 0){
                                                $perspectiveValue = 0;
@@ -115,21 +120,31 @@ class LoginController extends Controller
                                            else{
                                                $scoresNumber = count($scores);
                                                // dd($scoresNumber);
+                                              
                                                foreach ($scores as $score) {
                                                    # code...
+                                                
+                                                   
+                                                   //! this section of the code is used to get the strategic objective. 
+                                                   $strategicObjectiveParticulates = StrategicObjective::where('id','=',$score->strategicObjective_id);
+                                                    foreach ($strategicObjectiveParticulates as $strategicObjectiveParticulate) {
+                                                        # code...
+                                                        $weight = $strategicObjectiveParticulate->weight;
+                                                    }
                                                    $perspectiveSumValue += $score->score;
+
                                                }                                
                                                $perspectiveAvgValue = $perspectiveSumValue / $scoresNumber;
-                                               $perspectiveValue = ($perspectiveAvgValue*$perspectiveWeight)/100;
+                                            //    $perspectiveValue = ($perspectiveAvgValue*$perspectiveWeight)/100;
                                                // dd($perspectiveValue);
                                                
                                            }
                                            
-                                           $programValue += $perspectiveValue;
+                                        //    $programValue += $perspectiveValue;
                                        }
                                        
                                        // dd($programValue);
-                                       array_push($programScores,$programValue);
+                                       array_push($programScores,$perspectiveAvgValue);
                                    }
                
                                    //!GETTING THE DATA THAT WILL BE USED TO GET THE NONCONFORMITIES.

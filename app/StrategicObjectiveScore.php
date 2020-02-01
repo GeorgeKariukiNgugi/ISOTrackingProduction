@@ -63,4 +63,9 @@ class StrategicObjectiveScore extends Model
         return $this->belongsTo(\App\StrategicObjectiveScore::class);
     }
 
+    public function strategicObjective()
+    {
+        return $this->belongsTo(\App\StrategicObjective::class);
+    }
+
 }

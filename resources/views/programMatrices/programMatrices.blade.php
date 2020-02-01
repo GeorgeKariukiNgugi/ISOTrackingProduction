@@ -195,8 +195,13 @@
                                 <div class="col-md-4" style="">
                                     {{-- <input type="text" value="{{$strategicObjective->name}}" style="width:80%;height:45px;" name="name" required /> --}}
                                     {{-- <h5 class="text">{{$strategicObjectiveforAddition->weight}}</h5> --}}
+<<<<<<< HEAD
                                     <input type="number" required id="{{"strategicObjectiveForAddition".$perspective->id.$incrementNo}}" name="{{"strategicObjectiveForAddition".$perspective->id.$incrementNo}}" value="{{$strategicObjectiveforAddition->weight}}">
                                     <input type="hidden" name="{{"strategicObjectiveForAddition".$perspective->id.$incrementNo}}" value="{{$strategicObjectiveforAddition->id}}">
+=======
+                                    <input type="number" required id="{{"strategicObjectiveForAddition".$perspective->id.$incrementNo}}" name="{{"WeightstrategicObjectiveForAddition".$perspective->id.$incrementNo}}" value="{{$strategicObjectiveforAddition->weight}}">
+                                    <input type="hidden"  value="{{$strategicObjectiveforAddition->id}} "                                name="{{"strategicObjectiveIdForAddition".$perspective->id.$incrementNo}}">
+>>>>>>> facf232a37b61f41266270a2aeef614621e891d5
                                 </div>                                                
                             </div> 
                             @endforeach
@@ -213,7 +218,6 @@
       @php
           $strategicObjectives = $perspective->strategicObjectives;
           $number = count($strategicObjectives);
-
       @endphp
 
       @if ($number < 1)
@@ -325,7 +329,7 @@
                                         <h4 class="modal-title"><strong>Delete Strategic Objective: {{$strategicObjective->name}}</strong></h4>
                                     </div>
                                     <div class="modal-body" style="background-color:#f78686;">
-                                        <h3 class="text-center" style="color:white">Confirmation:: Are You Sure You Want To Delete The  Strategic Objective::: {{$strategicObjective->name}} ??</h3>
+                                        <h3 class="text-center" style="color:white">Confirmation:: Are You Sure You Want To Delete The  Strategic Objective::: {{$strategicObjective->name}} ??</h3>
                                     </div>
                                     <form action="{{"/deleteStrObjective/".$strategicObjective->id}}" method="POST">
                                         {{ csrf_field() }}
@@ -448,7 +452,6 @@
                                $increment3++;
                                $kpiId = $kpi->id;
                                $scoreRecordedNumberReturned = count($keyPerfomanceIndicatorsScores);
-
                               //!  getting the score of the particular strategic objective.
                                if(is_null($keyPerfomanceIndicatorsScores)){
                                 $score = 0;
@@ -616,7 +619,7 @@
                                 <h4 class="modal-title"><strong>Delete KPI: {{ str_replace("_", " ", $kpiModal->name)}} </strong></h4>
                             </div>
                             <div class="modal-body" style="background-color:#f78686;">
-                                <h3 class="text-center" style="color:white">Confirmation:: Are You Sure You Want To Delete The  KPI:: {{ str_replace("_", " ", $kpiModal->name)}} ??</h3>
+                                <h3 class="text-center" style="color:white">Confirmation:: Are You Sure You Want To Delete The  KPI:: {{ str_replace("_", " ", $kpiModal->name)}} ??</h3>
                                 <strong>All Entries From The past years will permanently be deleted.</strong>
                             </div>
                             <form action="{{"/deletingKPI/".$kpiModal->id}}" method="POST">

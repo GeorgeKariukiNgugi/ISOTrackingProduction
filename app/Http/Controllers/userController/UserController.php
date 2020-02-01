@@ -222,7 +222,7 @@ class UserController extends Controller
                     ->where('keyPerfomanceIndicator_id','=',$idOfKPI)
                     ->where('quater','=','Q1')
                     ->get();
-
+                    $scoreFetched =0;
                     foreach($findingQ2Value as $Value){
                         $scoreFetched = $Value->score;
                     }
@@ -231,10 +231,12 @@ class UserController extends Controller
                     // dd($averageThatBecomesytd);
                 }
                 else if($prefixOfTheActiveQuater == 3){
+                    $scoreFetched = 0;
+                    $scoreFetched2=0;
 
                     $findingQ2Value = ScoreRecorded::where('year','=',$activeYaer)
                     ->where('keyPerfomanceIndicator_id','=',$idOfKPI)
-                    ->where('quater','=','Q2')
+                    ->where('quater','=','Q1')
                     ->get();
 
                     foreach($findingQ2Value as $Value){
@@ -251,15 +253,35 @@ class UserController extends Controller
                     $averageThatBecomesytd = ($score+$scoreFetched+$scoreFetched2);
                     dd($averageThatBecomesytd);
                 }else if($prefixOfTheActiveQuater == 4){
+                    $scoreFetched = 0;
+                    $scoreFetched2=0;
+                    $scoreFetched3 = 0;
+                    $findingQ2Value = ScoreRecorded::where('year','=',$activeYaer)
+                    ->where('keyPerfomanceIndicator_id','=',$idOfKPI)
+                    ->where('quater','=','Q1')
+                    ->get();
+
+                    foreach($findingQ2Value as $Value){
+                        $scoreFetched = $Value->score;
+                    }
+                    $findingQ1Value = ScoreRecorded::where('year','=',$activeYaer)
+                    ->where('keyPerfomanceIndicator_id','=',$idOfKPI)
+                    ->where('quater','=','Q2')
+                    ->get();
+
+                    foreach($findingQ2Value as $Value){
+                        $scoreFetched2 = $Value->score;
+                    }
+                    $averageThatBecomesytd = ($score+$scoreFetched+$scoreFetched2);
                     $findingQ2Value = ScoreRecorded::where('year','=',$activeYaer)
                     ->where('keyPerfomanceIndicator_id','=',$idOfKPI)
                     ->where('quater','=','Q3')
                     ->get();
 
                     foreach($findingQ2Value as $Value){
-                        $scoreFetched = $Value->score;
+                        $scoreFetched3 = $Value->score;
                     }
-                    $averageThatBecomesytd = ($score+$scoreFetched);
+                    // $averageThatBecomesytd = ($score+$scoreFetched);
                 }
 
             }

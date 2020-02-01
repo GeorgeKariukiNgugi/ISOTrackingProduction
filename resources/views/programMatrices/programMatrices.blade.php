@@ -195,13 +195,8 @@
                                 <div class="col-md-4" style="">
                                     {{-- <input type="text" value="{{$strategicObjective->name}}" style="width:80%;height:45px;" name="name" required /> --}}
                                     {{-- <h5 class="text">{{$strategicObjectiveforAddition->weight}}</h5> --}}
-<<<<<<< HEAD
-                                    <input type="number" required id="{{"strategicObjectiveForAddition".$perspective->id.$incrementNo}}" name="{{"strategicObjectiveForAddition".$perspective->id.$incrementNo}}" value="{{$strategicObjectiveforAddition->weight}}">
-                                    <input type="hidden" name="{{"strategicObjectiveForAddition".$perspective->id.$incrementNo}}" value="{{$strategicObjectiveforAddition->id}}">
-=======
                                     <input type="number" required id="{{"strategicObjectiveForAddition".$perspective->id.$incrementNo}}" name="{{"WeightstrategicObjectiveForAddition".$perspective->id.$incrementNo}}" value="{{$strategicObjectiveforAddition->weight}}">
                                     <input type="hidden"  value="{{$strategicObjectiveforAddition->id}} "                                name="{{"strategicObjectiveIdForAddition".$perspective->id.$incrementNo}}">
->>>>>>> facf232a37b61f41266270a2aeef614621e891d5
                                 </div>                                                
                             </div> 
                             @endforeach

@@ -9,7 +9,7 @@ $(function () {
         var alertName = "KPIalert" + slicedModalId;
 
         $.ajax({
-            url: "submittingKPI",
+            url: "/submittingKPI",
             method: "POST",
             data: new FormData(this),
             contentType: false,

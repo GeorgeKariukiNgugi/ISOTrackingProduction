@@ -302,7 +302,7 @@ class UserController extends Controller
                                 }
                     break;
                     case '4':
-                        if ($averageThatBecomesytd == 1) {
+                        if ($averageThatBecomesytd <= 1) {
                             # code...
                             $kpiScore = 100;
                         } else{
@@ -440,7 +440,7 @@ class UserController extends Controller
                 }
             }
             else{
-
+                $average = (($average/100)*$strategicObjectiveWeight);
                 $savingTheStrateicObjective = new StrategicObjectiveScore(
                                             array(
                                                 'strategicObjective_id'=>$strategicObjectiveIdFromForm,

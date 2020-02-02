@@ -101,18 +101,18 @@ class programTrend extends Controller
                 # code...
                 $strategicObjectivesSum  += $strategicObjective->score;
             }
-            $strateicObjectiveAverage= $strategicObjectivesSum/ count($gettingStrategicObjectivesOfRelatedPerspective);
+            // $strateicObjectiveAverage= $strategicObjectivesSum/ count($gettingStrategicObjectivesOfRelatedPerspective);
         }
         
         
         //!the next step is to get its equivalent score in telation to its weight.
 
-        $weight = $proramPersspective->weight;
-        $finalScore += ($strateicObjectiveAverage*$weight)/100;                
+        // $weight = $proramPersspective->weight;
+        // $finalScore += ($strateicObjectiveAverage*$weight)/100;                
 
         }  
-        array_push($quaterScoresPerProgramArray,$finalScore);
-        array_push($quaterScoresPerProgramArrayLineGraph,$finalScore);
+        array_push($quaterScoresPerProgramArray,$strategicObjectivesSum);
+        array_push($quaterScoresPerProgramArrayLineGraph,$strategicObjectivesSum);
         
         
     }  

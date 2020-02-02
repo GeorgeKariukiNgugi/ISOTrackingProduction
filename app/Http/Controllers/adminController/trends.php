@@ -449,7 +449,7 @@ class trends extends Controller
                                 
                                 if (count($gettingStrategicObjectivesOfRelatedPerspective) == 0) {
                                     # code...
-                                    $strateicObjectiveAverage +=1;
+                                    $strateicObjectiveAverage +=0;
                                 } else {
                                     # code...
                                     foreach ($gettingStrategicObjectivesOfRelatedPerspective as $strategicObjective) {

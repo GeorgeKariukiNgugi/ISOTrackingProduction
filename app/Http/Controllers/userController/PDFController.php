@@ -79,6 +79,7 @@ class PDFController extends Controller
                         // dd($trategicObjectiveScores);
                         foreach ($trategicObjectiveScores as $trategicObjectiveScore) {
                             # code...
+                            $finalSScore += $trategicObjectiveScore->score;
                             array_push($strategicObjectiveScoresArray,(($trategicObjectiveScore->score)/$strategicObjectiveWeight)*100);
                             
                             //!getting the final score that willl be displayed.
@@ -86,20 +87,20 @@ class PDFController extends Controller
                         }
                         
                     }
-                    // dd($strategicObjectivesSum);
-                    if (count($strategicObjectives) == 0) {
-                        # code...
-                        $divisor = 1;
-                    }
-                    else {
-                        $divisor = count($strategicObjectives);
-                    }
-                    $strateicObjectiveAverage = $strategicObjectivesSum/$divisor;
-                    // dd($strateicObjectiveAverage);
-                    $weight = $perspective->weight;
-                    $finalSScore += ($strateicObjectiveAverage*$weight)/100;
-                    // dd($finalSScore.' '.$weight);
-                    // $finalSScore += $strateicObjectiveAverage;
+                    // // dd($strategicObjectivesSum);
+                    // if (count($strategicObjectives) == 0) {
+                    //     # code...
+                    //     $divisor = 1;
+                    // }
+                    // else {
+                    //     $divisor = count($strategicObjectives);
+                    // }
+                    // $strateicObjectiveAverage = $strategicObjectivesSum/$divisor;
+                    // // dd($strateicObjectiveAverage);
+                    // $weight = $perspective->weight;
+                    // $finalSScore += ($strateicObjectiveAverage*$weight)/100;
+                    // // dd($finalSScore.' '.$weight);
+                    // // $finalSScore += $strateicObjectiveAverage;
                     
                 }
                 

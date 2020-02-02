@@ -218,6 +218,7 @@ class UserController extends Controller
                 } elseif($prefixOfTheActiveQuater == 2){
                     # code...
                     // $averageThatBecomesytd = 100;
+                dd("Done");
                     $findingQ2Value = ScoreRecorded::where('year','=',$activeYaer)
                     ->where('keyPerfomanceIndicator_id','=',$idOfKPI)
                     ->where('quater','=','Q1')

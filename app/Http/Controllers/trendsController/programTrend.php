@@ -275,7 +275,7 @@ class programTrend extends Controller
                                            $strateicObjectiveAverage +=0;
                                        } else {
                                            # code...
-                                           dd($gettingStrategicObjectivesOfRelatedPerspective);
+                                        //    dd($gettingStrategicObjectivesOfRelatedPerspective);
                                            foreach ($gettingStrategicObjectivesOfRelatedPerspective as $strategicObjective) {
                                                # code...
                                                
@@ -289,14 +289,14 @@ class programTrend extends Controller
                                                
                                                
                                            }
-                                           $strateicObjectiveAverage += $strategicObjectivesSum;                                    
+                                           $strateicObjectiveAverage += $strategicObjectivesSum/count(gettingStrategicObjectivesOfRelatedPerspective);                                    
                                        } 
                                          
                                    }
        
                                    
                                    //! number of programs that have the perapective. 
-                                //    dd($numberOfNonProrams);
+                                   dd($$strateicObjectiveAverage);
                                    array_push($storingArray,$strateicObjectiveAverage);
                                    array_push($storingLineArray,$strateicObjectiveAverage);
                                    

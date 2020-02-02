@@ -562,7 +562,7 @@ class trends extends Controller
                                     }
                                     $strateicObjectiveAverage += $strategicObjectivesSum/count($gettingStrategicObjectivesOfRelatedPerspective);                                    
                                 } 
-                                $strateicObjectiveAverage += $strateicObjectiveAverage/($strateicObjectiveAverage/$perspective->weight)*100;
+                                $strateicObjectiveAverage += ($strateicObjectiveAverage/$perspective->weight)*100;
                             }
 
                             

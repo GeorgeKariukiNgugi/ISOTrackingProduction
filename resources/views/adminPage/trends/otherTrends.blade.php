@@ -78,7 +78,7 @@
                   {{-- {{$scoresInPercentagesNamesIndex[$i] . '  '. round($scoresInPercentageIndex[$i],2)}}                   --}}
                   
               @endfor
-              {{$score}}
+              {{-- {{$score}} --}}
                 </b></span></h3>
               </div>
               <p style="color:red;font-size:13px;font-style:italic;"> <span> <b>Disclaimer</b> If The Sectors are less than 1% then the perspective has not been assesed for that quater.</span> </p>

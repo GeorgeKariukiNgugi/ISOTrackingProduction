@@ -169,7 +169,7 @@ class trends extends Controller
             $gettingStrategicObjectivesOfRelatedPerspective = StrategicObjectiveScore::where('perspective_id','=',$proramPersspective->id)->where('year','=',$activeYaer)->where('quater','=',$quater)->get();            
             if (count($gettingStrategicObjectivesOfRelatedPerspective) == 0) {
                 # code...
-                $strategicObjectivesSum =1;
+                $finalScore =1;
             } else {
                 # code...
                 foreach ($gettingStrategicObjectivesOfRelatedPerspective as $strategicObjective) {
@@ -236,21 +236,21 @@ class trends extends Controller
             $gettingStrategicObjectivesOfRelatedPerspective = StrategicObjectiveScore::where('perspective_id','=',$proramPersspective->id)->where('year','=',$activeYaer)->where('quater','=',$quater)->get();            
             if (count($gettingStrategicObjectivesOfRelatedPerspective) == 0) {
                 # code...
-                $finalScore =1;
+                $strateicObjectiveAverage =1;
             } else {
                 # code...
                 foreach ($gettingStrategicObjectivesOfRelatedPerspective as $strategicObjective) {
                     # code...
                     $strategicObjectivesSum  += $strategicObjective->score;
                 }
-                // $strateicObjectiveAverage= $strategicObjectivesSum/ count($gettingStrategicObjectivesOfRelatedPerspective);
+                $strateicObjectiveAverage= $strategicObjectivesSum/ count($gettingStrategicObjectivesOfRelatedPerspective);
             }
             
             
             //!the next step is to get its equivalent score in telation to its weight.
     
-            // $weight = $proramPersspective->weight;
-            $finalScore += strategicObjectivesSum;                
+            $weight = $proramPersspective->weight;
+            $finalScore += ($strateicObjectiveAverage*$weight)/100;                
 
             }  
             array_push($quaterScoresPerProgramArray,$finalScore);

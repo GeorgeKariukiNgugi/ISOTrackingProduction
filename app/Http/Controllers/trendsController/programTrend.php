@@ -256,11 +256,12 @@ class programTrend extends Controller
                                                             ->get();
        
                                $strateicObjectiveAverage = 0;
+                               $strategicObjectivesSum = 0;
                                $array = array();
                             //    dd($perspectives);
                                foreach ($perspectives as $perspective) {
                                    # code...
-                                   $strategicObjectivesSum = 0;
+                                   
                                    //! getting the strategic objective scores that match up to the strategic sjectives. 
                                    $gettingStrategicObjectivesOfRelatedPerspective = StrategicObjectiveScore::where('perspective_id','=',$perspective->id)
                                                                                                                ->where('year','=',$activeYaer)
@@ -277,17 +278,8 @@ class programTrend extends Controller
                                            # code...
                                         //    dd($gettingStrategicObjectivesOfRelatedPerspective);
                                            foreach ($gettingStrategicObjectivesOfRelatedPerspective as $strategicObjective) {
-                                               # code...
-                                               
-                                               $strategicObjectivesWeights = StrategicObjective::where('id','=',$strategicObjective->strategicObjective_id)->get();
-
-                                               foreach($strategicObjectivesWeights as $strategicObjectivesWeight){
-                                                        $weight = $strategicObjectivesWeight->weight;
-                                               }
-                                               
-                                               $strategicObjectivesSum  += ($strategicObjective->score);
-                                               
-                                               
+                                               # code...                                                                                              
+                                               $strategicObjectivesSum  += ($strategicObjective->score);                                                                                              
                                            }
                                            $strateicObjectiveAverage += $strategicObjectivesSum;                                    
                                        } 
@@ -296,7 +288,7 @@ class programTrend extends Controller
        
                                    
                                    //! number of programs that have the perapective. 
-                                   dd($strateicObjectiveAverage);
+                                //    dd($strateicObjectiveAverage);
                                    array_push($storingArray,$strateicObjectiveAverage);
                                    array_push($storingLineArray,$strateicObjectiveAverage);
                                    

@@ -277,7 +277,14 @@ class programTrend extends Controller
                                            # code...
                                            foreach ($gettingStrategicObjectivesOfRelatedPerspective as $strategicObjective) {
                                                # code...
-                                               $strategicObjectivesSum  += $strategicObjective->score;
+                                               $strategicObjectives = StrategicObjective::where('id','=',$strategicObjective->strategicObjective_id)->get();
+
+                                               foreach($strategicObjectives as $strategicObjective){
+                                                        $weight = $strategicObjective->weight;
+                                               }
+                                               
+                                               $strategicObjectivesSum  += ($strategicObjective->score/$weight)*100;
+                                               
                                                
                                            }
                                            $strateicObjectiveAverage += $strategicObjectivesSum/count($gettingStrategicObjectivesOfRelatedPerspective);                                    

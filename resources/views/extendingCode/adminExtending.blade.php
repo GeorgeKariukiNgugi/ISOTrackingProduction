@@ -187,22 +187,6 @@ desired effect
           </ul>
           
         </li>
-
-        <li class="treeview">
-          <a href="#"><i class="fa fa-history"></i> <span>Logs</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href = "/"> <i class="fa fa-history"></i> <span>User Logging In Logs.</span></a></li>
-            <li><a href = "/"> <i class="fa fa-history"></i>  <span>System Transaction Trends.</span></a></li>
-            {{-- <li><a href = "/"> <i class="fa fa-line-chart" ></i>  <span> Other Trends Observed.</span></a></li> --}}
-          </ul>
-        </li>
-        
-        {{-- <li><a href="#"><i class="fa fa-edit"></i> <span>User Manual </span></a></li> --}}
-        {{-- <li><a href="#"><i class="fa fa-video-camera"></i> <span>Video Sample</span></a></li> --}}
         <br>
         <li class="header" style="color:white;font-decoration:bold;">PROGRAMS.</li> 
         <br>

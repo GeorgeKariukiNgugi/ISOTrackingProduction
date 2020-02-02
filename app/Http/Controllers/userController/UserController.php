@@ -25,7 +25,7 @@ class UserController extends Controller
 {
     public function submittingKPIScores($quater,Request $request){        
 
-        dd($quater);
+        // dd($quater);
         // return "cow";
         //! getting the active year and active quater from the database.
         $activeYaerCollections = YearActive::where('Active','=',1)->get();
@@ -101,7 +101,7 @@ class UserController extends Controller
                         $scoreRecord->score= $score;
                         $scoreRecord->save();
                     }
-                    // return response()->json(['success'=>'Data Has Been Updated. '.$kpi->name]);
+                    return response()->json(['success'=>'Data Has Been Updated. '.$kpi->name]);
                 }
             }
             //! if no reasonable reason is found, then we can now insert the data into the scoresrecorded table. 

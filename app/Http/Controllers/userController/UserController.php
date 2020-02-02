@@ -172,7 +172,7 @@ class UserController extends Controller
             $averageThatBecomesytd = 0;
             //!getting the period of the kpi that is being asses.
             $period = $kpi->period;
-            
+            dd($period);
             if($period == 2){
 
                 if($prefixOfTheActiveQuater == 1){

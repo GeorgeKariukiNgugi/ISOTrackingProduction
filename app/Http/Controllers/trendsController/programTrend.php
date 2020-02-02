@@ -295,8 +295,8 @@ class programTrend extends Controller
                                    
                                    //! number of programs that have the perapective. 
                                 //    dd($numberOfNonProrams);
-                                   array_push($storingArray,$strateicObjectiveAverage/(count($programz)-$numberOfNonProrams));
-                                   array_push($storingLineArray,$strateicObjectiveAverage/(count($programz)-$numberOfNonProrams));
+                                   array_push($storingArray,$strateicObjectiveAverage);
+                                   array_push($storingLineArray,$strateicObjectiveAverage);
                                    
                            }
        

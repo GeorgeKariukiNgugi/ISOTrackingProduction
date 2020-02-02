@@ -59,7 +59,7 @@
                 <h3 class="box-title"> <span style="font-size:28px;font-family:Georgia, 'Times New Roman', Times, serif">{{ strtoupper($nameOfDoughnutChart) .'  '}}</span> <span><b style="font-size:28px;font-family:Verdana, Geneva, Tahoma, sans-serif">
                   {{-- {{ sprintf("%.2f", $average[$start])."%"}} --}}
 
-                  @for ($i = 0; $i < count($scoresInPercentageIndex); $i++)
+                  @for ($i = 0; $i < count($scoresInPercentages); $i++)
 
                   @php
                     $score += round($scoresInPercentages[$i],2) 

@@ -432,10 +432,11 @@ class trends extends Controller
                         $perspectives = Perspective::where('perspective_group','=',$i)                                                        
                                                         ->get();
 
-                        $strateicObjectiveAverage = 0;
+                        
                         $array = array();
                         foreach ($perspectives as $perspective) {
                             # code...
+                            $strateicObjectiveAverage = 0;
                             $strategicObjectivesSum = 0;
                             //! getting the strategic objective scores that match up to the strategic sjectives. 
                             $gettingStrategicObjectivesOfRelatedPerspective = StrategicObjectiveScore::where('perspective_id','=',$perspective->id)
@@ -448,7 +449,7 @@ class trends extends Controller
                                 
                                 if (count($gettingStrategicObjectivesOfRelatedPerspective) == 0) {
                                     # code...
-                                    $strategicObjectivesSum +=0;
+                                    $strateicObjectiveAverage +=1;
                                 } else {
                                     # code...
                                     foreach ($gettingStrategicObjectivesOfRelatedPerspective as $strategicObjective) {

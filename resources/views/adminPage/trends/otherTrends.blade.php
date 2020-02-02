@@ -62,7 +62,7 @@
                   @for ($i = 0; $i < count($scoresInPercentageIndex); $i++)
 
                   @php
-                    $score+= round($scoresInPercentageIndex[$i],2) 
+                    $score += round($scoresInPercentages[$i],2) 
                   @endphp
                   {{-- {{}}</b></span> </span> --}}
                   {{-- {{$scoresInPercentagesNamesIndex[$i] . '  '. round($scoresInPercentageIndex[$i],2)}}                   --}}

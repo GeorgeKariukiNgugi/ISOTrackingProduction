@@ -410,8 +410,8 @@
                                                 if ($nonConformity->quater == 'Q1') {
                                                   # code...
                                                   $quater1NC .= "Reason   :  :  ";
-                                                  $quater1NC .= "   ".$nonConformity->rootCause."";
-                                                  $quater1NC  .= "HOW To Fix Errors   :  :  ";   
+                                                  $quater1NC .= "   ".$nonConformity->rootCause."      ";
+                                                  $quater1NC  .= "   :  :  ";   
                                                   $quater1NC .= "".$nonConformity->correctiveAction.""; 
                                                                       
                           
@@ -419,19 +419,19 @@
                                                   # code...
                                                   $quater2NC .= "Reason   :  :  ";
                                                   $quater2NC .= "   ".$nonConformity->rootCause."    ";
-                                                  $quater2NC  .= "HOW To Fix Errors   :  :  ";   
+                                                  $quater2NC  .= "  :  :  ";   
                                                   $quater2NC .= "   ".$nonConformity->correctiveAction."   ";                        
                                                 } else if ($nonConformity->quater == 'Q3'){
                                                   # code...
                                                   $quater3NC .= "Reason   :  :  ";
-                                                  $quater3NC .= "".$nonConformity->rootCause."";
-                                                  $quater3NC  .= "HOW To Fix Errors   :  :  ";   
+                                                  $quater3NC .= "".$nonConformity->rootCause."      ";
+                                                  $quater3NC  .= "    :  :  ";   
                                                   $quater3NC .= "".$nonConformity->correctiveAction."";                        
                                                 }else if ($nonConformity->quater == 'Q4'){
                                                   # code...
                                                   $quater4NC .= "Reason   :  :  ";
-                                                  $quater4NC .= "".$nonConformity->rootCause."";
-                                                  $quater4NC  .= "HOW To Fix Errors   :  :  ";   
+                                                  $quater4NC .= "".$nonConformity->rootCause."       ";
+                                                  $quater4NC  .= "  :  :  ";   
                                                   $quater4NC .= "".$nonConformity->correctiveAction."";                        
                                                 }
                                                 

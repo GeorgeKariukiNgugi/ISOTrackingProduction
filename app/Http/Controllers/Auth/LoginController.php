@@ -115,7 +115,7 @@ class LoginController extends Controller
                                                                                 ->get();
                                            
                                            if(count($scores) == 0){
-                                               $perspectiveValue = 0;
+                                               $perspectiveAvgValue = 0;
                                            }
                                            else{
                                                $scoresNumber = count($scores);

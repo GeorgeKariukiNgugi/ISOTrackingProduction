@@ -95,7 +95,7 @@ class LoginController extends Controller
                                    //! THIS NEXT SECTION IS USED TO GET THE TOTAL SCORE OF THE PROGRAMS.
                                    foreach ($programs as $program) {
                                        $programValue = 0;
-                                       
+                                       $perspectiveAvgValue =0;
                                        array_push($programShorthand,$program->shortHand);
                                        array_push($programColors,$program->colorCode);
                                        array_push($programIds,$program->id);
@@ -121,22 +121,11 @@ class LoginController extends Controller
                                                $scoresNumber = count($scores);
                                                // dd($scoresNumber);
                                               
-                                               foreach ($scores as $score) {
-                                                   # code...
-                                                
-                                                   
-                                                   //! this section of the code is used to get the strategic objective. 
-                                                   $strategicObjectiveParticulates = StrategicObjective::where('id','=',$score->strategicObjective_id);
-                                                    foreach ($strategicObjectiveParticulates as $strategicObjectiveParticulate) {
-                                                        # code...
-                                                        $weight = $strategicObjectiveParticulate->weight;
-                                                    }
+                                               foreach ($scores as $score) {                                                  
                                                    $perspectiveSumValue += $score->score;
 
                                                }                                
-                                               $perspectiveAvgValue = $perspectiveSumValue / $scoresNumber;
-                                            //    $perspectiveValue = ($perspectiveAvgValue*$perspectiveWeight)/100;
-                                               // dd($perspectiveValue);
+                                               $perspectiveAvgValue = $perspectiveSumValue;                                          
                                                
                                            }
                                            

@@ -171,10 +171,11 @@ class UserController extends Controller
             }
             $averageThatBecomesytd = 0;
             //!getting the period of the kpi that is being asses.
+            $score = $request->$scoreInputName;
             $period = $kpi->period;
             // dd($period);
             if($period == 2){
-                dd($score);
+                // dd($score);
                 if($prefixOfTheActiveQuater == 1){
                     $averageThatBecomesytd = $score;
                 }
@@ -189,7 +190,7 @@ class UserController extends Controller
                     ->where('keyPerfomanceIndicator_id','=',$idOfKPI)
                     ->where('quater','=','Q1')
                     ->get();
-
+                    $q1Value = 0;
                     foreach($findingQ1Values as $findingQ1Value){
 
                         $q1Value = $findingQ1Value->score;
@@ -213,7 +214,7 @@ class UserController extends Controller
             }
             elseif($period == 1){
 
-                dd("iin");
+                // dd("iin");
                 if ($prefixOfTheActiveQuater == 1) {
                     # code...
                     $averageThatBecomesytd = $score;

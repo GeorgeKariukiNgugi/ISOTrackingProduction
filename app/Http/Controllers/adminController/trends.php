@@ -568,7 +568,7 @@ class trends extends Controller
                             
                             //! number of programs that have the perapective. 
                             
-                            array_push($storingArray,$strateicObjectiveAverage/$strateicObjectiveAverage);
+                            array_push($storingArray,$strateicObjectiveAverage);
                     }
 
                     // dd($storingArray);

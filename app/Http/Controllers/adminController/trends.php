@@ -236,7 +236,7 @@ class trends extends Controller
             $gettingStrategicObjectivesOfRelatedPerspective = StrategicObjectiveScore::where('perspective_id','=',$proramPersspective->id)->where('year','=',$activeYaer)->where('quater','=',$quater)->get();            
             if (count($gettingStrategicObjectivesOfRelatedPerspective) == 0) {
                 # code...
-                $finalScore =1;
+                $strategicObjectivesSum =1;
             } else {
                 # code...
                 foreach ($gettingStrategicObjectivesOfRelatedPerspective as $strategicObjective) {

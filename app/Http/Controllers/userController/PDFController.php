@@ -69,7 +69,9 @@ class PDFController extends Controller
                     //!getting the strategic objectives of the particular perspective. 
                     $strategicObjectives = StrategicObjective::where('perspective_id','=',$perspective->id)->get();
                     // dd($strategicObjectives);
+                    
                     foreach($strategicObjectives as $strategicObjective){
+                        $strategicObjectiveWeight = $strategicObjective->weight;
                         array_push($strategicObjectiveNameArray,$strategicObjective->name);
 
                         //!getting the rhyming strategic objective scores.
@@ -77,10 +79,10 @@ class PDFController extends Controller
                         // dd($trategicObjectiveScores);
                         foreach ($trategicObjectiveScores as $trategicObjectiveScore) {
                             # code...
-                            array_push($strategicObjectiveScoresArray,$trategicObjectiveScore->score);
+                            array_push($strategicObjectiveScoresArray,(($trategicObjectiveScore->score)/$strategicObjectiveWeight)*100);
                             
                             //!getting the final score that willl be displayed.
-                            $strategicObjectivesSum += $trategicObjectiveScore->score;
+                            $strategicObjectivesSum += (($trategicObjectiveScore->score)/$strategicObjectiveWeight)*100;
                         }
                         
                     }

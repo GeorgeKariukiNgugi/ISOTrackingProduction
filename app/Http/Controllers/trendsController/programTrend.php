@@ -277,6 +277,7 @@ class programTrend extends Controller
                                            # code...
                                            foreach ($gettingStrategicObjectivesOfRelatedPerspective as $strategicObjective) {
                                                # code...
+                                               echo $strategicObjective;
                                                $strategicObjectivesWeights = StrategicObjective::where('id','=',$strategicObjective->strategicObjective_id)->get();
 
                                                foreach($strategicObjectivesWeights as $strategicObjectivesWeight){
@@ -300,7 +301,7 @@ class programTrend extends Controller
                                    
                            }
        
-                           dd($storingArray);
+                        //    dd($storingArray);
        
                            switch ($perspective->perspective_group) {
                                case 1:

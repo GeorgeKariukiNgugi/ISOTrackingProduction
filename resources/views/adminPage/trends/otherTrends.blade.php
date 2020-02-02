@@ -32,7 +32,7 @@
               $nameOfDoughnutChart = 'Customer Perspetive';
           break;
           case 3: 
-              $nameOfDoughnutChart = 'Inernel Business Perspective';
+              $nameOfDoughnutChart = 'Inernel Business Process Perspective';
           break;
           case 4:  
               $nameOfDoughnutChart = 'Learning And Growth Perspetive';

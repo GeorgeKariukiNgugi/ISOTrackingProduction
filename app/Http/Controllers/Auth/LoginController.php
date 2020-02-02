@@ -115,17 +115,17 @@ class LoginController extends Controller
                                                                                 ->get();
                                            
                                            if(count($scores) == 0){
-                                               $perspectiveAvgValue = 0;
+                                               $programValue = 0;
                                            }
                                            else{
                                                $scoresNumber = count($scores);
                                                // dd($scoresNumber);
                                               
                                                foreach ($scores as $score) {                                                  
-                                                   $perspectiveSumValue += $score->score;
+                                                   $programValue += $score->score;
 
                                                }                                
-                                               $perspectiveAvgValue = $perspectiveSumValue;                                          
+                                            //    $perspectiveAvgValue = $perspectiveSumValue;                                          
                                                
                                            }
                                            
@@ -133,7 +133,7 @@ class LoginController extends Controller
                                        }
                                        
                                        // dd($programValue);
-                                       array_push($programScores,$perspectiveAvgValue);                    
+                                       array_push($programScores,$programValue);                    
                                    }
                
                                    //!GETTING THE DATA THAT WILL BE USED TO GET THE NONCONFORMITIES.

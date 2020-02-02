@@ -277,10 +277,10 @@ class programTrend extends Controller
                                            # code...
                                            foreach ($gettingStrategicObjectivesOfRelatedPerspective as $strategicObjective) {
                                                # code...
-                                               $strategicObjectives = StrategicObjective::where('id','=',$strategicObjective->strategicObjective_id)->get();
+                                               $strategicObjectivesWeights = StrategicObjective::where('id','=',$strategicObjective->strategicObjective_id)->get();
 
-                                               foreach($strategicObjectives as $strategicObjective){
-                                                        $weight = $strategicObjective->weight;
+                                               foreach($strategicObjectivesWeights as $strategicObjectivesWeight){
+                                                        $weight = $strategicObjectivesWeight->weight;
                                                }
                                                
                                                $strategicObjectivesSum  += ($strategicObjective->score/$weight)*100;
@@ -300,7 +300,7 @@ class programTrend extends Controller
                                    
                            }
        
-                           // dd($storingArray);
+                           dd($storingArray);
        
                            switch ($perspective->perspective_group) {
                                case 1:

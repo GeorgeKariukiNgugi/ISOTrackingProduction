@@ -150,7 +150,7 @@ class UserController extends Controller
                 $savingTheScoresRecorded->save();
                 // activity()->log('Scores Recorded By   '.Auth::user()->email); 
             }
-            dd("in kpi scores.");
+            // dd("in kpi scores.");
             //? THE FOLLOWING STEP IS FOR ADDING THE DATA TO THE KEY PERFOMANCE INDICATORS SCORES TABLE.
             //! selecting all the records from the scores recorded with a particular kpiId and also the same year. 
             $allKPIScoresWithSameYear = ScoreRecorded::where('year','=',$activeYaer)

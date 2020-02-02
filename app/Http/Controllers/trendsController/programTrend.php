@@ -283,6 +283,8 @@ class programTrend extends Controller
                                            }
                                            $strateicObjectiveAverage += $strategicObjectivesSum;                                    
                                        } 
+
+                                       $strateicObjectiveAverage = ($strateicObjectiveAverage/$perspective->weight)*100;
                                          
                                    }
        

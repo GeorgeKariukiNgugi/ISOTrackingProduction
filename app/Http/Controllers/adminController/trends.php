@@ -448,24 +448,25 @@ class trends extends Controller
                                 
                                 if (count($gettingStrategicObjectivesOfRelatedPerspective) == 0) {
                                     # code...
-                                    $strateicObjectiveAverage +=0;
+                                    $strategicObjectivesSum +=0;
                                 } else {
                                     # code...
                                     foreach ($gettingStrategicObjectivesOfRelatedPerspective as $strategicObjective) {
                                         # code...
-                                        $strategicObjectivesSum  += $strategicObjective->score;
-                                        
+                                        $strategicObjectivesSum  += $strategicObjective->score; 
                                     }
-                                    $strateicObjectiveAverage += $strategicObjectivesSum/count($gettingStrategicObjectivesOfRelatedPerspective);                                    
+                                    $strateicObjectiveAverage += $strategicObjectivesSum; 
+                                                                        
                                 } 
-                                  
+                                
+                                    $strateicObjectiveAverage += ($strateicObjectiveAverage/$perspective->weight)*100;
                             }
 
                             
                             //! number of programs that have the perapective. 
                             
-                            array_push($storingArray,$strateicObjectiveAverage/(count($programs)-$numberOfNonProrams));
-                            array_push($storingLineArray,$strateicObjectiveAverage/(count($programs)-$numberOfNonProrams));
+                            array_push($storingArray,$strateicObjectiveAverage);
+                            array_push($storingLineArray,$strateicObjectiveAverage);
                             
                     }
 

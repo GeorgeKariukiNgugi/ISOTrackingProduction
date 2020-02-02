@@ -144,7 +144,7 @@ class LoginController extends Controller
                                        }
                                        
                                        // dd($programValue);
-                                       array_push($programScores,$perspectiveAvgValue);
+                                       array_push($programScores,$perspectiveAvgValue);                    
                                    }
                
                                    //!GETTING THE DATA THAT WILL BE USED TO GET THE NONCONFORMITIES.

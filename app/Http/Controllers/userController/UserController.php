@@ -101,10 +101,11 @@ class UserController extends Controller
                         $scoreRecord->score= $score;
                         $scoreRecord->save();
                     }
-                    return response()->json(['success'=>'Data Has Been Updated. '.$kpi->name]);
+                    // return response()->json(['success'=>'Data Has Been Updated. '.$kpi->name]);
                 }
             }
             //! if no reasonable reason is found, then we can now insert the data into the scoresrecorded table. 
+            dd("out.");
             $prefixOfTheActiveQuater = substr($activeQuater,1);
             $scoreInputName = "Quater".$prefixOfTheActiveQuater.$idOfKPI;
             // dd($scoreInputName);

@@ -13,27 +13,25 @@ $(function () {
     var quatersSelected = $("input[id ^='Quater']");
 
     quatersSelected.focusout(function () {
-        console.log("This is the active quater.    " + $('#activeQuaterForVerification').val() + "    end");
-        // console.log(gettingTheQuaterNumber + "This is the quater.");
-        // console.log("THIS IS THE QUATER THAT I NEED TO VALIDATE.   " + activeQuater + "This is also the quater that we need " + gettingTheQuaterNumber);
+       
         var id = $(this).attr("id");
-        // console.log("This is the ID of the input.".id);
+       
         var slicedId = id.substring(7);
         var strategicObjectiveId = $(this).closest('div').parent().attr('id');
         var gettingThevalue = $("#activeQuater" + strategicObjectiveId).val();
         var newIdToCheck = 'Quater' + gettingThevalue.substring(1) + slicedId;
         var gettingTheQuaterNumber = gettingThevalue.substring(1);
-        console.log("The getting quater number is: "+ gettingTheQuaterNumber);
-        console.log("The strategic objective id is:  " + $(this).closest('div').parent().attr('id'));
-        console.log("This is the Old ID.   " + id);
-        console.log("This is the new Id.  " + newIdToCheck);
+        // console.log("The getting quater number is: "+ gettingTheQuaterNumber);
+        // console.log("The strategic objective id is:  " + $(this).closest('div').parent().attr('id'));
+        // console.log("This is the Old ID.   " + id);
+        // console.log("This is the new Id.  " + newIdToCheck);
         if (id !== newIdToCheck) {
-            console.log("The Id does Not Match.  " + id + '  ' + newIdToCheck);
+            // console.log("The Id does Not Match.  " + id + '  ' + newIdToCheck);
         } else {
 
-            console.log("The ID is matching  " + id + '  ' + newIdToCheck);
+            // console.log("The ID is matching  " + id + '  ' + newIdToCheck);
 
-            console.log($(this).closest('div').parent().attr('id') + "  This is the parent ID.");
+            // console.log($(this).closest('div').parent().attr('id') + "  This is the parent ID.");
 
             var getTargetIdName = "target" + slicedId;
             var targetValue = $("#" + getTargetIdName).text();
@@ -43,41 +41,111 @@ $(function () {
             var period = $("#period" + slicedId).val();
             // console.log(period + "  " + slicedId)
             var nonConFlagName = "nonConformityFlag" + slicedId;
+            var inputText = $(this);
+
+            function validationOfSpecial() {
+                
+                var arithmeticStructure = $("#arithmeticStructure" + slicedId);
+                var arithmeticStructureValue = parseFloat(arithmeticStructure.val());
+
+                inputValue = parseFloat(inputValue, 10);
+                targetValue = parseFloat(targetValue, 10);
+
+                $("#" + nonConFlagName).val(0);
+                $("#" + unmetTargetId + "").empty();
+
+                if (inputValue === null) {
+                    console.log("The value is null.");
+                    $("#" + unmetTargetId + "").empty();
+                } else {
+                    if (inputValue === "") {
+                        console.log("The value is blank.");
+                        $("#" + unmetTargetId + "").empty();
+                    } else {
+
+                        switch (arithmeticStructureValue) {
+                            case 0:
+                                var gettingModalName = "modal" + slicedId;
+                                var unmetTargetId = "unmetTargetComment" + slicedId;
+                                var nonConformityFlag = "nonConformityFlag" + slicedId;
+                                if (inputValue > targetValue) {
+                                    
+                                    $("#" + nonConformityFlag + "").val(1);
+
+                                    console.log($("#" + nonConformityFlag + "").val());
+                                    $("#" + unmetTargetId + "").empty();
+
+                                    $("#" + unmetTargetId + "").append(
+                                        '<i style = "font-size:20px;color:orange;"class = "fa fa-star-half-o">   <b></b> </i></a>'
+                                    );
+                                    inputText.css('background-color', 'orange');
+
+                                } else {
+                                    // !setting the flag to a negative.
+                                    $("#" + nonConformityFlag + "").val(0);
+                                    console.log($("#" + nonConformityFlag + "").val());
+                                    console.log(typeof inputValue + "  This is the data type.");
+                                    console.log("0 IT GOOD.");
+                                    $("#" + unmetTargetId + "").empty();
+                                    $("#" + unmetTargetId + "").append(
+                                        '<p style = "color:green;"> <i style = "font-size:20px;" class = "fa fa-check">   <b>YES</b> </i></p>'
+                                    );
+                                    inputText.css('background-color', '#cfeda8');
+
+
+                                }
+                                break;
+                                case 1:
+                                var gettingModalName = "modal" + slicedId;
+                                var unmetTargetId = "unmetTargetComment" + slicedId;
+                                var nonConformityFlag = "nonConformityFlag" + slicedId;
+                                if (inputValue < targetValue) {
+                                    
+                                    $("#" + nonConformityFlag + "").val(1);
+                                    var flag = $("#" + nonConformityFlag + "").val();
+                                    console.log("The flag is:" + flag);
+
+                                    $("#" + unmetTargetId + "").empty();
+
+                                    $("#" + unmetTargetId + "").append(
+                                        '<i style = "font-size:20px;color:orange;"class = "fa fa-star-half-o">   <b></b> </i></a>'
+                                    );
+                                    inputText.css('background-color', 'orange');
+
+                                    // $(this).focus();
+                                } else {
+                                    console.log("1 IT GOOD.");
+                                    console.log(typeof inputValue + "  This is the data type.");
+                                    // !setting the flag to a negative.
+                                    $("#" + nonConformityFlag + "").val(0);
+                                    console.log($("#" + nonConformityFlag + "").val());
+
+                                    $("#" + unmetTargetId + "").empty();
+                                    $("#" + unmetTargetId + "").append(
+                                        '<p style = "color:green;"> <i style = "font-size:20px;" class = "fa fa-check">   <b>YES</b> </i></p>'
+                                    );
+                                    inputText.css('background-color', '#cfeda8');
+                                }
+                                    break;
+                        
+                            default:
+                                break;
+                        }
+                    }
+                
+            }
+            }
+
             if (period == 2 && gettingTheQuaterNumber == 1) {
-                $("#" + nonConFlagName).val(0);
-                $("#" + unmetTargetId + "").empty();
-                $("#" + unmetTargetId + "").append(
-                    '<i style = "font-size:20px;color:orange;"class = "fa fa-star-half-o">   <b></b> </i></a>'
-                );
-                $(this).css('background-color', 'orange');
-            } else if (period == 2 && gettingTheQuaterNumber == 3) {
-                $("#" + nonConFlagName).val(0);
-                $("#" + unmetTargetId + "").empty();
-                $("#" + unmetTargetId + "").append(
-                    '<i style = "font-size:20px;color:orange;"class = "fa fa-star-half-o">   <b></b> </i></a>'
-                );
-                $(this).css('background-color', 'orange');
+                validationOfSpecial();
+            } else if (period == 2 && gettingTheQuaterNumber == 3) {                
+                validationOfSpecial();
             } else if (period == 1 && gettingTheQuaterNumber == 1) {
-                $("#" + nonConFlagName).val(0);
-                $("#" + unmetTargetId + "").empty();
-                $("#" + unmetTargetId + "").append(
-                    '<i style = "font-size:20px;color:orange;"class = "fa fa-star-half-o">   <b></b> </i></a>'
-                );
-                $(this).css('background-color', 'orange');
+                validationOfSpecial();
             } else if (period == 1 && gettingTheQuaterNumber == 2) {
-                $("#" + nonConFlagName).val(0);
-                $("#" + unmetTargetId + "").empty();
-                $("#" + unmetTargetId + "").append(
-                    '<i style = "font-size:20px;color:orange;"class = "fa fa-star-half-o">   <b></b> </i></a>'
-                );
-                $(this).css('background-color', 'orange');
+                validationOfSpecial();
             } else if (period == 1 && gettingTheQuaterNumber == 3) {
-                $("#" + nonConFlagName).val(0);
-                $("#" + unmetTargetId + "").empty();
-                $("#" + unmetTargetId + "").append(
-                    '<i style = "font-size:20px;color:orange;"class = "fa fa-star-half-o">   <b></b> </i></a>'
-                );
-                $(this).css('background-color', 'orange');
+                validationOfSpecial();
             } else {
                 if (inputValue === null) {
                     console.log("The value is null.");

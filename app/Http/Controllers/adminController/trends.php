@@ -368,10 +368,11 @@ class trends extends Controller
                                     # code...
                                     $strategicObjectivesSum  += $strategicObjective->score;
                                 }
-                                $strateicObjectiveAverage= $strategicObjectivesSum/ count($gettingStrategicObjectivesOfRelatedPerspective);
+                                $strateicObjectiveAverage= $strategicObjectivesSum;
                             }
-                            $weight = $proramPersspective->weight;
-                            $finalScore += $strateicObjectiveAverage;
+                            // $weight = $proramPersspective->weight;
+                            // $strateicObjectiveAverage = ($strateicObjectiveAverage/$proramPersspective->weight)*100;
+                            $finalScore += ($strateicObjectiveAverage/$proramPersspective->weight)*100;
                             // ($strateicObjectiveAverage*$weight)/100;
 
                         }

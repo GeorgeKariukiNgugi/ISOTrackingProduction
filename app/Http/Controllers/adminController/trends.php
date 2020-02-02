@@ -456,7 +456,7 @@ class trends extends Controller
                                         # code...
                                         $strategicObjectivesSum  += $strategicObjective->score; 
                                     }
-                                    $strateicObjectiveAverage += $strategicObjectivesSum; 
+                                    $strateicObjectiveAverage += $strategicObjectivesSum/count($gettingStrategicObjectivesOfRelatedPerspective); 
                                                                         
                                 } 
                                 

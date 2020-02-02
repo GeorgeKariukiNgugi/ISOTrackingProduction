@@ -277,7 +277,7 @@ class programTrend extends Controller
                                            # code...
                                            foreach ($gettingStrategicObjectivesOfRelatedPerspective as $strategicObjective) {
                                                # code...
-                                               echo $strategicObjective;
+                                               dd($strategicObjective);
                                                $strategicObjectivesWeights = StrategicObjective::where('id','=',$strategicObjective->strategicObjective_id)->get();
 
                                                foreach($strategicObjectivesWeights as $strategicObjectivesWeight){

@@ -562,13 +562,13 @@ class trends extends Controller
                                     }
                                     $strateicObjectiveAverage += $strategicObjectivesSum/count($gettingStrategicObjectivesOfRelatedPerspective);                                    
                                 } 
-                                  
+                                $strateicObjectiveAverage += $strateicObjectiveAverage/($strateicObjectiveAverage/$perspective->weight)*100;
                             }
 
                             
                             //! number of programs that have the perapective. 
                             
-                            array_push($storingArray,$strateicObjectiveAverage/(count($programs)-$numberOfNonProrams));
+                            array_push($storingArray,$strateicObjectiveAverage/$strateicObjectiveAverage);
                     }
 
                     // dd($storingArray);

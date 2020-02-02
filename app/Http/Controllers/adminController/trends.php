@@ -228,9 +228,9 @@ class trends extends Controller
                 $proramPersspectives = Perspective::where('program_id','=',$program->id)->get();                
                 $finalScore = 0;
                 $track = 0;
-                $strategicObjectivesSum = 0;
+                
         foreach ($proramPersspectives as $proramPersspective) {
-            
+            $strategicObjectivesSum = 0;
             $strateicObjectiveAverage = 0;
             $track++;
             //!the next step is to get the strateic objectives of the reated perspective. 
@@ -251,7 +251,7 @@ class trends extends Controller
             //!the next step is to get its equivalent score in telation to its weight.
     
             // $weight = $proramPersspective->weight;
-            $finalScore += strategicObjectivesSum;
+            $finalScore += $strategicObjectivesSum;
 
             }  
             array_push($quaterScoresPerProgramArray,$finalScore);

@@ -275,9 +275,10 @@ class programTrend extends Controller
                                            $strateicObjectiveAverage +=0;
                                        } else {
                                            # code...
+                                           dd($gettingStrategicObjectivesOfRelatedPerspective);
                                            foreach ($gettingStrategicObjectivesOfRelatedPerspective as $strategicObjective) {
                                                # code...
-                                               dd($strategicObjective);
+                                               
                                                $strategicObjectivesWeights = StrategicObjective::where('id','=',$strategicObjective->strategicObjective_id)->get();
 
                                                foreach($strategicObjectivesWeights as $strategicObjectivesWeight){

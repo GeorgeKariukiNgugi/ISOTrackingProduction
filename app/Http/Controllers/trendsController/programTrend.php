@@ -91,7 +91,10 @@ class programTrend extends Controller
         $strateicObjectiveAverage = 0;
         $track++;
         //!the next step is to get the strateic objectives of the reated perspective. 
-        $gettingStrategicObjectivesOfRelatedPerspective = StrategicObjectiveScore::where('perspective_id','=',$proramPersspective->id)->where('year','=',$activeYaer)->where('quater','=',$quater)->get();            
+        $gettingStrategicObjectivesOfRelatedPerspective = StrategicObjectiveScore::where('perspective_id','=',$proramPersspective->id)
+                                                                                    ->where('year','=',$activeYaer)
+                                                                                    ->where('quater','=',$quater)
+                                                                                    ->get();            
         if (count($gettingStrategicObjectivesOfRelatedPerspective) == 0) {
             # code...
             $strateicObjectiveAverage =1;
@@ -99,7 +102,7 @@ class programTrend extends Controller
             # code...
             foreach ($gettingStrategicObjectivesOfRelatedPerspective as $strategicObjective) {
                 # code...
-                $strategicObjectivesSum  += $strategicObjective->score;
+                $finalScore  += $strategicObjective->score;
             }
             // $strateicObjectiveAverage= $strategicObjectivesSum/ count($gettingStrategicObjectivesOfRelatedPerspective);
         }
@@ -111,8 +114,8 @@ class programTrend extends Controller
         // $finalScore += ($strateicObjectiveAverage*$weight)/100;                
 
         }  
-        array_push($quaterScoresPerProgramArray,$strategicObjectivesSum);
-        array_push($quaterScoresPerProgramArrayLineGraph,$strategicObjectivesSum);
+        array_push($quaterScoresPerProgramArray,$finalScore);
+        array_push($quaterScoresPerProgramArrayLineGraph,$finalScore);
         
         
     }  

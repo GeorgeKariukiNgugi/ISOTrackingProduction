@@ -105,7 +105,7 @@ class UserController extends Controller
                 }
             }
             //! if no reasonable reason is found, then we can now insert the data into the scoresrecorded table. 
-            dd("out.");
+            // dd("out.");
             $prefixOfTheActiveQuater = substr($activeQuater,1);
             $scoreInputName = "Quater".$prefixOfTheActiveQuater.$idOfKPI;
             // dd($scoreInputName);
@@ -150,7 +150,7 @@ class UserController extends Controller
                 $savingTheScoresRecorded->save();
                 // activity()->log('Scores Recorded By   '.Auth::user()->email); 
             }
-            
+            dd("in kpi scores.");
             //? THE FOLLOWING STEP IS FOR ADDING THE DATA TO THE KEY PERFOMANCE INDICATORS SCORES TABLE.
             //! selecting all the records from the scores recorded with a particular kpiId and also the same year. 
             $allKPIScoresWithSameYear = ScoreRecorded::where('year','=',$activeYaer)

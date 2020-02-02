@@ -287,7 +287,7 @@ class programTrend extends Controller
                                                
                                                
                                            }
-                                           $strateicObjectiveAverage += $strategicObjectivesSum/count($gettingStrategicObjectivesOfRelatedPerspective);                                    
+                                           $strateicObjectiveAverage += $strategicObjectivesSum;                                    
                                        } 
                                          
                                    }

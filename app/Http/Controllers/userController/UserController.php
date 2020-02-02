@@ -212,13 +212,14 @@ class UserController extends Controller
             }
             elseif($period == 1){
 
+                dd("iin");
                 if ($prefixOfTheActiveQuater == 1) {
                     # code...
                     $averageThatBecomesytd = $score;
                 } elseif($prefixOfTheActiveQuater == 2){
                     # code...
                     // $averageThatBecomesytd = 100;
-                dd("Done");
+                
                     $findingQ2Value = ScoreRecorded::where('year','=',$activeYaer)
                     ->where('keyPerfomanceIndicator_id','=',$idOfKPI)
                     ->where('quater','=','Q1')

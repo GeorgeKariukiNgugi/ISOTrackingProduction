@@ -824,7 +824,7 @@ class UserController extends Controller
                                                                                  ->get();
         if (count($gettingStrategicObjectivesOfRelatedPerspective) == 0) {
             # code...
-            $strateicObjectiveAverage =0;
+            $finalScore =1;
         } else {
             # code...
             foreach ($gettingStrategicObjectivesOfRelatedPerspective as $strategicObjective) {

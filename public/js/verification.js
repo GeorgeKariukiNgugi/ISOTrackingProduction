@@ -70,7 +70,7 @@ $(function () {
                                 var nonConformityFlag = "nonConformityFlag" + slicedId;
                                 if (inputValue > targetValue) {
                                     
-                                    $("#" + nonConformityFlag + "").val(1);
+                                    // $("#" + nonConformityFlag + "").val(1);
 
                                     console.log($("#" + nonConformityFlag + "").val());
                                     $("#" + unmetTargetId + "").empty();
@@ -79,7 +79,7 @@ $(function () {
                                         '<i style = "font-size:20px;color:orange;"class = "fa fa-star-half-o">   <b></b> </i></a>'
                                     );
                                     inputText.css('background-color', 'orange');
-
+                                    $("#" + nonConformityFlag + "").val(0);
                                 } else {
                                     // !setting the flag to a negative.
                                     $("#" + nonConformityFlag + "").val(0);
@@ -92,7 +92,7 @@ $(function () {
                                     );
                                     inputText.css('background-color', '#cfeda8');
 
-
+                                    $("#" + nonConformityFlag + "").val(0);
                                 }
                                 break;
                                 case 1:
@@ -101,7 +101,7 @@ $(function () {
                                 var nonConformityFlag = "nonConformityFlag" + slicedId;
                                 if (inputValue < targetValue) {
                                     
-                                    $("#" + nonConformityFlag + "").val(1);
+                                    $("#" + nonConformityFlag + "").val(0);
                                     var flag = $("#" + nonConformityFlag + "").val();
                                     console.log("The flag is:" + flag);
 

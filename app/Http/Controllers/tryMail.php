@@ -35,6 +35,7 @@ class tryMail extends Controller
 			}
 
 			$assesorProgramArray = 'gkngugi@safaricom.co.ke';
+			$nonConformities = "data.";
 		Mail::to($assesorProgramArray)->send(new TestMail($nonConformities));
         // return "sent.";
 			}

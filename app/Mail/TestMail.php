@@ -32,8 +32,8 @@ class TestMail extends Mailable
     {
         $this->withSwiftMessage(function ($message) {
             $message->getHeaders()
-                    ->addTextHeader('This is the header', 'This is the header Value.');
+                    ->addTextHeader('This is the header', 'This is the header');
         });
-        return $this->view('email.testemail');
+        return $this->markdown('email.testemail');
     }
 }

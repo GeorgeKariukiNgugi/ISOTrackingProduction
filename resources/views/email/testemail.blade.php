@@ -7,6 +7,7 @@ The body of your message.
 Button Text
 @endcomponent
 
+{{$nonConformities}}
 @component('mail::panel')
 This is the panel content.
 @endcomponent

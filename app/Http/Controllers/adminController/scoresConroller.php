@@ -26,13 +26,13 @@ class scoresConroller extends Controller
         $keyPerfomanceIndicatorsScores = KeyPerfomanceIndicatorScore::all();
         foreach($activeYaerCollections as $activeYaerCollection){
             $activeYaer = $activeYaerCollection->Year;
-            // dd($activeYaer);
+            
         }
 
         $activeQuaterCollections = QuaterActive::where('Active','=',1)->get();
         foreach($activeQuaterCollections as $activeQuaterCollection){
             $activeQuater = $activeQuaterCollection->Quater;
-            // dd($activeQuater);
+            
         }
 
         //!GETTING THE SCORES PER QUATER.

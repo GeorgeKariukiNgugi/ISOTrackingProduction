@@ -64,7 +64,7 @@ class programDetails extends Controller
 
         $image = $request->image;
         $color = $request->color;
-        // dd($color);
+        
         if ($request->hasFile('image')) {        
             $fileFullName = $request->image->getClientOriginalName();         
             $fileNameWithoutExtension = pathinfo($request->image->getClientOriginalName(), PATHINFO_FILENAME);

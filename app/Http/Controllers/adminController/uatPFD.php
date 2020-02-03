@@ -22,7 +22,7 @@ class uatPFD extends Controller
             $nameOfFile = $programDetail->shortHand;
         }
         $pdfNames = $nameOfFile;
-        // $pdf->save('reports/'.$pdfNames);        
+             
         return $pdf->download($pdfNames);
 
     }

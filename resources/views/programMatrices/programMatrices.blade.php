@@ -192,9 +192,7 @@
                                 <div class="col-md-7">
                                     <h5 class="text">{{$strategicObjectiveforAddition->name}}</h5>
                                 </div>
-                                <div class="col-md-4" style="">
-                                    {{-- <input type="text" value="{{$strategicObjective->name}}" style="width:80%;height:45px;" name="name" required /> --}}
-                                    {{-- <h5 class="text">{{$strategicObjectiveforAddition->weight}}</h5> --}}
+                                <div class="col-md-4" style="">                                    
                                     <input type="number" required id="{{"strategicObjectiveForAddition".$perspective->id.$incrementNo}}" name="{{"WeightstrategicObjectiveForAddition".$perspective->id.$incrementNo}}" value="{{$strategicObjectiveforAddition->weight}}">
                                     <input type="hidden"  value="{{$strategicObjectiveforAddition->id}} "                                name="{{"strategicObjectiveIdForAddition".$perspective->id.$incrementNo}}">
                                 </div>                                                
@@ -512,20 +510,12 @@
                                       </div>
                                @endforeach
                                <div class="box-footer">   
-                                    <div class="box-footer">   
-                                            {{-- Adding the Modal That is used to add the Key Perfomance Indicators.  --}}
-                                            {{-- id="{{ "modal".$originalObjectiveName}} --}}                                                                    
+                                    <div class="box-footer">                                                                      
                                             <div style="text-align:left" class="col-md-6  col-sm-6">
-                                              <a class="btn btn-success btn-md" data-toggle="modal" data-target="{{"#modal".$strategicObjective->id}}"> <b>Add New</b> </a>
-                                              {{-- <a class="btn btn-warning btn-md" > <b>Edit .</b> </a> --}}
-                                            </div>
-                                            {{-- <div style="text-align:right;" class="col-md-6  col-sm-6">
-                                              <button class="btn btn-danger btn-md" type = "submit" id= "{{"submit".$strategicObjective->name}}"> <b>Save</b> </button>
-                                            </div> --}}
+                                              <a class="btn btn-success btn-md" data-toggle="modal" data-target="{{"#modal".$strategicObjective->id}}"> <b>Add New</b> </a>                                              
+                                            </div>                                           
                                            </div> 
                                </div>                               
-                               {{-- <input type = "hidden" value = "{{$numberOfKPI}}" id="{{$originalObjectiveName."numberOfKPI"}}"> --}}            
-            {{-- inserting the modals that will be thrown once the targets are not reached. --}}
             @foreach ($kpis as $kpiModal)
 
             @php

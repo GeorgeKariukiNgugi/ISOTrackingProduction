@@ -14,7 +14,7 @@ class PDFController extends Controller
 {
     public function downloadPFD($id){
         $idRetrieved = $id;
-        // dd($id);
+        
         $activeYaerCollections = YearActive::where('Active','=',1)->get();
         foreach($activeYaerCollections as $activeYaerCollection){
             $activeYaer = $activeYaerCollection->Year;
@@ -49,7 +49,7 @@ class PDFController extends Controller
                 # code...
                 $perspectiveId = $perspective->id;
                 $strategicObjectiveNumbers = count($perspective->strategicObjectives);
-                // $strategicObjectiveScores = count($perspective->strategicObjectiveScores);
+                
 
                 //! this section of the code is used to get the strategic objectives that have been stored. 
                 $strategicObjectiveScores = StrategicObjectiveScore::where('year','=',$activeYaer)
@@ -57,7 +57,7 @@ class PDFController extends Controller
                                                                     ->where('perspective_id','=',$perspectiveId)
                                                                     ->get();
 
-                // dd(count($scoredStrategicObjectives));
+                
                 if(count($strategicObjectiveScores) == $strategicObjectiveNumbers){
                     $strategicObjectivesSum = 0;
                     $strateicObjectiveAverage = 0;      
@@ -68,7 +68,7 @@ class PDFController extends Controller
 
                     //!getting the strategic objectives of the particular perspective. 
                     $strategicObjectives = StrategicObjective::where('perspective_id','=',$perspective->id)->get();
-                    // dd($strategicObjectives);
+                    
                     
                     foreach($strategicObjectives as $strategicObjective){
                         $strategicObjectiveWeight = $strategicObjective->weight;
@@ -76,7 +76,7 @@ class PDFController extends Controller
 
                         //!getting the rhyming strategic objective scores.
                         $trategicObjectiveScores = StrategicObjectiveScore::where('strategicObjective_id','=',$strategicObjective->id)->where('year','=',$activeYaer)->where('quater','=',$activeQuater)->get();                        
-                        // dd($trategicObjectiveScores);
+                        
                         foreach ($trategicObjectiveScores as $trategicObjectiveScore) {
                             # code...
                             $finalSScore += $trategicObjectiveScore->score;
@@ -87,20 +87,6 @@ class PDFController extends Controller
                         }
                         
                     }
-                    // // dd($strategicObjectivesSum);
-                    // if (count($strategicObjectives) == 0) {
-                    //     # code...
-                    //     $divisor = 1;
-                    // }
-                    // else {
-                    //     $divisor = count($strategicObjectives);
-                    // }
-                    // $strateicObjectiveAverage = $strategicObjectivesSum/$divisor;
-                    // // dd($strateicObjectiveAverage);
-                    // $weight = $perspective->weight;
-                    // $finalSScore += ($strateicObjectiveAverage*$weight)/100;
-                    // // dd($finalSScore.' '.$weight);
-                    // // $finalSScore += $strateicObjectiveAverage;
                     
                 }
                 

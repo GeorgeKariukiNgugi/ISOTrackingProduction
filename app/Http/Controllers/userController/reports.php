@@ -35,7 +35,7 @@ class reports extends Controller
                 array_push($programNamesArray,$programName->name);
             }
         }
-// dd($programNamesArray);
+
         return view('user.reports',['id'=>$id,'reports'=>$reports,'programNamesArray'=>$programNamesArray,'valueOfEditing'=>$valueOfEditing]);
     }
 
@@ -58,7 +58,7 @@ class reports extends Controller
                     }
                 }
 
-                // dd($programNamesArray);
+                
         return view('adminPage.adminReports',['programs'=>$programs,'reports'=>$reports,'programNamesArray'=>$programNamesArray]);
     }
 }

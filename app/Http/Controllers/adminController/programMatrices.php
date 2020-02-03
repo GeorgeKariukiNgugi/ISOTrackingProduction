@@ -85,8 +85,7 @@ class programMatrices extends Controller
     }
 
     public function addStrategicObjective(AddingNewStrstegicObjective $request, $id){
-        $data = ($request->newObjWeight)+0;
-        // dd($data);
+        $data = ($request->newObjWeight)+0;        
         $short = substr($request->strName,0,20);
         $newStrstegicObjective = new StrategicObjective;
         $newStrstegicObjective->weight = $data+0;
@@ -96,21 +95,16 @@ class programMatrices extends Controller
         $newStrstegicObjective->save();
 
                    //! this section of the code will be used to get the editing of the strategic objective weights. 
-                   $numberOfStrategicObjectives = $request->strategicObjectiveForAdditionNumber;
-                    //   dd( $request->perspectiveWeightForHiddenAddition);
+                   $numberOfStrategicObjectives = $request->strategicObjectiveForAdditionNumber;                    
                       $str = array();
                       $values = array();
-                   $perspectiveId = $request->perspectiveIdForAddition; 
-                //    dd($numberOfStrategicObjectives );  
+                   $perspectiveId = $request->perspectiveIdForAddition;                 
                    for ($i=1; $i <= $numberOfStrategicObjectives ; $i++) { 
 
                     $nameOfWeight = 'WeightstrategicObjectiveForAddition'.$id.$i;
-                    $nameOfStrategicObjectiveId = 'strategicObjectiveIdForAddition'.$id.$i;
-
-                    // dd($request->$nameOfWeight . ' And the strategicObj ID   '.$request->$nameOfStrategicObjectiveId);
-                    
+                    $nameOfStrategicObjectiveId = 'strategicObjectiveIdForAddition'.$id.$i;                                        
                     $strategicObjectivesChangeInWeights = StrategicObjective::where('id','=',$request->$nameOfStrategicObjectiveId)->get();
-                    // dd($strategicObjectivesChangeInWeights);
+                    
                     foreach($strategicObjectivesChangeInWeights as $strategicObjectivesChangeInWeight){
                         $strategicObjectivesChangeInWeight->weight = $request->$nameOfWeight;
                         $strategicObjectivesChangeInWeight->save();
@@ -206,7 +200,7 @@ class programMatrices extends Controller
 
            //! this section of the code will be used to get the editing of the strategic objective weights. 
            $numberOfStrategicObjectives = $request->numberOfStrategicObjectives;
-        //    dd($numberOfStrategicObjectives);
+        
            $str = array();
            $values = array();
         for ($i=1; $i <= $numberOfStrategicObjectives ; $i++) { 
@@ -218,7 +212,7 @@ class programMatrices extends Controller
 
             array_push($str,$newStrategicObjectiveId );
             array_push($values, $strategicObjectiveWeight);
-            // dd($newStrategicObjectiveId . "   ".$strategicObjectiveWeight );
+            
 
             $strategicObjectivesChangeInWeight = StrategicObjective::where('id','=',$newStrategicObjectiveId)->get();
 
@@ -229,7 +223,7 @@ class programMatrices extends Controller
             }
         }
 
-            // dd($values);
+            
            Alert::success(' <h4 style = "color:green;">Congartulations    <i class="fa fa-thumbs-up"></i></h4>','Strategic Objective Successfully Edited.');
            return back();
     }
@@ -291,7 +285,7 @@ class programMatrices extends Controller
             $Message = '<div role="alert" class="alert alert-success" style="width:70%;text-align:center;margin-right:15%;margin-top:1%;margin-left:15%;"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><span class="text-capitalize"><strong>'.
             "The perspective selected, has successfully been deleted, kindly refresh your browser to get the latest updates.
                 </strong><br /></span></div>";
-            // return response()->json(['success'=>' SCORES NOT SUBMITTED. Kindly Add The Non conformity reasons for the kpi  '.$kpi->name]);
+            
             return response()->json(['success'=>$Message]);
 
         }                
@@ -306,7 +300,7 @@ class programMatrices extends Controller
 
         $editingPerspectiveNames = Perspective::where('id','=',$perspectiveIdToEdit)->get();
 
-        // dd($perspectiveName);
+        
         foreach($editingPerspectiveNames as $editingPerspectiveName){
             $editingPerspectiveName->name = $perspectiveName;
             $editingPerspectiveName->save();
@@ -318,13 +312,13 @@ class programMatrices extends Controller
         //? getting the number of perspectives that should be edited. 
         $numberOfPerspectivesToBeEdited = $request->numberOfPerspectivesEdited;
         $incrementalNumberEdit = $request->numberOfPerspectivesEdited;
-        // dd($incrementalNumberEdit);
+        
         for ($i=1; $i <= $incrementalNumberEdit; $i++) { 
             # code...
             //? gettin the hidden value that holds the perspective id. 
             $hiddenPerspeciveId = 'hiddenPerspectiveWeight'.$i;
             $hiddenPerspeciveId = $request->$hiddenPerspeciveId;
-            // dd($hiddenPerspeciveId);
+            
             //? getting the perspective input value 
             $perspectiveInputValue = 'editingWeight'.$i;
             $perspectiveInputValue = $request->$perspectiveInputValue;
@@ -373,17 +367,17 @@ class programMatrices extends Controller
 
         //? getting the number of perspectives that should be edited.         
         $incrementalNumberEdit = $request->numberOfPerspectives;
-        // dd($incrementalNumberEdit);
+        
         for ($i=1; $i <= $incrementalNumberEdit; $i++) { 
             # code...
             //? gettin the hidden value that holds the perspective id. 
             $hiddenPerspeciveId = 'perspectiveId'.$i;
             $hiddenPerspeciveId = $request->$hiddenPerspeciveId;
-            // dd($hiddenPerspeciveId);
+            
             //? getting the perspective input value 
             $perspectiveInputValue = 'addingNewPerspectives'.$i;
             $perspectiveInputValue = $request->$perspectiveInputValue;
-            // dd($perspectiveInputValue);
+            
             $perspectives = Perspective::where('id','=',$hiddenPerspeciveId)->get();
             foreach($perspectives as $perspective){
 

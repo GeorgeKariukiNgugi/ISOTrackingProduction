@@ -178,28 +178,28 @@ class Programdashboard extends Controller
         
         $allKPIsRetrieved = array();
         foreach ($allPerctivesForTheProgram as $allPerctives) {
-            // $allKPIsRetrieved = array();
+            
             $kpisRetrieved = $allPerctives->keyPerfomaceIndicators;
             foreach($kpisRetrieved as $kpi){
                 array_push($allKPIsRetrieved,$kpi->id);
             }
         }
-        // dd($allKPIsRetrieved);
+        
         //! The next Step is to get the missing ids that are not in the list. 
         $kpisNotScored = array();
         $kpisScored = array();
         $kpiNotScoredNames = array();
         for ($i=0; $i < count($allKPIsRetrieved); $i++) { 
             # code...
-            // $dbSearch = KeyPerfomanceIndicatorScore::where('kpi_id','=',$allKPIsRetrieved[$i])->get();
+            
             $dbSearch = ScoreRecorded::where('keyPerfomanceIndicator_id','=',$allKPIsRetrieved[$i])
                                      ->where('quater','=',$activeQuater)
                                      ->where('year','=',$activeYaer)
                                      ->get();
-            // dd(count($dbSearch));
+            
             if(count($dbSearch) == 0){
                 array_push($kpisNotScored,$allKPIsRetrieved[$i]);
-                // dd("null");
+                
                 $gettingNamesKpiNotScored = KeyPerfomaceIndicator::where('id','=',$allKPIsRetrieved[$i])->get();
                 foreach ($gettingNamesKpiNotScored as $kpiNames) {
                     $name = $kpiNames->name;
@@ -212,10 +212,10 @@ class Programdashboard extends Controller
             }
             else{
                 array_push($kpisScored,$allKPIsRetrieved[$i]);
-                // dd("present");
+                
             }
         }
-        // dd($kpiNotScoredNames);
+        
     
         //!getting the program name and also the program code of the active program that is being assesed.
     

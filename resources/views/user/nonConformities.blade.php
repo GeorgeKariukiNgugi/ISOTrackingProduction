@@ -174,11 +174,7 @@
                       <td>
                         {{-- inserting the perspective name of the nonconformity. --}}
                         @php
-                            // $perspectiveNames = $nonConformity->perspective->name;
-                            // $perspectiveShortHand = $nonConformity->program->shortHand;                            
-                            // $shortHandCount = strlen($perspectiveShortHand); 
-                            // $name = str_replace('_', ' ', substr($perspectiveNames,$shortHandCount));
-                            // $name = ucwords($name);
+                            
                             $quater = $nonConformity->quater;
                             $year = $nonConformity->year;
                             $name = $year.'  '. $quater;

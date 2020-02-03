@@ -54,19 +54,14 @@ class otherTrend extends Controller
         $activeYaerCollections = YearActive::where('Active','=',1)->get();
         foreach($activeYaerCollections as $activeYaerCollection){
             $activeYaer = $activeYaerCollection->Year;
-            // dd($activeYaer);
+            
         }
         $activeQuaterCollections = QuaterActive::where('Active','=',1)->get();
             foreach($activeQuaterCollections as $activeQuaterCollection){
                 $activeQuater = $activeQuaterCollection->Quater;
-                // dd($activeQuater);
+                
         }
 
-
-
-           //  $quaterSubStr = substr($activeQuater,1); 
-           //  $quaterSubStr = $quaterSubStr+0;
-            // dd($quaterSubStr); 
             $quater = $activeQuater;
             $dougnutNames = array();
             $average = array();
@@ -158,7 +153,7 @@ class otherTrend extends Controller
                 //! perfomance of the perspectives. 
 
                     $varNumberOfRecordsInArray = count($quaterScoresPerProgramArray);
-                    // dd($varNumberOfRecordsInArray);
+                    
                     $aggragate = 0;
                     for ($k=0; $k <$varNumberOfRecordsInArray ; $k++) { 
                         # code...

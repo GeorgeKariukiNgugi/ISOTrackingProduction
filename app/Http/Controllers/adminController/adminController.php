@@ -47,17 +47,6 @@ class adminController extends Controller
             }
             
             //!this section of the code will be responsible for the submission of data into the database.
-            // $newProram = new Program(
-            //                             array(
-            //                                 'name'=>$name,
-            //                                 'description'=>$description,
-            //                                 'shortHand'=>$progamShortHand,
-            //                                 'programCode'=>$progamCode,
-            //                                 'colorCode'=>$color,
-            //                                 'imageLocation'=>$newName
-            //                             )
-            // );
-            // $newProram->save();
             $programDetailsArray = array();
             array_push($programDetailsArray,$name);
             array_push($programDetailsArray,$description);

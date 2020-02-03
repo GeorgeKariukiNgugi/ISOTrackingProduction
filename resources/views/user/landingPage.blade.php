@@ -497,13 +497,6 @@
                                   </div>
                                   <div class="col-lg-9 col-md-9"><textarea class="form-control" name="correctiveAction" required="" placeholder="Immediate remediation to Issue or Temporary Solution."></textarea></div>
                               </div>
-                              
-                              {{-- <div class="row" style="margin-bottom:1%;">
-                                  <div class="col-lg-3 col-md-3">
-                                      <p class="text-center">Corrective Action</p>
-                                  </div>
-                                  <div class="col-lg-9 col-md-9"><textarea class="form-control" name="permanentSolution" required="" placeholder="Permanent Solution To Issue."></textarea></div>
-                              </div> --}}
                               <input type="hidden" name="permanentSolution" value="null">
                               <div class="row" style="margin-bottom:1%;">
                                 <div class="col-lg-3 col-md-3">

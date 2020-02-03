@@ -45,23 +45,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <h3>Kinly close this Issues.</h3>
     <div class="table-responsive">
         <table class="table table-striped table-bordered">
-            <thead>
-                <tr>
-                    <th>Reason</th>
-                    <th>Correction</th>
-                    <th>correctiveAction</th>
-                </tr>
-            </thead>
+            
             <tbody>
                 
             @foreach ($nonConformities as $nonConformities)
 
             
             <tr>
-                <td>{{$nonConformities->rootCause}}</td>
-                <td>{{$nonConformities->correction}}</td>
-                <td>{{$nonConformities->correctiveAction}}</td>
+                <th>Reason</th> <td>{{$nonConformities->rootCause}}</td>
+                
             </tr> 
+            <tr>
+                <th>Correction</th> <td>{{$nonConformities->correction}}</td>
+            </tr>
+            <tr>
+                <th>correctiveAction</th><td>{{$nonConformities->correctiveAction}}</td>
+            </tr>            
+
+                
                 {{-- @if ($nonConformities->date == null)
                     {{"nodate"}}
                 @else

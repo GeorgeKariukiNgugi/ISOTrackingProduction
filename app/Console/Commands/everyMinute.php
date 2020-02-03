@@ -43,8 +43,7 @@ class everyMinute extends Command
      */
     public function handle()
     {
-       
-	        try{
+       	        try{
 
 			$programs = Program::all();
 			foreach ($programs as $program) {
@@ -77,6 +76,5 @@ class everyMinute extends Command
 
 	return "Error";
 	}
-
     }
 }

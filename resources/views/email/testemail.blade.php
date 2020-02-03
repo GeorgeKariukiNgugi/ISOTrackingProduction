@@ -7,7 +7,11 @@ The body of your message.
 Button Text
 @endcomponent
 
-{{$nonConformities}}
+@foreach ($nonConformities as $$nonConformities)
+
+{{$nonConformities->date}}
+    
+@endforeach
 @component('mail::panel')
 This is the panel content.
 @endcomponent

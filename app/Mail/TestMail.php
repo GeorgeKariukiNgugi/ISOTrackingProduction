@@ -34,6 +34,6 @@ class TestMail extends Mailable
             $message->getHeaders()
                     ->addTextHeader('This is the header', 'This is the header Value.');
         });
-        return $this->markdown('email.testemail');
+        return $this->view('email.testemail');
     }
 }

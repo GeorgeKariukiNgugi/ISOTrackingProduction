@@ -24,8 +24,13 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+<<<<<<< HEAD
+         $schedule->command('minute:delete')
+                  ->everyMinute();
+=======
         $schedule->command('minute:delete')
         ->everyMinute();
+>>>>>>> ae69f5cc78e4f6c2ff5cc9b92f7894a3d653d3e3
     }
 
     /**

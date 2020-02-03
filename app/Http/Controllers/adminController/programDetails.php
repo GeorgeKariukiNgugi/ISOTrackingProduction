@@ -22,6 +22,7 @@ class programDetails extends Controller
         $programId = $request->programId;
 
         $deletingPrograms = Program::where('id','=',$programId)->get();
+        dd($deletingPrograms);
         foreach($deletingPrograms as $deletingProgram){
             //!first get the program perspectives.
             $perspectives = $deletingProgram->perspectives;

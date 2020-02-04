@@ -198,7 +198,7 @@ class UserController extends Controller
                     ->where('keyPerfomanceIndicator_id','=',$idOfKPI)
                     ->where('quater','=','Q3')
                     ->get();
-
+                    $scoreFetched =0;
                     foreach($findingQ2Value as $Value){
                         $scoreFetched = $Value->score;
                     }

@@ -239,6 +239,7 @@ class UserController extends Controller
                     foreach($findingQ2Value as $Value){
                         $scoreFetched = $Value->score;
                     }
+
                     $findingQ1Value = ScoreRecorded::where('year','=',$activeYaer)
                     ->where('keyPerfomanceIndicator_id','=',$idOfKPI)
                     ->where('quater','=','Q2')
@@ -247,7 +248,10 @@ class UserController extends Controller
                     foreach($findingQ2Value as $Value){
                         $scoreFetched2 = $Value->score;
                     }
-                    $averageThatBecomesytd = ($score+$scoreFetched+$scoreFetched2);                    
+
+                    $averageThatBecomesytd = ($score+$scoreFetched+$scoreFetched2); 
+                    
+                    dd($score ." "+ $scoreFetched+ " ".$scoreFetched2);
                 }else if($prefixOfTheActiveQuater == 4){
                     $scoreFetched = 0;
                     $scoreFetched2=0;

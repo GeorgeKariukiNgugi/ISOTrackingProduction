@@ -136,6 +136,9 @@ $(function () {
             }
             }
 
+            //! THIS FUNCTION WILL BE USED TO GET THE VALIDATION SECTION OF THE CODE RIGHT ON THE SECTION OF THE 
+            //! QUATERLY AND 
+
             if (period == 2 && gettingTheQuaterNumber == 1) {
                 validationOfSpecial();
             } else if (period == 2 && gettingTheQuaterNumber == 3) {                

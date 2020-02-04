@@ -593,7 +593,7 @@
                                     <div class="col-md-6">
                                         <h4 style="font-family:'Times New Roman', Times, serif">Units:</h4>
                                     </div>
-                                    <div class="col-md-6"><input type="text" step="0.01" name="units" style="width:100%;height:35px;" value="{{$kpiModal->units}}"/></div>
+                                    <div class="col-md-6"><input type="text"  name="units" style="width:100%;height:35px;" value="{{$kpiModal->units}}"/></div>
                                 </div>
                             </div>
                             <div class="modal-footer" style="background-color:#62d975;"><button class="btn btn-danger btn-sm" type="button" data-dismiss="modal"><strong>Close</strong></button><button class="btn btn-success btn-sm" type="submit"><strong>Save</strong></button></div>

@@ -172,11 +172,11 @@ class UserController extends Controller
                 if($prefixOfTheActiveQuater == 1){
                     $averageThatBecomesytd = $score;
                 }
-                elseif($prefixOfTheActiveQuater == 3){
+                else if($prefixOfTheActiveQuater == 3){
                     // //! this section of the code is used to get the data that going to be inserted.
                     $averageThatBecomesytd = $score;                    
                 }
-                elseif($prefixOfTheActiveQuater == 2){
+                else if($prefixOfTheActiveQuater == 2){
 
                     //! some code to implment.
                     $findingQ1Values = ScoreRecorded::where('year','=',$activeYaer)
@@ -198,7 +198,7 @@ class UserController extends Controller
                     ->where('keyPerfomanceIndicator_id','=',$idOfKPI)
                     ->where('quater','=','Q3')
                     ->get();
-
+                    $scoreFetched =0;
                     foreach($findingQ2Value as $Value){
                         $scoreFetched = $Value->score;
                     }
@@ -268,7 +268,7 @@ class UserController extends Controller
                     foreach($findingQ2Value as $Value){
                         $scoreFetched2 = $Value->score;
                     }
-                    $averageThatBecomesytd = ($score+$scoreFetched+$scoreFetched2);
+                    
                     $findingQ2Value = ScoreRecorded::where('year','=',$activeYaer)
                     ->where('keyPerfomanceIndicator_id','=',$idOfKPI)
                     ->where('quater','=','Q3')
@@ -277,7 +277,7 @@ class UserController extends Controller
                     foreach($findingQ2Value as $Value){
                         $scoreFetched3 = $Value->score;
                     }
-                    
+                    $averageThatBecomesytd = ($score+$scoreFetched+$scoreFetched2+$scoreFetched3);
                 }
 
             }

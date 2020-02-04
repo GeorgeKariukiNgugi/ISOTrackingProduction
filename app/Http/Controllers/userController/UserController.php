@@ -253,7 +253,7 @@ class UserController extends Controller
                     
                     if ($idOfKPI == 244) {
                         # code...
-                        dd($score ." ". $scoreFetched. " ".$scoreFetched2);
+                        // dd($score ." ". $scoreFetched. " ".$scoreFetched2);
                     }
                     
                 }else if($prefixOfTheActiveQuater == 4){

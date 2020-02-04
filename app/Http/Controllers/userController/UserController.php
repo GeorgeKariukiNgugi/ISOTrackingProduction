@@ -245,7 +245,7 @@ class UserController extends Controller
                     ->where('quater','=','Q2')
                     ->get();
 
-                    foreach($findingQ2Value as $Value){
+                    foreach($finding12Value as $Value){
                         $scoreFetched2 = $Value->score;
                     }
 

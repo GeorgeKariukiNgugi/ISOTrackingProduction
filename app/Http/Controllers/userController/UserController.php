@@ -251,7 +251,11 @@ class UserController extends Controller
 
                     $averageThatBecomesytd = ($score+$scoreFetched+$scoreFetched2); 
                     
-                    dd($score ." ". $scoreFetched. " ".$scoreFetched2);
+                    if ($idOfKPI == 244) {
+                        # code...
+                        dd($score ." ". $scoreFetched. " ".$scoreFetched2);
+                    }
+                    
                 }else if($prefixOfTheActiveQuater == 4){
                     $scoreFetched = 0;
                     $scoreFetched2=0;

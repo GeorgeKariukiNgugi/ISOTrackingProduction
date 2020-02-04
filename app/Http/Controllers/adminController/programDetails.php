@@ -57,7 +57,7 @@ class programDetails extends Controller
 
         Alert::success(' <h4 style = "color:green;">Congartulations    <i class="fa fa-thumbs-up"></i></h4>', 'The Program Has Successfully Been Deleted.');
 
-        return redirect('/home');
+        return back();
     }
 
     public function editProgram(editingProgram $request){

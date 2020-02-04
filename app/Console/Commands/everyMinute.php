@@ -57,7 +57,9 @@ class everyMinute extends Command
                                             ->get();
 
 			// ! this section is used to grt the program assesors. 
-
+			if(count($nonConformities) <= 0){
+				}
+			else{
 			$assesors = AssesorPerProgram::where('program_id','=',$program->id)->get();
 			$assesorProgramArray = array();
 
@@ -67,8 +69,8 @@ class everyMinute extends Command
 			}
 
 			$assesorProgramArray = 'gkngugi@safaricom.co.ke';
-		Mail::to($assesorProgramArray)->send(new TestMail($nonConformities));
-        return "sent.";
+			Mail::to($assesorProgramArray)->send(new TestMail($nonConformities));
+}
 			}
 			
 	}

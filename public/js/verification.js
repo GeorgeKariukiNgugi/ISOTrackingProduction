@@ -1,14 +1,4 @@
 $(function () {
-    // console.log("This is the inside of the verification.js");
-    // var activeQuater = $("#activeQuaterForVerification").val();
-    // console.log("This is the value of the ative quater that will be used to get the value of the inputs." + activeQuater);
-    // var gettingTheQuaterNumber = activeQuater.substr(1);
-    // console.log("I am checking the quaters that will be able to be ativated." + gettingTheQuaterNumber);
-    // var quatersSelected = $("input[class ='Quater" + gettingTheQuaterNumber + "']");
-    // // $("[id^='unmetTargetComment']").hide();
-    // console.log(quatersSelected);
-
-
     //! the new way of validation is just selecting all the inputs and puting them on the values to be validated. 
     var quatersSelected = $("input[id ^='Quater']");
 
@@ -20,19 +10,11 @@ $(function () {
         var strategicObjectiveId = $(this).closest('div').parent().attr('id');
         var gettingThevalue = $("#activeQuater" + strategicObjectiveId).val();
         var newIdToCheck = 'Quater' + gettingThevalue.substring(1) + slicedId;
-        var gettingTheQuaterNumber = gettingThevalue.substring(1);
-        // console.log("The getting quater number is: "+ gettingTheQuaterNumber);
-        // console.log("The strategic objective id is:  " + $(this).closest('div').parent().attr('id'));
-        // console.log("This is the Old ID.   " + id);
-        // console.log("This is the new Id.  " + newIdToCheck);
+        var gettingTheQuaterNumber = parseFloat(gettingThevalue.substring(1));
+
         if (id !== newIdToCheck) {
             // console.log("The Id does Not Match.  " + id + '  ' + newIdToCheck);
         } else {
-
-            // console.log("The ID is matching  " + id + '  ' + newIdToCheck);
-
-            // console.log($(this).closest('div').parent().attr('id') + "  This is the parent ID.");
-
             var getTargetIdName = "target" + slicedId;
             var targetValue = $("#" + getTargetIdName).text();
             var inputValue = $("#" + id).val();
@@ -137,7 +119,47 @@ $(function () {
             }
 
             //! THIS FUNCTION WILL BE USED TO GET THE VALIDATION SECTION OF THE CODE RIGHT ON THE SECTION OF THE 
-            //! QUATERLY AND 
+            //! ANUALLY AND SEMI ANUALLY.
+// console.log("This is the information given.");
+            function validatingSemiAnuallyAndAnually() {
+                
+                console.log("The input value is 01111  IN");
+                console.log(gettingTheQuaterNumber + "THIS IS THE ADDING");
+                if (period === 2 && parseFloat(gettingThevalue.substring(1)) === 2) {
+                    inputValue = 0;
+                    //! this section of the code is to define the
+
+                    //! this section is used to get the values of the previuous quaters. 
+                    for (let index = 1; index <= 2; index++) {
+                        
+                       inputValue += parseFloat( $("#Quarter"+index+slicedId).val());
+                        console.log("The data is in the semi-annual values.");
+                        
+                    }
+
+                    console.log("This is the input value that is adding"+inputValue);
+                } else if(period === 2 && parseFloat(gettingThevalue.substring(1)) == 4){
+                    inputValue = 0;
+                    for (let index = 3; index <= 4; index++) {
+                        
+                        inputValue += parseFloat( $("#Quarter"+index+slicedId).val());
+ 
+                         
+                     }
+                     console.log("This is the input value that is adding"+inputValue);
+                }
+                else if(period === 1 && parseFloat(gettingThevalue.substring(1)) == 4){
+                    inputValue = 0;
+                    for (let index = 1; index <= 4; index++) {
+                        
+                        inputValue += parseFloat( $("#Quarter"+index+slicedId).val());
+ 
+                         
+                     }
+                     console.log("This is the input value that is adding"+inputValue);
+                }
+                console.log("The input value is 01111  OUT");
+            }
 
             if (period == 2 && gettingTheQuaterNumber == 1) {
                 validationOfSpecial();
@@ -161,6 +183,8 @@ $(function () {
                         inputValue = parseFloat(inputValue, 10);
                         targetValue = parseFloat(targetValue, 10);
                         //! getting the arithmetic structure.
+                        console.log("this is a trial on the data.");
+                        validatingSemiAnuallyAndAnually();
                         var arithmeticStructure = $("#arithmeticStructure" + slicedId);
                         var arithmeticStructureValue = arithmeticStructure.val();
                         switch (arithmeticStructureValue) {

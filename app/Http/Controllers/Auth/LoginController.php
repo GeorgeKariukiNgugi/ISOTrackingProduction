@@ -7,10 +7,11 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Auth;
 use Illuminate\Http\Request;
 use App\AssesorPerProgram;
-// use Illuminate\Http\Request;
-// use Auth;
+use App\kpiChildren;
+use App\kpiChildrenScores;
 use DB;
 // use App\AssesorPerProgram;
+// use Illuminate\Support\Facades\DB;
 use App\Program;
 use App\ScoreRecorded;
 use App\StrategicObjectiveScore;
@@ -274,6 +275,15 @@ class LoginController extends Controller
                                    $perspectives = $program->perspectives;
                                    
                                }
+
+                               //! this section of the code is used to get the kpi children  and their scores. 
+
+                                $kpiChildren = kpiChildren::all();                                
+                                
+                                $kpiChildrenScores = kpiChildrenScores::all();
+
+                               
+
                                //! getting wherther the activation of the editing has happened. 
                                $gettingUserEditings = Userediting::all();
                                $valueOfEditing = 0;
@@ -283,7 +293,7 @@ class LoginController extends Controller
                                }
                                //! this section is used to send the non-conformities that have been identified by the application. 
                                 $nonConformities =  NonConformities::all();
-                               return view('user.landingPage',['nonConformities'=>$nonConformities,'valueOfEditing'=>$valueOfEditing,'programId'=>$id,'quaterOne'=>$quaterOne,'quaterTwo'=>$quaterTwo,'quaterthree'=>$quaterthree,'quaterfour'=>$quaterfour,'perspectives'=>$perspectives,'activeYaer'=>$activeYaer,'activeQuater'=>$activeQuater,'keyPerfomanceIndicatorsScores'=>$keyPerfomanceIndicatorsScores,'programName'=>$programName,'programShortHand'=>$programShortHand]);
+                               return view('user.landingPage',['kpiChildren'=>$kpiChildren,'kpiChildrenScores'=>$kpiChildrenScores,'nonConformities'=>$nonConformities,'valueOfEditing'=>$valueOfEditing,'programId'=>$id,'quaterOne'=>$quaterOne,'quaterTwo'=>$quaterTwo,'quaterthree'=>$quaterthree,'quaterfour'=>$quaterfour,'perspectives'=>$perspectives,'activeYaer'=>$activeYaer,'activeQuater'=>$activeQuater,'keyPerfomanceIndicatorsScores'=>$keyPerfomanceIndicatorsScores,'programName'=>$programName,'programShortHand'=>$programShortHand]);
                            }                
     public function logInUsingLDAP(Request $request){        
         header('Content-type: application/json');

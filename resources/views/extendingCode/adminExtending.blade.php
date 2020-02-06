@@ -255,6 +255,9 @@
 <script src="{{asset('js/addingNewPerpsectives.js')}}"></script>
 <script src="{{asset('js/validatingTheYear.js')}}"></script>
 <script src="{{asset('js/editingStrategicObjective.js')}}"></script>
+<script src="{{asset('js/subcategories.js')}}"></script>
+<script src="{{asset('js/submittingSubcategories.js')}}"></script>
+<script src="{{asset('js/closingtheSubCategories.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
 @include('sweetalert::alert')
 @yield('charts')

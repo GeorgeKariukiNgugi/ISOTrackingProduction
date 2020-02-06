@@ -194,3 +194,6 @@ Route::get('/loggingOutUsers','logOutFunctionality@loggingOut');
 
 //! this route is used to get the test mail up and running. 
 Route::get('/sendingMail','tryMail@trySendingMial');
+
+//! this route is used to send the subcategories data to the backend ito the database. 
+Route::post('/postingKPISubcategories','userController\submittingKPISubCategories@submittingKPISubCategories');

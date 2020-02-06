@@ -234,6 +234,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{asset('js/selectingSpecificQuater.js')}}"></script>
 <script src="{{asset('js/editingStrategicObjective.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
+<script src="{{asset('js/subcategories.js')}}"></script>
+<script src="{{asset('js/submittingSubcategories.js')}}"></script>
+<script src="{{asset('js/closingtheSubCategories.js')}}"></script>
+
+
 @include('sweetalert::alert')
 @yield('charts')
 <!-- Optionally, you can add Slimscroll and FastClick plugins.

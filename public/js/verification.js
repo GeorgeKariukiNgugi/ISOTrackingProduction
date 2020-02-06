@@ -2,7 +2,8 @@ $(function () {
     //! the new way of validation is just selecting all the inputs and puting them on the values to be validated. 
     var quatersSelected = $("input[id ^='Quater']");
 
-    quatersSelected.focusout(function () {
+    quatersSelected.on("focusout", function (e) {
+    // focusout(function (e) {
        
         var id = $(this).attr("id");
        
@@ -15,6 +16,13 @@ $(function () {
         if (id !== newIdToCheck) {
             // console.log("The Id does Not Match.  " + id + '  ' + newIdToCheck);
         } else {
+            var dataHaasChildren = parseFloat($(this).attr("data-hasChildren"));
+            if (dataHaasChildren === 1) {
+                e.preventDefault(); 
+                console.log(dataHaasChildren + "tHIS IS THE HAS CHILDREN MODULE.");
+            } else {
+                console.log(dataHaasChildren + "not have CHILDREN MODULE.");
+            }
             var getTargetIdName = "target" + slicedId;
             var targetValue = $("#" + getTargetIdName).text();
             var inputValue = $("#" + id).val();

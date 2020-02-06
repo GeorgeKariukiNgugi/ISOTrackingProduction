@@ -204,7 +204,7 @@
                           </div> 
                             <div class="modal-footer"><button class="btn btn-danger" type="button" data-dismiss="modal">Close</button><button class="btn btn-success" type="submit">Save</button></div>
                         </form>
-                          
+                        {{-- {{  }} --}}
 
                       </div>
                       
@@ -214,6 +214,101 @@
           </div>  
                   
             @else
+
+             {{-- THIS SECTION OF TH CODE IS USED TO GET THE SUBCATEGORIES OF THE KPIs. --}}        
+             @php
+             foreach ($kpis as $kpi) {
+               # code...
+                                                             
+             if($kpi->hasChildren == 1){
+               $dataStorageForHasChildren = 1;
+              //  dd($dataStorageForHasChildren);
+               $subcategoriesIncrement = 0;
+             echo '<div role="dialog" tabindex="-1" class="modal fade" id="'. "subcategories".$kpi->id .'">
+                     <div class="modal-dialog" role="document">
+                         <div class="modal-content">                          
+                             <div class="modal-header" style="background-color:rgb(171,146,223);"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                 <h4 class="text-center modal-title">KPI Sub Categories.</h4>
+                             </div>
+                             <div class="modal-body" style="background-color:rgb(223,211,249);">
+                                 <h3 class="text-center" style="font-family:&#39;times new roman&#39;;color:rgb(255,0,0);">'. $kpi->name.'</h3>';
+                                 echo '<form id = "kpiChildrenSubmissionForm'.$kpi->id.'" method = "POST">'. csrf_field();
+                                  echo '<div id = "confirmationofKPIChildren'.$kpi->id.'"></div>';
+                                 foreach ($kpiChildren as $kpiChildrens) {
+                 # code...
+                                    
+                                     if($kpiChildrens->keyPerfomanceIndicator_id == $kpi->id){
+                                         // array_push($array,$kpiChildrens->name);
+                                       echo' <div class="row">
+                                     <div class="col-md-1">
+                                         <p>'.++$subcategoriesIncrement.'</p>
+                                     </div>
+                                     <div class="col-md-7">
+                                         <p>'.$kpiChildrens->name.'</p>
+                                     </div>
+                                     <div class="col-md-2">';
+                                      echo '<input type = "hidden" name = "kpiChildrenId'.$subcategoriesIncrement.'" value = '.$kpiChildrens->id.'>';
+                                      echo '<select id = "kpichild'.$kpi->id.$subcategoriesIncrement.'" name = "kpichild'.$kpi->id.$subcategoriesIncrement.'">';
+
+                                        if (count($kpiChildrenScores) == 0) {
+                                          # code...
+                                         echo '<option value="1">Done</option>
+                                               <option selected value="0">Not Done</option>';
+                                        } else {
+                                          # code...                                                                                
+                                          foreach ($kpiChildrenScores as $kpiChildrenScore) {
+                                            if ($kpiChildrenScore->kpi_id_children == $kpiChildrens->id AND $activeYaer == $kpiChildrenScore->year) {
+                                              # code...
+                                              $scoreOfChild = $kpiChildrenScore->score;
+                                            } 
+                                          }
+                                            switch ($scoreOfChild) {
+                                               case '0':
+                                                 # code...
+                                                 echo '<option value="1">Done</option>
+                                                      <option value="0" selected >Not Done</option>';
+                                                 break;
+                                                 case '1':
+                                                 # code...
+                                                 echo '<option selected value="1">Done</option>
+                                                       <option value="0">Not Done</option>';
+                                                 break;
+                                               
+                                               default:
+                                                 # code...
+                                                 echo '<option value="1">Done</option>
+                                                       <option selected value="0">Not Done</option>';
+                                                 break;
+                                             }
+                                            
+                                          
+                                        }
+                                  echo '</select> </div>
+                                 </div>';
+                                     }
+                                   }  
+                                  echo '<input type = "hidden" name = "incrementalNumber" id = "incrementNumber'.$kpi->id.'" value = '.$subcategoriesIncrement.'>';
+                                  echo '<input type = "hidden" name = "target" id = "kpiSubCategorytarget'.$kpi->id.'" value = '.$kpi->target.'>';
+                                  echo '<input type = "hidden" id = "kpiPeriod'.$kpi->id.'" value = '.$kpi->period.'>';
+                                  echo '<input type = "hidden" name = "kpiId" value = '.$kpi->id.'>';
+                                  echo '<input type = "hidden" id = "kpiSubCategorystrategicObjective'.$kpi->id.'" value = "'.$strategicObjective->id.'">';
+                                  
+                                  echo' </div>
+                              
+                              <div class="modal-footer" style="background-color:rgb(171,146,223);">
+                               <button class="btn btn-danger" type="button"  id= "closingButtonForKpiSubCategories'.$kpi->id.'" data-dismiss="modal">Close</button>
+                               <button class="btn btn-success" type="submit">Save</button>
+                               </div>
+                               </form>
+                         </div>
+                     </div>
+                   </div>  ';                                           
+             }
+             else{
+               $dataStorageForHasChildren = 0;
+             }
+            }
+@endphp
             <form id = "{{"form".$strategicObjective->id}}" method="POST" name = "{{"form".$strategicObjective->id}}" >
               <input type = "hidden" value="{{$activeQuater}}" name = "activeQuaterForSubmission" id = "{{"activeQuaterForubmission".$strategicObjective->id}}">
               <div id = "{{"alert".$strategicObjective->id}}"></div>
@@ -440,18 +535,23 @@
                                             }
 
                                         @endphp
-                                        <div class=" col-md-1"><input   data-toggle="tooltip" title="{{$quater1NC}}" value="{{$Q1Value}}" type = "number" step=".01"   name = "{{"Quater1".$kpi->id}}" id = "{{"Quater1".$kpi->id}}" readonly placeholder="Inactive" class="form-control {{"strtegicObjective".$strategicObjective->id}} {{"Quater1".$strategicObjective->id}} {{"Quater1".$kpiOriginalName}}" /></div>
-                                        <div class=" col-md-1"><input   data-toggle="tooltip" title=" {{$quater2NC}}" value="{{$Q2Value}}" type = "number" step=".01"  name = "{{"Quater2".$kpi->id}}" id = "{{"Quater2".$kpi->id}}" readonly placeholder="Inactive" class="form-control {{"strtegicObjective".$strategicObjective->id}} {{"Quater2".$strategicObjective->id}} {{"Quater2".$kpiOriginalName}}" /></div>
-                                        <div class=" col-md-1"><input   data-toggle="tooltip" title=" {{$quater3NC}}" value="{{$Q3Value}}" type = "number" step=".01"  name = "{{"Quater3".$kpi->id}}" id = "{{"Quater3".$kpi->id}}" readonly placeholder="Inactive" class="form-control {{"strtegicObjective".$strategicObjective->id}} {{"Quater3".$strategicObjective->id}} {{"Quater3".$kpiOriginalName}}" /></div>
-                                        <div class=" col-md-1"><input   data-toggle="tooltip" title=" {{$quater4NC}}" value="{{$Q4Value}}" type = "number" step=".01"  name = "{{"Quater4".$kpi->id}}" id = "{{"Quater4".$kpi->id}}" readonly placeholder="Inactive"class="form-control  {{"strtegicObjective".$strategicObjective->id}} {{"Quater4".$strategicObjective->id}} {{"Quater4".$kpiOriginalName}}" /></div>                                                                              
+                                        @php
+                                            //! this section of the code is used to get the hasChildren. 
+                                            $hasChildren = $kpi->hasChildren;
+                                        @endphp                                        
+                                        <div class=" col-md-1"><input   data-hasChildren="{{$hasChildren}}" data-toggle="tooltip" title="{{$quater1NC}}" value="{{$Q1Value}}" type = "number" step=".01"   name = "{{"Quater1".$kpi->id}}" id = "{{"Quater1".$kpi->id}}" readonly placeholder="Inactive" class="form-control {{"strtegicObjective".$strategicObjective->id}} {{"Quater1".$strategicObjective->id}} {{"Quater1".$kpiOriginalName}}" /></div>
+                                        <div class=" col-md-1"><input   data-hasChildren="{{$hasChildren}}"data-toggle="tooltip" title=" {{$quater2NC}}" value="{{$Q2Value}}" type = "number" step=".01"  name = "{{"Quater2".$kpi->id}}" id = "{{"Quater2".$kpi->id}}" readonly placeholder="Inactive" class="form-control {{"strtegicObjective".$strategicObjective->id}} {{"Quater2".$strategicObjective->id}} {{"Quater2".$kpiOriginalName}}" /></div>
+                                        <div class=" col-md-1"><input   data-hasChildren="{{$hasChildren}}"data-toggle="tooltip" title=" {{$quater3NC}}" value="{{$Q3Value}}" type = "number" step=".01"  name = "{{"Quater3".$kpi->id}}" id = "{{"Quater3".$kpi->id}}" readonly placeholder="Inactive" class="form-control {{"strtegicObjective".$strategicObjective->id}} {{"Quater3".$strategicObjective->id}} {{"Quater3".$kpiOriginalName}}" /></div>
+                                        <div class=" col-md-1"><input   data-hasChildren="{{$hasChildren}}"data-toggle="tooltip" title=" {{$quater4NC}}" value="{{$Q4Value}}" type = "number" step=".01"  name = "{{"Quater4".$kpi->id}}" id = "{{"Quater4".$kpi->id}}" readonly placeholder="Inactive"class="form-control  {{"strtegicObjective".$strategicObjective->id}} {{"Quater4".$strategicObjective->id}} {{"Quater4".$kpiOriginalName}}" /></div>                                                                              
                                         <div id="{{"unmetTargetComment".$kpi->id}}" class = "col-md-1 text-center unmetTargetComment">
                                           {{-- <a data-toggle="modal" href = "" data-target="{{"#modal".$kpi->id}}"> COMMENT</a> --}}
                                         </div>
                                         <input type="hidden" name = "{{"nonConformityFlag".$kpi->id}}" value= "2" id = "{{"nonConformityFlag".$kpi->id}}">
                                         <input type="hidden" name="{{"period".$kpi->id}}"  id="{{"period".$kpi->id}}" value="{{$kpi->period}}">
                                         <input type="hidden" name="activeQuaterForVerification" value="{{ $activeQuater}}" id="{{"activeQuater".$strategicObjective->id}}">
-                                      </div>                                  
+                                      </div>                                         
                                @endforeach
+
                                     </div>
                                <div class="box-footer">   
                                 {{-- Adding the Modal That is used to add the Key Perfomance Indicators.  --}}
@@ -511,6 +611,8 @@
                   </div>
               </div>
             </div> 
+
+                       
             @endfor
 
             @endforeach

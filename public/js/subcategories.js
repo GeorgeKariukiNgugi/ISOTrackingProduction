@@ -21,6 +21,7 @@ $(function () {
             // console.log(dataHaasChildren);
             if (dataHaasChildren == 1) {
                 $("#subcategories" + slicedId).modal("show");
+                $("#modal" + slicedId+gettingThevalue.substring(1)).modal("hide");
             }
         }
     });

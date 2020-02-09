@@ -50,7 +50,7 @@ class LoginController extends Controller
     //! MODIYFING THE LOGIN FUNCTIONALITY TO REDIRECT THE USERS BASED ON THEIR EMAIL SPECIFICATION.
 
     protected function redirectTo($id){
-                       $keyPerfomanceIndicatorsScores = KeyPerfomanceIndicatorScore::all();
+
                
                        //! GETTING WHICH QUATER AND TEAR IS ACTIVE.
                
@@ -65,7 +65,9 @@ class LoginController extends Controller
                            $activeQuater = $activeQuaterCollection->Quater;
                            // dd($activeQuater);
                        }
-                       
+                       $keyPerfomanceIndicatorsScores = KeyPerfomanceIndicatorScore::where('quater','=',$activeQuater)
+                       ->where('year','=',$activeYaer)
+                       ->get();
                        //!GETTING THE SCORES PER QUATER.
                        $quaterOne = ScoreRecorded::where('quater','=','Q1')
                                                    ->where('year','=',$activeYaer)

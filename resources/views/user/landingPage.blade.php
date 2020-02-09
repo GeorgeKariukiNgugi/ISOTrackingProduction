@@ -239,21 +239,20 @@
                                     
                                      if($kpiChildrens->keyPerfomanceIndicator_id == $kpi->id){
                                          // array_push($array,$kpiChildrens->name);
-                                       echo' <div class="row">
+                                       echo' <div class="row" style = "margin-bottom:0.5%;">
                                      <div class="col-md-1">
                                          <p>'.++$subcategoriesIncrement.'</p>
                                      </div>
                                      <div class="col-md-7">
                                          <p>'.$kpiChildrens->name.'</p>
                                      </div>
-                                     <div class="col-md-2">';
+                                     <div class="col-md-3">';
                                       echo '<input type = "hidden" name = "kpiChildrenId'.$subcategoriesIncrement.'" value = '.$kpiChildrens->id.'>';
-                                      echo '<select id = "kpichild'.$kpi->id.$subcategoriesIncrement.'" name = "kpichild'.$kpi->id.$subcategoriesIncrement.'">';
+                                      // echo '<select id = "kpichild'.$kpi->id.$subcategoriesIncrement.'" name = "kpichild'.$kpi->id.$subcategoriesIncrement.'">';
 
                                         if (count($kpiChildrenScores) == 0) {
                                           # code...
-                                         echo '<option value="1">Done</option>
-                                               <option selected value="0">Not Done</option>';
+                                          echo '<input value = "0" id = "kpichild'.$kpi->id.$subcategoriesIncrement.'" name = "kpichild'.$kpi->id.$subcategoriesIncrement.'" type="checkbox" data-width="85" checked data-toggle="toggle" data-size="small" data-on="Done" data-off="Not Done" data-onstyle="success" data-offstyle="danger">';
                                         } else {
                                           # code...                                                                                
                                           foreach ($kpiChildrenScores as $kpiChildrenScore) {
@@ -265,25 +264,22 @@
                                             switch ($scoreOfChild) {
                                                case '0':
                                                  # code...
-                                                 echo '<option value="1">Done</option>
-                                                      <option value="0" selected >Not Done</option>';
+                                                 echo '<input value = "0" id = "kpichild'.$kpi->id.$subcategoriesIncrement.'" name = "kpichild'.$kpi->id.$subcategoriesIncrement.'" type="checkbox" data-width="85" data-toggle="toggle" data-size="small" data-on="Done" data-off="Not Done" data-onstyle="success" data-offstyle="danger">';
                                                  break;
                                                  case '1':
                                                  # code...
-                                                 echo '<option selected value="1">Done</option>
-                                                       <option value="0">Not Done</option>';
+                                                 echo '<input value = "1" type="checkbox" id = "kpichild'.$kpi->id.$subcategoriesIncrement.'" name = "kpichild'.$kpi->id.$subcategoriesIncrement.'" checked data-width="85" checked data-toggle="toggle" data-size="small" data-on="Done" data-off="Not Done" data-onstyle="success" data-offstyle="danger">';
                                                  break;
                                                
                                                default:
                                                  # code...
-                                                 echo '<option value="1">Done</option>
-                                                       <option selected value="0">Not Done</option>';
+                                                 echo '<input value = "0" id = "kpichild'.$kpi->id.$subcategoriesIncrement.'" name = "kpichild'.$kpi->id.$subcategoriesIncrement.'" type="checkbox" data-width="85" checked data-toggle="toggle" data-size="small" data-on="Done" data-off="Not Done" data-onstyle="success" data-offstyle="danger">';
                                                  break;
                                              }
                                             
                                           
                                         }
-                                  echo '</select> </div>
+                                  echo '</div>
                                  </div>';
                                      }
                                    }  
@@ -539,13 +535,14 @@
                                             //! this section of the code is used to get the hasChildren. 
                                             $hasChildren = $kpi->hasChildren;
                                         @endphp                                        
-                                        <div class=" col-md-1"><input   data-hasChildren="{{$hasChildren}}" data-toggle="tooltip" title="{{$quater1NC}}" value="{{$Q1Value}}" type = "number" step=".01"   name = "{{"Quater1".$kpi->id}}" id = "{{"Quater1".$kpi->id}}" readonly placeholder="Inactive" class="form-control {{"strtegicObjective".$strategicObjective->id}} {{"Quater1".$strategicObjective->id}} {{"Quater1".$kpiOriginalName}}" /></div>
-                                        <div class=" col-md-1"><input   data-hasChildren="{{$hasChildren}}"data-toggle="tooltip" title=" {{$quater2NC}}" value="{{$Q2Value}}" type = "number" step=".01"  name = "{{"Quater2".$kpi->id}}" id = "{{"Quater2".$kpi->id}}" readonly placeholder="Inactive" class="form-control {{"strtegicObjective".$strategicObjective->id}} {{"Quater2".$strategicObjective->id}} {{"Quater2".$kpiOriginalName}}" /></div>
-                                        <div class=" col-md-1"><input   data-hasChildren="{{$hasChildren}}"data-toggle="tooltip" title=" {{$quater3NC}}" value="{{$Q3Value}}" type = "number" step=".01"  name = "{{"Quater3".$kpi->id}}" id = "{{"Quater3".$kpi->id}}" readonly placeholder="Inactive" class="form-control {{"strtegicObjective".$strategicObjective->id}} {{"Quater3".$strategicObjective->id}} {{"Quater3".$kpiOriginalName}}" /></div>
-                                        <div class=" col-md-1"><input   data-hasChildren="{{$hasChildren}}"data-toggle="tooltip" title=" {{$quater4NC}}" value="{{$Q4Value}}" type = "number" step=".01"  name = "{{"Quater4".$kpi->id}}" id = "{{"Quater4".$kpi->id}}" readonly placeholder="Inactive"class="form-control  {{"strtegicObjective".$strategicObjective->id}} {{"Quater4".$strategicObjective->id}} {{"Quater4".$kpiOriginalName}}" /></div>                                                                              
+                                        <div class=" col-md-1"><input   data-hasChildren="{{$hasChildren}}" data-toggle="tooltip" title="{{$quater1NC}}" value="{{$Q1Value}}" type = "number" step=".01"   name = "{{"Quater1".$kpi->id}}" id = "{{"Quater1".$kpi->id}}" readonly placeholder="Inactive" class="form-control {{"strtegicObjective".$strategicObjective->id}} {{"Quater1".$strategicObjective->id}} {{"Quater1".$kpiOriginalName}}" data-units = "{{$kpi->units}}"/></div>
+                                        <div class=" col-md-1"><input   data-hasChildren="{{$hasChildren}}"data-toggle="tooltip" title=" {{$quater2NC}}" value="{{$Q2Value}}" type = "number" step=".01"  name = "{{"Quater2".$kpi->id}}" id = "{{"Quater2".$kpi->id}}" readonly placeholder="Inactive" class="form-control {{"strtegicObjective".$strategicObjective->id}} {{"Quater2".$strategicObjective->id}} {{"Quater2".$kpiOriginalName}}"  data-units = "{{$kpi->units}}"/></div>
+                                        <div class=" col-md-1"><input   data-hasChildren="{{$hasChildren}}"data-toggle="tooltip" title=" {{$quater3NC}}" value="{{$Q3Value}}" type = "number" step=".01"  name = "{{"Quater3".$kpi->id}}" id = "{{"Quater3".$kpi->id}}" readonly placeholder="Inactive" class="form-control {{"strtegicObjective".$strategicObjective->id}} {{"Quater3".$strategicObjective->id}} {{"Quater3".$kpiOriginalName}}"  data-units = "{{$kpi->units}}"/></div>
+                                        <div class=" col-md-1"><input   data-hasChildren="{{$hasChildren}}"data-toggle="tooltip" title=" {{$quater4NC}}" value="{{$Q4Value}}" type = "number" step=".01"  name = "{{"Quater4".$kpi->id}}" id = "{{"Quater4".$kpi->id}}" readonly placeholder="Inactive"class="form-control  {{"strtegicObjective".$strategicObjective->id}} {{"Quater4".$strategicObjective->id}} {{"Quater4".$kpiOriginalName}}"  data-units = "{{$kpi->units}}"/></div>                                                                              
                                         <div id="{{"unmetTargetComment".$kpi->id}}" class = "col-md-1 text-center unmetTargetComment">
                                           {{-- <a data-toggle="modal" href = "" data-target="{{"#modal".$kpi->id}}"> COMMENT</a> --}}
                                         </div>
+                                        <input type="hidden" name="" id="{{"kpiUnits".$kpi->id}}" value = "{{$kpi->units}}">
                                         <input type="hidden" name = "{{"nonConformityFlag".$kpi->id}}" value= "2" id = "{{"nonConformityFlag".$kpi->id}}">
                                         <input type="hidden" name="{{"period".$kpi->id}}"  id="{{"period".$kpi->id}}" value="{{$kpi->period}}">
                                         <input type="hidden" name="activeQuaterForVerification" value="{{ $activeQuater}}" id="{{"activeQuater".$strategicObjective->id}}">

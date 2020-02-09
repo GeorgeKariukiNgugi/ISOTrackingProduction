@@ -169,6 +169,11 @@ class UserController extends Controller
             
             if($period == 2){
                 
+                if ($kpi->hasChildren == 1) {
+                    # code...
+                    $averageThatBecomesytd = $score;
+                } else {
+
                 if($prefixOfTheActiveQuater == 1){
                     $averageThatBecomesytd = $score;
                 }
@@ -205,9 +210,14 @@ class UserController extends Controller
                     $averageThatBecomesytd = ($score+$scoreFetched);
                 }
             }
+            }
             elseif($period == 1){
 
-                
+                if ($kpi->hasChildren == 1) {
+                    # code...
+                    $averageThatBecomesytd = $score;
+                } else {
+
                 if ($prefixOfTheActiveQuater == 1) {
                     # code...
                     $averageThatBecomesytd = $score;
@@ -260,15 +270,16 @@ class UserController extends Controller
                     $scoreFetched = 0;
                     $scoreFetched2=0;
                     $scoreFetched3 = 0;
-                    $findingQ2Value = ScoreRecorded::where('year','=',$activeYaer)
+                    $findingQ1Value = ScoreRecorded::where('year','=',$activeYaer)
                     ->where('keyPerfomanceIndicator_id','=',$idOfKPI)
                     ->where('quater','=','Q1')
                     ->get();
 
-                    foreach($findingQ2Value as $Value){
+                    foreach($findingQ1Value as $Value){
                         $scoreFetched = $Value->score;
                     }
-                    $findingQ1Value = ScoreRecorded::where('year','=',$activeYaer)
+
+                    $findingQ2Value = ScoreRecorded::where('year','=',$activeYaer)
                     ->where('keyPerfomanceIndicator_id','=',$idOfKPI)
                     ->where('quater','=','Q2')
                     ->get();
@@ -277,17 +288,17 @@ class UserController extends Controller
                         $scoreFetched2 = $Value->score;
                     }
                     
-                    $findingQ2Value = ScoreRecorded::where('year','=',$activeYaer)
+                    $findingQ3Value = ScoreRecorded::where('year','=',$activeYaer)
                     ->where('keyPerfomanceIndicator_id','=',$idOfKPI)
                     ->where('quater','=','Q3')
                     ->get();
 
-                    foreach($findingQ2Value as $Value){
+                    foreach($findingQ3Value as $Value){
                         $scoreFetched3 = $Value->score;
                     }
                     $averageThatBecomesytd = ($score+$scoreFetched+$scoreFetched2+$scoreFetched3);
                 }
-
+            }
             }
             else{
                 $sum = 0;
@@ -420,12 +431,13 @@ class UserController extends Controller
             }
 
             
+            // dd($kpiScore);
             //! Adding the data into the kpi scores table, we first check if it is present, if so we update or else we insert. 
             $kpiscoresRecords = KeyPerfomanceIndicatorScore::where('kpi_id','=',$idOfKPI)
                                                             ->where('year','=',$activeYaer)
                                                             ->where('quater','=',$activeQuater)                                                            
                                                             ->get();
-                                    
+                                //    dd($kpiscoresRecords); 
             //!counting the records.
             $numberOfKPIRecords = count($kpiscoresRecords);
             
@@ -478,10 +490,7 @@ class UserController extends Controller
         }
         $average = $sum/$countingNoOfKPIScores;
         
-
-        
-
-
+            //    dd($gettingTheKPIScores); 
         //! checking if the data has has a value so as to see if the value has a duplicate so as to update.
             $gettingStrategicObjectiveRecord = StrategicObjectiveScore::where('strategicObjective_id','=',$strategicObjectiveIdFromForm)
                                                                         ->where('year','=',$activeYaer)
@@ -501,6 +510,7 @@ class UserController extends Controller
                 foreach($gettingStrategicObjectiveRecord as $StrategicObjectiveRecord){
                     //! IN THIS SECTION OF THE CODE, WE ARE EQUATING THE VALUE THAT IS THE AVERAGE TO THE STRATEGIC OBJEVTIVE WEIGHT.
                     $average = (($average/100)*$strategicObjectiveWeight);
+                    // dd("before   ".$average."   after  ".$average2."  Weight  ".$strategicObjectiveWeight);
                     $StrategicObjectiveRecord->strategicObjective_id= $strategicObjectiveIdFromForm;
                     $StrategicObjectiveRecord->perspective_id= $perspectiveIddrawn;
                     $StrategicObjectiveRecord->score= $average ;

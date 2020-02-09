@@ -21,7 +21,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('AdminLTE-master\dist\css\AdminLTE.min.css')}}">
   <link rel="stylesheet" href="{{asset('AdminLTE-master\dist\css\skins\skin-green.min.css')}}">
-
+  <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 
   <!-- Google Font -->
   <link rel="stylesheet"
@@ -234,6 +234,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{asset('js/selectingSpecificQuater.js')}}"></script>
 <script src="{{asset('js/editingStrategicObjective.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 <script src="{{asset('js/subcategories.js')}}"></script>
 <script src="{{asset('js/submittingSubcategories.js')}}"></script>
 <script src="{{asset('js/closingtheSubCategories.js')}}"></script>

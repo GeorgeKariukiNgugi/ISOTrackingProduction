@@ -188,6 +188,14 @@ $(function () {
                         console.log("The value is blank.");
                         $("#" + unmetTargetId + "").empty();
                     } else {
+                        //! this section of th code will be used to see whether, the data-hasChildren == 1 
+                        //! so that we can hide the modal.
+                        if($(this).attr("data-hasChildren") === "1"){
+
+                            $("#modal" + slicedId+gettingThevalue.substring(1)).modal("hide");
+
+                        }
+                        else{
                         inputValue = parseFloat(inputValue, 10);
                         targetValue = parseFloat(targetValue, 10);
                         //! getting the arithmetic structure.
@@ -446,6 +454,7 @@ $(function () {
                                 break;
                         }
                     }
+                }
                 }
             }
 

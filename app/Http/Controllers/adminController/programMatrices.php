@@ -125,7 +125,7 @@ class programMatrices extends Controller
             $kpi->period  =$request->period;
             $kpi->arithmeticStructure  =$request->arithmeticStructure;
             $kpi->target  =$request->target;
-
+            $kpi->units = $request->units;
             $kpi->save();
         }
         

@@ -68,6 +68,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </table>
     </div>
      
+                
+
+                @foreach ($nonConformities as $nonConformities)
+                |               |         |
+                | ------------- |:-------------:| --------:|
+                | Col 2 is      | {{$nonConformities->rootCause}}|
+                | Col 2 is      | {{$nonConformities->correctiveAction}}|
+                | Col 2 is      | {{$nonConformities->rootCause}}|
+
+                @endforeach
+                
+                
 </body>
 </html>
 

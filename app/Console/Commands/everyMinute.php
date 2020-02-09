@@ -69,7 +69,8 @@ class everyMinute extends Command
 			}
 
 			$assesorProgramArray = 'gkngugi@safaricom.co.ke';
-			Mail::to($assesorProgramArray)->send(new TestMail($nonConformities));
+			Mail::to($assesorProgramArray)->send(new TestMail($nonConformities))
+						      ->subject("this is not a test mail.");
 }
 			}
 			

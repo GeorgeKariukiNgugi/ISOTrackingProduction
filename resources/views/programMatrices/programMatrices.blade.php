@@ -681,8 +681,8 @@
                                         <p>Child Type: </p>
                                     </div>
                                     <div class="col-md-9">
-                                        <input type="radio" name="type" id="" value="1"> Binary (2 options i.e, Done And NotDone) <br>
-                                        <input type="radio" name="type" id="" value="2"> Number Input <br>
+                                        <input type="radio" name="typeOfInput" id="" value="1"> Binary (2 options i.e, Done And NotDone) <br>
+                                        <input type="radio" name="typeOfInput" id="" value="2"> Number Input <br>
                                     </div>
                                 </div>
                             </div>
@@ -987,7 +987,7 @@
                         <div class="modal-footer" style="background-color:#62D975;">
                             <button class="btn btn-danger" type="button" data-dismiss="modal">Close.</button>
                             <button class="btn btn-success" type="submit">Save.</button></div>
-                    <input type="hidden" name="kpi_id" value="{{$kpiModal->id}}">
+                    <input type="hidden" name="kpi_id" value="{{$kpiChildrenz->keyPerfomanceIndicator_id}}">
                 </form>
             </div>
         </div>

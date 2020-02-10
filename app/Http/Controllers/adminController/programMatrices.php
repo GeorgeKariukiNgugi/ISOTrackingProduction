@@ -395,9 +395,16 @@ class programMatrices extends Controller
 
     public function addingKPIChild($id, Request $request){
         $kpiChildren = new kpiChildren();
+        if ($request->typeOfInput == null) {
+            # code...
+            $type = 1;
+        } else {
+            # code...
+            $type = $request->typeOfInput;
+        }
         $kpiChildren->name = $request->kpiChildName;
         $kpiChildren->keyPerfomanceIndicator_id = $request->kpi_id;
-        $kpiChildren->type = $request->type;
+        $kpiChildren->type =$type;
         $kpiChildren->save();
 
         // $kpiId = request->kpi_id;

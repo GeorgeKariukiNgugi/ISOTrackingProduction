@@ -595,14 +595,113 @@
                                     </div>
                                     <div class="col-md-6"><input type="text"  name="units" style="width:100%;height:35px;" value="{{$kpiModal->units}}"/></div>
                                 </div>
+
+                                {{-- THIS SECTION IS USED TO GET THE CHILDREN OF THE STRATEGIC OBJECTIVE. --}}
+                                <h4 class="text-center" style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"> <strong>{{$kpiName}}  Children.</strong></h4>                                
+                                <div>
+                                    <a class="buttonsToClosePreviousModal btn btn-success btn-md" data-kpiId = "{{$kpiModal->id}}" style="background-color:orangered;" data-toggle="modal" data-target="{{"#newKpiChild".$kpiModal->id}}" > 
+                                    <b>Add New KPI Child.</b> 
+                                    </a>                                                            
+                                </div>
+                                <br>
+                                @php
+                                    $child = 0;
+                                @endphp
+                                @if ($kpiModal->hasChildren == 1)
+                                    {{-- <h2>This kpi has children within it.</h2> --}}
+                                    <div></div>
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <h4> <strong>S<sub>no</sub></strong></h4>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h4> <strong>Child Name</strong> </h4>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <h4> <strong>Actions</strong></h4>
+                                        </div>
+                                    </div>
+                                    <div class="{{"kpiChilrenAlert".$kpiModal->id}}" id="{{"kpiChilrenAlert".$kpiModal->id}}"></div>
+                                    <div id="{{"childKPIContainingDiv".$kpiModal->id}}">
+                                    @foreach ($kpiChildren as $kpiChildrens)
+                                        @if ($kpiChildrens->keyPerfomanceIndicator_id == $kpiModal->id)
+                                        
+                                        <div class="row" style="margin-bottom:0.5%">
+                                            <div class="col-md-2">
+                                                <p>{{++$child}}</p>
+                                            </div>
+                                            <div class="col-md-6">
+                                               <p>{{$kpiChildrens->name."   "}}</p>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <a  data-kpiId = "{{$kpiModal->id}}" class=" buttonsToClosePreviousModal btn btn-sm btn-danger" data-toggle="modal" data-target="{{"#deleteKpiChild".$kpiChildrens->id}}">Delete</a>
+                                                <a  data-kpiId = "{{$kpiModal->id}}" class=" buttonsToClosePreviousModal btn btn-sm btn-info" data-toggle="modal" data-target="{{"#editKpiChild".$kpiChildrens->id}}">Edit</a>
+                                            </div>
+                                        </div>    
+
+                                                                        
+                                        @endif
+                                    @endforeach
+                                </div>
+                                @else
+                                <h2>This kpi has no children within it.</h2>
+                                @endif
+
                             </div>
-                            <div class="modal-footer" style="background-color:#62d975;"><button class="btn btn-danger btn-sm" type="button" data-dismiss="modal"><strong>Close</strong></button><button class="btn btn-success btn-sm" type="submit"><strong>Save</strong></button></div>
+                            <div class="modal-footer" style="background-color:#62d975;"><button class="btn btn-danger btn-md" type="button" data-dismiss="modal"><strong>Close</strong></button><button class="btn btn-success btn-md" type="submit"><strong>Save</strong></button></div>
                         </form>
                         </div>
                     </div>
                 </div>
 
 
+                {{-- this section of the code is used to define the section sthat will be used to add edit and also delete the 
+                kpi children. --}}
+
+                {{-- 1. Adding a new child. --}}
+
+                <div role="dialog" tabindex="-1"  class="modal fade" id="{{"newKpiChild".$kpiModal->id}}">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header" style="background-color:#62D975;"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                <h4 class="modal-title"><strong>Add A New KPI Child to {{$kpiName}} </strong></h4>
+                            </div>
+                            <div class="modal-body" style="background-color:#A4DAAC;">
+                                <form data-kpiId = {{$kpiModal->id}} action="{{"/addingNewKPIChild/".$kpiModal->id}}" class = "addingAnewChild" method="POST">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <p>Name: </p>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <input type="text" width="50px" height="28px" name="kpiChildName" id="" required>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <p>Child Type: </p>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <input type="radio" name="type" id="" value="1"> Binary (2 options i.e, Done And NotDone) <br>
+                                        <input type="radio" name="type" id="" value="2"> Number Input <br>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                                {{ csrf_field() }}
+                                    <div class="modal-footer" style="background-color:#62D975;">
+                                        <button class="btn btn-danger" type="button" data-dismiss="modal">Close.</button>
+                                        <button class="btn btn-success" type="submit">Add.</button></div>
+                                <input type="hidden" name="kpi_id" value="{{$kpiModal->id}}">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+                {{-- 2. DELETING A KPI CHILD FROM THE KPI.  --}}
+
+
+               
             {{-- modal that is used to delete the KPI. --}}
 
             <div role="dialog" tabindex="-1" class="modal fade" id="{{"deleteKpiModal".$kpiModal->id}}">
@@ -824,9 +923,72 @@
                 </div>
                 <div class="modal-footer" style="background-color:rgb(171,146,223);">
                     <button class="btn btn-success" type="button" data-dismiss="modal">Close</button>
-                    <button class="btn btn-danger"  type="submit">Save</button> 
+                    <button class="b
+                    tn btn-danger"  type="submit">Save</button> 
                 </div>
             </form>
+            </div>
+        </div>
+    </div>
+@endforeach
+
+@foreach ($kpiChildren as $kpiChildrenz)
+     {{-- 2. THIS SECTION OF THE CODE IS USED TO DELETE THE KPI CHILDREN. --}}
+
+     <div role="dialog" tabindex="-1" class="modal fade" id="{{"deleteKpiChild".$kpiChildrenz->id}}">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color:#fc5d5d;"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title"><strong>Delete KPI: {{ str_replace("_", " ", $kpiChildrenz->name)}} </strong></h4>
+                </div>
+                <div class="modal-body" style="background-color:#f78686;">
+                    <h3 class="text-center" style="color:white">Confirmation:: Are You Sure You Want To Delete The  KPI Child:: {{ str_replace("_", " ", $kpiChildrenz->name)}} ??</h3>
+                    <strong>All Entries From The past years will permanently be deleted.</strong>
+                </div>                
+                    {{ csrf_field() }}
+                        <div class="modal-footer" style="background-color:#fc5d5d;">
+                            <a  class="btn btn-default" type="button" data-dismiss="modal">Close</a>
+                            <a href="/deletingAKPIChild/{{$kpiChildrenz->id}}" class="btn btn-success">DELETE</a>
+                        </div>                
+            </div>
+        </div>
+    </div>  
+    
+    {{-- 3. THIS SECTION OF THE CODE IS USED TO EDIT THE KPI CHILD. --}}
+
+    <div role="dialog" tabindex="-1"  class="modal fade" id="{{"editKpiChild".$kpiChildrenz->id}}">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color:#62D975;"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title"><strong>Edit KPI Child:    {{$kpiChildrenz->name}} </strong></h4>
+                </div>
+                <div class="modal-body" style="background-color:#A4DAAC;">
+                    <form action="{{"/editKPIChild/".$kpiChildrenz->id}}"  method="POST">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <p>Name: </p>
+                        </div>
+                        <div class="col-md-9">
+                            <input type="text" width="80%" height="28%" value="{{$kpiChildrenz->name}}" name="kpiChildName" id="" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <p>Child Type: </p>
+                        </div>
+                        <div class="col-md-9">
+                            <input type="radio" name="typeOfInput" value="1"> Binary (2 options i.e, Done And NotDone) <br>
+                            <input type="radio" name="typeOfInput" value="2"> Number Input <br>
+                        </div>
+                    </div>
+                </div>
+                
+                    {{ csrf_field() }}
+                        <div class="modal-footer" style="background-color:#62D975;">
+                            <button class="btn btn-danger" type="button" data-dismiss="modal">Close.</button>
+                            <button class="btn btn-success" type="submit">Save.</button></div>
+                    <input type="hidden" name="kpi_id" value="{{$kpiModal->id}}">
+                </form>
             </div>
         </div>
     </div>

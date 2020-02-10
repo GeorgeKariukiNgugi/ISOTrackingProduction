@@ -258,8 +258,11 @@
 <script src="{{asset('js/subcategories.js')}}"></script>
 <script src="{{asset('js/submittingSubcategories.js')}}"></script>
 <script src="{{asset('js/closingtheSubCategories.js')}}"></script>
+<script src="{{asset('js/submittingAdditionOfNewKPIChild.js')}}"></script>
+<script src="{{asset('js/closingPreviousModal.js')}}"></script>
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 @include('sweetalert::alert')
 @yield('charts')
 <!-- Optionally, you can add Slimscroll and FastClick plugins.

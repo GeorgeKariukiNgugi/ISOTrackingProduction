@@ -24,6 +24,8 @@ use App\Http\Requests\AddingNewStrstegicObjective;
 use RealRashid\SweetAlert\Facades\Alert;
 use  App\Charts\DashBoardCharts;
 use App\Userediting;
+use App\kpiChildren;
+use App\kpiChildrenScores;
 class programMatrices extends Controller
 {
     public function proramMatrices($id){
@@ -62,12 +64,13 @@ class programMatrices extends Controller
                                         $perspectives = $program->perspectives;
                                         
                                     }
+           $kpiChildren = kpiChildren::all();                         
           $programs = Program::all();                          
           $URLstring = url()->current();
           $admin = 'programMatrices';
           $programManager = 'userMatrices';
           if(strpos($URLstring,$admin) !== false){
-            return view('adminPage.programMatrices',['activeQuater'=>$activeQuater,'programId'=>$id,'programName'=>$programName,'programs'=>$programs,'quaterOne'=>$quaterOne,'quaterTwo'=>$quaterTwo,'quaterthree'=>$quaterthree,'quaterfour'=>$quaterfour,'perspectives'=>$perspectives,'activeYaer'=>$activeYaer,'activeQuater'=>$activeQuater,'keyPerfomanceIndicatorsScores'=>$keyPerfomanceIndicatorsScores,'programName'=>$programName,'programShortHand'=>$programShortHand]);
+            return view('adminPage.programMatrices',['kpiChildren'=>$kpiChildren,'activeQuater'=>$activeQuater,'programId'=>$id,'programName'=>$programName,'programs'=>$programs,'quaterOne'=>$quaterOne,'quaterTwo'=>$quaterTwo,'quaterthree'=>$quaterthree,'quaterfour'=>$quaterfour,'perspectives'=>$perspectives,'activeYaer'=>$activeYaer,'activeQuater'=>$activeQuater,'keyPerfomanceIndicatorsScores'=>$keyPerfomanceIndicatorsScores,'programName'=>$programName,'programShortHand'=>$programShortHand]);
           }
 
           if (strpos($URLstring,$programManager) !== false) {
@@ -78,7 +81,7 @@ class programMatrices extends Controller
 
                   $valueOfEditing = $gettingUserEditing->value;
               }
-              return  view('user.matrices.programMatrices',['activeQuater'=>$activeQuater,'id'=>$id,'valueOfEditing'=>$valueOfEditing,'programId'=>$id,'programName'=>$programName,'programs'=>$programs,'quaterOne'=>$quaterOne,'quaterTwo'=>$quaterTwo,'quaterthree'=>$quaterthree,'quaterfour'=>$quaterfour,'perspectives'=>$perspectives,'activeYaer'=>$activeYaer,'activeQuater'=>$activeQuater,'keyPerfomanceIndicatorsScores'=>$keyPerfomanceIndicatorsScores,'programName'=>$programName,'programShortHand'=>$programShortHand]);
+              return  view('user.matrices.programMatrices',['kpiChildren'=>$kpiChildren,'activeQuater'=>$activeQuater,'id'=>$id,'valueOfEditing'=>$valueOfEditing,'programId'=>$id,'programName'=>$programName,'programs'=>$programs,'quaterOne'=>$quaterOne,'quaterTwo'=>$quaterTwo,'quaterthree'=>$quaterthree,'quaterfour'=>$quaterfour,'perspectives'=>$perspectives,'activeYaer'=>$activeYaer,'activeQuater'=>$activeQuater,'keyPerfomanceIndicatorsScores'=>$keyPerfomanceIndicatorsScores,'programName'=>$programName,'programShortHand'=>$programShortHand]);
           }
    
         
@@ -388,5 +391,58 @@ class programMatrices extends Controller
 
         Alert::success(' <h4 style = "color:green;">Congartulations    <i class="fa fa-thumbs-up"></i></h4>', 'Added Perspective Successfully.');
         return back();
+    }
+
+    public function addingKPIChild($id, Request $request){
+        $kpiChildren = new kpiChildren();
+        $kpiChildren->name = $request->kpiChildName;
+        $kpiChildren->keyPerfomanceIndicator_id = $request->kpi_id;
+        $kpiChildren->type = $request->type;
+        $kpiChildren->save();
+
+        // $kpiId = request->kpi_id;
+        $kpiToActivates = KeyPerfomaceIndicator::where('id','=',$request->kpi_id)->get();
+
+        foreach ($kpiToActivates as $kpiToActivate) {
+
+            $kpiToActivate->hasChildren = 1;
+            $kpiToActivate->save();
+            # code...
+        }
+        Alert::success(' <h4 style = "color:green;">Congartulations    <i class="fa fa-thumbs-up"></i></h4>', 'Successfully Added A Child KPI.');
+        return back();
+    }
+
+    public function deletingKPIChild($id){
+        $kpiChildrens = kpiChildren::where('id','=',$id)->get();
+        foreach ($kpiChildrens as $kpiChildren) {
+            # code...
+            $kpiChildren->delete();
+        }
+        Alert::success(' <h4 style = "color:green;">Congartulations    <i class="fa fa-thumbs-up"></i></h4>', 'Successfully Deleted A Child KPI.');
+        return back();
+    }
+
+    public function editingKPIChild($id, Request $request){
+
+        $kpiChildrens = kpiChildren::where('id','=',$id)->get();
+        if ($request->typeOfInput == null) {
+            # code...
+            $type = 1;
+        } else {
+            # code...
+            $type = $request->typeOfInput;
+        }
+        
+        foreach ($kpiChildrens as $kpiChildren) {
+            # code...
+            $kpiChildren->name = $request->kpiChildName;
+            $kpiChildren->type = $type;
+            $kpiChildren->save();
+
+        }
+        Alert::success(' <h4 style = "color:green;">Congartulations    <i class="fa fa-thumbs-up"></i></h4>', 'Successfully Edited A Child KPI.');
+        return back();
+
     }
 }

@@ -242,7 +242,7 @@
 <!-- AdminLTE App -->
 <script src="{{asset('AdminLTE-master\dist\js\adminlte.min.js')}}"></script>
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script> --}}
 {{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
 <script src="{{asset('js/accordion.js')}}"></script>
 <script src="{{asset('js/verification.js')}}"></script>

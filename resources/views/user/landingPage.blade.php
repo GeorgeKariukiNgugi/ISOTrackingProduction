@@ -15,6 +15,28 @@
      Dashboard
     </a>
   </li> 
+
+  @section('previousScores')
+
+  <li class="treeview">
+    <a href="#"><i class="fa fa-history"></i> <span>Previous Year Scores</span>
+      <span class="pull-right-container">
+          <i class="fa fa-angle-left pull-right"></i>
+        </span>
+    </a>
+    <ul class="treeview-menu">
+
+      @if (count($years) < 1)
+        <li><p style="color:whitesmoke">No past records can be retrieved.</p></li>  
+      @else
+            @foreach ($years as $year)
+            <li><a href="/usersTutorial/{{$programId}}/1"><i class="fa fa-history"></i> <span>{{$year->Year}}</span></a></li>
+            @endforeach 
+      @endif                  
+    </ul>
+  </li>
+      
+  @endsection
 @endsection
 
 @section('overdue')

@@ -160,11 +160,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">OPTIONS.</li>
-        <!-- Optionally, you can add icons to the links -->
-        {{-- <li class="active"><a href="#"><i class="fa fa-edit"></i> <span>User Manual </span></a></li> --}}
-
-        
-
         <li>
           @yield('reports')
         </li>
@@ -174,7 +169,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <li>
           @yield('perspectiveTrends')
         </li>
-        @yield('userEditingMatrices')
+        @yield('userEditingMatrices')        
         @yield('video')      
       </ul>
       <!-- /.sidebar-menu -->
@@ -220,6 +215,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{asset('AdminLTE-master/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{asset('AdminLTE-master\dist\js\adminlte.min.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="{{asset('js/accordion.js')}}"></script>
 <script src="{{asset('js/verification.js')}}"></script>
 <script src="{{asset('js/default.js')}}"></script>
@@ -233,11 +231,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{asset('js/addingNewPerpsectives.js')}}"></script>
 <script src="{{asset('js/selectingSpecificQuater.js')}}"></script>
 <script src="{{asset('js/editingStrategicObjective.js')}}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
-<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 <script src="{{asset('js/subcategories.js')}}"></script>
 <script src="{{asset('js/submittingSubcategories.js')}}"></script>
 <script src="{{asset('js/closingtheSubCategories.js')}}"></script>
+<script src="{{asset('js/submittingAdditionOfNewKPIChild.js')}}"></script>
+<script src="{{asset('js/closingPreviousModal.js')}}"></script>
+
+
 
 
 @include('sweetalert::alert')

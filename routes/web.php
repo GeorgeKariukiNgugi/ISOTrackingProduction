@@ -197,3 +197,11 @@ Route::get('/sendingMail','tryMail@trySendingMial');
 
 //! this route is used to send the subcategories data to the backend ito the database. 
 Route::post('/postingKPISubcategories','userController\submittingKPISubCategories@submittingKPISubCategories');
+
+//! this route will be used to add a new kpi child to a KPI.
+Route::post('/addingNewKPIChild/{id}','adminController\programMatrices@addingKPIChild');
+
+//! this route is used to delete the kpi child that has been selected. 
+Route::get('/deletingAKPIChild/{iid}','adminController\programMatrices@deletingKPIChild');
+
+Route::post('/editKPIChild/{iid}','adminController\programMatrices@editingKPIChild');

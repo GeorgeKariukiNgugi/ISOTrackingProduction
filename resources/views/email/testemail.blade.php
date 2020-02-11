@@ -48,18 +48,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
             
             <tbody>
                 
-            @foreach ($nonConformities as $nonConformities)
+            @foreach ($nonConformities as $nonConformitiess)
 
             
             <tr>
-                <th>Reason</th> <td>{{$nonConformities->rootCause}}</td>
+                <th>Reason</th> <td>{{$nonConformitiess->rootCause}}</td>
                 
             </tr> 
             <tr>
-                <th>Correction</th> <td>{{$nonConformities->correction}}</td>
+                <th>Correction</th> <td>{{$nonConformitiess->correction}}</td>
             </tr>
             <tr>
-                <th>correctiveAction</th><td>{{$nonConformities->correctiveAction}}</td>
+                <th>correctiveAction</th><td>{{$nonConformitiess->correctiveAction}}</td>
             </tr>            
 
             @endforeach
@@ -67,20 +67,5 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </tbody>
         </table>
     </div>
-     
-                
-
-                @foreach ($nonConformities as $nonConformities)
-                |               |         |
-                | ------------- |:-------------:| --------:|
-                | Col 2 is      | {{$nonConformities->rootCause}}|
-                | Col 2 is      | {{$nonConformities->correctiveAction}}|
-                | Col 2 is      | {{$nonConformities->rootCause}}|
-
-                @endforeach
-                
-                
 </body>
 </html>
-
-

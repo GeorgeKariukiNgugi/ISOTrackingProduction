@@ -42,7 +42,9 @@
 @section('closed')
 <a href="{{"/nonconformities/".$id."/2"}}" data-toggle="tooltip" title="Closed Non Confrmities.">
 @endsection
-
+@section('logoRedirect')
+<a href={{"/home/".$id}} class="logo"> 
+@endsection
 @section('video')
 <li class="treeview">
   <a href="#"><i class="fa fa-video-camera"></i> <span>Video Tutorials</span>

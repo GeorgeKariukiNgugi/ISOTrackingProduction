@@ -1,4 +1,7 @@
 @extends('extendingCode.usersExtending')
+@section('logoRedirect')
+<a href={{"/home/".$id}} class="logo">  
+@endsection
 @section('navigationBar')
 
 <li>

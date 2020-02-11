@@ -38,7 +38,9 @@
       
   @endsection
 @endsection
-
+@section('logoRedirect')
+<a href={{"/home/".$programId}} class="logo"> 
+@endsection
 @section('overdue')
 <a href="{{"/nonconformities/".$programId."/1"}}" data-toggle="tooltip" title=" Issues out of date">
 @endsection

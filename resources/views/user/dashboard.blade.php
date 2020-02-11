@@ -16,7 +16,9 @@
     </a>
   </li> 
 @endsection
-
+@section('logoRedirect')
+<a href={{"/home/".$id}} class="logo"> 
+@endsection
 @section('trends')
 <a href="{{"/programManager/".$id}}"><i class="fa fa-line-chart"></i> <span>Program Trends.</span></a>
 @endsection

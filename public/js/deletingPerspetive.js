@@ -2,7 +2,7 @@ $(function () {
     // console.log("this is a submitting scores model.");   
     var inputFocudedOut = $("input[class*='perspectiveWeight']");
     // console.log(inputFocudedOut.length);
-    inputFocudedOut.focusout(function () {
+    inputFocudedOut.keyup(function () {
 
         var idOfInput = $(this).attr("class");
         var slicedId = idOfInput.substring(17);

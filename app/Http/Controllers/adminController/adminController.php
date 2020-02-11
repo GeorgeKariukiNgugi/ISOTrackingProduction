@@ -8,7 +8,7 @@ use App\Program;
 use DB;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\AssesorPerProgram;
-// use App\submittingEmail;
+use Session;
 use App\Perspective;
 use App\Http\Requests\SubmittingPerspetive;
 use App\Http\Requests\validatingSubmittedData;
@@ -56,7 +56,7 @@ class adminController extends Controller
             array_push($programDetailsArray,$newName);
             // $programDetailsArray = 22;
             //! getting the last inserted data in the table.  
-
+            Session::put('programDetailsArray',$programDetailsArray);
 
             $lastIds = Program::where('shortHand','=',$progamShortHand)->get();
             $id = null;
@@ -76,10 +76,13 @@ class adminController extends Controller
         //! to submit the data that has been presented we hould first get the type of radioi button that has been submitted.
 
         $perspective = $request->perspective;
-
+        $newProgramDetails = $request->newProgramDetails;
+        
         //! id and shorthand of program 
         $id        = $request->programId;
         $shortHand = $request->shorthand;
+        // dd($id);
+        $programDetailsForiNserton = Session::get('programDetailsArray');
         if($perspective == 'primitive'){
             //! if the radio button submitted has a value of primitive, then we just get the weights based that it has. 
 
@@ -89,7 +92,7 @@ class adminController extends Controller
             $internalBusiness  = $request->perspectivePrimitiveib;
 
             $sumOfWeight = $financial+$customer+$learningAndgrowth+$internalBusiness;
-
+            // dd($sumOfWeight);
             if($sumOfWeight < 100 OR $sumOfWeight > 100){
                 $lastIds = Program::where('shortHand','=',$request->shorthand)->get();
                 $id      = null;
@@ -97,22 +100,22 @@ class adminController extends Controller
                     $id = $lastId->id;
                 }
             $programs    = Program::all();
-            $sumOfWeight = 0;
-                return view('adminPage.addingNewProgramStep2',['programs'=>$programs,'sumOfWeight'=>$sumOfWeight,'unmetWeight'=>$sumOfWeight,'id'=>$id,'name'=>$request->name,'progamShortHand'=>$request->shorthand,'progamCode'=>$request->code]);
+            // $sumOfWeight = 0;
+                return view('adminPage.addingNewProgramStep2',['numbersSubmitted'=>4,'programDetailsArray '=>$newProgramDetails,'programs'=>$programs,'sumOfWeight'=>$sumOfWeight,'unmetWeight'=>$sumOfWeight,'id'=>$id,'name'=>$request->name,'progamShortHand'=>$request->shorthand,'progamCode'=>$request->code]);
             }
             $perspectives = array();
-            // dd($id);
+            // dd($request);
             //!pushing data to array for easier insertion. 
             // $newProgramDetails
-
+            
             $newProram = new Program(
                                         array(
-                                            'name'=>$request->newProgramDetails[0],
-                                            'description'=>$request->newProgramDetails[1],
-                                            'shortHand'=>$request->newProgramDetails[2],
-                                            'programCode'=>$request->newProgramDetails[3],
-                                            'colorCode'=>$request->newProgramDetails[4],
-                                            'imageLocation'=>$request->newProgramDetails[5]
+                                            'name'=>$programDetailsForiNserton[0],
+                                            'description'=>$programDetailsForiNserton[1],
+                                            'shortHand'=>$programDetailsForiNserton[2],
+                                            'programCode'=>$programDetailsForiNserton[3],
+                                            'colorCode'=>$programDetailsForiNserton[4],
+                                            'imageLocation'=>$programDetailsForiNserton[5]
                                         )
             );
             $newProram->save();
@@ -167,7 +170,7 @@ class adminController extends Controller
                 $programs = Program::all();
                 $unmetWeight = 0;
                 $sumOfWeight = 0;
-                return view('adminPage.addingNewProgramStep2',['programs'=>$programs,'sumOfWeight'=>$sumOfWeight,'unmetWeight'=>$unmetWeight,'numbersSubmitted'=>$numbersSubmitted,'id'=>$id,'name'=>$request->name,'progamShortHand'=>$request->shorthand,'progamCode'=>$request->code]);
+                return view('adminPage.addingNewProgramStep2',['programDetailsArray '=>$newProgramDetails,'programs'=>$programs,'sumOfWeight'=>$sumOfWeight,'unmetWeight'=>$unmetWeight,'numbersSubmitted'=>$numbersSubmitted,'id'=>$id,'name'=>$request->name,'progamShortHand'=>$request->shorthand,'progamCode'=>$request->code]);
             }
             else{
 
@@ -183,7 +186,7 @@ class adminController extends Controller
                     # code...
                     $programs = Program::all();
                     $unmetWeight = 0;
-                    return view('adminPage.addingNewProgramStep2',['programs'=>$programs,'sumOfWeight'=>$sumOfWeight,'unmetWeight'=>$unmetWeight,'numbersSubmitted'=>$numbersSubmitted,'id'=>$id,'name'=>$request->name,'progamShortHand'=>$request->shorthand,'progamCode'=>$request->code]);
+                    return view('adminPage.addingNewProgramStep2',['programDetailsArray '=>$newProgramDetails,'programs'=>$programs,'sumOfWeight'=>$sumOfWeight,'unmetWeight'=>$unmetWeight,'numbersSubmitted'=>$numbersSubmitted,'id'=>$id,'name'=>$request->name,'progamShortHand'=>$request->shorthand,'progamCode'=>$request->code]);
                 } else {
 
                     // dd($id);
@@ -196,12 +199,12 @@ class adminController extends Controller
                          }
                          $newProram = new Program(
                             array(
-                                'name'=>$request->newProgramDetails[0],
-                                'description'=>$request->newProgramDetails[1],
-                                'shortHand'=>$request->newProgramDetails[2],
-                                'programCode'=>$request->newProgramDetails[3],
-                                'colorCode'=>$request->newProgramDetails[4],
-                                'imageLocation'=>$request->newProgramDetails[5]
+                                'name'=>$programDetailsForiNserton[0],
+                                'description'=>$programDetailsForiNserton[1],
+                                'shortHand'=>$programDetailsForiNserton[2],
+                                'programCode'=>$programDetailsForiNserton[3],
+                                'colorCode'=>$programDetailsForiNserton[4],
+                                'imageLocation'=>$programDetailsForiNserton[5]
                             )
                         );
                         $newProram->save();

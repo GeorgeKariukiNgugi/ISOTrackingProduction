@@ -48,7 +48,7 @@
                     <div class="col-md-8"><input type="color" name = "color" required/></div>
                 </div><br />
                 <div class="row">
-                    <div class="col-md-6 col-md-offset-3">
+                    <div class="col-md-8 col-md-offset-2">
                         <div class="row">
                             <div class="col-md-4"><a class="btn btn-danger btn-block btn-lg" role="button" href="/addingNewProramStep0"><i class="fa fa-backward"></i><strong>BACK</strong></a></div>
                             <div class="col-md-4"><button class="btn btn-warning btn-block btn-lg" role="button" type="reset"><i class="fa fa-refresh"></i><strong>RESET</strong></button></div>

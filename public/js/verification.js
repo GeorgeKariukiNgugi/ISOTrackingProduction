@@ -132,40 +132,65 @@ $(function () {
             function validatingSemiAnuallyAndAnually() {
                 
                 console.log("The input value is 01111  IN");
+                console.log("This is the ID.  "+id);
                 console.log(gettingTheQuaterNumber + "THIS IS THE ADDING");
-                if (period === 2 && parseFloat(gettingThevalue.substring(1)) === 2) {
+                period = parseFloat(period);
+                if (period === 2 && gettingTheQuaterNumber === 2) {
                     inputValue = 0;
                     //! this section of the code is to define the
 
                     //! this section is used to get the values of the previuous quaters. 
-                    for (let index = 1; index <= 2; index++) {
+                    for (let index = 1; index <= 4; index++) {
+                        var value = $("#Quater"+index+slicedId).val();
+                        if (value === null || value === NaN || value === '') {
+                            inputValue += 0;
+                        } else {
+                            inputValue += parseFloat(value);
+                        }
                         
-                       inputValue += parseFloat( $("#Quarter"+index+slicedId).val());
-                        console.log("The data is in the semi-annual values.");
-                        
-                    }
+                        console.log("************************************************");
+                        // console.log($("#Quarter"+index+slicedId));
+                        console.log($("#Quater"+index+slicedId).val() +"thiss is the iTH trial in :"+index+ "index" +index+slicedId);
+                         
+                     }
 
                     console.log("This is the input value that is adding"+inputValue);
-                } else if(period === 2 && parseFloat(gettingThevalue.substring(1)) == 4){
-                    inputValue = 0;
-                    for (let index = 3; index <= 4; index++) {
-                        
-                        inputValue += parseFloat( $("#Quarter"+index+slicedId).val());
- 
-                         
-                     }
-                     console.log("This is the input value that is adding"+inputValue);
-                }
-                else if(period === 1 && parseFloat(gettingThevalue.substring(1)) == 4){
+                } else if(period === 2 && gettingTheQuaterNumber === 4){
                     inputValue = 0;
                     for (let index = 1; index <= 4; index++) {
+                        var value = $("#Quater"+index+slicedId).val();
+                        if (value === null || value === NaN || value === '') {
+                            inputValue += 0;
+                        } else {
+                            inputValue += parseFloat(value);
+                        }
                         
-                        inputValue += parseFloat( $("#Quarter"+index+slicedId).val());
- 
+                        console.log("************************************************");
+                        // console.log($("#Quarter"+index+slicedId));
+                        console.log($("#Quater"+index+slicedId).val() +"thiss is the iTH trial in :"+index+ "index" +index+slicedId);
                          
                      }
                      console.log("This is the input value that is adding"+inputValue);
                 }
+                else if(period === 1 && gettingTheQuaterNumber === 4){
+                    inputValue = 0;
+
+                    for (let index = 1; index <= 4; index++) {
+                        var value = $("#Quater"+index+slicedId).val();
+                        if (value === null || value === NaN || value === '') {
+                            inputValue += 0;
+                        } else {
+                            inputValue += parseFloat(value);
+                        }
+                        
+                        console.log("************************************************");
+                        // console.log($("#Quarter"+index+slicedId));
+                        console.log($("#Quater"+index+slicedId).val() +"thiss is the iTH trial in :"+index+ "index" +index+slicedId);
+                         
+                     }
+                     console.log("This is the input value that is adding for annula KPIs:::::"+inputValue);
+                }
+                console.log("This is the input value that I have calculated."+inputValue);
                 console.log("The input value is 01111  OUT");
             }
 
@@ -201,6 +226,7 @@ $(function () {
                         //! getting the arithmetic structure.
                         console.log("this is a trial on the data.");
                         validatingSemiAnuallyAndAnually();
+                        console.log( "This is the input value that I have gotten from the validatingSemiAnuallyAndAnually()  "+ inputValue);
                         var arithmeticStructure = $("#arithmeticStructure" + slicedId);
                         var arithmeticStructureValue = arithmeticStructure.val();
                         switch (arithmeticStructureValue) {

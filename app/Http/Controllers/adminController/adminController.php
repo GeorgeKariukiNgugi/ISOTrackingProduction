@@ -121,19 +121,19 @@ class adminController extends Controller
             $newProram->save();
 
             array_push($perspectives,$financial);
-            array_push($perspectives, $shortHand.'_'.'financial_perspective');
+            array_push($perspectives, $programDetailsForiNserton[2].'_'.'financial_perspective');
             array_push($perspectives,1);
             array_push($perspectives,$customer);
-            array_push($perspectives, $shortHand.'_'.'customer_perspective');
+            array_push($perspectives, $programDetailsForiNserton[2].'_'.'customer_perspective');
             array_push($perspectives,2);
             array_push($perspectives,$learningAndgrowth );
-            array_push($perspectives, $shortHand.'_'.'learning_and_growth_perspective');
+            array_push($perspectives, $programDetailsForiNserton[2].'_'.'learning_and_growth_perspective');
             array_push($perspectives,4);
             array_push($perspectives,$internalBusiness);
-            array_push($perspectives, $shortHand.'_'.'internal_business_process_perspective');
+            array_push($perspectives, $programDetailsForiNserton[2].'_'.'internal_business_process_perspective');
             array_push($perspectives,3);
 
-            $lastIds = Program::where('shortHand','=',$request->newProgramDetails[2])->get();
+            $lastIds = Program::where('shortHand','=',$programDetailsForiNserton[2])->get();
             $id = null;
             foreach($lastIds as $lastId){
                 $id = $lastId->id;
@@ -162,7 +162,7 @@ class adminController extends Controller
             if($numbersSubmitted == 0){
 
                 $numbersSubmitted = 0;
-                $lastIds = Program::where('shortHand','=',$request->shorthand)->get();
+                $lastIds = Program::where('shortHand','=',$programDetailsForiNserton[2])->get();
                 $id = null;
                 foreach($lastIds as $lastId){
                     $id = $lastId->id;
@@ -208,7 +208,7 @@ class adminController extends Controller
                             )
                         );
                         $newProram->save();
-                        $lastIds = Program::where('shortHand','=',$request->newProgramDetails[2])->get();
+                        $lastIds = Program::where('shortHand','=',$programDetailsForiNserton[2])->get();
             $id = null;
             foreach($lastIds as $lastId){
                 $id = $lastId->id;

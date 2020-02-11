@@ -52,8 +52,10 @@ class LoginController extends Controller
     protected function redirectTo($id){
 
                
-                       //! GETTING WHICH QUATER AND TEAR IS ACTIVE.
-               
+        //! THIS SETION IS USED TO GET THE DATA THAT IS GOING TO BE LISTED IN THE PROFILE SECTION OF THE AP[PLICATION.
+                        $programsToBeListedInProfiles = AssesorPerProgram::where('email','=',Session::get('email'))->get();
+                        // dd($programsToBeListedInProfiles);
+                       //! GETTING WHICH QUATER AND TEAR IS ACTIVE.               
                        $activeYaerCollections = YearActive::where('Active','=',1)->get();
                        foreach($activeYaerCollections as $activeYaerCollection){
                            $activeYaer = $activeYaerCollection->Year;
@@ -265,8 +267,9 @@ class LoginController extends Controller
                                            array_push($checkingIfAssesed, $program->shortHand);
                                         }
                                         
-                                   }                                   
-                                   return view('adminPage.adminLanding',['programs'=>$programs,'ncsCharts'=>$ncsCharts,'ncsperProgramCharts'=>$ncsperProgramCharts,'activeYaer'=>$activeYaer,'programScores'=>$programScores,'programColors'=>$programColors,'programShorthand'=>$programShorthand,'programIds'=>$programIds,'activeQuater'=>$activeQuater,'checkingIfAssesed'=>$checkingIfAssesed,'ncsArray'=>$ncsArray]);
+                                   }              
+                                //    $programsToBeListedInProfiles                     
+                                   return view('adminPage.adminLanding',['programsToBeListedInProfiles'=>$programsToBeListedInProfiles,'programs'=>$programs,'ncsCharts'=>$ncsCharts,'ncsperProgramCharts'=>$ncsperProgramCharts,'activeYaer'=>$activeYaer,'programScores'=>$programScores,'programColors'=>$programColors,'programShorthand'=>$programShorthand,'programIds'=>$programIds,'activeQuater'=>$activeQuater,'checkingIfAssesed'=>$checkingIfAssesed,'ncsArray'=>$ncsArray]);
                                }
                                $programs = Program::where('id','=',$id)->get();
                
@@ -298,7 +301,7 @@ class LoginController extends Controller
                                $years = YearActive::where('Active','=',0)->get();
                                //! this section is used to send the non-conformities that have been identified by the application. 
                                 $nonConformities =  NonConformities::all();
-                               return view('user.landingPage',['years'=>$years,'kpiChildren'=>$kpiChildren,'kpiChildrenScores'=>$kpiChildrenScores,'nonConformities'=>$nonConformities,'valueOfEditing'=>$valueOfEditing,'programId'=>$id,'quaterOne'=>$quaterOne,'quaterTwo'=>$quaterTwo,'quaterthree'=>$quaterthree,'quaterfour'=>$quaterfour,'perspectives'=>$perspectives,'activeYaer'=>$activeYaer,'activeQuater'=>$activeQuater,'keyPerfomanceIndicatorsScores'=>$keyPerfomanceIndicatorsScores,'programName'=>$programName,'programShortHand'=>$programShortHand]);
+                               return view('user.landingPage',['programsToBeListedInProfiles'=>$programsToBeListedInProfiles,'years'=>$years,'kpiChildren'=>$kpiChildren,'kpiChildrenScores'=>$kpiChildrenScores,'nonConformities'=>$nonConformities,'valueOfEditing'=>$valueOfEditing,'programId'=>$id,'quaterOne'=>$quaterOne,'quaterTwo'=>$quaterTwo,'quaterthree'=>$quaterthree,'quaterfour'=>$quaterfour,'perspectives'=>$perspectives,'activeYaer'=>$activeYaer,'activeQuater'=>$activeQuater,'keyPerfomanceIndicatorsScores'=>$keyPerfomanceIndicatorsScores,'programName'=>$programName,'programShortHand'=>$programShortHand]);
                            }                
     public function logInUsingLDAP(Request $request){        
         header('Content-type: application/json');

@@ -16,6 +16,8 @@ $(function () {
 
     console.log(quaterForLooping + typeof (quaterForLooping));
 
+    //! this function is used to get the proper colouring
+
     for (let index = 1; index <= quaterForLooping; index++) {
 
         var quatersSelected = $("input[id*='Quater" + index + "']");
@@ -27,6 +29,9 @@ $(function () {
                 //! the id of the input type is: 
                 var id = $(this).attr('id');
                 var slicedId = id.substring(7);
+                var gettingQuater = $(this).attr('id').substring(6,7);
+                gettingQuater = parseFloat(gettingQuater);
+                console.log(gettingQuater+ "  This is the quater that is given."+ id +"This is the ID.");
                 var getTargetIdName = "target" + slicedId;
                 var targetValue = parseFloat($("#" + getTargetIdName).text());
                 var inputRawValue = $("#" + id).val();
@@ -68,6 +73,22 @@ $(function () {
                     case "1":
 
                         function validationCase1() {
+                            inputValue = 0;
+                            var specificQuarter = id.substring(7,8);
+                            console.log("This is the new quater to llop through:   "+specificQuarter);
+                            var looping = parseFloat(specificQuarter);
+                            for (let index = 1; index <= gettingQuater; index++) {
+                                // const element = array[index];
+                                var value = $("#Quater"+index+slicedId).val();
+                                if (value === null || value === NaN || value === '') {
+                                    inputValue += 0;
+                                } else {
+                                    inputValue += parseFloat(value);
+                                }
+                                console.log("This is the looping structure for getting the ideal coloring"+index+'  '+value);
+                                
+                            }
+
                             if (inputValue < targetValue) {
                                 definigThis.css('background-color','orange');
                             } else if(inputValue >= targetValue){

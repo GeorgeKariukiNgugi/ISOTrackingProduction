@@ -117,7 +117,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <p>
                {{ Session::get('name')}}
                 </p>
-
+                <p>Other Programs Assighned To Asses.</p>
+                {{-- @foreach ($programsToBeListedInProfiles as $programsToBeListedInProfile) --}}
+                {{-- <a href="#" class="btn btn-default btn-flat">{{$programsToBeListedInProfile->program_id}}</a>
+                                     --}}
+                                     {{-- {{$programsToBeListedInProfile->program_id}} <br>            --}}
+                {{-- @endforeach --}}
               </li>
               <!-- Menu Body -->              
               <!-- Menu Footer-->

@@ -34,7 +34,7 @@ $(function () {
             containigDiv.empty();
             containigDiv.append(
                 '<div role="alert" class="alert alert-danger" style="width:70%;text-align:center;margin-right:15%;margin-top:1%;margin-left:15%;"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><span class="text-capitalize"><strong>' +
-                "The Weights Donot Add Up To   "+ perspectiveWeight +"    that is the weight Of The Perspective kindly check    " + sumOfStrategicObjective + "   given. </strong><br/></span></div>"
+                "The Weights Donot Add Up To   "+ perspectiveWeight +"    ,    " + sumOfStrategicObjective + "   given. </strong><br/></span></div>"
             );
         }
         else{
@@ -79,7 +79,7 @@ $(function () {
             containingDiv.empty();
             containingDiv.append(
                 '<div role="alert" class="alert alert-danger" style="width:70%;text-align:center;margin-right:15%;margin-top:1%;margin-left:15%;"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><span class="text-capitalize"><strong>' +
-                "The Weights Donot Add Up To   "+ perspectiveWeight +"    that is the weight Of The Perspective kindly check    " + valueOfBoth + "   given. </strong><br/></span></div>"
+                "The Weights Donot Add Up To   "+ perspectiveWeight +"    ,    " + valueOfBoth + "   given. </strong><br/></span></div>"
             );
 
         } else {

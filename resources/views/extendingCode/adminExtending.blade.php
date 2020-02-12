@@ -116,7 +116,7 @@
         </div>
         <div class="pull-left info">
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+          {{-- <a href="#"><i class="fa fa-circle text-success"></i> Online</a> --}}
         </div>
       </div>
 
@@ -145,15 +145,15 @@
         <li><a href="/viewingAssesors"><i class="fa fa-users"></i> <span> Program Assessors.</span></a></li>
         <li> <a href="/adminReports"> <i class="fa fa-book"></i> <span> All Downloaded Reports.</span> </a></li>
         <li class="treeview">
-          <a href="#"><i class="fa fa-warning""></i> <span>Non Cnformities</span>
+          <a href="#"><i class="fa fa-warning""></i> <span>Issues</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="/nonConformitiesAdmin/0/0"> <i class="fa fa-warning text-green"></i> <span>Closed Non-Conformities</span></a></li>
-            <li><a href="/nonConformitiesAdmin/1/0"> <i class="fa fa-warning text-blue"></i>  <span>Non-Conformities In Progress</span></a></li>
-            <li><a href="/nonConformitiesAdmin/2/0"> <i class="fa fa-warning text-red" ></i>  <span>Non-Conformities Overdue</span></a></li>
+            <li><a href="/nonConformitiesAdmin/0/0"> <i class="fa fa-warning text-green"></i> <span>Closed Issues</span></a></li>
+            <li><a href="/nonConformitiesAdmin/1/0"> <i class="fa fa-warning text-blue"></i>  <span>Issues In Progress</span></a></li>
+            <li><a href="/nonConformitiesAdmin/2/0"> <i class="fa fa-warning text-red" ></i>  <span>Issues Overdue</span></a></li>
           </ul>
           
         </li>

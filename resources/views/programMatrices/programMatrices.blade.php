@@ -315,7 +315,8 @@
             
 
                     {{-- implementing the modal that will delete the strategic objective. --}}
-                    <div role="dialog" tabindex="-1" class="modal fade" id="{{"deleteStrategicbjective".$strategicObjective->id}}">
+                    {{-- <div role="dialog" tabindex="-1" class="modal fade modal-md" id="{{"deleteStrategicbjective".$strategicObjective->id}}"> --}}
+                    <div role="dialog" tabindex="-1" class="modal modal-md fade" id="{{"deleteStrategicbjective".$strategicObjective->id}}">    
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header" style="background-color:#fc5d5d;"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
@@ -323,10 +324,63 @@
                                     </div>
                                     <div class="modal-body" style="background-color:#f78686;">
                                         <h3 class="text-center" style="color:white">Confirmation:: Are You Sure You Want To Delete The  Strategic Objective::: {{$strategicObjective->name}} ??</h3>
-                                    </div>
+                                    
                                     <form action="{{"/deleteStrObjective/".$strategicObjective->id}}" method="POST">
                                         {{ csrf_field() }}
-                                            <div class="modal-footer" style="background-color:#fc5d5d;"><button class="btn btn-default" type="button" data-dismiss="modal">Close</button><button class="btn btn-success" type="submit">DELETE.</button></div>
+
+                                        {{-- THIS SETION OF THE CODE IS USED TO IMPLEMENT THE REWEIGH THE STRATEGIC OBJECTIVES.  --}}
+                                        <div class="row">
+                                            <div class="col-md-1">
+                                                <h4 class="text">No :</h4>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <h4 class="text">Strategic Objective Name :</h4>
+                                            </div>
+                                            <div class="col-md-4" style="">
+                                                {{-- <input type="text" value="{{$strategicObjective->name}}" style="width:80%;height:45px;" name="name" required /> --}}
+                                                <h4 class="text">Strategic Objective Weight :</h4>
+                                            </div>                                                
+                                        </div>
+                                        @php
+                                        $incrementalNumberForStrategicObjectices = 0;
+                                    @endphp
+                                    @foreach ($strategicObjectives as $strategicObjectiveEditWeight)   
+
+                                    @if ($strategicObjectiveEditWeight->id == $strategicObjective->id)
+                                            <div class="row">
+                                                <div class="col-md-1">
+                                                    <p>{{$incrementalNumberForStrategicObjectices++}}</p>
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <p>{{$strategicObjective->name}} <span style="color:red;"> <b>Selected <i class="fa fa-hand-o-right"></i> </b></span></p>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <input type="text" style="width:80px;" id="" disabled  value="{{$strategicObjectiveEditWeight->weight}}" /></div>
+                                            </div>
+
+                                            <input type="hidden" name="deletingId" value="{{$strategicObjective->id}}">
+
+                                            @else
+                                    <div class="row">
+                                        <div class="col-md-1">
+                                            {{++$incrementalNumberForStrategicObjectices}}
+                                        </div>
+                                        <div class="col-md-7">
+                                            <h4 class="text">{{$strategicObjectiveEditWeight->name}}</h4>
+                                        </div>
+                                        <div class="col-md-4" style="">
+                                            <input type="number" value="{{$strategicObjectiveEditWeight->weight}}" id="{{"strategicObjectiveWeight".$strategicObjective->id.$incrementalNumberForStrategicObjectices}}" style="width:80%;" step=".01" name="{{"strategicObjectiveWeight".$incrementalNumberForStrategicObjectices}}" required />
+                                            <input type="hidden" name="{{"strategicObjectiveId".$incrementalNumberForStrategicObjectices}}" class="{{"deletingStrategicObj".$strategicObjective->id}}" value="{{$strategicObjectiveEditWeight->id}}">
+                                            {{-- <h4 class="text">{{$strategicObjectiveEditWeight->weight}}</h4> --}}
+
+                                        </div>                                                
+                                    </div>
+                                    @endif
+                                    @endforeach
+                                </div>
+                                            <div class="modal-footer" style="background-color:#fc5d5d;">
+                                                <button class="btn btn-default" type="button" data-dismiss="modal">Close</button>
+                                                <button class="btn btn-success" disabled class="{{"deletingStrategicObj".$strategicObjective->id}}" type="submit">DELETE.</button></div>
                                     </form>
                                 </div>
                             </div>
@@ -923,8 +977,7 @@
                 </div>
                 <div class="modal-footer" style="background-color:rgb(171,146,223);">
                     <button class="btn btn-success" type="button" data-dismiss="modal">Close</button>
-                    <button class="b
-                    tn btn-danger"  type="submit">Save</button> 
+                    <button class="btn btn-danger"  type="submit">Save</button> 
                 </div>
             </form>
             </div>

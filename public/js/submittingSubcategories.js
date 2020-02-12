@@ -47,14 +47,8 @@ $(function () {
                     $("#confirmationofKPIChildren"+slicedId).html(html);
                     // "confirmationofKPIChildren"+slicedId
                 }
-            });
-
-
-            
-
+            });        
         }
-
-
         //! getting the activated quater. 
         var strategicObjective = parseFloat($("#kpiSubCategorystrategicObjective"+slicedId).val());
         
@@ -70,15 +64,16 @@ $(function () {
         } else {
             score = finalValue;
         }
-        if (period === 1 && quater === 4) {
+
+        function scoringData(){
             if (score >= taget) {
                 $("#" + nonConformityFlag + "").val(0);
                 $("#" + unmetTargetId + "").empty();
                 $("#" + unmetTargetId + "").append(
                     '<p style = "color:green;"> <i style = "font-size:20px;" class = "fa fa-check">   <b>YES</b> </i></p>'
                 );
-                $('#Quater4'+slicedId).val(score);
-                $('#Quater4'+slicedId).css('background-color', '#cfeda8');
+                $('#Quater'+quater+slicedId).val(score);
+                $('#Quater'+quater+slicedId).css('background-color', '#cfeda8');
                 submittingFunction();
                 $('#subcategories'+slicedId).modal('hide');
             } else {
@@ -91,13 +86,26 @@ $(function () {
                     gettingModalName +quater+
                     '"> <i style = "font-size:20px;"class = "fa fa-times">   <b>NO</b> </i></a>'
                 );
-                $('#Quater4'+slicedId).val(score);
-                $('#Quater4'+slicedId).css('background-color', '#fba7a7');
+                $('#Quater'+quater+slicedId).val(score);
+                $('#Quater'+quater+slicedId).css('background-color', '#fba7a7');
                 submittingFunction();
                 $('#subcategories'+slicedId).modal('hide');
                 $("#"+gettingModalName +quater).modal("show");
             }
-        } else {
+        }
+        if ((period === 1 && quater === 4)) {
+            scoringData();
+        } 
+        else if((period === 2 && quater === 2)){
+            scoringData();
+        }
+        else if((period === 2 && quater === 4)){
+            scoringData();
+        }
+        else if((period === 4)){
+            scoringData();
+        }
+        else {
             if (score >= taget) {
                 $("#" + nonConformityFlag + "").val(0);
                 $("#" + unmetTargetId + "").empty();

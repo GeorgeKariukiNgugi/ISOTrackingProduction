@@ -263,6 +263,7 @@
 <script src="{{asset('js/closingtheSubCategories.js')}}"></script>
 <script src="{{asset('js/submittingAdditionOfNewKPIChild.js')}}"></script>
 <script src="{{asset('js/closingPreviousModal.js')}}"></script>
+<script src="{{asset('js/deletingStrategicObjective.js')}}"></script>
 @include('sweetalert::alert')
 @yield('charts')
 <!-- Optionally, you can add Slimscroll and FastClick plugins.

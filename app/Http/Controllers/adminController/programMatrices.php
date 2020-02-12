@@ -157,8 +157,10 @@ class programMatrices extends Controller
     }
 
     //! this method id used to delete the strategic objective of a perspective.
-    public function deleteStrategicObjective($strObjectiveId){
+    public function deleteStrategicObjective($strObjectiveId, Request $request){
 
+        // return $request;
+        
     $strategicObjectives = StrategicObjective::where('id','=',$strObjectiveId)->get(); 
     foreach ($strategicObjectives as $strategicObjective) {
         # code...
@@ -184,6 +186,41 @@ class programMatrices extends Controller
             $strategicObjectiveScore->delete();
         }
     
+        //! this section is used to get the strategic objectives that will be updated. 
+        //? the name of the count to be looped. 
+        $name = 'strategicObjectiveToBelDeleted'.$strObjectiveId;
+        $strategicObjectiveToBeDeleted = $request->deletingId;
+        $number = $request->$name;
+        // dd($number);
+        for ($i=1; $i <= $number; $i++) { 
+            # code...
+            $inputName = "data".$i;
+            // dd($strObjectiveId);
+            
+            $inputNamess = $request->$inputName;
+            // dd($inputNamess);
+            $strategicObjectiveId = "strategicObjectiveId".$i;
+            $strategicObjectiveId = $request->$strategicObjectiveId;
+
+            
+            if($strategicObjectiveId == $strObjectiveId){
+                // dd($inputName ."NotToDelete");
+            }
+            else{
+                // dd($strategicObjectiveId.' < strategic Objective >'.$strObjectiveId);
+                # code...
+                // dd($inputName."TO Delete");
+                $strategicObjectives = StrategicObjective::where('id','=',$strategicObjectiveId)->get(); 
+                foreach ($strategicObjectives as $strategicObjective) {
+                    # code...
+                    $strategicObjective->weight = $inputNamess;
+                    $strategicObjective->save();
+                }
+            } 
+            
+
+
+        }
     Alert::success(' <h4 style = "color:green;">Congartulations    <i class="fa fa-thumbs-up"></i></h4>','Strayegic Objective Successfully Deleted..');
         return back();
     }

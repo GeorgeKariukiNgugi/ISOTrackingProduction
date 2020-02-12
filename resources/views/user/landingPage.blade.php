@@ -421,10 +421,10 @@
                                $period = $kpi->period;
 
                                if($period == 1){
-                                $period = 'Anually';
+                                $period = 'Annually';
                                }
                                elseif($period == 2){
-                                $period = 'Semi-Anually';
+                                $period = 'Semi-Annually';
                                }
                                else{
                                 $period = 'Quaterly';

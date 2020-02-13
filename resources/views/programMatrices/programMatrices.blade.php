@@ -753,8 +753,9 @@
                                         <p>Child Type: </p>
                                     </div>
                                     <div class="col-md-9">
-                                        <input type="radio" name="typeOfInput" id="" value="1"> Binary (2 options i.e, Done And NotDone) <br>
+                                        <input type="radio" selected name="typeOfInput" id="" value="1"> Binary (2 options i.e, Done And NotDone) <br>
                                         <input type="radio" name="typeOfInput" id="" value="2"> Number Input <br>
+                                        <input type="radio" name="typeOfInput" id="" value="3"> Comparison Between two valued <br>
                                     </div>
                                 </div>
                             </div>
@@ -1050,6 +1051,7 @@
                         <div class="col-md-9">
                             <input type="radio" name="typeOfInput" value="1"> Binary (2 options i.e, Done And NotDone) <br>
                             <input type="radio" name="typeOfInput" value="2"> Number Input <br>
+                            <input type="radio" name="typeOfInput" value="3"> Comparison between two values <br>
                         </div>
                     </div>
                 </div>

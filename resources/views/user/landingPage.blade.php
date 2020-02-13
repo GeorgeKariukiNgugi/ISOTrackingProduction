@@ -257,12 +257,33 @@
                              <div class="modal-body" style="background-color:rgb(223,211,249);">
                                  <h3 class="text-center" style="font-family:&#39;times new roman&#39;;color:rgb(255,0,0);">'. $kpi->name.'</h3>';
                                  echo '<form id = "kpiChildrenSubmissionForm'.$kpi->id.'" method = "POST">'. csrf_field();
-                                  echo '<div id = "confirmationofKPIChildren'.$kpi->id.'"></div>';
-                                 foreach ($kpiChildren as $kpiChildrens) {
-                 # code...
-                                    
+                                 echo '<div id = "confirmationofKPIChildren'.$kpi->id.'"></div>';                                 
+                                    # code...                                       
+                                      # code...                                                                                                      
+                                 foreach ($kpiChildren as $kpiChildrens) {    
+                                                                                 
                                      if($kpiChildrens->keyPerfomanceIndicator_id == $kpi->id){
                                          // array_push($array,$kpiChildrens->name);
+                                         if($kpiChildrens->type == 3) {
+                                      echo '<input type = "hidden" class="type'.$kpi->id.'" data-childType = "'.$kpiChildrens->type.'"  name = "typeOfChild'.$kpi->id.'">';
+                                      echo  '<div class="row">
+                                          <div class="col-md-6">
+                                             <p>Target : </p>
+                                          </div>
+                                          <div class="col-md-6">
+                                              <input required type="number" name="" id="target'.$kpi->id.'"">
+                                          </div>
+                                        </div> 
+                                        <div class="row">
+                                          <div class="col-md-6">
+                                              <p>Achievemrnt : </p>
+                                          </div>
+                                          <div class="col-md-6">
+                                            <input required type="number" name="" id="achievement'.$kpi->id.'"">
+                                          </div>
+                                        </div>';                  
+                                    }    
+                                    else {  
                                        echo' <div class="row" style = "margin-bottom:0.5%;">
                                      <div class="col-md-1">
                                          <p>'.++$subcategoriesIncrement.'</p>
@@ -271,7 +292,7 @@
                                          <p>'.$kpiChildrens->name.'</p>
                                      </div>
                                      <div class="col-md-3">';
-                                      echo '<input type = "hidden" name = "kpiChildrenId'.$subcategoriesIncrement.'" value = '.$kpiChildrens->id.'>';
+                                      echo '<input  type = "hidden" name = "kpiChildrenId'.$subcategoriesIncrement.'" value = '.$kpiChildrens->id.'>';
                                       // echo '<select id = "kpichild'.$kpi->id.$subcategoriesIncrement.'" name = "kpichild'.$kpi->id.$subcategoriesIncrement.'">';
 
                                         if (count($kpiChildrenScores) == 0) {
@@ -285,6 +306,14 @@
                                               $scoreOfChild = $kpiChildrenScore->score;
                                             } 
                                           }
+
+                                          if ($kpiChildrens->type == 2) {
+                                            # code...
+                                            echo '<input type = "hidden" class="type'.$kpi->id.'" data-childType = "'.$kpiChildrens->type.'"  name = "typeOfChild'.$kpi->id.'">';
+                                            echo '<input value = "'.$scoreOfChild.'" id = "kpichild'.$kpi->id.$subcategoriesIncrement.'" name = "kpichild'.$kpi->id.$subcategoriesIncrement.'" type="number">';
+                                          } 
+                                          else if($kpiChildrens->type == 1) {
+                                            # code...
                                             switch ($scoreOfChild) {
                                                case '0':
                                                  # code...
@@ -300,13 +329,13 @@
                                                  echo '<input value = "0" id = "kpichild'.$kpi->id.$subcategoriesIncrement.'" name = "kpichild'.$kpi->id.$subcategoriesIncrement.'" type="checkbox" data-width="85" checked data-toggle="toggle" data-size="small" data-on="Done" data-off="Not Done" data-onstyle="success" data-offstyle="danger">';
                                                  break;
                                              }
-                                            
-                                          
+                                          }                                                                                                                              
                                         }
                                   echo '</div>
                                  </div>';
                                      }
                                    }  
+                                  }
                                   echo '<input type = "hidden" name = "incrementalNumber" id = "incrementNumber'.$kpi->id.'" value = '.$subcategoriesIncrement.'>';
                                   echo '<input type = "hidden" name = "target" id = "kpiSubCategorytarget'.$kpi->id.'" value = '.$kpi->target.'>';
                                   echo '<input type = "hidden" id = "kpiPeriod'.$kpi->id.'" value = '.$kpi->period.'>';

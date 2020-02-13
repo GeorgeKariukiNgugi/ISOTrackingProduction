@@ -7,8 +7,27 @@ $(function () {
         var units = $("#kpiUnits"+slicedId).val();
         var alertName = "confirmationofKPIChildren"+slicedId;
         var finalValue = 0;
+        var findingTheTypeOfInput = $('.type'+slicedId).attr('data-childType');
+        console.log("The type of input to be added to the data is "+ findingTheTypeOfInput+ "its data type is "+ typeof(findingTheTypeOfInput));
+
+
+        if(findingTheTypeOfInput === '3'){
+
+            var target = parseFloat($('#target'+slicedId).val());
+            var achievement = parseFloat($('#achievement'+slicedId).val());
+            console.log("This is the data that is in the type 3"+ target + '  '+ achievement);
+            finalValue = ((achievement/target)*100).toFixed(2);
+        }
+
         for (let index = 1; index <= subCategoriesIncrementalNumbers; index++) {  
-            console.log("Counter . "+index);            
+            console.log("Counter . "+index);    
+            
+            if (findingTheTypeOfInput === '2') {
+                console.log("The input type here are numbers.");
+                finalValue += parseFloat($("#kpichild"+slicedId+index).val());
+            }             
+            else {
+
             if($("#kpichild"+slicedId+index).prop("checked") == true){
 
                 console.log("Checkbox is checked.");
@@ -22,7 +41,8 @@ $(function () {
                 $("#kpichild"+slicedId+index).val(0);
                 // ++finalValue;
 
-            }                               
+            }   
+        }                            
         }   
         console.log(finalValue + "thsi is the final value.");
         var dataToBeSubmitted = new FormData(this);
@@ -59,8 +79,8 @@ $(function () {
         var unmetTargetId = "unmetTargetComment" + slicedId;
         var nonConformityFlag = "nonConformityFlag" + slicedId;
         var score = 0;
-        if (units == '%') {
-            score = ((finalValue/subCategoriesIncrementalNumbers)*100);
+        if (units == '%' && (findingTheTypeOfInput !== '3')) {
+            score = ((finalValue/subCategoriesIncrementalNumbers)*100).toFixed(2);
         } else {
             score = finalValue;
         }

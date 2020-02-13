@@ -323,10 +323,10 @@ class UserController extends Controller
                         # code...                        
                         if ($kpiTarget == 0) {
                             # code...
-                            $kpiTarget = 1;
+                            $kpiScore = 0;
                         }
-                        $percentage = $averageThatBecomesytd-$kpiTarget;
-                        $kpiScore = ($percentage/$averageThatBecomesytd)*100; 
+                        // $percentage = $averageThatBecomesytd-$kpiTarget;
+                        // $kpiScore = ($percentage/$averageThatBecomesytd)*100; 
 
                     }
                     

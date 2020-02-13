@@ -135,7 +135,7 @@ class PDFController extends Controller
         }                                         
 
         
-        $pdf->save('reports/'.$pdfNames);        
+        // $pdf->save('reports/'.$pdfNames);        
         return $pdf->download($pdfNames);
     }
 }

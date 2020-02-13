@@ -78,7 +78,7 @@ $(function () {
                                     console.log("0 IT GOOD.");
                                     $("#" + unmetTargetId + "").empty();
                                     $("#" + unmetTargetId + "").append(
-                                        '<p style = "color:green;"> <i style = "font-size:20px;" class = "fa fa-check">   <b>YES</b> </i></p>'
+                                        '<p style = "color:green;"> <i style = "font-size:20px;" class = "">   <b>YES</b> </i></p>'
                                     );
                                     inputText.css('background-color', '#cfeda8');
 
@@ -112,7 +112,7 @@ $(function () {
 
                                     $("#" + unmetTargetId + "").empty();
                                     $("#" + unmetTargetId + "").append(
-                                        '<p style = "color:green;"> <i style = "font-size:20px;" class = "fa fa-check">   <b>YES</b> </i></p>'
+                                        '<p style = "color:green;"> <i style = "font-size:20px;" class = "">   <b>YES</b> </i></p>'
                                     );
                                     inputText.css('background-color', '#cfeda8');
                                 }
@@ -251,7 +251,7 @@ $(function () {
                                     $("#" + unmetTargetId + "").append(
                                         '<a href = "#" style = "color:red;" data-toggle="modal" data-target= "#' +
                                         gettingModalName +gettingThevalue.substring(1)+
-                                        '"> <i style = "font-size:20px;"class = "fa fa-times">   <b>NO</b> </i></a>'
+                                        '"> </a>'
                                     );
                                     // $(this).focus(); 
                                     console.log("these are the low era");
@@ -266,7 +266,7 @@ $(function () {
                                     console.log("0 IT GOOD.");
                                     $("#" + unmetTargetId + "").empty();
                                     $("#" + unmetTargetId + "").append(
-                                        '<p style = "color:green;"> <i style = "font-size:20px;" class = "fa fa-check">   <b>YES</b> </i></p>'
+                                        '<p style = "color:green;">    <b>YES</b> </i></p>'
                                     );
                                     $(this).css('background-color', '#cfeda8');
 
@@ -289,7 +289,7 @@ $(function () {
                                     $("#" + unmetTargetId + "").append(
                                         '<a href = "#" style = "color:red;" data-toggle="modal" data-target= "#' +
                                         gettingModalName +gettingThevalue.substring(1)+
-                                        '"> <i style = "font-size:20px;"class = "fa fa-times">   <b>NO</b> </i></a>'
+                                        '"> <i style = "font-size:20px;"class = "">   <b>NO</b> </i></a>'
                                     );
                                     console.log("these are the low era");
                                     $(this).css('background-color', '#fba7a7');
@@ -305,7 +305,7 @@ $(function () {
 
                                     $("#" + unmetTargetId + "").empty();
                                     $("#" + unmetTargetId + "").append(
-                                        '<p style = "color:green;"> <i style = "font-size:20px;" class = "fa fa-check">   <b>YES</b> </i></p>'
+                                        '<p style = "color:green;"> <i style = "font-size:20px;" class = "">   <b>YES</b> </i></p>'
                                     );
                                     $(this).css('background-color', '#cfeda8');
                                 }
@@ -325,7 +325,7 @@ $(function () {
                                     $("#" + unmetTargetId + "").append(
                                         '<a href = "#" style = "color:red;" data-toggle="modal" data-target= "#' +
                                         gettingModalName +gettingThevalue.substring(1)+
-                                        '"> <i style = "font-size:20px;"class = "fa fa-times">   <b>NO</b> </i></a>'
+                                        '"> <i style = "font-size:20px;"class = "">   <b>NO</b> </i></a>'
                                     );
                                     $(this).css('background-color', '#fba7a7');
                                     $("#modal" + slicedId+gettingThevalue.substring(1)).modal("show");
@@ -337,7 +337,7 @@ $(function () {
 
                                     $("#" + unmetTargetId + "").empty();
                                     $("#" + unmetTargetId + "").append(
-                                        '<p style = "color:green;"> <i style = "font-size:20px;" class = "fa fa-check">   <b>YES</b> </i></p>'
+                                        '<p style = "color:green;"> <i style = "font-size:20px;" class = "">   <b>YES</b> </i></p>'
                                     );
                                     $(this).css('background-color', '#cfeda8');
                                 }
@@ -357,7 +357,7 @@ $(function () {
                                     $("#" + unmetTargetId + "").append(
                                         '<a href = "#" style = "color:red;" data-toggle="modal" data-target= "#' +
                                         gettingModalName +gettingThevalue.substring(1)+
-                                        '"> <i style = "font-size:20px;"class = "fa fa-times">   <b>NO</b> </i></a>'
+                                        '"> <i style = "font-size:20px;"class = "">   <b>NO</b> </i></a>'
                                     );
                                     console.log(id);
                                     // $("#" + id).focus();
@@ -372,7 +372,7 @@ $(function () {
                                     $("#" + unmetTargetId + "").empty();
                                     $(this).css('background-color', '#cfeda8');
                                     $("#" + unmetTargetId + "").append(
-                                        '<p style = "color:green;"> <i style = "font-size:20px;" class = "fa fa-check">   <b>YES</b> </i></p>'
+                                        '<p style = "color:green;"> <i style = "font-size:20px;" class = "">   <b>YES</b> </i></p>'
                                     );
                                 }
                                 break;
@@ -391,7 +391,7 @@ $(function () {
                                     $("#" + unmetTargetId + "").append(
                                         '<a href = "#" style = "color:red;" data-toggle="modal" data-target= "#' +
                                         gettingModalName +gettingThevalue.substring(1)+
-                                        '"> <i style = "font-size:20px;"class = "fa fa-times">   <b>NO</b> </i></a>'
+                                        '"> <i style = "font-size:20px;"class = "">   <b>NO</b> </i></a>'
                                     );
                                     // $(this).focus();
                                     $(this).css('background-color', '#fba7a7');
@@ -405,7 +405,7 @@ $(function () {
                                     $("#" + unmetTargetId + "").empty();
                                     $(this).css('background-color', '#cfeda8');
                                     $("#" + unmetTargetId + "").append(
-                                        '<p style = "color:green;"> <i style = "font-size:20px;" class = "fa fa-check">   <b>YES</b> </i></p>'
+                                        '<p style = "color:green;"> <i style = "font-size:20px;" class = "">   <b>YES</b> </i></p>'
                                     );
                                 }
                                 break;
@@ -424,7 +424,7 @@ $(function () {
                                     $("#" + unmetTargetId + "").append(
                                         '<a href = "#" style = "color:red;" data-toggle="modal" data-target= "#' +
                                         gettingModalName +gettingThevalue.substring(1)+
-                                        '"> <i style = "font-size:20px;"class = "fa fa-times">   <b>NO</b> </i></a>'
+                                        '"> <i style = "font-size:20px;"class = "">   <b>NO</b> </i></a>'
                                     );
                                     // $(this).focus();
                                     $(this).css('background-color', '#fba7a7');
@@ -438,7 +438,7 @@ $(function () {
                                     $("#" + unmetTargetId + "").empty();
                                     $(this).css('background-color', '#cfeda8');
                                     $("#" + unmetTargetId + "").append(
-                                        '<p style = "color:green;"> <i style = "font-size:20px;" class = "fa fa-check">   <b>YES</b> </i></p>'
+                                        '<p style = "color:green;"> <i style = "font-size:20px;" class = "">   <b>YES</b> </i></p>'
                                     );
                                 }
                                 break;
@@ -457,7 +457,7 @@ $(function () {
                                     $("#" + unmetTargetId + "").append(
                                         '<a href = "#" style = "color:red;" data-toggle="modal" data-target= "#' +
                                         gettingModalName +gettingThevalue.substring(1)+
-                                        '"> <i style = "font-size:20px;"class = "fa fa-times">   <b>NO</b> </i></a>'
+                                        '"> <i style = "font-size:20px;"class = "">   <b>NO</b> </i></a>'
                                     );
                                     // $(this).focus();
                                     $(this).css('background-color', '#fba7a7');
@@ -471,7 +471,7 @@ $(function () {
                                     $("#" + unmetTargetId + "").empty();
                                     $(this).css('background-color', '#cfeda8');
                                     $("#" + unmetTargetId + "").append(
-                                        '<p style = "color:green;"> <i style = "font-size:20px;" class = "fa fa-check">   <b>YES</b> </i></p>'
+                                        '<p style = "color:green;"> <i style = "font-size:20px;" class = "">   <b>YES</b> </i></p>'
                                     );
                                 }
                                 break;

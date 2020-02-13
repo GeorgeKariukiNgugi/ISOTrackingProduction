@@ -276,7 +276,7 @@
                                         </div> 
                                         <div class="row">
                                           <div class="col-md-6">
-                                              <p>Achievemrnt : </p>
+                                              <p>Achievement : </p>
                                           </div>
                                           <div class="col-md-6">
                                             <input required type="number" name="" id="achievement'.$kpi->id.'"">

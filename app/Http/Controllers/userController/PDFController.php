@@ -26,7 +26,10 @@ class PDFController extends Controller
             foreach($activeQuaterCollections as $activeQuaterCollection){
                 $activeQuater = $activeQuaterCollection->Quater;
             }
-        }                
+        } 
+        else{
+            substr_replace('-','/',$activeYaer);
+        }               
         //!getting the program Details.
         $programDetails = Program::where('id','=',$id)->get();
 

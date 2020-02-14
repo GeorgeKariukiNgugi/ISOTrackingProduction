@@ -898,7 +898,7 @@ class UserController extends Controller
         # code...
         $reportsGenerated = new reportsGenerated();
         $reportsGenerated->quater = $activeQuater;
-        $reportsGenerated->year = $activeYaer;
+        $reportsGenerated->year = substr_replace('/','-',$activeYaer);
         $reportsGenerated->reportLocation = '';
         $reportsGenerated->program_id = $id;
         $reportsGenerated->save();

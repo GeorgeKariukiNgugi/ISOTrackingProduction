@@ -94,7 +94,7 @@ $(function () {
                             } else if(inputValue >= targetValue){
                                 definigThis.css('background-color','#cfeda8'); 
                             }
-                            else{
+                            else if(inputValue >= 0 ){
                                 definigThis.css('background-color','#FFFFFF');
                             }
                         }

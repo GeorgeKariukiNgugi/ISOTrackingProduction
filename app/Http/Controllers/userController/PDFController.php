@@ -12,19 +12,21 @@ use App\reportsGenerated;
 use App\StrategicObjectiveScore;
 class PDFController extends Controller
 {
-    public function downloadPFD($id){
+    public function downloadPFD($id,$activeYaer,$activeQuater){
         $idRetrieved = $id;
         
-        $activeYaerCollections = YearActive::where('Active','=',1)->get();
-        foreach($activeYaerCollections as $activeYaerCollection){
-            $activeYaer = $activeYaerCollection->Year;
-        }
-
-        $activeQuaterCollections = QuaterActive::where('Active','=',1)->get();
-        foreach($activeQuaterCollections as $activeQuaterCollection){
-            $activeQuater = $activeQuaterCollection->Quater;
-        }
-
+        if ($activeYaer == 0 && $activeYaer == 0) {
+            # code...
+            $activeYaerCollections = YearActive::where('Active','=',1)->get();
+            foreach($activeYaerCollections as $activeYaerCollection){
+                $activeYaer = $activeYaerCollection->Year;
+            }
+    
+            $activeQuaterCollections = QuaterActive::where('Active','=',1)->get();
+            foreach($activeQuaterCollections as $activeQuaterCollection){
+                $activeQuater = $activeQuaterCollection->Quater;
+            }
+        }                
         //!getting the program Details.
         $programDetails = Program::where('id','=',$id)->get();
 

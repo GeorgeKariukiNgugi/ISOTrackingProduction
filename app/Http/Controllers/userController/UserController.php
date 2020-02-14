@@ -17,6 +17,7 @@ use App\KeyPerfomanceIndicatorScore;
 use App\StrategicObjectiveScore;
 use App\closedNonConformityEvidence;
 use Auth;
+use App\reportsGenerated;
 //!DASHBOARD CLASS.
 use App\Http\Requests\submittingClosingNonConfromity;
 use  App\Charts\DashBoardCharts;
@@ -893,6 +894,16 @@ class UserController extends Controller
     }
     
 
+    if ($kpisNotScored == 0) {
+        # code...
+        $reportsGenerated = new reportsGenerated();
+        $reportsGenerated->quater = $activeQuater;
+        $reportsGenerated->year = $activeYaer;
+        $reportsGenerated->reportLocation = '';
+        $reportsGenerated->program_id = $id;
+        $reportsGenerated->save();
+
+    }
     //!getting the program name and also the program code of the active program that is being assesed.
 
     $proramDetails = Program::where('id','=',$id)->get();

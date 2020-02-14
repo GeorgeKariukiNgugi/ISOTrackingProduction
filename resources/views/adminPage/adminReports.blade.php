@@ -32,7 +32,7 @@
               <td>{{$programNamesArray[$increment]}}</td>
               <td>{{$report->year}}</td>
               <td>{{$report->quater}}</td>
-              <td> <a href="/{{$report->reportLocation}}"> Click To Download The Report.</a> </td>
+              <td> <a href="{{"/samplePDF/".$id."/$report->year/$report->quater"}}"> Click To Download The Report.</a> </td>
             </tr> 
 
             @php

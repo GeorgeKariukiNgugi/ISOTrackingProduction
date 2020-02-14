@@ -58,7 +58,7 @@ Route::get('/sampleExcelDownload/{programId}/{status}', 'userController\spreadhe
 
 //! this is the link that has the sample download pdf. 
 
-Route::get('/samplePDF/{progId}','userController\PDFController@downloadPFD');
+Route::get('/samplePDF/{progId}/{yaer}/{quater}','userController\PDFController@downloadPFD');
 
 //!this route will be used to handle the creation of a new program.
 

@@ -97,6 +97,8 @@ class PDFController extends Controller
                 }
                 
                 else{
+                    // dd(count($strategicObjectiveScores) ."   " .$strategicObjectiveNumbers. $perspective->name );
+                    // dd($strategicObjectiveScores);
                     Alert::error(' <h4 style = "color:red;">Ooops    <i class="fa fa-thumbs-down"></i></h4>', 'There Is A strategic Objective With unScored KPIs.');
                     return back();
                 }

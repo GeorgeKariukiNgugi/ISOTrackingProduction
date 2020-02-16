@@ -507,7 +507,26 @@ class UserController extends Controller
                 $strategicObjectiveWeight = $StrategicObjetive->weight;
             }
 
-            if($countingTheNUmberOfReturnedStrategicObjective >=1){
+            if($countingTheNUmberOfReturnedStrategicObjective > 1){
+
+                foreach ($gettingStrategicObjectiveRecord as $gettingStrategicObjectiveRecords) {
+                    # code...
+                    $gettingStrategicObjectiveRecords->delete();
+                }
+                
+                $average = (($average/100)*$strategicObjectiveWeight);
+                $savingTheStrateicObjective = new StrategicObjectiveScore(
+                                            array(
+                                                'strategicObjective_id'=>$strategicObjectiveIdFromForm,
+                                                'perspective_id'=> $perspectiveIddrawn,
+                                                'score'=> $average,
+                                                'year'=>$activeYaer,
+                                                'quater'=>$activeQuater,
+                                            )
+                );
+                $savingTheStrateicObjective->save();
+            }
+            else if($countingTheNUmberOfReturnedStrategicObjective ==1){
                 foreach($gettingStrategicObjectiveRecord as $StrategicObjectiveRecord){
                     //! IN THIS SECTION OF THE CODE, WE ARE EQUATING THE VALUE THAT IS THE AVERAGE TO THE STRATEGIC OBJEVTIVE WEIGHT.
                     $average = (($average/100)*$strategicObjectiveWeight);

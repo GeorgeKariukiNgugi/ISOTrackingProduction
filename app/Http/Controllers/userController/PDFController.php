@@ -29,7 +29,7 @@ class PDFController extends Controller
             }
         } 
         else{
-            substr_replace('-','/',$activeYaer);
+            $activeYaer = str_replace('-','/',$activeYaer);
         }               
         //!getting the program Details.
         $programDetails = Program::where('id','=',$id)->get();
@@ -63,7 +63,7 @@ class PDFController extends Controller
                                                                     ->where('perspective_id','=',$perspectiveId)
                                                                     ->get();
 
-                
+                // dd(count($strategicObjectiveScores) ."   " .$strategicObjectiveNumbers);
                 if(count($strategicObjectiveScores) == $strategicObjectiveNumbers){
                     $strategicObjectivesSum = 0;
                     $strateicObjectiveAverage = 0;      

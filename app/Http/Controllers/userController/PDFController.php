@@ -10,6 +10,7 @@ use App\StrategicObjective;
 use PDF;
 use App\reportsGenerated;
 use App\StrategicObjectiveScore;
+use RealRashid\SweetAlert\Facades\Alert;
 class PDFController extends Controller
 {
     public function downloadPFD($id,$activeYaer,$activeQuater){
@@ -96,7 +97,8 @@ class PDFController extends Controller
                 }
                 
                 else{
-                    return "THERE ARE SOME STRATEGIC OBJECTIVES THAT HAVE NOT BEEN SCORED.";
+                    Alert::error(' <h4 style = "color:red;">Ooops    <i class="fa fa-thumbs-down"></i></h4>', 'There Is A strategic Objective With unScored KPIs.');
+                    return back();
                 }
 
                 //! selecting the strategic objecive scores that have the following perspective.

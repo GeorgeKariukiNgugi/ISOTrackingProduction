@@ -6,5 +6,5 @@ Click To Score Your KPIs
 @endcomponent
 
 Thanks,<br>
-{{-- {{ config('app.name') }} --}}
+{{ config('app.name') }}
 @endcomponent

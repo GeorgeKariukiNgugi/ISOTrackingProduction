@@ -3,7 +3,11 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-
+use App\Mail\aprilNotification;
+// use App\Mail\januaryNotification;
+use App\Mail\julyNotification;
+use App\Mail\octoberNotification;
+use App\AssesorPerProgram;
 class JanuaryNotification extends Command
 {
     /**
@@ -37,6 +41,10 @@ class JanuaryNotification extends Command
      */
     public function handle()
     {
-        //
+        $assesors = AssesorPerProgram::all();
+        foreach ($assesors as $assesor) {
+            # code...
+            Mail::to($assesor)->send(new julyNotification());
+        }
     }
 }

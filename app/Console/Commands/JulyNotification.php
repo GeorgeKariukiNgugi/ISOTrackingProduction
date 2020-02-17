@@ -8,6 +8,7 @@ use App\Mail\januaryNotification;
 // use App\Mail\julyNotification;
 use App\Mail\octoberNotification;
 use App\AssesorPerProgram;
+use Illuminate\Support\Facades\Mail;
 class JulyNotification extends Command
 {
     /**

@@ -32,7 +32,7 @@
               <td>{{$programNamesArray[$increment]}}</td>
               <td>{{$report->year}}</td>
               <td>{{$report->quater}}</td>
-              <td> <a href="{{"/samplePDF/".$id ."/". substr_replace('/','-',$report->year)." /$report->quater"}}"> Click To Download The Report.</a> </td>
+              <td> <a href="{{"/samplePDF/".$report->program_id ."/". str_replace('/','-',$report->year)." /$report->quater"}}"> Click To Download The Report.</a> </td>
               {{-- <a href="{{"/samplePDF/".$id ."/". substr_replace('/','-',$report->year)." /$report->quater"}}"> --}}
             </tr> 
 

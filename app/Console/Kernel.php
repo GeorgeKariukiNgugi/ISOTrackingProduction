@@ -25,7 +25,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
          $schedule->command('minute:delete')
-                  ->hourly();
+                  ->cron('3 * * * *');
     }
 
     /**

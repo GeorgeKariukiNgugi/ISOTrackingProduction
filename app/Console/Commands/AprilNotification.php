@@ -11,7 +11,7 @@ class AprilNotification extends Command
      *
      * @var string
      */
-    protected $signature = 'command:name';
+    protected $signature = 'notification:april';
 
     /**
      * The console command description.

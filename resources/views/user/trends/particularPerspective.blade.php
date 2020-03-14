@@ -42,6 +42,10 @@
 <a href="{{"/nonconformities/".$id."/0"}}" data-toggle="tooltip" title="Non Conformies In Proress.">
 @endsection
 
+@section('logoRedirect')
+<a href={{"/home/".$id}} class="logo"> 
+@endsection
+
 @section('closed')
 <a href="{{"/nonconformities/".$id."/2"}}" data-toggle="tooltip" title="Closed Non Confrmities.">
 @endsection

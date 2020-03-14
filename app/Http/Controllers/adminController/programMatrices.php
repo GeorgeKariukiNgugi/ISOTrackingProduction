@@ -24,6 +24,8 @@ use App\Http\Requests\AddingNewStrstegicObjective;
 use RealRashid\SweetAlert\Facades\Alert;
 use  App\Charts\DashBoardCharts;
 use App\Userediting;
+use App\kpiChildren;
+use App\kpiChildrenScores;
 class programMatrices extends Controller
 {
     public function proramMatrices($id){
@@ -62,12 +64,13 @@ class programMatrices extends Controller
                                         $perspectives = $program->perspectives;
                                         
                                     }
+           $kpiChildren = kpiChildren::all();                         
           $programs = Program::all();                          
           $URLstring = url()->current();
           $admin = 'programMatrices';
           $programManager = 'userMatrices';
           if(strpos($URLstring,$admin) !== false){
-            return view('adminPage.programMatrices',['activeQuater'=>$activeQuater,'programId'=>$id,'programName'=>$programName,'programs'=>$programs,'quaterOne'=>$quaterOne,'quaterTwo'=>$quaterTwo,'quaterthree'=>$quaterthree,'quaterfour'=>$quaterfour,'perspectives'=>$perspectives,'activeYaer'=>$activeYaer,'activeQuater'=>$activeQuater,'keyPerfomanceIndicatorsScores'=>$keyPerfomanceIndicatorsScores,'programName'=>$programName,'programShortHand'=>$programShortHand]);
+            return view('adminPage.programMatrices',['kpiChildren'=>$kpiChildren,'activeQuater'=>$activeQuater,'programId'=>$id,'programName'=>$programName,'programs'=>$programs,'quaterOne'=>$quaterOne,'quaterTwo'=>$quaterTwo,'quaterthree'=>$quaterthree,'quaterfour'=>$quaterfour,'perspectives'=>$perspectives,'activeYaer'=>$activeYaer,'activeQuater'=>$activeQuater,'keyPerfomanceIndicatorsScores'=>$keyPerfomanceIndicatorsScores,'programName'=>$programName,'programShortHand'=>$programShortHand]);
           }
 
           if (strpos($URLstring,$programManager) !== false) {
@@ -78,22 +81,40 @@ class programMatrices extends Controller
 
                   $valueOfEditing = $gettingUserEditing->value;
               }
-              return  view('user.matrices.programMatrices',['activeQuater'=>$activeQuater,'id'=>$id,'valueOfEditing'=>$valueOfEditing,'programId'=>$id,'programName'=>$programName,'programs'=>$programs,'quaterOne'=>$quaterOne,'quaterTwo'=>$quaterTwo,'quaterthree'=>$quaterthree,'quaterfour'=>$quaterfour,'perspectives'=>$perspectives,'activeYaer'=>$activeYaer,'activeQuater'=>$activeQuater,'keyPerfomanceIndicatorsScores'=>$keyPerfomanceIndicatorsScores,'programName'=>$programName,'programShortHand'=>$programShortHand]);
+              return  view('user.matrices.programMatrices',['kpiChildren'=>$kpiChildren,'activeQuater'=>$activeQuater,'id'=>$id,'valueOfEditing'=>$valueOfEditing,'programId'=>$id,'programName'=>$programName,'programs'=>$programs,'quaterOne'=>$quaterOne,'quaterTwo'=>$quaterTwo,'quaterthree'=>$quaterthree,'quaterfour'=>$quaterfour,'perspectives'=>$perspectives,'activeYaer'=>$activeYaer,'activeQuater'=>$activeQuater,'keyPerfomanceIndicatorsScores'=>$keyPerfomanceIndicatorsScores,'programName'=>$programName,'programShortHand'=>$programShortHand]);
           }
    
         
     }
 
     public function addStrategicObjective(AddingNewStrstegicObjective $request, $id){
-        $newStrstegicObjective = new StrategicObjective(
-                        array(
-                            'perspective_id'=> $id,
-                            'name'=>$name =$request->strName,
-                            'shortHand'=> substr($request->strName,0,20),
-                        )
-        );
+        $data = ($request->newObjWeight)+0;        
+        $short = substr($request->strName,0,20);
+        $newStrstegicObjective = new StrategicObjective;
+        $newStrstegicObjective->weight = $data+0;
+        $newStrstegicObjective->perspective_id= $id;
+        $newStrstegicObjective->name=$request->strName;
+        $newStrstegicObjective->shortHand= $short;
         $newStrstegicObjective->save();
 
+                   //! this section of the code will be used to get the editing of the strategic objective weights. 
+                   $numberOfStrategicObjectives = $request->strategicObjectiveForAdditionNumber;                    
+                      $str = array();
+                      $values = array();
+                   $perspectiveId = $request->perspectiveIdForAddition;                 
+                   for ($i=1; $i <= $numberOfStrategicObjectives ; $i++) { 
+
+                    $nameOfWeight = 'WeightstrategicObjectiveForAddition'.$id.$i;
+                    $nameOfStrategicObjectiveId = 'strategicObjectiveIdForAddition'.$id.$i;                                        
+                    $strategicObjectivesChangeInWeights = StrategicObjective::where('id','=',$request->$nameOfStrategicObjectiveId)->get();
+                    
+                    foreach($strategicObjectivesChangeInWeights as $strategicObjectivesChangeInWeight){
+                        $strategicObjectivesChangeInWeight->weight = $request->$nameOfWeight;
+                        $strategicObjectivesChangeInWeight->save();
+                        array_push($values,$request->$nameOfWeight);
+                    }
+
+                   }
         Alert::success(' <h4 style = "color:green;">Congartulations    <i class="fa fa-thumbs-up"></i></h4>', 'New Strategic Objective Has Been Added.');
         return back();
 
@@ -107,7 +128,7 @@ class programMatrices extends Controller
             $kpi->period  =$request->period;
             $kpi->arithmeticStructure  =$request->arithmeticStructure;
             $kpi->target  =$request->target;
-
+            $kpi->units = $request->units;
             $kpi->save();
         }
         
@@ -136,8 +157,10 @@ class programMatrices extends Controller
     }
 
     //! this method id used to delete the strategic objective of a perspective.
-    public function deleteStrategicObjective($strObjectiveId){
+    public function deleteStrategicObjective($strObjectiveId, Request $request){
 
+        // return $request;
+        
     $strategicObjectives = StrategicObjective::where('id','=',$strObjectiveId)->get(); 
     foreach ($strategicObjectives as $strategicObjective) {
         # code...
@@ -163,6 +186,41 @@ class programMatrices extends Controller
             $strategicObjectiveScore->delete();
         }
     
+        //! this section is used to get the strategic objectives that will be updated. 
+        //? the name of the count to be looped. 
+        $name = 'strategicObjectiveToBelDeleted'.$strObjectiveId;
+        $strategicObjectiveToBeDeleted = $request->deletingId;
+        $number = $request->$name;
+        // dd($number);
+        for ($i=1; $i <= $number; $i++) { 
+            # code...
+            $inputName = "data".$i;
+            // dd($strObjectiveId);
+            
+            $inputNamess = $request->$inputName;
+            // dd($inputNamess);
+            $strategicObjectiveId = "strategicObjectiveId".$i;
+            $strategicObjectiveId = $request->$strategicObjectiveId;
+
+            
+            if($strategicObjectiveId == $strObjectiveId){
+                // dd($inputName ."NotToDelete");
+            }
+            else{
+                // dd($strategicObjectiveId.' < strategic Objective >'.$strObjectiveId);
+                # code...
+                // dd($inputName."TO Delete");
+                $strategicObjectives = StrategicObjective::where('id','=',$strategicObjectiveId)->get(); 
+                foreach ($strategicObjectives as $strategicObjective) {
+                    # code...
+                    $strategicObjective->weight = $inputNamess;
+                    $strategicObjective->save();
+                }
+            } 
+            
+
+
+        }
     Alert::success(' <h4 style = "color:green;">Congartulations    <i class="fa fa-thumbs-up"></i></h4>','Strayegic Objective Successfully Deleted..');
         return back();
     }
@@ -180,6 +238,32 @@ class programMatrices extends Controller
                $strategicObjective->save();
            }
 
+           //! this section of the code will be used to get the editing of the strategic objective weights. 
+           $numberOfStrategicObjectives = $request->numberOfStrategicObjectives;
+        
+           $str = array();
+           $values = array();
+        for ($i=1; $i <= $numberOfStrategicObjectives ; $i++) { 
+            # code...
+            $newStrategicObjectiveId = "strategicObjectiveId".$i;
+            $newStrategicObjectiveId = $request->$newStrategicObjectiveId;
+            $strategicObjectiveWeightInputField = "strategicObjectiveWeight".$i;
+            $strategicObjectiveWeight = $request->$strategicObjectiveWeightInputField;
+
+            array_push($str,$newStrategicObjectiveId );
+            array_push($values, $strategicObjectiveWeight);
+            
+
+            $strategicObjectivesChangeInWeight = StrategicObjective::where('id','=',$newStrategicObjectiveId)->get();
+
+            foreach ($strategicObjectivesChangeInWeight as $strategicObjectivesChange) {
+                # code...
+                $strategicObjectivesChange->weight = $strategicObjectiveWeight;
+                $strategicObjectivesChange->save();
+            }
+        }
+
+            
            Alert::success(' <h4 style = "color:green;">Congartulations    <i class="fa fa-thumbs-up"></i></h4>','Strategic Objective Successfully Edited.');
            return back();
     }
@@ -241,7 +325,7 @@ class programMatrices extends Controller
             $Message = '<div role="alert" class="alert alert-success" style="width:70%;text-align:center;margin-right:15%;margin-top:1%;margin-left:15%;"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><span class="text-capitalize"><strong>'.
             "The perspective selected, has successfully been deleted, kindly refresh your browser to get the latest updates.
                 </strong><br /></span></div>";
-            // return response()->json(['success'=>' SCORES NOT SUBMITTED. Kindly Add The Non conformity reasons for the kpi  '.$kpi->name]);
+            
             return response()->json(['success'=>$Message]);
 
         }                
@@ -256,7 +340,7 @@ class programMatrices extends Controller
 
         $editingPerspectiveNames = Perspective::where('id','=',$perspectiveIdToEdit)->get();
 
-        // dd($perspectiveName);
+        
         foreach($editingPerspectiveNames as $editingPerspectiveName){
             $editingPerspectiveName->name = $perspectiveName;
             $editingPerspectiveName->save();
@@ -268,13 +352,13 @@ class programMatrices extends Controller
         //? getting the number of perspectives that should be edited. 
         $numberOfPerspectivesToBeEdited = $request->numberOfPerspectivesEdited;
         $incrementalNumberEdit = $request->numberOfPerspectivesEdited;
-        // dd($incrementalNumberEdit);
+        
         for ($i=1; $i <= $incrementalNumberEdit; $i++) { 
             # code...
             //? gettin the hidden value that holds the perspective id. 
             $hiddenPerspeciveId = 'hiddenPerspectiveWeight'.$i;
             $hiddenPerspeciveId = $request->$hiddenPerspeciveId;
-            // dd($hiddenPerspeciveId);
+            
             //? getting the perspective input value 
             $perspectiveInputValue = 'editingWeight'.$i;
             $perspectiveInputValue = $request->$perspectiveInputValue;
@@ -323,17 +407,17 @@ class programMatrices extends Controller
 
         //? getting the number of perspectives that should be edited.         
         $incrementalNumberEdit = $request->numberOfPerspectives;
-        // dd($incrementalNumberEdit);
+        
         for ($i=1; $i <= $incrementalNumberEdit; $i++) { 
             # code...
             //? gettin the hidden value that holds the perspective id. 
             $hiddenPerspeciveId = 'perspectiveId'.$i;
             $hiddenPerspeciveId = $request->$hiddenPerspeciveId;
-            // dd($hiddenPerspeciveId);
+            
             //? getting the perspective input value 
             $perspectiveInputValue = 'addingNewPerspectives'.$i;
             $perspectiveInputValue = $request->$perspectiveInputValue;
-            // dd($perspectiveInputValue);
+            
             $perspectives = Perspective::where('id','=',$hiddenPerspeciveId)->get();
             foreach($perspectives as $perspective){
 
@@ -344,5 +428,65 @@ class programMatrices extends Controller
 
         Alert::success(' <h4 style = "color:green;">Congartulations    <i class="fa fa-thumbs-up"></i></h4>', 'Added Perspective Successfully.');
         return back();
+    }
+
+    public function addingKPIChild($id, Request $request){
+        $kpiChildren = new kpiChildren();
+        if ($request->typeOfInput == null) {
+            # code...
+            $type = 1;
+        } else {
+            # code...
+            $type = $request->typeOfInput;
+        }
+        $kpiChildren->name = $request->kpiChildName;
+        $kpiChildren->keyPerfomanceIndicator_id = $request->kpi_id;
+        $kpiChildren->type =$type;
+        $kpiChildren->save();
+
+        // $kpiId = request->kpi_id;
+        $kpiToActivates = KeyPerfomaceIndicator::where('id','=',$request->kpi_id)->get();
+
+        foreach ($kpiToActivates as $kpiToActivate) {
+
+            $kpiToActivate->hasChildren = 1;
+            $kpiToActivate->save();
+            # code...
+        }
+        Alert::success(' <h4 style = "color:green;">Congartulations    <i class="fa fa-thumbs-up"></i></h4>', 'Successfully Added A Child KPI.');
+        return back();
+    }
+
+    public function deletingKPIChild($id){
+        $kpiChildrens = kpiChildren::where('id','=',$id)->get();
+        foreach ($kpiChildrens as $kpiChildren) {
+            # code...
+            $kpiChildren->delete();
+        }
+        Alert::success(' <h4 style = "color:green;">Congartulations    <i class="fa fa-thumbs-up"></i></h4>', 'Successfully Deleted A Child KPI.');
+        return back();
+    }
+
+    public function editingKPIChild($id, Request $request){
+
+        $kpiChildrens = kpiChildren::where('id','=',$id)->get();
+        if ($request->typeOfInput == null) {
+            # code...
+            $type = 1;
+        } else {
+            # code...
+            $type = $request->typeOfInput;
+        }
+        
+        foreach ($kpiChildrens as $kpiChildren) {
+            # code...
+            $kpiChildren->name = $request->kpiChildName;
+            $kpiChildren->type = $type;
+            $kpiChildren->save();
+
+        }
+        Alert::success(' <h4 style = "color:green;">Congartulations    <i class="fa fa-thumbs-up"></i></h4>', 'Successfully Edited A Child KPI.');
+        return back();
+
     }
 }

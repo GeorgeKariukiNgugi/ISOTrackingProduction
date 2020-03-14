@@ -10,21 +10,27 @@ use App\StrategicObjective;
 use PDF;
 use App\reportsGenerated;
 use App\StrategicObjectiveScore;
+use RealRashid\SweetAlert\Facades\Alert;
 class PDFController extends Controller
 {
-    public function downloadPFD($id){
+    public function downloadPFD($id,$activeYaer,$activeQuater){
         $idRetrieved = $id;
-        // dd($id);
-        $activeYaerCollections = YearActive::where('Active','=',1)->get();
-        foreach($activeYaerCollections as $activeYaerCollection){
-            $activeYaer = $activeYaerCollection->Year;
-        }
-
-        $activeQuaterCollections = QuaterActive::where('Active','=',1)->get();
-        foreach($activeQuaterCollections as $activeQuaterCollection){
-            $activeQuater = $activeQuaterCollection->Quater;
-        }
-
+        
+        if ($activeYaer == 0 && $activeYaer == 0) {
+            # code...
+            $activeYaerCollections = YearActive::where('Active','=',1)->get();
+            foreach($activeYaerCollections as $activeYaerCollection){
+                $activeYaer = $activeYaerCollection->Year;
+            }
+    
+            $activeQuaterCollections = QuaterActive::where('Active','=',1)->get();
+            foreach($activeQuaterCollections as $activeQuaterCollection){
+                $activeQuater = $activeQuaterCollection->Quater;
+            }
+        } 
+        else{
+            $activeYaer = str_replace('-','/',$activeYaer);
+        }               
         //!getting the program Details.
         $programDetails = Program::where('id','=',$id)->get();
 
@@ -49,7 +55,7 @@ class PDFController extends Controller
                 # code...
                 $perspectiveId = $perspective->id;
                 $strategicObjectiveNumbers = count($perspective->strategicObjectives);
-                // $strategicObjectiveScores = count($perspective->strategicObjectiveScores);
+                
 
                 //! this section of the code is used to get the strategic objectives that have been stored. 
                 $strategicObjectiveScores = StrategicObjectiveScore::where('year','=',$activeYaer)
@@ -57,7 +63,7 @@ class PDFController extends Controller
                                                                     ->where('perspective_id','=',$perspectiveId)
                                                                     ->get();
 
-                // dd(count($scoredStrategicObjectives));
+                // dd(count($strategicObjectiveScores) ."   " .$strategicObjectiveNumbers);
                 if(count($strategicObjectiveScores) == $strategicObjectiveNumbers){
                     $strategicObjectivesSum = 0;
                     $strateicObjectiveAverage = 0;      
@@ -68,41 +74,33 @@ class PDFController extends Controller
 
                     //!getting the strategic objectives of the particular perspective. 
                     $strategicObjectives = StrategicObjective::where('perspective_id','=',$perspective->id)->get();
-                    // dd($strategicObjectives);
+                    
+                    
                     foreach($strategicObjectives as $strategicObjective){
+                        $strategicObjectiveWeight = $strategicObjective->weight;
                         array_push($strategicObjectiveNameArray,$strategicObjective->name);
 
                         //!getting the rhyming strategic objective scores.
                         $trategicObjectiveScores = StrategicObjectiveScore::where('strategicObjective_id','=',$strategicObjective->id)->where('year','=',$activeYaer)->where('quater','=',$activeQuater)->get();                        
-                        // dd($trategicObjectiveScores);
+                        
                         foreach ($trategicObjectiveScores as $trategicObjectiveScore) {
                             # code...
-                            array_push($strategicObjectiveScoresArray,$trategicObjectiveScore->score);
+                            $finalSScore += $trategicObjectiveScore->score;
+                            array_push($strategicObjectiveScoresArray,(($trategicObjectiveScore->score)/$strategicObjectiveWeight)*100);
                             
                             //!getting the final score that willl be displayed.
-                            $strategicObjectivesSum += $trategicObjectiveScore->score;
+                            $strategicObjectivesSum += (($trategicObjectiveScore->score)/$strategicObjectiveWeight)*100;
                         }
                         
                     }
-                    // dd($strategicObjectivesSum);
-                    if (count($strategicObjectives) == 0) {
-                        # code...
-                        $divisor = 1;
-                    }
-                    else {
-                        $divisor = count($strategicObjectives);
-                    }
-                    $strateicObjectiveAverage = $strategicObjectivesSum/$divisor;
-                    // dd($strateicObjectiveAverage);
-                    $weight = $perspective->weight;
-                    $finalSScore += ($strateicObjectiveAverage*$weight)/100;
-                    // dd($finalSScore.' '.$weight);
-                    // $finalSScore += $strateicObjectiveAverage;
                     
                 }
                 
                 else{
-                    return "THERE ARE SOME STRATEGIC OBJECTIVES THAT HAVE NOT BEEN SCORED.";
+                    // dd(count($strategicObjectiveScores) ."   " .$strategicObjectiveNumbers. $perspective->name );
+                    // dd($strategicObjectiveScores);
+                    Alert::error(' <h4 style = "color:red;">Ooops    <i class="fa fa-thumbs-down"></i></h4>', 'There Is A strategic Objective With unScored KPIs.');
+                    return back();
                 }
 
                 //! selecting the strategic objecive scores that have the following perspective.
@@ -146,7 +144,7 @@ class PDFController extends Controller
         }                                         
 
         
-        $pdf->save('reports/'.$pdfNames);        
+        // $pdf->save('reports/'.$pdfNames);        
         return $pdf->download($pdfNames);
     }
 }

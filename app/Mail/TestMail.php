@@ -16,9 +16,11 @@ class TestMail extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public $nonConformities;
+    public function __construct($nonConformities)
     {
         //
+        $this->nonConformities = $nonConformities;
     }
 
     /**
@@ -28,6 +30,10 @@ class TestMail extends Mailable
      */
     public function build()
     {
+        $this->withSwiftMessage(function ($message) {
+            $message->getHeaders()
+                    ->addTextHeader('This is the header', 'This is the header');
+        });
         return $this->markdown('email.testemail');
     }
 }

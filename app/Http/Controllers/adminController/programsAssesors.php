@@ -26,7 +26,7 @@ class programsAssesors extends Controller
                 $name =  'Admin';
                 $code = 'Admin';
 
-                // dd("ADMIN REACHED.".$program_id->id);
+                
             } else {
                 # code...
                 foreach($program_ids as $program_id){
@@ -46,7 +46,7 @@ class programsAssesors extends Controller
 
     public function deletingAssesor(DeletingAssesor $request){
 
-        // return $request->asesorId;
+        
 
         $deletingAssesors = AssesorPerProgram::where('id','=',$request->asesorId)->get();        
         foreach($deletingAssesors as $deletingAssesor){            

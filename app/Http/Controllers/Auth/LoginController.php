@@ -7,10 +7,11 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Auth;
 use Illuminate\Http\Request;
 use App\AssesorPerProgram;
-// use Illuminate\Http\Request;
-// use Auth;
+use App\kpiChildren;
+use App\kpiChildrenScores;
 use DB;
 // use App\AssesorPerProgram;
+// use Illuminate\Support\Facades\DB;
 use App\Program;
 use App\ScoreRecorded;
 use App\StrategicObjectiveScore;
@@ -49,10 +50,12 @@ class LoginController extends Controller
     //! MODIYFING THE LOGIN FUNCTIONALITY TO REDIRECT THE USERS BASED ON THEIR EMAIL SPECIFICATION.
 
     protected function redirectTo($id){
-                       $keyPerfomanceIndicatorsScores = KeyPerfomanceIndicatorScore::all();
+
                
-                       //! GETTING WHICH QUATER AND TEAR IS ACTIVE.
-               
+        //! THIS SETION IS USED TO GET THE DATA THAT IS GOING TO BE LISTED IN THE PROFILE SECTION OF THE AP[PLICATION.
+                        $programsToBeListedInProfiles = AssesorPerProgram::where('email','=',Session::get('email'))->get();
+                        // dd($programsToBeListedInProfiles);
+                       //! GETTING WHICH QUATER AND TEAR IS ACTIVE.               
                        $activeYaerCollections = YearActive::where('Active','=',1)->get();
                        foreach($activeYaerCollections as $activeYaerCollection){
                            $activeYaer = $activeYaerCollection->Year;
@@ -64,7 +67,9 @@ class LoginController extends Controller
                            $activeQuater = $activeQuaterCollection->Quater;
                            // dd($activeQuater);
                        }
-                       
+                       $keyPerfomanceIndicatorsScores = KeyPerfomanceIndicatorScore::where('quater','=',$activeQuater)
+                       ->where('year','=',$activeYaer)
+                       ->get();
                        //!GETTING THE SCORES PER QUATER.
                        $quaterOne = ScoreRecorded::where('quater','=','Q1')
                                                    ->where('year','=',$activeYaer)
@@ -95,7 +100,7 @@ class LoginController extends Controller
                                    //! THIS NEXT SECTION IS USED TO GET THE TOTAL SCORE OF THE PROGRAMS.
                                    foreach ($programs as $program) {
                                        $programValue = 0;
-                                       
+                                       $perspectiveAvgValue =0;
                                        array_push($programShorthand,$program->shortHand);
                                        array_push($programColors,$program->colorCode);
                                        array_push($programIds,$program->id);
@@ -107,29 +112,33 @@ class LoginController extends Controller
                                            $perspectiveSumValue = 0;
                                            $particularPerspectiveValue =0;
                                            $perspectiveWeight = $perspective->weight;
-                                           $scores = StrategicObjectiveScore::where('perspective_id','=',$perspective->id)->get();
+                                        //    $strategicObjectives = StrategicObjective::where('perspective_id','=',$perspective->id)->get();
+
+                                           $scores = StrategicObjectiveScore::where('perspective_id','=',$perspective->id)
+                                                                                ->where('year','=',$activeYaer)
+                                                                                ->where('quater','=',$activeQuater)    
+                                                                                ->get();
                                            
                                            if(count($scores) == 0){
-                                               $perspectiveValue = 0;
+                                               $programValue = 0;
                                            }
                                            else{
                                                $scoresNumber = count($scores);
                                                // dd($scoresNumber);
-                                               foreach ($scores as $score) {
-                                                   # code...
-                                                   $perspectiveSumValue += $score->score;
+                                              
+                                               foreach ($scores as $score) {                                                  
+                                                   $programValue += $score->score;
+
                                                }                                
-                                               $perspectiveAvgValue = $perspectiveSumValue / $scoresNumber;
-                                               $perspectiveValue = ($perspectiveAvgValue*$perspectiveWeight)/100;
-                                               // dd($perspectiveValue);
+                                            //    $perspectiveAvgValue = $perspectiveSumValue;                                          
                                                
                                            }
                                            
-                                           $programValue += $perspectiveValue;
+                                        //    $programValue += $perspectiveValue;
                                        }
                                        
                                        // dd($programValue);
-                                       array_push($programScores,$programValue);
+                                       array_push($programScores,$programValue);                    
                                    }
                
                                    //!GETTING THE DATA THAT WILL BE USED TO GET THE NONCONFORMITIES.
@@ -258,8 +267,9 @@ class LoginController extends Controller
                                            array_push($checkingIfAssesed, $program->shortHand);
                                         }
                                         
-                                   }                                   
-                                   return view('adminPage.adminLanding',['programs'=>$programs,'ncsCharts'=>$ncsCharts,'ncsperProgramCharts'=>$ncsperProgramCharts,'activeYaer'=>$activeYaer,'programScores'=>$programScores,'programColors'=>$programColors,'programShorthand'=>$programShorthand,'programIds'=>$programIds,'activeQuater'=>$activeQuater,'checkingIfAssesed'=>$checkingIfAssesed,'ncsArray'=>$ncsArray]);
+                                   }              
+                                //    $programsToBeListedInProfiles                     
+                                   return view('adminPage.adminLanding',['programsToBeListedInProfiles'=>$programsToBeListedInProfiles,'programs'=>$programs,'ncsCharts'=>$ncsCharts,'ncsperProgramCharts'=>$ncsperProgramCharts,'activeYaer'=>$activeYaer,'programScores'=>$programScores,'programColors'=>$programColors,'programShorthand'=>$programShorthand,'programIds'=>$programIds,'activeQuater'=>$activeQuater,'checkingIfAssesed'=>$checkingIfAssesed,'ncsArray'=>$ncsArray]);
                                }
                                $programs = Program::where('id','=',$id)->get();
                
@@ -270,6 +280,15 @@ class LoginController extends Controller
                                    $perspectives = $program->perspectives;
                                    
                                }
+
+                               //! this section of the code is used to get the kpi children  and their scores. 
+
+                                $kpiChildren = kpiChildren::all();                                
+                                
+                                $kpiChildrenScores = kpiChildrenScores::all();
+
+                               
+
                                //! getting wherther the activation of the editing has happened. 
                                $gettingUserEditings = Userediting::all();
                                $valueOfEditing = 0;
@@ -277,7 +296,12 @@ class LoginController extends Controller
                
                                    $valueOfEditing = $gettingUserEditing->value;
                                }
-                               return view('user.landingPage',['valueOfEditing'=>$valueOfEditing,'programId'=>$id,'quaterOne'=>$quaterOne,'quaterTwo'=>$quaterTwo,'quaterthree'=>$quaterthree,'quaterfour'=>$quaterfour,'perspectives'=>$perspectives,'activeYaer'=>$activeYaer,'activeQuater'=>$activeQuater,'keyPerfomanceIndicatorsScores'=>$keyPerfomanceIndicatorsScores,'programName'=>$programName,'programShortHand'=>$programShortHand]);
+
+                               //! this section of the code is used to fetch all the years that hae been recored in the DB.
+                               $years = YearActive::where('Active','=',0)->get();
+                               //! this section is used to send the non-conformities that have been identified by the application. 
+                                $nonConformities =  NonConformities::all();
+                               return view('user.landingPage',['programsToBeListedInProfiles'=>$programsToBeListedInProfiles,'years'=>$years,'kpiChildren'=>$kpiChildren,'kpiChildrenScores'=>$kpiChildrenScores,'nonConformities'=>$nonConformities,'valueOfEditing'=>$valueOfEditing,'programId'=>$id,'quaterOne'=>$quaterOne,'quaterTwo'=>$quaterTwo,'quaterthree'=>$quaterthree,'quaterfour'=>$quaterfour,'perspectives'=>$perspectives,'activeYaer'=>$activeYaer,'activeQuater'=>$activeQuater,'keyPerfomanceIndicatorsScores'=>$keyPerfomanceIndicatorsScores,'programName'=>$programName,'programShortHand'=>$programShortHand]);
                            }                
     public function logInUsingLDAP(Request $request){        
         header('Content-type: application/json');

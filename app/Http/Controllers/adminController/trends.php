@@ -30,9 +30,7 @@ class trends extends Controller
         $data4 = [0,18,44];
         $data5 = [0,17,19];
         $data6 = [0,00,50];
-        // $trialCharts->displaylegend(true);
-        // $trialCharts->displayAxes(true, true);
-        // $trialCharts->title('Users by Months', 30, "rgb(255, 99, 132)", true, 'Helvetica Neue');
+
         $trialCharts->height(500);
         $trialCharts->labels(['2019 Q1', '2019 Q2', '2019 Q3']);
         $trialCharts->dataset('ISMS', 'line', $data1)->fill(false)->color("rgb(255, 99, 132)");
@@ -41,9 +39,7 @@ class trends extends Controller
         $trialCharts->dataset('EMS', 'line', $data4)->fill(false)->color("rgb(0, 255, 255)");
         $trialCharts->dataset('BCMS', 'line', $data5)->fill(false)->color("rgb(0, 0, 0)");
         $trialCharts->dataset('CSR', 'line', $data6)->fill(false)->color("rgb(255, 0, 0)");
-        // $trialCharts->data(
-        //     dataset
-        // )
+
 
         //! this is the code for the grouped bar charts. 
         $borderColors = [
@@ -75,7 +71,7 @@ class trends extends Controller
         $usersChart->minimalist(false);
         $usersChart->height(500);
         $usersChart->labels(['ITSMS 2019/2020 Quaterly Trends.', 'ISMS 2019/2020 Quaterly Trends.', 'QMS 2019/2020 Quaterly Trends.','EMS 2019/2020 Quaterly Trends.','CSR 2019/2020 Quaterly Trends.','BCMS 2019/2020 Quaterly Trends.']);
-        // $usersChart->labels(['Jan1', 'Feb1', 'Mar1']);
+        
 
         $usersChart->dataset('Q1','bar', [10, 25, 13,42,23,45])
             ->color($borderColors[0])
@@ -129,12 +125,12 @@ class trends extends Controller
         $activeYaerCollections = YearActive::where('Active','=',1)->get();
         foreach($activeYaerCollections as $activeYaerCollection){
             $activeYaer = $activeYaerCollection->Year;
-            // dd($activeYaer);
+            
         }
         $activeQuaterCollections = QuaterActive::where('Active','=',1)->get();
             foreach($activeQuaterCollections as $activeQuaterCollection){
                 $activeQuater = $activeQuaterCollection->Quater;
-                // dd($activeQuater);
+                
         }
 
         //! this section of the code is used to initialise the chart object that us used to create the grouped bar chart. 
@@ -145,12 +141,12 @@ class trends extends Controller
 
             $quaterSubStr = substr($activeQuater,1); 
             $quaterSubStr = $quaterSubStr+0;
-            // dd($quaterSubStr); 
+            
             $programsNames = array();
             
             for ($i=1; $i <= $quaterSubStr ; $i++) { 
                 # code...
-                // dd("data.");
+                
                 $quaterScoresPerProgramArray = array();
                 
             foreach($programs as $program){
@@ -169,21 +165,21 @@ class trends extends Controller
             $gettingStrategicObjectivesOfRelatedPerspective = StrategicObjectiveScore::where('perspective_id','=',$proramPersspective->id)->where('year','=',$activeYaer)->where('quater','=',$quater)->get();            
             if (count($gettingStrategicObjectivesOfRelatedPerspective) == 0) {
                 # code...
-                $strateicObjectiveAverage =1;
+                $finalScore =1;
             } else {
                 # code...
                 foreach ($gettingStrategicObjectivesOfRelatedPerspective as $strategicObjective) {
                     # code...
                     $strategicObjectivesSum  += $strategicObjective->score;
                 }
-                $strateicObjectiveAverage= $strategicObjectivesSum/ count($gettingStrategicObjectivesOfRelatedPerspective);
+                
             }
             
             
             //!the next step is to get its equivalent score in telation to its weight.
     
-            $weight = $proramPersspective->weight;
-            $finalScore += ($strateicObjectiveAverage*$weight)/100;
+            
+            $finalScore += $strategicObjectivesSum;
             
         }            
                 //! pushing the scores to the arrays. 
@@ -228,6 +224,7 @@ class trends extends Controller
                 $proramPersspectives = Perspective::where('program_id','=',$program->id)->get();                
                 $finalScore = 0;
                 $track = 0;
+                
         foreach ($proramPersspectives as $proramPersspective) {
             $strategicObjectivesSum = 0;
             $strateicObjectiveAverage = 0;
@@ -236,21 +233,21 @@ class trends extends Controller
             $gettingStrategicObjectivesOfRelatedPerspective = StrategicObjectiveScore::where('perspective_id','=',$proramPersspective->id)->where('year','=',$activeYaer)->where('quater','=',$quater)->get();            
             if (count($gettingStrategicObjectivesOfRelatedPerspective) == 0) {
                 # code...
-                $strateicObjectiveAverage =1;
+                $finalScore =1;
             } else {
                 # code...
                 foreach ($gettingStrategicObjectivesOfRelatedPerspective as $strategicObjective) {
                     # code...
                     $strategicObjectivesSum  += $strategicObjective->score;
                 }
-                $strateicObjectiveAverage= $strategicObjectivesSum/ count($gettingStrategicObjectivesOfRelatedPerspective);
+                
             }
             
             
             //!the next step is to get its equivalent score in telation to its weight.
     
-            $weight = $proramPersspective->weight;
-            $finalScore += ($strateicObjectiveAverage*$weight)/100;                
+            
+            $finalScore += $strategicObjectivesSum;
 
             }  
             array_push($quaterScoresPerProgramArray,$finalScore);
@@ -310,12 +307,12 @@ class trends extends Controller
         $activeYaerCollections = YearActive::where('Active','=',1)->get();
         foreach($activeYaerCollections as $activeYaerCollection){
             $activeYaer = $activeYaerCollection->Year;
-            // dd($activeYaer);
+            
         }
         $activeQuaterCollections = QuaterActive::where('Active','=',1)->get();
             foreach($activeQuaterCollections as $activeQuaterCollection){
                 $activeQuater = $activeQuaterCollection->Quater;
-                // dd($activeQuater);
+                
         }
 
             $groupedBarChartForPerspectiveProgress = new DashBoardCharts;
@@ -324,10 +321,10 @@ class trends extends Controller
 
             $quaterSubStr = substr($activeQuater,1); 
             $quaterSubStr = $quaterSubStr+0;
-            // dd($quaterSubStr); 
+            
             $programsNames = array();
 
-            // for ($i=1; $i <= $quaterSubStr ; $i++) { 
+            
                 
                 $programColor = 0;
                 foreach($programs as $program){
@@ -367,11 +364,11 @@ class trends extends Controller
                                     # code...
                                     $strategicObjectivesSum  += $strategicObjective->score;
                                 }
-                                $strateicObjectiveAverage= $strategicObjectivesSum/ count($gettingStrategicObjectivesOfRelatedPerspective);
+                                $strateicObjectiveAverage= $strategicObjectivesSum;
                             }
-                            $weight = $proramPersspective->weight;
-                            $finalScore += $strateicObjectiveAverage;
-                            // ($strateicObjectiveAverage*$weight)/100;
+                            
+                            $finalScore += ($strateicObjectiveAverage/$proramPersspective->weight)*100;
+                            
 
                         }
                     }
@@ -388,7 +385,7 @@ class trends extends Controller
                     }
                    
                 }
-            // } 
+             
         $groupedBarChartForPerspectiveProgress->labels(['Financial Perspective','Customer Perpetive','Internal Business Perspetive','Learning And Growth Perspective']); 
          
         //! this second section of the code is used to get thet grouped bar chart for the quaterly growth.
@@ -418,22 +415,23 @@ class trends extends Controller
                         }
 
                     }
-                    // dd($numberOfNonProrams);
+                    
                     $storingArray = array();
                     $storingLineArray = array();
                     array_push($storingLineArray,0);
                     for ($j=1; $j <= $quaterSubStr ; $j++) { 
                         $scoreToPush = 0;
-                        // $numberOfNonProrams = 0;
+                        
                         $quater = 'Q'.$j;
 
                         $perspectives = Perspective::where('perspective_group','=',$i)                                                        
                                                         ->get();
 
-                        $strateicObjectiveAverage = 0;
+                        
                         $array = array();
                         foreach ($perspectives as $perspective) {
                             # code...
+                            $strateicObjectiveAverage = 0;
                             $strategicObjectivesSum = 0;
                             //! getting the strategic objective scores that match up to the strategic sjectives. 
                             $gettingStrategicObjectivesOfRelatedPerspective = StrategicObjectiveScore::where('perspective_id','=',$perspective->id)
@@ -441,8 +439,7 @@ class trends extends Controller
                                                                                                         ->where('quater','=',$quater)
                                                                                                         ->get();
                             
-                            // foreach($gettingStrategicObjectivesOfRelatedPerspective as $strategicbjectiveScore){
-                                // dd(count($gettingStrategicObjectivesOfRelatedPerspective));
+                           
                                 
                                 if (count($gettingStrategicObjectivesOfRelatedPerspective) == 0) {
                                     # code...
@@ -451,23 +448,24 @@ class trends extends Controller
                                     # code...
                                     foreach ($gettingStrategicObjectivesOfRelatedPerspective as $strategicObjective) {
                                         # code...
-                                        $strategicObjectivesSum  += $strategicObjective->score;
-                                        
+                                        $strategicObjectivesSum  += $strategicObjective->score; 
                                     }
-                                    $strateicObjectiveAverage += $strategicObjectivesSum/count($gettingStrategicObjectivesOfRelatedPerspective);                                    
+                                    $strateicObjectiveAverage += $strategicObjectivesSum/count($gettingStrategicObjectivesOfRelatedPerspective); 
+                                                                        
                                 } 
-                                  
+                                
+                                    $strateicObjectiveAverage += ($strateicObjectiveAverage/$perspective->weight)*100;
                             }
 
                             
                             //! number of programs that have the perapective. 
                             
-                            array_push($storingArray,$strateicObjectiveAverage/(count($programs)-$numberOfNonProrams));
-                            array_push($storingLineArray,$strateicObjectiveAverage/(count($programs)-$numberOfNonProrams));
+                            array_push($storingArray,$strateicObjectiveAverage);
+                            array_push($storingLineArray,$strateicObjectiveAverage);
                             
                     }
 
-                    // dd($storingArray);
+                    
 
                     switch ($i) {
                         case 1:
@@ -532,10 +530,11 @@ class trends extends Controller
                         $perspectives = Perspective::where('perspective_group','=',$i)                                                        
                                                         ->get();
 
-                        $strateicObjectiveAverage = 0;
+                        
                         $array = array();
                         foreach ($perspectives as $perspective) {
                             # code...
+                            $strateicObjectiveAverage = 0;
                             $strategicObjectivesSum = 0;
                             //! getting the strategic objective scores that match up to the strategic sjectives. 
                             $gettingStrategicObjectivesOfRelatedPerspective = StrategicObjectiveScore::where('perspective_id','=',$perspective->id)
@@ -543,8 +542,7 @@ class trends extends Controller
                                                                                                         ->where('quater','=',$quater)
                                                                                                         ->get();
                             
-                            // foreach($gettingStrategicObjectivesOfRelatedPerspective as $strategicbjectiveScore){
-                                // dd(count($gettingStrategicObjectivesOfRelatedPerspective));
+
                                 
                                 if (count($gettingStrategicObjectivesOfRelatedPerspective) == 0) {
                                     # code...
@@ -558,16 +556,16 @@ class trends extends Controller
                                     }
                                     $strateicObjectiveAverage += $strategicObjectivesSum/count($gettingStrategicObjectivesOfRelatedPerspective);                                    
                                 } 
-                                  
+                                $strateicObjectiveAverage += ($strateicObjectiveAverage/$perspective->weight)*100;
                             }
 
                             
                             //! number of programs that have the perapective. 
                             
-                            array_push($storingArray,$strateicObjectiveAverage/(count($programs)-$numberOfNonProrams));
+                            array_push($storingArray,$strateicObjectiveAverage);
                     }
 
-                    // dd($storingArray);
+                    
                     $groupedBarChartForPerspectiveProgressProgramQuater->dataset($activeYaer.'  '.$quater,'bar', $storingArray)
                     ->color($borderColors[$j])
                     ->backgroundcolor($fillColors[$j]);
@@ -578,4 +576,4 @@ class trends extends Controller
                 }
                  
              
-    //  $groupedLineGraph->labels($quaterNamesForLineGraph); 
+    

@@ -42,7 +42,9 @@
 @section('closed')
 <a href="{{"/nonconformities/".$id."/2"}}" data-toggle="tooltip" title="Closed Non Confrmities.">
 @endsection
-
+@section('logoRedirect')
+<a href={{"/home/".$id}} class="logo"> 
+@endsection
 @section('video')
 <li class="treeview">
   <a href="#"><i class="fa fa-video-camera"></i> <span>Video Tutorials</span>
@@ -91,7 +93,10 @@
               <td>{{$programNamesArray[$increment]}}</td>
               <td>{{$report->year}}</td>
               <td>{{$report->quater}}</td>
-              <td> <a href="/{{$report->reportLocation}}"> Click To Download The Report.</a> </td>
+              @php
+                  // dd("The Year is". $report->year . 'The sub string that I want is : '.str_replace('/','-',$report->year));
+              @endphp
+              <td> <a href="{{"/samplePDF/".$id ."/".str_replace('/','-',$report->year)." /$report->quater"}}"> Click To Download The Report.</a> </td>
             </tr> 
 
             @php

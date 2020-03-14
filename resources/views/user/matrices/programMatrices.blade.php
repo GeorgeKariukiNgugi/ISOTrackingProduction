@@ -1,6 +1,8 @@
 @extends('extendingCode.usersExtending')
 @section('navigationBar')
-
+@section('logoRedirect')
+<a href={{"/home/".$id}} class="logo">  
+@endsection
 @section('navigationBar')
 
 <li>
@@ -17,6 +19,10 @@
       DashBoard
     </a>
   </li> 
+@endsection
+
+@section('logoRedirect')
+<a href="/home/" class="logo">  
 @endsection
 
 @if ($valueOfEditing == 1)

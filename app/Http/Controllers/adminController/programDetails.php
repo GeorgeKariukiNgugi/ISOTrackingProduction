@@ -22,6 +22,7 @@ class programDetails extends Controller
         $programId = $request->programId;
 
         $deletingPrograms = Program::where('id','=',$programId)->get();
+        // dd($deletingPrograms);
         foreach($deletingPrograms as $deletingProgram){
             //!first get the program perspectives.
             $perspectives = $deletingProgram->perspectives;
@@ -57,14 +58,14 @@ class programDetails extends Controller
 
         Alert::success(' <h4 style = "color:green;">Congartulations    <i class="fa fa-thumbs-up"></i></h4>', 'The Program Has Successfully Been Deleted.');
 
-        return redirect('/home');
+        return redirect('home/0');
     }
 
     public function editProgram(editingProgram $request){
 
         $image = $request->image;
         $color = $request->color;
-        // dd($color);
+        
         if ($request->hasFile('image')) {        
             $fileFullName = $request->image->getClientOriginalName();         
             $fileNameWithoutExtension = pathinfo($request->image->getClientOriginalName(), PATHINFO_FILENAME);

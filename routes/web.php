@@ -38,7 +38,7 @@ Route::post('submitScores/{value}','userController\UserController@submittingKPIS
 Route::post('submitNonConformities/{value}','userController\UserController@submittingNonConformities');
 
 //! this is the function that is used to store the new kpis that have been generated.
-Route::post('submittingKPI','userController\UserController@submittingNewKPIs');
+Route::post('/submittingKPI','userController\UserController@submittingNewKPIs');
 
 
 //!this is the route that is used to generate the dashboard graphs amoung others. 
@@ -58,7 +58,7 @@ Route::get('/sampleExcelDownload/{programId}/{status}', 'userController\spreadhe
 
 //! this is the link that has the sample download pdf. 
 
-Route::get('/samplePDF/{progId}','userController\PDFController@downloadPFD');
+Route::get('/samplePDF/{progId}/{yaer}/{quater}','userController\PDFController@downloadPFD');
 
 //!this route will be used to handle the creation of a new program.
 
@@ -194,3 +194,14 @@ Route::get('/loggingOutUsers','logOutFunctionality@loggingOut');
 
 //! this route is used to get the test mail up and running. 
 Route::get('/sendingMail','tryMail@trySendingMial');
+
+//! this route is used to send the subcategories data to the backend ito the database. 
+Route::post('/postingKPISubcategories','userController\submittingKPISubCategories@submittingKPISubCategories');
+
+//! this route will be used to add a new kpi child to a KPI.
+Route::post('/addingNewKPIChild/{id}','adminController\programMatrices@addingKPIChild');
+
+//! this route is used to delete the kpi child that has been selected. 
+Route::get('/deletingAKPIChild/{iid}','adminController\programMatrices@deletingKPIChild');
+
+Route::post('/editKPIChild/{iid}','adminController\programMatrices@editingKPIChild');

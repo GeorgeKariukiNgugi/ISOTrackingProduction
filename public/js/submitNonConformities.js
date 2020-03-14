@@ -2,14 +2,14 @@ $(function () {
     $("form[id^='unmetTargetModal']").on("submit", function (e) {
         e.preventDefault();
         var idOfForm = $(this).attr("id");
-        var objective = idOfForm.substring(16);
-        var alertName = "NonConformitymodal" + objective;
+        var objective = idOfForm.substring(17);
+        
         var closingModalForm = "modal-body-for-ncs".objective;
         var objectiveName = "strategicObjective" + objective;
         objectiveName = $("#" + objectiveName).val();
         var quater = $("#activeQuater" + objectiveName).val();
-
-        // console.log(quater);
+        var alertName = "NonConformitymodal" + objective+quater.substring(1);
+        console.log(alertName);
 
         $.ajax({
             url: "/submitNonConformities/" + quater,

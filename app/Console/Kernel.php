@@ -24,8 +24,16 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+         $schedule->command('minute:delete')
+                  ->cron('3 * * * *');
+         $schedule->command('notification:april')
+         ->everyFiveMinutes();
+         $schedule->command('notification:january')
+         ->everyFiveMinutes();
+         $schedule->command('notification:july')
+         ->everyFiveMinutes();
+         $schedule->command('notification:october')
+         ->everyFiveMinutes();
     }
 
     /**

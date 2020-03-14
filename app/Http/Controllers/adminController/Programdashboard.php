@@ -61,13 +61,28 @@ class Programdashboard extends Controller
                     array_push($chartValues,0);
                 }
                 else{
+                    $number = count($perspectiveStrategicObjectives);
+                    $total = 0;
+                    $average = 0;
                     foreach ($perspectiveStrategicObjectives as $perspectiveStrategicObjective) {
                         # code...
-                        array_push($chartValues,$perspectiveStrategicObjective->score);
+                        $total += $perspectiveStrategicObjective->score;
+                       
                     }
+                    $weight = $perspectiveStrategicObjectiveName->weight;
+                    // dd($weight);
+                    $average = $total/$number;
+                    // dd($number);
+                    if ($weight == 0) {
+                        # code...
+                        $weight = 1;
+                    } 
+                    
+                    $average = ($average/$weight)*100;
+                    array_push($chartValues,$average);
                 }
             }
-    
+            // dd($chartValues);
             //Definig the chart instance that will hold the chart items.
             $borderColors = [
                 "rgba(255, 99, 132, 1.0)",
@@ -116,7 +131,10 @@ class Programdashboard extends Controller
             $strategicObjectivesSum = 0;
             $strateicObjectiveAverage = 0;
             //!the next step is to get the strateic objectives of the reated perspective. 
-            $gettingStrategicObjectivesOfRelatedPerspective = StrategicObjectiveScore::where('perspective_id','=',$proramPersspective->id)->where('year','=',$activeYaer)->where('quater','=',$activeQuater)->get();
+            $gettingStrategicObjectivesOfRelatedPerspective = StrategicObjectiveScore::where('perspective_id','=',$proramPersspective->id)
+                                                                                     ->where('year','=',$activeYaer)
+                                                                                     ->where('quater','=',$activeQuater)
+                                                                                     ->get();
             if (count($gettingStrategicObjectivesOfRelatedPerspective) == 0) {
                 # code...
                 $strateicObjectiveAverage =0;
@@ -126,14 +144,15 @@ class Programdashboard extends Controller
                     # code...
                     $strategicObjectivesSum  += $strategicObjective->score;
                 }
-                $strateicObjectiveAverage= $strategicObjectivesSum/ count($gettingStrategicObjectivesOfRelatedPerspective);
+                // $strateicObjectiveAverage= $strategicObjectivesSum/count($gettingStrategicObjectivesOfRelatedPerspective);
             }
             
             
             //!the next step is to get its equivalent score in telation to its weight.
     
-            $weight = $proramPersspective->weight;
-            $finalScore += ($strateicObjectiveAverage*$weight)/100;
+            // $weight = $proramPersspective->weight;
+            // $finalScore += ($strateicObjectiveAverage*$weight)/100;
+            $finalScore += $strategicObjectivesSum;
             
         }
     
@@ -159,28 +178,28 @@ class Programdashboard extends Controller
         
         $allKPIsRetrieved = array();
         foreach ($allPerctivesForTheProgram as $allPerctives) {
-            // $allKPIsRetrieved = array();
+            
             $kpisRetrieved = $allPerctives->keyPerfomaceIndicators;
             foreach($kpisRetrieved as $kpi){
                 array_push($allKPIsRetrieved,$kpi->id);
             }
         }
-        // dd($allKPIsRetrieved);
+        
         //! The next Step is to get the missing ids that are not in the list. 
         $kpisNotScored = array();
         $kpisScored = array();
         $kpiNotScoredNames = array();
         for ($i=0; $i < count($allKPIsRetrieved); $i++) { 
             # code...
-            // $dbSearch = KeyPerfomanceIndicatorScore::where('kpi_id','=',$allKPIsRetrieved[$i])->get();
+            
             $dbSearch = ScoreRecorded::where('keyPerfomanceIndicator_id','=',$allKPIsRetrieved[$i])
                                      ->where('quater','=',$activeQuater)
                                      ->where('year','=',$activeYaer)
-                                    ->get();
-            // dd(count($dbSearch));
+                                     ->get();
+            
             if(count($dbSearch) == 0){
                 array_push($kpisNotScored,$allKPIsRetrieved[$i]);
-                // dd("null");
+                
                 $gettingNamesKpiNotScored = KeyPerfomaceIndicator::where('id','=',$allKPIsRetrieved[$i])->get();
                 foreach ($gettingNamesKpiNotScored as $kpiNames) {
                     $name = $kpiNames->name;
@@ -193,10 +212,10 @@ class Programdashboard extends Controller
             }
             else{
                 array_push($kpisScored,$allKPIsRetrieved[$i]);
-                // dd("present");
+                
             }
         }
-        // dd($kpiNotScoredNames);
+        
     
         //!getting the program name and also the program code of the active program that is being assesed.
     

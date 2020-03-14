@@ -18,7 +18,8 @@ $(function () {
         //! this next section is going to activate the quater that has been selected by clicking on the link. 
         $("." + 'Quater' + classOfLink + $(this).attr("id").substr(12)).removeAttr('readonly');
         $("." + 'Quater' + classOfLink + $(this).attr("id").substr(12)).removeAttr('placeholder');
-        $("." + 'Quater' + classOfLink + $(this).attr("id").substr(12)).css('border', '3px solid blue');
+        $("." + 'Quater' + classOfLink + $(this).attr("id").substr(12)).css('border', '3px solid #3C8DBC');
+        $("." + 'Quater' + classOfLink + $(this).attr("id").substr(12)).attr("required", "true");
         console.log(deactivateInputs);
 
         //! this next section is used to change the value of the verification quater.

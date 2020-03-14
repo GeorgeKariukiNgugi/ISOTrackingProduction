@@ -17,6 +17,7 @@ use App\KeyPerfomanceIndicatorScore;
 use App\StrategicObjectiveScore;
 use App\closedNonConformityEvidence;
 use Auth;
+use App\reportsGenerated;
 //!DASHBOARD CLASS.
 use App\Http\Requests\submittingClosingNonConfromity;
 use  App\Charts\DashBoardCharts;
@@ -25,21 +26,15 @@ class UserController extends Controller
 {
     public function submittingKPIScores($quater,Request $request){        
 
-        // dd($quater);
+
         //! getting the active year and active quater from the database.
         $activeYaerCollections = YearActive::where('Active','=',1)->get();
         foreach($activeYaerCollections as $activeYaerCollection){
             $activeYaer = $activeYaerCollection->Year;
-            // dd($activeYaer);
+            
         }
-
-        // $activeQuaterCollections = QuaterActive::where('Active','=',1)->get();
-        // foreach($activeQuaterCollections as $activeQuaterCollection){
-        //     $activeQuater = $activeQuaterCollection->Quater;
-        //     // dd($activeQuater);
-        // }
         $activeQuater =  $quater;
-        // $activeYaer = $request->activeQuaterForSubmision;
+        
         $strategicObjectiveIdFromForm = $request->strategicObjective;
 
         $strategicObjectivesKpis = StrategicObjective::where('id','=',$strategicObjectiveIdFromForm)->get();
@@ -66,11 +61,11 @@ class UserController extends Controller
             //!checking if the flag value is positive or negative.
             if ($formFlagInputValue == 1) {                
                 if($numberOfReturnedNonConformities == 0){
-                    // dd($numberOfReturnedNonConformities . "The kpiId =  ".$idOfKPI. " Active Quater =  ".$activeQuater. "The Year is " .$activeYaer);
+                    
                     $errorMessage = '<div role="alert" class="alert alert-danger" style="width:70%;text-align:center;margin-right:15%;margin-top:1%;margin-left:15%;"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><span class="text-capitalize"><strong>'.
                     "SCORES NOT SUBMITTED. Kindly Add The Non conformity reasons for the kpi   ".$kpi->name.
                         "</strong><br /></span></div>";
-                    // return response()->json(['success'=>' SCORES NOT SUBMITTED. Kindly Add The Non conformity reasons for the kpi  '.$kpi->name]);
+                    
                     return response()->json(['success'=>$errorMessage]);
 
                 }                
@@ -88,7 +83,7 @@ class UserController extends Controller
                 //!if the flag is neither positive or negative, that is, its null, just update the score.
                 $prefixOfTheActiveQuater = substr($activeQuater,1);
                 $scoreInputName = "Quater".$prefixOfTheActiveQuater.$idOfKPI;
-                // dd($scoreInputName);
+                
                 $score = $request->$scoreInputName;
                 $gettingTheScoreRecordedCollection = ScoreRecorded::where('keyPerfomanceIndicator_id','=',$idOfKPI)
                                                                     ->where('quater','=',$activeQuater)
@@ -100,13 +95,18 @@ class UserController extends Controller
                         $scoreRecord->score= $score;
                         $scoreRecord->save();
                     }
-                    // return response()->json(['success'=>'Data Has Been Updated. '.$kpi->name]);
+                    
                 }
             }
             //! if no reasonable reason is found, then we can now insert the data into the scoresrecorded table. 
+            
             $prefixOfTheActiveQuater = substr($activeQuater,1);
             $scoreInputName = "Quater".$prefixOfTheActiveQuater.$idOfKPI;
+            
+
+            
             $score = $request->$scoreInputName;
+            
             
             //! CHECKING IF THERE IS THE SAME RECORD IS FOUND IN THE DATABASE SO AS TO AVOID DUPLICATION OF DATA.
             $gettingTheScoreRecordedCollection = ScoreRecorded::where('keyPerfomanceIndicator_id','=',$idOfKPI)
@@ -126,7 +126,7 @@ class UserController extends Controller
 
                     //!saving the updates. 
                     $scoreRecord->save();
-                    // activity()->log('Scores Recorded By   '.Auth::user()->email);                              
+                                               
                 }
                 
             } else {
@@ -142,7 +142,7 @@ class UserController extends Controller
                     )
                 );
                 $savingTheScoresRecorded->save();
-                // activity()->log('Scores Recorded By   '.Auth::user()->email); 
+                
             }
             
             //? THE FOLLOWING STEP IS FOR ADDING THE DATA TO THE KEY PERFOMANCE INDICATORS SCORES TABLE.
@@ -154,58 +154,152 @@ class UserController extends Controller
 
             //!counting the number of records returned. 
 
-            // dd(count($allKPIScoresWithSameYear));
+            
             $numberOfReturnedScores = count($allKPIScoresWithSameYear);
             if($numberOfReturnedScores<1){
                 $errorMessage = '<div role="alert" class="alert alert-danger" style="width:70%;text-align:center;margin-right:15%;margin-top:1%;margin-left:15%;"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><span class="text-capitalize"><strong>'.
                     "There is an error incalculating the ytds, contact the Admin For Help.".
                         "</strong><br /></span></div>";
-                // return response()->json(['success'=>'There is an error incalculating the ytds, contact the Admin For Help.']);
+                
                 return response()->json(['success'=>$errorMessage]);
             }
             $averageThatBecomesytd = 0;
             //!getting the period of the kpi that is being asses.
+            $score = $request->$scoreInputName;
             $period = $kpi->period;
             
             if($period == 2){
+                
+                if ($kpi->hasChildren == 1) {
+                    # code...
+                    $averageThatBecomesytd = $score;
+                } else {
 
                 if($prefixOfTheActiveQuater == 1){
-                    $averageThatBecomesytd = 100;
-                }
-                elseif($prefixOfTheActiveQuater == 3){
-                    $findingQ2Value = ScoreRecorded::where('year','=',$activeYaer)
-                    ->where('keyPerfomanceIndicator_id','=',$idOfKPI)
-                    ->where('quater','=','Q2')
-                    ->get();
-
-                    foreach($findingQ2Value as $Value){
-                        $averageThatBecomesytd = $Value->score;
-                    }
-                }
-                elseif($prefixOfTheActiveQuater == 2){
                     $averageThatBecomesytd = $score;
+                }
+                else if($prefixOfTheActiveQuater == 3){
+                    // //! this section of the code is used to get the data that going to be inserted.
+                    $averageThatBecomesytd = $score;                    
+                }
+                else if($prefixOfTheActiveQuater == 2){
+
+                    //! some code to implment.
+                    $findingQ1Values = ScoreRecorded::where('year','=',$activeYaer)
+                    ->where('keyPerfomanceIndicator_id','=',$idOfKPI)
+                    ->where('quater','=','Q1')
+                    ->get();
+                    $q1Value = 0;
+                    foreach($findingQ1Values as $findingQ1Value){
+
+                        $q1Value = $findingQ1Value->score;
+
+                    }
+
+
+                    $averageThatBecomesytd = $score+$q1Value;
                 }
                 else{
                     $findingQ2Value = ScoreRecorded::where('year','=',$activeYaer)
                     ->where('keyPerfomanceIndicator_id','=',$idOfKPI)
-                    ->where('quater','=','Q2')
+                    ->where('quater','=','Q3')
+                    ->get();
+                    $scoreFetched =0;
+                    foreach($findingQ2Value as $Value){
+                        $scoreFetched = $Value->score;
+                    }
+                    $averageThatBecomesytd = ($score+$scoreFetched);
+                }
+            }
+            }
+            elseif($period == 1){
+
+                if ($kpi->hasChildren == 1) {
+                    # code...
+                    $averageThatBecomesytd = $score;
+                } else {
+
+                if ($prefixOfTheActiveQuater == 1) {
+                    # code...
+                    $averageThatBecomesytd = $score;
+                } elseif($prefixOfTheActiveQuater == 2){
+                    # code...
+                    
+                
+                    $findingQ2Value = ScoreRecorded::where('year','=',$activeYaer)
+                    ->where('keyPerfomanceIndicator_id','=',$idOfKPI)
+                    ->where('quater','=','Q1')
+                    ->get();
+                    $scoreFetched =0;
+                    foreach($findingQ2Value as $Value){
+                        $scoreFetched = $Value->score;
+                    }
+                    
+                    $averageThatBecomesytd = ($score+$scoreFetched);
+                    
+                }
+                else if($prefixOfTheActiveQuater == 3){
+                    $scoreFetched = 0;
+                    $scoreFetched2=0;
+
+                    $findingQ2Value = ScoreRecorded::where('year','=',$activeYaer)
+                    ->where('keyPerfomanceIndicator_id','=',$idOfKPI)
+                    ->where('quater','=','Q1')
                     ->get();
 
                     foreach($findingQ2Value as $Value){
                         $scoreFetched = $Value->score;
                     }
-                    $averageThatBecomesytd = ($score+$scoreFetched)/2;
+
+                    $findingQ1Value = ScoreRecorded::where('year','=',$activeYaer)
+                    ->where('keyPerfomanceIndicator_id','=',$idOfKPI)
+                    ->where('quater','=','Q2')
+                    ->get();
+
+                    foreach($findingQ1Value as $Value){
+                        $scoreFetched2 = $Value->score;
+                    }
+
+                    $averageThatBecomesytd = ($score+$scoreFetched+$scoreFetched2); 
+                    
+                    if ($idOfKPI == 244) {
+                        # code...
+                        // dd($score ." ". $scoreFetched. " ".$scoreFetched2);
+                    }
+                    
+                }else if($prefixOfTheActiveQuater == 4){
+                    $scoreFetched = 0;
+                    $scoreFetched2=0;
+                    $scoreFetched3 = 0;
+                    $findingQ1Value = ScoreRecorded::where('year','=',$activeYaer)
+                    ->where('keyPerfomanceIndicator_id','=',$idOfKPI)
+                    ->where('quater','=','Q1')
+                    ->get();
+
+                    foreach($findingQ1Value as $Value){
+                        $scoreFetched = $Value->score;
+                    }
+
+                    $findingQ2Value = ScoreRecorded::where('year','=',$activeYaer)
+                    ->where('keyPerfomanceIndicator_id','=',$idOfKPI)
+                    ->where('quater','=','Q2')
+                    ->get();
+
+                    foreach($findingQ2Value as $Value){
+                        $scoreFetched2 = $Value->score;
+                    }
+                    
+                    $findingQ3Value = ScoreRecorded::where('year','=',$activeYaer)
+                    ->where('keyPerfomanceIndicator_id','=',$idOfKPI)
+                    ->where('quater','=','Q3')
+                    ->get();
+
+                    foreach($findingQ3Value as $Value){
+                        $scoreFetched3 = $Value->score;
+                    }
+                    $averageThatBecomesytd = ($score+$scoreFetched+$scoreFetched2+$scoreFetched3);
                 }
             }
-            elseif($period == 1){
-
-                if ($prefixOfTheActiveQuater == 4) {
-                    # code...
-                    $averageThatBecomesytd = $score;
-                } else {
-                    # code...
-                    $averageThatBecomesytd = 100;
-                }
             }
             else{
                 $sum = 0;
@@ -214,7 +308,7 @@ class UserController extends Controller
                 }
             $averageThatBecomesytd = $sum/$numberOfReturnedScores;
             }
-            // dd($averageThatBecomesytd);
+            
             //!getting the score based on the ytd and the arithmetic structure.
 
             $atithmeticStructure = $kpi->arithmeticStructure;
@@ -230,10 +324,10 @@ class UserController extends Controller
                         # code...                        
                         if ($kpiTarget == 0) {
                             # code...
-                            $kpiTarget = 1;
+                            $kpiScore = 0;
                         }
-                        $percentage = $averageThatBecomesytd-$kpiTarget;
-                        $kpiScore = ($percentage/$averageThatBecomesytd)*100; 
+                        // $percentage = $averageThatBecomesytd-$kpiTarget;
+                        // $kpiScore = ($percentage/$averageThatBecomesytd)*100; 
 
                     }
                     
@@ -298,7 +392,7 @@ class UserController extends Controller
                                 }
                     break;
                     case '4':
-                        if ($averageThatBecomesytd == 1) {
+                        if ($averageThatBecomesytd <= 1) {
                             # code...
                             $kpiScore = 100;
                         } else{
@@ -338,18 +432,19 @@ class UserController extends Controller
             }
 
             
+            // dd($kpiScore);
             //! Adding the data into the kpi scores table, we first check if it is present, if so we update or else we insert. 
             $kpiscoresRecords = KeyPerfomanceIndicatorScore::where('kpi_id','=',$idOfKPI)
                                                             ->where('year','=',$activeYaer)
                                                             ->where('quater','=',$activeQuater)                                                            
                                                             ->get();
-                                    
+                                //    dd($kpiscoresRecords); 
             //!counting the records.
             $numberOfKPIRecords = count($kpiscoresRecords);
-            // dd($numberOfKPIRecords);
+            
             if($numberOfKPIRecords>0){
                 //!since there is a record in the DB, update the record.
-                // dd($activeQuater);
+                
                 foreach($kpiscoresRecords as $kpiscoresRecord){
                     $kpiscoresRecord->year =$activeYaer;
                     $kpiscoresRecord->ytd =$averageThatBecomesytd;
@@ -357,10 +452,7 @@ class UserController extends Controller
                     $kpiscoresRecord->quater =$activeQuater;
                     $kpiscoresRecord->strategic_objective_id =$strategicObjectiveIdFromForm;
                     $kpiscoresRecord->score = $kpiScore; 
-                    $kpiscoresRecord->save();
-                    // activity()->log('KPI Scores Recorded By   '.Auth::user()->email.'  for  '.$programShortHand); 
-                    // dd($strategicObjectiveIdFromForm);
-                    // return response()->json(['success'=>''.$strategicObjectiveIdFromForm.'UPDATED successsfully, Move to the Next Objective']);                 
+                    $kpiscoresRecord->save();                
                 }
                 
 
@@ -379,21 +471,18 @@ class UserController extends Controller
                 );
                 
                 $savingKPIcore->save();
-                //  ()->log('KPI Scores Recorded By   '.Auth::user()->email.'  for  '.$programShortHand); 
-                // dd($kpiScore);
-                // return response()->json(['success'=>''.$strategicObjectiveIdFromForm.'saved successsfully, Move to the Next Objective']);
             }
 
         }   
         //? Inserting Data to the strategic objectives scores table. 
         //! to insert the data, we first have to get the strategicObjectives from form. 
-        // dd($strategicObjectiveIdFromForm);
+        
         $gettingTheKPIScores = KeyPerfomanceIndicatorScore::where('strategic_objective_id','=',$strategicObjectiveIdFromForm)
                                                             ->where('year','=',$activeYaer)
                                                             ->where('quater','=',$activeQuater)
                                                             ->get();
         $countingNoOfKPIScores = count($gettingTheKPIScores);
-        // dd($countingNoOfKPIScores);
+        
         $sum = 0;
         $average = 0;
         foreach($gettingTheKPIScores as $gettingTheKPIScore){
@@ -401,8 +490,8 @@ class UserController extends Controller
             $sum = $sum+$value;
         }
         $average = $sum/$countingNoOfKPIScores;
-        // dd($average);
-
+        
+            //    dd($gettingTheKPIScores); 
         //! checking if the data has has a value so as to see if the value has a duplicate so as to update.
             $gettingStrategicObjectiveRecord = StrategicObjectiveScore::where('strategicObjective_id','=',$strategicObjectiveIdFromForm)
                                                                         ->where('year','=',$activeYaer)
@@ -415,11 +504,33 @@ class UserController extends Controller
 
             foreach($gettingStrategicObjetive as $StrategicObjetive){
                 $perspectiveIddrawn = $StrategicObjetive->perspective_id;
+                $strategicObjectiveWeight = $StrategicObjetive->weight;
             }
 
-            if($countingTheNUmberOfReturnedStrategicObjective >=1){
-                foreach($gettingStrategicObjectiveRecord as $StrategicObjectiveRecord){
+            if($countingTheNUmberOfReturnedStrategicObjective > 1){
 
+                foreach ($gettingStrategicObjectiveRecord as $gettingStrategicObjectiveRecords) {
+                    # code...
+                    $gettingStrategicObjectiveRecords->delete();
+                }
+                
+                $average = (($average/100)*$strategicObjectiveWeight);
+                $savingTheStrateicObjective = new StrategicObjectiveScore(
+                                            array(
+                                                'strategicObjective_id'=>$strategicObjectiveIdFromForm,
+                                                'perspective_id'=> $perspectiveIddrawn,
+                                                'score'=> $average,
+                                                'year'=>$activeYaer,
+                                                'quater'=>$activeQuater,
+                                            )
+                );
+                $savingTheStrateicObjective->save();
+            }
+            else if($countingTheNUmberOfReturnedStrategicObjective ==1){
+                foreach($gettingStrategicObjectiveRecord as $StrategicObjectiveRecord){
+                    //! IN THIS SECTION OF THE CODE, WE ARE EQUATING THE VALUE THAT IS THE AVERAGE TO THE STRATEGIC OBJEVTIVE WEIGHT.
+                    $average = (($average/100)*$strategicObjectiveWeight);
+                    // dd("before   ".$average."   after  ".$average2."  Weight  ".$strategicObjectiveWeight);
                     $StrategicObjectiveRecord->strategicObjective_id= $strategicObjectiveIdFromForm;
                     $StrategicObjectiveRecord->perspective_id= $perspectiveIddrawn;
                     $StrategicObjectiveRecord->score= $average ;
@@ -431,7 +542,7 @@ class UserController extends Controller
                 }
             }
             else{
-
+                $average = (($average/100)*$strategicObjectiveWeight);
                 $savingTheStrateicObjective = new StrategicObjectiveScore(
                                             array(
                                                 'strategicObjective_id'=>$strategicObjectiveIdFromForm,
@@ -446,7 +557,7 @@ class UserController extends Controller
             $errorMessage = '<div role="alert" class="alert alert-success" style="width:70%;text-align:center;margin-right:15%;margin-top:1%;margin-left:15%;"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><span class="text-capitalize"><strong>    '.
             $activeQuater."    Data has been saved successsfully, Move to the Next Objective".
                         "</strong><br /></span></div>";
-        // return response()->json(['success'=>'Data has been saved successsfully, Move to the Next Objective'.$kpiNumber]);
+        
         return response()->json(['success'=>$errorMessage]);
     }
 
@@ -466,15 +577,8 @@ class UserController extends Controller
          $activeYaerCollections = YearActive::where('Active','=',1)->get();
          foreach($activeYaerCollections as $activeYaerCollection){
              $activeYaer = $activeYaerCollection->Year;
-             // dd($activeYaer);
+             
          }
- 
-        //  $activeQuaterCollections = QuaterActive::where('Active','=',1)->get();
-        //  foreach($activeQuaterCollections as $activeQuaterCollection){
-        //      $activeQuater = $activeQuaterCollection->Quater;
-        //      // dd($activeQuater);
-        //  }
-        // dd( $quater);
         $activeQuater = $quater;
          //!getting the strategic objective.
 
@@ -500,7 +604,7 @@ class UserController extends Controller
             foreach($retrievingTheProgramIds as $retrievingTheProgramId){
                 $programId = $retrievingTheProgramId->program_id;
                 
-                // dd($programId);
+                
             }
 
             //! GETTING TO SEE IF THE NON CONFORMITY HAS BEEN ADDED TO THE NONCONFORMITY TABLE. 
@@ -530,11 +634,10 @@ class UserController extends Controller
                     //! saving the nonconformity.
                     $savingNonConformity->save();
 
-                    //  return "saved Data.";
+                    
                     $errorMessage = '<div role="alert" class="alert alert-success" style="width:70%;text-align:center;margin-right:15%;margin-top:1%;margin-left:15%;"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><span class="text-capitalize"><strong>'.
                     "Root Cause, Correction and corrective actions successfully saved. Close PopUp To Continue.'".
-                        "</strong><br /></span></div>";
-                    // return response()->json(['success'=>'Root Cause, Correction and corrective actions successfully saved. Close PopUp To Continue.']);
+                        "</strong><br /></span></div>";                    
                     return response()->json(['success'=>$errorMessage]);
          } 
          else if ($countingReturnedNonConformities == 1){
@@ -555,17 +658,14 @@ class UserController extends Controller
 
                 $errorMessage = '<div role="alert" class="alert alert-success" style="width:70%;text-align:center;margin-right:15%;margin-top:1%;margin-left:15%;"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><span class="text-capitalize"><strong>'.
                     "'Root Cause, Correction and corrective actions successfully UPDATED. Close PopUp To Continue.".
-                        "</strong><br /></span></div>";
-
-                // return response()->json(['success'=>'Root Cause, Correction and corrective actions successfully UPDATED. Close PopUp To Continue.']);
+                        "</strong><br /></span></div>";                
                 return response()->json(['success'=>$errorMessage]);
              }
          }
          else{
             $errorMessage = '<div role="alert" class="alert alert-danger" style="width:70%;text-align:center;margin-right:15%;margin-top:1%;margin-left:15%;"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><span class="text-capitalize"><strong>'.
             "Non conformity details cannot be accessed at this time. Kindly Contact Admin.".
-                "</strong><br /></span></div>";
-            // return response()->json(['success'=>'Non conformity details cannot be accessed at this time. Kindly Contact Admin.']);
+                "</strong><br /></span></div>";            
             return response()->json(['success'=>$errorMessage]);
          }        
     }
@@ -573,7 +673,6 @@ class UserController extends Controller
     //! This is the function that is used to store the the new kpis. 
 
     public function submittingNewKPIs(Request $request){
-        
         $newKPIPerspective = $request->perpective;
         $newStrategicObjective = $request->strategicObjective;        
         $newKPIName = $request->kpiName;
@@ -591,7 +690,7 @@ class UserController extends Controller
                             'units'=>'%'
                         )
         );
-        // dd($newStrategicObjective);
+        
         $savingKPI->save();
         $responseArray = array();
         $errorMessage = '<div role="alert" class="alert alert-success" style="width:70%;text-align:center;margin-right:15%;margin-top:1%;margin-left:15%;"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><span class="text-capitalize"><strong>'.
@@ -623,16 +722,16 @@ class UserController extends Controller
      $activeYaerCollections = YearActive::where('Active','=',1)->get();
     foreach($activeYaerCollections as $activeYaerCollection){
         $activeYaer = $activeYaerCollection->Year;
-        // dd($activeYaer);
+        
     }
     $activeQuaterCollections = QuaterActive::where('Active','=',1)->get();
         foreach($activeQuaterCollections as $activeQuaterCollection){
             $activeQuater = $activeQuaterCollection->Quater;
-            // dd($activeQuater);
+            
         }
     //!THIS FIRST SECTION IS USED TO DEFINE THE ARRAY THAT WILL HOLD THE COLLECTION OF THE BAR CHARTS THATHAVE BEEN DEPLOYED. 
     $charts = array();
-    // $proramPersspectives = StrategicObjective::where('perspective_id','=',$id)->get();
+    
     $proramPersspectives = Perspective::where('program_id','=',$id)->get();
         
     //!definig the two arrays that will be used to store the names and also the values.
@@ -667,14 +766,22 @@ class UserController extends Controller
                 foreach ($perspectiveStrategicObjectives as $perspectiveStrategicObjective) {
                     # code...
                     $total += $perspectiveStrategicObjective->score;
-                    
+                   
                 }
-
+                $weight = $perspectiveStrategicObjectiveName->weight;
+                
                 $average = $total/$number;
+                
+                if ($weight == 0) {
+                    # code...
+                    $weight = 1;
+                } 
+                
+                $average = ($average/$weight)*100;
                 array_push($chartValues,$average);
             }
         }
-        // dd($chartValues);
+        
         //Definig the chart instance that will hold the chart items.
         $borderColors = [
             "rgba(255, 99, 132, 1.0)",
@@ -706,7 +813,7 @@ class UserController extends Controller
         $chartName = new DashBoardCharts;
         $chartName->minimalist(true);
         $chartName->displayaxes(true);
-        // $chartName->displaylegend(true);
+        
         $chartName->labels($chartNames);
         $chartName->dataset($perspectiveObjectiveName, 'bar', $chartValues)
             ->color($borderColors)
@@ -729,21 +836,19 @@ class UserController extends Controller
                                                                                  ->get();
         if (count($gettingStrategicObjectivesOfRelatedPerspective) == 0) {
             # code...
-            $strateicObjectiveAverage =0;
+            $strategicObjectivesSum =1;
         } else {
             # code...
             foreach ($gettingStrategicObjectivesOfRelatedPerspective as $strategicObjective) {
                 # code...
                 $strategicObjectivesSum  += $strategicObjective->score;
             }
-            $strateicObjectiveAverage= $strategicObjectivesSum/count($gettingStrategicObjectivesOfRelatedPerspective);
+            
         }
         
         
         //!the next step is to get its equivalent score in telation to its weight.
-
-        $weight = $proramPersspective->weight;
-        $finalScore += ($strateicObjectiveAverage*$weight)/100;
+        $finalScore += $strategicObjectivesSum;
         
     }
 
@@ -752,7 +857,7 @@ class UserController extends Controller
     $chart = new DashBoardCharts;
     $chart->minimalist(true);
     $chart->labels(['Pass', 'Fail']);
-    // $chart->displaylegend(true);
+    
     $fillColor = [
         '#00A65A',
         '#D73925'
@@ -775,22 +880,22 @@ class UserController extends Controller
             array_push($allKPIsRetrieved,$kpi->id);
         }
     }
-    // dd($allKPIsRetrieved);
+    
     //! The next Step is to get the missing ids that are not in the list. 
     $kpisNotScored = array();
     $kpisScored = array();
     $kpiNotScoredNames = array();
     for ($i=0; $i < count($allKPIsRetrieved); $i++) { 
         # code...
-        // $dbSearch = KeyPerfomanceIndicatorScore::where('kpi_id','=',$allKPIsRetrieved[$i])->get();
+        
         $dbSearch = ScoreRecorded::where('keyPerfomanceIndicator_id','=',$allKPIsRetrieved[$i])
                                  ->where('quater','=',$activeQuater)
                                  ->where('year','=',$activeYaer)
                                  ->get();
-        // dd(count($dbSearch));
+        
         if(count($dbSearch) == 0){
             array_push($kpisNotScored,$allKPIsRetrieved[$i]);
-            // dd("null");
+            
             $gettingNamesKpiNotScored = KeyPerfomaceIndicator::where('id','=',$allKPIsRetrieved[$i])->get();
             foreach ($gettingNamesKpiNotScored as $kpiNames) {
                 $name = $kpiNames->name;
@@ -803,11 +908,21 @@ class UserController extends Controller
         }
         else{
             array_push($kpisScored,$allKPIsRetrieved[$i]);
-            // dd("present");
+            
         }
     }
-    // dd($kpiNotScoredNames);
+    
 
+    if ($kpisNotScored == 0) {
+        # code...
+        $reportsGenerated = new reportsGenerated();
+        $reportsGenerated->quater = $activeQuater;
+        $reportsGenerated->year = substr_replace('/','-',$activeYaer);
+        $reportsGenerated->reportLocation = '';
+        $reportsGenerated->program_id = $id;
+        $reportsGenerated->save();
+
+    }
     //!getting the program name and also the program code of the active program that is being assesed.
 
     $proramDetails = Program::where('id','=',$id)->get();
@@ -853,8 +968,7 @@ class UserController extends Controller
                                             ->where('program_id','=',$id)
                                             ->orderBy('date', 'asc')
                                             ->get();
-
-        // dd("Overdue  ".count( $nonConformities ));  
+        
         $gettingUserEditings = Userediting::all();
               $valueOfEditing = 0;
               foreach($gettingUserEditings as $gettingUserEditing){
@@ -907,7 +1021,7 @@ return view('user.nonConformities',['valueOfEditing'=>$valueOfEditing,'status'=>
 public function closingNonConformity(submittingClosingNonConfromity $request){
     
     //getting the names of the submitted data.
-    // dd("checking.");
+    
     //! checking if the file input has the data that is needed.
 
     try {
@@ -936,7 +1050,7 @@ public function closingNonConformity(submittingClosingNonConfromity $request){
         $briefDescription= $request->briefDescription;
         $locationOfEvidence= $newName;
         
-        // dd($nonConformity_id);
+        
         //! first changing the status of the nc to closed.
         $closedNCCollection = NonConformities::where('id','=',$nonConformity_id)->get();
     

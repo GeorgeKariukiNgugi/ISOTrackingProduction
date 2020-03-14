@@ -1,4 +1,7 @@
 @extends('extendingCode.usersExtending')
+@section('logoRedirect')
+<a href={{"/home/".$id}} class="logo">  
+@endsection
 @section('navigationBar')
 
 <li>
@@ -35,11 +38,11 @@
 <a href="{{"/programManagerPerspective/".$id}}"><i class="fa fa-line-chart"></i> <span> Perspective Trends.</span></a>
 @endsection
 @section('inProgress')
-<a href="{{"/nonconformities/".$id."/0"}}" data-toggle="tooltip" title="Non Conformies In Proress.">
+<a href="{{"/nonconformities/".$id."/0"}}" data-toggle="tooltip" title="Issues In Proress.">
 @endsection
 
 @section('closed')
-<a href="{{"/nonconformities/".$id."/2"}}" data-toggle="tooltip" title="Closed Non Confrmities.">
+<a href="{{"/nonconformities/".$id."/2"}}" data-toggle="tooltip" title="Issues Confrmities.">
 @endsection
 
 @section('video')
@@ -68,18 +71,18 @@
  @if ($state == 1)
     @php
         $boxColor = "box-danger";
-        $text = "Overdue Non-Conformities.";
+        $text = "Overdue Issues.";
     @endphp
      
  @elseif($state == 0)
  @php
      $boxColor = "box-info";
-     $text = "Open Non-Conformities";
+     $text = "Open Issues";
  @endphp
     @elseif($state == 2)
     @php
     $boxColor = "box-success";
-    $text = "Closed Non-Conformities";
+    $text = "Closed Issues";
 @endphp
  @endif
     {{-- <h3 style="font-family:'Times New Roman', Times, serif;text-align:center;">{{$text}}</h3> --}}
@@ -90,7 +93,7 @@
     @endforeach
 
 @if (isset($msg))
-<div class="alert alert-danger" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><span id="text"><strong>THE NON CONFORMITY HAS NOT BEEN CLOSED KINDLY RECLOSE THE NC, n.b check attachment size. </strong></span></div>
+<div class="alert alert-danger" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><span id="text"><strong>THE ISSUE HAS NOT BEEN CLOSED KINDLY RECLOSE THE Issue, n.b check attachment size. </strong></span></div>
 @endif
 
 <div class="box {{$boxColor}} box-solid" style="margin-top:3%;">
@@ -119,7 +122,7 @@
             {{-- this is the area that the nonconformities table will appear. --}}
             @if (count($nonConformities) == 0)
             <div class="col-md-6 col-md-offset-3" style="text-align:center;">
-                <h3> <b>There are no nonconformities that have been found in this section.</b> </h3>  
+                <h3> <b>There are no Issues that have been found in this section.</b> </h3>  
               </div>                              
             @else
             <table id="example2" class="table table-bordered table-hover table-striped dataTable" role="grid" aria-describedby="example2_info">
@@ -128,7 +131,7 @@
                     <th class="sorting_asc" tabindex="0" >S<sub>no</sub></th>
                     <th class="sorting" tabindex="0" >KPI Name.</th>
                     <th class="sorting" tabindex="0">Strategic Objective Name.</th>
-                    <th class="sorting" tabindex="0" > Quater NC Identified.</th>
+                    <th class="sorting" tabindex="0" > Quater Issue Identified.</th>
                     @if ($state == 1)
 
                     <th> No OverDue Days</th>
@@ -174,11 +177,7 @@
                       <td>
                         {{-- inserting the perspective name of the nonconformity. --}}
                         @php
-                            // $perspectiveNames = $nonConformity->perspective->name;
-                            // $perspectiveShortHand = $nonConformity->program->shortHand;                            
-                            // $shortHandCount = strlen($perspectiveShortHand); 
-                            // $name = str_replace('_', ' ', substr($perspectiveNames,$shortHandCount));
-                            // $name = ucwords($name);
+                            
                             $quater = $nonConformity->quater;
                             $year = $nonConformity->year;
                             $name = $year.'  '. $quater;
@@ -211,7 +210,7 @@
                       <td>
                         <div class="btn-group" role="group">
                           <button class="btn btn-warning btn-sm" type="button" data-toggle="modal" data-target= "{{"#moreInformationModal".$nonConformity->id}}"><strong>More Details</strong></button>
-                          <button class="btn btn-success btn-sm" type="button" data-toggle="modal" data-target= "{{"#closingNCModal".$nonConformity->id}}"><strong>Close NC.</strong></button>
+                          <button class="btn btn-success btn-sm" type="button" data-toggle="modal" data-target= "{{"#closingNCModal".$nonConformity->id}}"><strong>Close Issue.</strong></button>
                         </div>
                     </td>
                     @else 
@@ -296,7 +295,7 @@
                         <div class="modal-dialog modal-lg" role="document">
                             <div class="modal-content">
                                 <div class="modal-header text-center" style="background-color:#0af288;"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                                    <h4 class="modal-title">Details For The Non Conformity For KPI  <b>{{$kpiName}}</b></h4>
+                                    <h4 class="modal-title">Details For The Issue For KPI  <b>{{$kpiName}}</b></h4>
                                 </div>
                                 <div class="modal-body" style="background-color:#ECF0F5;">
                                     <div class="row">

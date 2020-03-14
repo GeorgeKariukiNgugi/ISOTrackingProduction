@@ -1,7 +1,9 @@
 $(function () {
     $("form[id^='modalSubmit']").on("submit", function (e) {
+        // console.lo("SUBMITTING A NEW KPI.");
         e.preventDefault();
 
+        
         var modalId = $(this).attr("id");
         var slicedModalId = modalId.substring(11);
         var alertName = "KPIalert" + slicedModalId;

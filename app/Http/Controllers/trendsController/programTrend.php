@@ -91,7 +91,10 @@ class programTrend extends Controller
         $strateicObjectiveAverage = 0;
         $track++;
         //!the next step is to get the strateic objectives of the reated perspective. 
-        $gettingStrategicObjectivesOfRelatedPerspective = StrategicObjectiveScore::where('perspective_id','=',$proramPersspective->id)->where('year','=',$activeYaer)->where('quater','=',$quater)->get();            
+        $gettingStrategicObjectivesOfRelatedPerspective = StrategicObjectiveScore::where('perspective_id','=',$proramPersspective->id)
+                                                                                    ->where('year','=',$activeYaer)
+                                                                                    ->where('quater','=',$quater)
+                                                                                    ->get();            
         if (count($gettingStrategicObjectivesOfRelatedPerspective) == 0) {
             # code...
             $strateicObjectiveAverage =1;
@@ -99,16 +102,15 @@ class programTrend extends Controller
             # code...
             foreach ($gettingStrategicObjectivesOfRelatedPerspective as $strategicObjective) {
                 # code...
-                $strategicObjectivesSum  += $strategicObjective->score;
+                $finalScore  += $strategicObjective->score;
             }
-            $strateicObjectiveAverage= $strategicObjectivesSum/ count($gettingStrategicObjectivesOfRelatedPerspective);
+            
         }
         
         
         //!the next step is to get its equivalent score in telation to its weight.
 
-        $weight = $proramPersspective->weight;
-        $finalScore += ($strateicObjectiveAverage*$weight)/100;                
+             
 
         }  
         array_push($quaterScoresPerProgramArray,$finalScore);
@@ -142,7 +144,7 @@ class programTrend extends Controller
 
     if (strpos($URLstring,$programManager) !== false) {
         # code...
-        // dd('I Am A Program Manager.');
+        
         $gettingUserEditings = Userediting::all();
                 $valueOfEditing = 0;
                 foreach($gettingUserEditings as $gettingUserEditing){
@@ -155,7 +157,7 @@ class programTrend extends Controller
     }
 
     public function perspectiveTrends($id){
-// dd($id);
+
         $borderColors = [
             "rgba(255, 99, 132, 1.0)",
             "rgba(22,160,133, 1.0)",
@@ -184,12 +186,12 @@ class programTrend extends Controller
         $activeYaerCollections = YearActive::where('Active','=',1)->get();
         foreach($activeYaerCollections as $activeYaerCollection){
             $activeYaer = $activeYaerCollection->Year;
-            // dd($activeYaer);
+            
         }
         $activeQuaterCollections = QuaterActive::where('Active','=',1)->get();
             foreach($activeQuaterCollections as $activeQuaterCollection){
                 $activeQuater = $activeQuaterCollection->Quater;
-                // dd($activeQuater);
+                
         }
 
         $quaterSubStr = substr($activeQuater,1); 
@@ -197,7 +199,7 @@ class programTrend extends Controller
 
         $programs = Program::all();
         $programz = Program::where('id','=',$id)->get();
-        // dd(count($programz));
+        
                 //! this second section of the code is used to get thet grouped bar chart for the quaterly growth.
                 $groupedBarChartForPerspectiveProgressPerquater = new DashBoardCharts;
                 $groupedBarChartForPerspectiveProgressPerquater->minimalist(false);
@@ -222,12 +224,12 @@ class programTrend extends Controller
                            $perspectives = Perspective::where('program_id','=',$id)                                                           
                                                         ->get();
 
-                                                        // dd($perspectives);
+                                                        
                            foreach ($perspectives as $perspective) { 
                             $i++;
                            foreach ($programz as $program) {  
 
-//    for ($i=1; $i <= count($perspectivesToCount) ; $i++) { 
+
                                                     
                                $perspectivesToCount = Perspective::where('program_id','=',$program->id)
                                                            ->where('perspective_group','=',$perspective->perspective_group)
@@ -239,13 +241,13 @@ class programTrend extends Controller
                                }
        
                            }
-                        //    dd($numberOfNonProrams);
+                        
                            $storingArray = array();
                            $storingLineArray = array();
                            array_push($storingLineArray,0);
                            for ($j=1; $j <= $quaterSubStr ; $j++) { 
                                $scoreToPush = 0;
-                               // $numberOfNonProrams = 0;
+                               
                                $quater = 'Q'.$j;
                                 
                                $perspectives = Perspective::where('perspective_group','=',$perspective->perspective_group)
@@ -253,44 +255,45 @@ class programTrend extends Controller
                                                             ->get();
        
                                $strateicObjectiveAverage = 0;
+                               $strategicObjectivesSum = 0;
                                $array = array();
-                            //    dd($perspectives);
+                            
                                foreach ($perspectives as $perspective) {
                                    # code...
-                                   $strategicObjectivesSum = 0;
+                                   
                                    //! getting the strategic objective scores that match up to the strategic sjectives. 
                                    $gettingStrategicObjectivesOfRelatedPerspective = StrategicObjectiveScore::where('perspective_id','=',$perspective->id)
                                                                                                                ->where('year','=',$activeYaer)
                                                                                                                ->where('quater','=',$quater)
                                                                                                                ->get();
                                    
-                                   // foreach($gettingStrategicObjectivesOfRelatedPerspective as $strategicbjectiveScore){
-                                       // dd(count($gettingStrategicObjectivesOfRelatedPerspective));
-                                       
+
                                        if (count($gettingStrategicObjectivesOfRelatedPerspective) == 0) {
                                            # code...
                                            $strateicObjectiveAverage +=0;
                                        } else {
                                            # code...
+                                        
                                            foreach ($gettingStrategicObjectivesOfRelatedPerspective as $strategicObjective) {
-                                               # code...
-                                               $strategicObjectivesSum  += $strategicObjective->score;
-                                               
+                                               # code...                                                                                              
+                                               $strategicObjectivesSum  += ($strategicObjective->score);                                                                                              
                                            }
-                                           $strateicObjectiveAverage += $strategicObjectivesSum/count($gettingStrategicObjectivesOfRelatedPerspective);                                    
+                                           $strateicObjectiveAverage += $strategicObjectivesSum;                                    
                                        } 
-                                         
+
+                                       $strateicObjectiveAverage = ($strateicObjectiveAverage/$perspective->weight)*100;
+                                        
                                    }
        
                                    
                                    //! number of programs that have the perapective. 
-                                //    dd($numberOfNonProrams);
-                                   array_push($storingArray,$strateicObjectiveAverage/(count($programz)-$numberOfNonProrams));
-                                   array_push($storingLineArray,$strateicObjectiveAverage/(count($programz)-$numberOfNonProrams));
+                                
+                                   array_push($storingArray,$strateicObjectiveAverage);
+                                   array_push($storingLineArray,$strateicObjectiveAverage);
                                    
                            }
        
-                           // dd($storingArray);
+                        
        
                            switch ($perspective->perspective_group) {
                                case 1:
@@ -349,6 +352,4 @@ class programTrend extends Controller
                             return view('user.trends.particularPerspective',['valueOfEditing'=>$valueOfEditing,'programName'=>$programName,'programs'=>$programs,'quater'=>$activeQuater,'year'=>$activeYaer,'id'=>$id,'groupedLineChartForPerspectiveProgressPerquater'=>$groupedLineChartForPerspectiveProgressPerquater,'groupedBarChartForPerspectiveProgressPerquater'=>$groupedBarChartForPerspectiveProgressPerquater]);
                         }
                         }
-    // return view();
-    
 }

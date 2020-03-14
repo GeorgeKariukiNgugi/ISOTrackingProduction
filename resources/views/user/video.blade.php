@@ -60,6 +60,9 @@
 <a href="{{"/reports/".$id}}"><i class="fa fa-book"></i> <span> Reports</span></a>
 
 @endsection
+@section('logoRedirect')
+<a href={{"/home/".$id}} class="logo"> 
+@endsection
 @section('section')
 
 <div class="container">

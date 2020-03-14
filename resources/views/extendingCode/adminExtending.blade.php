@@ -16,17 +16,8 @@
   <link rel="stylesheet" href="{{asset('AdminLTE-master\bower_components\Ionicons\css\ionicons.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('AdminLTE-master\dist\css\AdminLTE.min.css')}}">
-  <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
-        page. However, you can choose any other skin. Make sure you
-        apply the skin class to the body tag so the changes take effect. -->
   <link rel="stylesheet" href="{{asset('AdminLTE-master\dist\css\skins\skin-green.min.css')}}">
-
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
+  {{-- <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet"> --}}
 
   <!-- Google Font -->
   <link rel="stylesheet"
@@ -47,27 +38,6 @@
             }
             </style>
 </head>
-
-<!--
-BODY TAG OPTIONS:
-=================
-Apply one or more of the following classes to get the
-desired effect
-|---------------------------------------------------------|
-| SKINS         | skin-blue                               |
-|               | skin-black                              |
-|               | skin-purple                             |
-|               | skin-yellow                             |
-|               | skin-red                                |
-|               | skin-green                              |
-|---------------------------------------------------------|
-|LAYOUT OPTIONS | fixed                                   |
-|               | layout-boxed                            |
-|               | layout-top-nav                          |
-|               | sidebar-collapse                        |
-|               | sidebar-mini                            |
-|---------------------------------------------------------|
--->
 <body class="hold-transition  skin-green  sidebar-mini" style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">
 <div class="wrapper">
 
@@ -146,7 +116,7 @@ desired effect
         </div>
         <div class="pull-left info">
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+          {{-- <a href="#"><i class="fa fa-circle text-success"></i> Online</a> --}}
         </div>
       </div>
 
@@ -175,34 +145,18 @@ desired effect
         <li><a href="/viewingAssesors"><i class="fa fa-users"></i> <span> Program Assessors.</span></a></li>
         <li> <a href="/adminReports"> <i class="fa fa-book"></i> <span> All Downloaded Reports.</span> </a></li>
         <li class="treeview">
-          <a href="#"><i class="fa fa-warning""></i> <span>Non Cnformities</span>
+          <a href="#"><i class="fa fa-warning""></i> <span>Issues</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="/nonConformitiesAdmin/0/0"> <i class="fa fa-warning text-green"></i> <span>Closed Non-Conformities</span></a></li>
-            <li><a href="/nonConformitiesAdmin/1/0"> <i class="fa fa-warning text-blue"></i>  <span>Non-Conformities In Progress</span></a></li>
-            <li><a href="/nonConformitiesAdmin/2/0"> <i class="fa fa-warning text-red" ></i>  <span>Non-Conformities Overdue</span></a></li>
+            <li><a href="/nonConformitiesAdmin/0/0"> <i class="fa fa-warning text-green"></i> <span>Closed Issues</span></a></li>
+            <li><a href="/nonConformitiesAdmin/1/0"> <i class="fa fa-warning text-blue"></i>  <span>Issues In Progress</span></a></li>
+            <li><a href="/nonConformitiesAdmin/2/0"> <i class="fa fa-warning text-red" ></i>  <span>Issues Overdue</span></a></li>
           </ul>
           
         </li>
-
-        <li class="treeview">
-          <a href="#"><i class="fa fa-history"></i> <span>Logs</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href = "/"> <i class="fa fa-history"></i> <span>User Logging In Logs.</span></a></li>
-            <li><a href = "/"> <i class="fa fa-history"></i>  <span>System Transaction Trends.</span></a></li>
-            {{-- <li><a href = "/"> <i class="fa fa-line-chart" ></i>  <span> Other Trends Observed.</span></a></li> --}}
-          </ul>
-        </li>
-        
-        {{-- <li><a href="#"><i class="fa fa-edit"></i> <span>User Manual </span></a></li> --}}
-        {{-- <li><a href="#"><i class="fa fa-video-camera"></i> <span>Video Sample</span></a></li> --}}
         <br>
         <li class="header" style="color:white;font-decoration:bold;">PROGRAMS.</li> 
         <br>
@@ -245,17 +199,6 @@ desired effect
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    {{-- <section class="content-header">
-      <h1>
-        Page Header
-        <small>Optional description</small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-        <li class="active">Here</li>
-      </ol>
-    </section> --}}
 
     <!-- Main content -->
     <section class="content container-fluid">
@@ -298,6 +241,9 @@ desired effect
 <script src="{{asset('AdminLTE-master/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{asset('AdminLTE-master\dist\js\adminlte.min.js')}}"></script>
+{{-- <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script> --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
+{{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
 <script src="{{asset('js/accordion.js')}}"></script>
 <script src="{{asset('js/verification.js')}}"></script>
 <script src="{{asset('js/default.js')}}"></script>
@@ -311,10 +257,13 @@ desired effect
 <script src="{{asset('js/editingPerspective.js')}}"></script>
 <script src="{{asset('js/addingNewPerpsectives.js')}}"></script>
 <script src="{{asset('js/validatingTheYear.js')}}"></script>
-
-
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
+<script src="{{asset('js/editingStrategicObjective.js')}}"></script>
+<script src="{{asset('js/subcategories.js')}}"></script>
+<script src="{{asset('js/submittingSubcategories.js')}}"></script>
+<script src="{{asset('js/closingtheSubCategories.js')}}"></script>
+<script src="{{asset('js/submittingAdditionOfNewKPIChild.js')}}"></script>
+<script src="{{asset('js/closingPreviousModal.js')}}"></script>
+<script src="{{asset('js/deletingStrategicObjective.js')}}"></script>
 @include('sweetalert::alert')
 @yield('charts')
 <!-- Optionally, you can add Slimscroll and FastClick plugins.

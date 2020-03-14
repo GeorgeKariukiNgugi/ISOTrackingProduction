@@ -21,6 +21,9 @@
         <div role="alert" class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><span id="text">{{$error}}</div>
         @endforeach
 
+        @php
+            // dd($unmetWeight."  ".$sumOfWeight);
+        @endphp
         @if ($unmetWeight > 0)
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
@@ -96,7 +99,7 @@
                     
                 </div>
                 <div class="row">
-                        <div class="col-md-6 col-md-offset-3">
+                        <div class="col-md-8 col-md-offset-2">
                             <div class="row">
                                 <div class="col-md-4"><a class="btn btn-danger btn-block btn-lg" role="button" href="/addingNewProramStep1"><i class="fa fa-backward"></i><strong>BACK</strong></a></div>
                                 <div class="col-md-4"><button class="btn btn-warning btn-block btn-lg" role="button" type="reset"><i class="fa fa-refresh"></i><strong>RESET</strong></button></div>
@@ -105,12 +108,12 @@
                         </div>
                     </div>
 
-                    @foreach ($programDetailsArray as $programDetailsArray)
-                    <input type="hidden" name="newProgramDetails[]" value="{{$programDetailsArray}}">
-                    @endforeach
-                    
-                    
-
+                    {{-- @php
+                        dd($programDetailsArray);
+                    @endphp --}}
+                    {{-- @foreach ($programDetailsArray as $programDetailsArrayS)
+                    <input type="hidden" name="newProgramDetails[]" value="{{$programDetailsArrayS}}">
+                    @endforeach --}}                                        
             </form>
         </div>
     </div>   

@@ -145,14 +145,60 @@
                             <h4 class="text-center modal-title"><strong>Add A New STRATEGIC OBJECTIVE.</strong></h4>
                         </div>
                         <div class="modal-body" style="background-color:#2af3ff;">
-                                <form action="{{"/addingNewStrstegicObjective/".$perspective->id}}" method="POST">
+                                <form action="{{"/addingNewStrstegicObjective/".$perspective->id}}"  class="{{"addingStrategicObjective".$perspective->id}}" method="POST">
                                     {{ csrf_field() }}
                             <div class="row">
                                 <div class="col-md-6">
                                     <h4>Strategic Objective Name.</h4>
                                 </div>
-                                <div class="col-md-6"><input type="text" style="width:100%;height:35px;" name="strName"/></div>
+                                <div class="col-md-6"><input required type="text" style="width:100%;height:35px;" name="strName"/></div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h4>Strategic Objective Weight.</h4>
+                                </div>
+                                <div class="col-md-6"><input required type="number" id="{{"newStrategicObjectiveValue".$perspective->id}}" style="width:100%;height:35px;" name="newObjWeight"/></div>
+                            </div>
+
+                            <h4 style="text-align:center;color:red;font-family:'Times New Roman', Times, serif">Kindly Reweigh The Strategic Objectives So As To Save .</h4>
+                            <h4 style="text-align:center;color:red;font-family:'Monotype Corsiva'"> Re-weigh the perspectives to get to: {{$perspective->weight}}</h4>
+
+                            <div id="{{"containigDivUsedForAddingPerspectives".$perspective->id}}"></div>
+
+                            <input type="hidden" name="perspectiveWeightForHiddenAddition" id="{{"perspectiveWeightForHiddenAddition".$perspective->id}}" value="{{$perspective->weight}}">
+                            <input type="hidden" name="perspectiveIdForAddition" value="name">
+
+                            @php
+                                $strategicObjectivesForAdditions = $perspective->strategicObjectives;
+                                $incrementNo = 0;
+                            @endphp
+                                <div class="row">
+                                    <div class="col-md-1">
+                                        <h5 class="text">No :</h5>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <h5 class="text">Strategic Objective Name :</h5>
+                                    </div>
+                                    <div class="col-md-4" style="">
+                                        {{-- <input type="text" value="{{$strategicObjective->name}}" style="width:80%;height:45px;" name="name" required /> --}}
+                                        <h5 class="text">Strategic Objective Weight :</h5>
+                                    </div>                                                
+                                </div>                            
+                            @foreach ($strategicObjectivesForAdditions as $strategicObjectiveforAddition)
+                            <div class="row">
+                                <div class="col-md-1">
+                                    <h5 class="text">{{++$incrementNo}}</h5>
+                                </div>
+                                <div class="col-md-7">
+                                    <h5 class="text">{{$strategicObjectiveforAddition->name}}</h5>
+                                </div>
+                                <div class="col-md-4" style="">                                    
+                                    <input type="number" required id="{{"strategicObjectiveForAddition".$perspective->id.$incrementNo}}" name="{{"WeightstrategicObjectiveForAddition".$perspective->id.$incrementNo}}" value="{{$strategicObjectiveforAddition->weight}}">
+                                    <input type="hidden"  value="{{$strategicObjectiveforAddition->id}} "                                name="{{"strategicObjectiveIdForAddition".$perspective->id.$incrementNo}}">
+                                </div>                                                
+                            </div> 
+                            @endforeach
+                            <input type="hidden" id="{{"numberOfStrategicObjectivesForAddition".$perspective->id}}" name="{{"strategicObjectiveForAdditionNumber"}}" value="{{$incrementNo}}">
                         </div>
                         <div class="modal-footer" style="background-color:#23bac3;"><button class="btn btn-danger" type="button" data-dismiss="modal">Close</button><button class="btn btn-success" type="submit">Save</button></div>
                         </form>
@@ -165,7 +211,6 @@
       @php
           $strategicObjectives = $perspective->strategicObjectives;
           $number = count($strategicObjectives);
-
       @endphp
 
       @if ($number < 1)
@@ -201,11 +246,11 @@
 
             {{-- implementing the modal that will be used to edit the strategic objective --}}
 
-            <div role="dialog" tabindex="-1" class="modal fade" id="{{"editStrategicObjective".$strategicObjective->id}}">
+            <div role="dialog" tabindex="-1" class="modal modal-md fade" id="{{"editStrategicObjective".$strategicObjective->id}}">
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
                             <div class="modal-header" style="background-color:#bbc1f5;font-family:'Times New Roman', Times, serif;"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                                <h3 class="modal-title">Edit The Strategic Objective: {{$strategicObjective->name}}</h3>
+                                <h3 class="modal-title" style="text-align:center;">Edit The Strategic Objective: {{$strategicObjective->name}}</h3>
                             </div>
                             <div class="modal-body" style="background-color:#d4d8fb;font-family:'Times New Roman', Times, serif;" >
                                 @foreach ($errors->all() as $error)
@@ -213,14 +258,54 @@
                                         {{$error}}
                                 </p>
                                 @endforeach
-                                <form action="{{"/editingStrObjective/".$strategicObjective->id}}" method="POST">
+                                <form action="{{"/editingStrObjective/".$strategicObjective->id}}" class = "{{"editingStrategicObjectiveForm".$strategicObjective->id}}" method="POST">
                                     {{ csrf_field() }}
                                         <div class="row">
                                                 <div class="col-md-4">
-                                                    <h3 class="text-center">Strategic Objective Name :</h3>
+                                                    <h5 class="text-center">Strategic Objective Name :</h5>
                                                 </div>
-                                                <div class="col-md-8" style="margin-top:2%;"><input type="text" value="{{$strategicObjective->name}}" style="width:80%;height:45px;" name="name" required /></div>
+                                                <div class="col-md-8" style=""><input type="text" value="{{$strategicObjective->name}}" style="width:80%;" name="name" required /></div>                                                
                                             </div>
+                                            <h4 style="text-align:center;">Editing Strategic Objective Weight.</h4>
+                                            <h4 class="text-center" style="color:red;">Kindly ReWeigh The Strategic Objectives to add up to the perspective Weight of : <span style="color:darkblue;text-decoration:bold;">{{$perspective->weight}}</span></h4>
+                                            <div id="{{"containingDiv".$strategicObjective->id}}"></div>
+                                            <input type="hidden" id="{{"perspectiveWeight".$strategicObjective->id}}" name="perspectiveWeight" value="{{$perspective->weight}}">
+                                            <div class="row">
+                                                <div class="col-md-1">
+                                                    <h4 class="text">No :</h4>
+                                                </div>
+                                                <div class="col-md-7">
+                                                    <h4 class="text">Strategic Objective Name :</h4>
+                                                </div>
+                                                <div class="col-md-4" style="">
+                                                    {{-- <input type="text" value="{{$strategicObjective->name}}" style="width:80%;height:45px;" name="name" required /> --}}
+                                                    <h4 class="text">Strategic Objective Weight :</h4>
+                                                </div>                                                
+                                            </div>
+
+                                            @php
+                                                $incrementalNumberForStrategicObjectices = 0;
+                                            @endphp
+                                            @foreach ($strategicObjectives as $strategicObjectiveEditWeight)
+                                            
+
+
+                                            <div class="row">
+                                                <div class="col-md-1">
+                                                    {{++$incrementalNumberForStrategicObjectices}}
+                                                </div>
+                                                <div class="col-md-7">
+                                                    <h4 class="text">{{$strategicObjectiveEditWeight->name}}</h4>
+                                                </div>
+                                                <div class="col-md-4" style="">
+                                                    <input type="number" value="{{$strategicObjectiveEditWeight->weight}}" id="{{"strategicObjectiveWeight".$strategicObjective->id.$incrementalNumberForStrategicObjectices}}" style="width:80%;" step=".01" name="{{"strategicObjectiveWeight".$incrementalNumberForStrategicObjectices}}" required />
+                                                    <input type="hidden" name="{{"strategicObjectiveId".$incrementalNumberForStrategicObjectices}}" value="{{$strategicObjectiveEditWeight->id}}">
+                                                    {{-- <h4 class="text">{{$strategicObjectiveEditWeight->weight}}</h4> --}}
+
+                                                </div>                                                
+                                            </div>
+                                            @endforeach
+                                            <input type="hidden" name="numberOfStrategicObjectives"  id="{{"numberOfStrategicObjectives".$strategicObjective->id}}" value="{{$incrementalNumberForStrategicObjectices}}" id="numberOfStrategicObjectives">
                                         </div>
                                             <div class="modal-footer" style="background-color:#bbc1f5;"><button class="btn btn-danger" type="button" data-dismiss="modal"><strong>Close</strong></button><button class="btn btn-success" type="submit"><strong>Save</strong></button></div>
                                 </form>
@@ -230,18 +315,90 @@
             
 
                     {{-- implementing the modal that will delete the strategic objective. --}}
-                    <div role="dialog" tabindex="-1" class="modal fade" id="{{"deleteStrategicbjective".$strategicObjective->id}}">
+                    {{-- <div role="dialog" tabindex="-1" class="modal fade modal-md" id="{{"deleteStrategicbjective".$strategicObjective->id}}"> --}}
+                    <div role="dialog" tabindex="-1" class="modal fade" id="{{"deleteStrategicbjective".$strategicObjective->id}}">    
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header" style="background-color:#fc5d5d;"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                                         <h4 class="modal-title"><strong>Delete Strategic Objective: {{$strategicObjective->name}}</strong></h4>
                                     </div>
                                     <div class="modal-body" style="background-color:#f78686;">
-                                        <h3 class="text-center" style="color:white">Confirmation:: Are You Sure You Want To Delete The  Strategic Objective::: {{$strategicObjective->name}} ??</h3>
-                                    </div>
-                                    <form action="{{"/deleteStrObjective/".$strategicObjective->id}}" method="POST">
+                                        <h3 class="text-center" style="color:white">Confirmation:: Are You Sure You Want To Delete The  Strategic Objective::: {{$strategicObjective->name}} ??</h3>
+                                    <h3 style="color:white;" class="text-center">The Total Weight that should add up to {{$perspective->weight}}</h3>
+                                    <input type="hidden" name="" id="{{"weightOfPerspectiive".$strategicObjective->id}}" value="{{$perspective->weight}}">
+                                    <form action="{{"/deleteStrObjective/".$strategicObjective->id}}" method="POST" id = "{{"deletingStrategicObj".$strategicObjective->id}}">
                                         {{ csrf_field() }}
-                                            <div class="modal-footer" style="background-color:#fc5d5d;"><button class="btn btn-default" type="button" data-dismiss="modal">Close</button><button class="btn btn-success" type="submit">DELETE.</button></div>
+
+                                        {{-- THIS SETION OF THE CODE IS USED TO IMPLEMENT THE REWEIGH THE STRATEGIC OBJECTIVES.  --}}
+                                        <div class="row">
+                                            <div class="col-md-1">
+                                                <h4 class="text">No :</h4>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <h4 class="text">Strategic Objective Name :</h4>
+                                            </div>
+                                            <div class="col-md-4" style="">
+                                                {{-- <input type="text" value="{{$strategicObjective->name}}" style="width:80%;height:45px;" name="name" required /> --}}
+                                                <h4 class="text">Strategic Objective Weight :</h4>
+                                            </div>                                                
+                                        </div>
+                                    @php
+                                        $incrementalNumberForStrategicObjecticesdeletion = 0;
+                                    @endphp
+                                    @foreach ($strategicObjectives as $strategicObjectiveEditWeight)   
+
+                                    @if ($strategicObjectiveEditWeight->id == $strategicObjective->id)
+                                            <div class="row">
+                                                <div class="col-md-1">
+                                                    <p>{{++$incrementalNumberForStrategicObjecticesdeletion}}</p>
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <p>{{$strategicObjective->name}} <span style="color:red;"> <b>Selected <i class="fa fa-hand-o-right"></i> </b></span></p>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <input type="number" style="width:80px;"disabled  value="{{$strategicObjectiveEditWeight->weight}}" /></div>
+                                            </div>
+
+                                            <input type="hidden" name="deletingId" value="{{$strategicObjective->id}}">
+
+                                            @else
+                                    <div class="row">
+                                        <div class="col-md-1">
+                                            {{++$incrementalNumberForStrategicObjecticesdeletion}}
+                                        </div>
+                                        <div class="col-md-7">
+                                            <h4 class="text">{{$strategicObjectiveEditWeight->name}}</h4>
+                                        </div>
+                                        <div class="col-md-4" style="">
+                                            <input type="number" 
+                                            name="{{"data".$incrementalNumberForStrategicObjecticesdeletion}}"
+                                            data-idOfStrategicObjective = "{{$strategicObjective->id}}" 
+                                            {{-- name="{{"strategicObjectiveWeight".$incrementalNumberForStrategicObjectices}}" --}}
+                                            class="{{"strategicObjectiveToBeDeleted".$strategicObjective->id}}" 
+                                            value="{{$strategicObjectiveEditWeight->weight}}" 
+                                            id="{{"strategicObjectiveWeight".$strategicObjective->id}}" 
+                                            style="width:80%;" 
+                                            step=".01"
+                                            {{-- name ="{{"strategicObjectiveWeight".$incrementalNumberForStrategicObjectices}}" 
+                                             --}}
+                                             
+                                            required />
+
+                                            <input type="hidden" name="{{"strategicObjectiveId".$incrementalNumberForStrategicObjecticesdeletion}}" 
+                                            class="{{"deletingStrategicObj".$strategicObjective->id}}"
+                                             value="{{$strategicObjectiveEditWeight->id}}">
+                                            {{-- <h4 class="text">{{$strategicObjectiveEditWeight->weight}}</h4> --}}
+
+                                        </div>                                                
+                                    </div>
+                                    @endif
+                                    @endforeach
+                                    <input type="hidden" value="{{$incrementalNumberForStrategicObjecticesdeletion}}" name="{{"strategicObjectiveToBelDeleted".$strategicObjective->id}}" id="{{"strategicObjectiveToBelDeleted".$strategicObjective->id}}" >
+                                    
+                                </div>
+                                            <div class="modal-footer" style="background-color:#fc5d5d;">
+                                                <button class="btn btn-danger" type="button" data-dismiss="modal">Close</button>
+                                                <button class="btn btn-success" disabled id="{{"submitButton".$strategicObjective->id}}" class="{{"deletingStrategicObj".$strategicObjective->id}}" type="submit">DELETE.</button></div>
                                     </form>
                                 </div>
                             </div>
@@ -360,7 +517,6 @@
                                $increment3++;
                                $kpiId = $kpi->id;
                                $scoreRecordedNumberReturned = count($keyPerfomanceIndicatorsScores);
-
                               //!  getting the score of the particular strategic objective.
                                if(is_null($keyPerfomanceIndicatorsScores)){
                                 $score = 0;
@@ -426,20 +582,12 @@
                                       </div>
                                @endforeach
                                <div class="box-footer">   
-                                    <div class="box-footer">   
-                                            {{-- Adding the Modal That is used to add the Key Perfomance Indicators.  --}}
-                                            {{-- id="{{ "modal".$originalObjectiveName}} --}}                                                                    
+                                    <div class="box-footer">                                                                      
                                             <div style="text-align:left" class="col-md-6  col-sm-6">
-                                              <a class="btn btn-success btn-md" data-toggle="modal" data-target="{{"#modal".$strategicObjective->id}}"> <b>Add New</b> </a>
-                                              {{-- <a class="btn btn-warning btn-md" > <b>Edit .</b> </a> --}}
-                                            </div>
-                                            {{-- <div style="text-align:right;" class="col-md-6  col-sm-6">
-                                              <button class="btn btn-danger btn-md" type = "submit" id= "{{"submit".$strategicObjective->name}}"> <b>Save</b> </button>
-                                            </div> --}}
+                                              <a class="btn btn-success btn-md" data-toggle="modal" data-target="{{"#modal".$strategicObjective->id}}"> <b>Add New</b> </a>                                              
+                                            </div>                                           
                                            </div> 
                                </div>                               
-                               {{-- <input type = "hidden" value = "{{$numberOfKPI}}" id="{{$originalObjectiveName."numberOfKPI"}}"> --}}            
-            {{-- inserting the modals that will be thrown once the targets are not reached. --}}
             @foreach ($kpis as $kpiModal)
 
             @php
@@ -461,7 +609,7 @@
                                         <h4 style="font-family:'Times New Roman', Times, serif;">KPI Name:</h4>
                                     </div>
                                     <div class="col-md-6"><input type="text" name="name" style="width:100%;height:35px;" value="{{$kpiName}}"/></div>
-                                </div>()
+                                </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <h4 style="font-family:'Times New Roman', Times, serif">KPI Assessment Period:</h4>
@@ -500,7 +648,9 @@
                                             <option value="1" selected>Above</option>
                                             <option value="0" >Below</option>   
                                             @else 
-                                            <option value="{{$kpiModal->arithmeticStructure}}" selected>Special Defined.</option>           
+                                            <option value="{{$kpiModal->arithmeticStructure}}" selected>Special Defined.</option>
+                                            <option value="1">Above</option>
+                                            <option value="0" >Below</option>           
                                             @endif
                                     </select>
                                 </div>
@@ -511,14 +661,120 @@
                                     </div>
                                     <div class="col-md-6"><input type="number" step="0.01" name="target" style="width:100%;height:35px;" value="{{$kpiModal->target}}"/></div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h4 style="font-family:'Times New Roman', Times, serif">Units:</h4>
+                                    </div>
+                                    <div class="col-md-6"><input type="text"  name="units" style="width:100%;height:35px;" value="{{$kpiModal->units}}"/></div>
+                                </div>
+
+                                {{-- THIS SECTION IS USED TO GET THE CHILDREN OF THE STRATEGIC OBJECTIVE. --}}
+                                <h4 class="text-center" style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"> <strong>{{$kpiName}}  Children.</strong></h4>                                
+                                <div>
+                                    <a class="buttonsToClosePreviousModal btn btn-success btn-md" data-kpiId = "{{$kpiModal->id}}" style="background-color:orangered;" data-toggle="modal" data-target="{{"#newKpiChild".$kpiModal->id}}" > 
+                                    <b>Add New KPI Child.</b> 
+                                    </a>                                                            
+                                </div>
+                                <br>
+                                @php
+                                    $child = 0;
+                                @endphp
+                                @if ($kpiModal->hasChildren == 1)
+                                    {{-- <h2>This kpi has children within it.</h2> --}}
+                                    <div></div>
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <h4> <strong>S<sub>no</sub></strong></h4>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h4> <strong>Child Name</strong> </h4>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <h4> <strong>Actions</strong></h4>
+                                        </div>
+                                    </div>
+                                    <div class="{{"kpiChilrenAlert".$kpiModal->id}}" id="{{"kpiChilrenAlert".$kpiModal->id}}"></div>
+                                    <div id="{{"childKPIContainingDiv".$kpiModal->id}}">
+                                    @foreach ($kpiChildren as $kpiChildrens)
+                                        @if ($kpiChildrens->keyPerfomanceIndicator_id == $kpiModal->id)
+                                        
+                                        <div class="row" style="margin-bottom:0.5%">
+                                            <div class="col-md-2">
+                                                <p>{{++$child}}</p>
+                                            </div>
+                                            <div class="col-md-6">
+                                               <p>{{$kpiChildrens->name."   "}}</p>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <a  data-kpiId = "{{$kpiModal->id}}" class=" buttonsToClosePreviousModal btn btn-sm btn-danger" data-toggle="modal" data-target="{{"#deleteKpiChild".$kpiChildrens->id}}">Delete</a>
+                                                <a  data-kpiId = "{{$kpiModal->id}}" class=" buttonsToClosePreviousModal btn btn-sm btn-info" data-toggle="modal" data-target="{{"#editKpiChild".$kpiChildrens->id}}">Edit</a>
+                                            </div>
+                                        </div>    
+
+                                                                        
+                                        @endif
+                                    @endforeach
+                                </div>
+                                @else
+                                <h2>This kpi has no children within it.</h2>
+                                @endif
+
                             </div>
-                            <div class="modal-footer" style="background-color:#62d975;"><button class="btn btn-danger btn-sm" type="button" data-dismiss="modal"><strong>Close</strong></button><button class="btn btn-success btn-sm" type="submit"><strong>Save</strong></button></div>
+                            <div class="modal-footer" style="background-color:#62d975;"><button class="btn btn-danger btn-md" type="button" data-dismiss="modal"><strong>Close</strong></button><button class="btn btn-success btn-md" type="submit"><strong>Save</strong></button></div>
                         </form>
                         </div>
                     </div>
                 </div>
 
 
+                {{-- this section of the code is used to define the section sthat will be used to add edit and also delete the 
+                kpi children. --}}
+
+                {{-- 1. Adding a new child. --}}
+
+                <div role="dialog" tabindex="-1"  class="modal fade" id="{{"newKpiChild".$kpiModal->id}}">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header" style="background-color:#62D975;"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                <h4 class="modal-title"><strong>Add A New KPI Child to {{$kpiName}} </strong></h4>
+                            </div>
+                            <div class="modal-body" style="background-color:#A4DAAC;">
+                                <form data-kpiId = {{$kpiModal->id}} action="{{"/addingNewKPIChild/".$kpiModal->id}}" class = "addingAnewChild" method="POST">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <p>Name: </p>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <input type="text" width="50px" height="28px" name="kpiChildName" id="" required>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <p>Child Type: </p>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <input type="radio" selected name="typeOfInput" id="" value="1"> Binary (2 options i.e, Done And NotDone) <br>
+                                        <input type="radio" name="typeOfInput" id="" value="2"> Number Input <br>
+                                        <input type="radio" name="typeOfInput" id="" value="3"> Comparison Between two valued <br>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                                {{ csrf_field() }}
+                                    <div class="modal-footer" style="background-color:#62D975;">
+                                        <button class="btn btn-danger" type="button" data-dismiss="modal">Close.</button>
+                                        <button class="btn btn-success" type="submit">Add.</button></div>
+                                <input type="hidden" name="kpi_id" value="{{$kpiModal->id}}">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+                {{-- 2. DELETING A KPI CHILD FROM THE KPI.  --}}
+
+
+               
             {{-- modal that is used to delete the KPI. --}}
 
             <div role="dialog" tabindex="-1" class="modal fade" id="{{"deleteKpiModal".$kpiModal->id}}">
@@ -528,7 +784,7 @@
                                 <h4 class="modal-title"><strong>Delete KPI: {{ str_replace("_", " ", $kpiModal->name)}} </strong></h4>
                             </div>
                             <div class="modal-body" style="background-color:#f78686;">
-                                <h3 class="text-center" style="color:white">Confirmation:: Are You Sure You Want To Delete The  KPI:: {{ str_replace("_", " ", $kpiModal->name)}} ??</h3>
+                                <h3 class="text-center" style="color:white">Confirmation:: Are You Sure You Want To Delete The  KPI:: {{ str_replace("_", " ", $kpiModal->name)}} ??</h3>
                                 <strong>All Entries From The past years will permanently be deleted.</strong>
                             </div>
                             <form action="{{"/deletingKPI/".$kpiModal->id}}" method="POST">
@@ -743,6 +999,69 @@
                     <button class="btn btn-danger"  type="submit">Save</button> 
                 </div>
             </form>
+            </div>
+        </div>
+    </div>
+@endforeach
+
+@foreach ($kpiChildren as $kpiChildrenz)
+     {{-- 2. THIS SECTION OF THE CODE IS USED TO DELETE THE KPI CHILDREN. --}}
+
+     <div role="dialog" tabindex="-1" class="modal fade" id="{{"deleteKpiChild".$kpiChildrenz->id}}">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color:#fc5d5d;"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title"><strong>Delete KPI: {{ str_replace("_", " ", $kpiChildrenz->name)}} </strong></h4>
+                </div>
+                <div class="modal-body" style="background-color:#f78686;">
+                    <h3 class="text-center" style="color:white">Confirmation:: Are You Sure You Want To Delete The  KPI Child:: {{ str_replace("_", " ", $kpiChildrenz->name)}} ??</h3>
+                    <strong>All Entries From The past years will permanently be deleted.</strong>
+                </div>                
+                    {{ csrf_field() }}
+                        <div class="modal-footer" style="background-color:#fc5d5d;">
+                            <a  class="btn btn-default" type="button" data-dismiss="modal">Close</a>
+                            <a href="/deletingAKPIChild/{{$kpiChildrenz->id}}" class="btn btn-success">DELETE</a>
+                        </div>                
+            </div>
+        </div>
+    </div>  
+    
+    {{-- 3. THIS SECTION OF THE CODE IS USED TO EDIT THE KPI CHILD. --}}
+
+    <div role="dialog" tabindex="-1"  class="modal fade" id="{{"editKpiChild".$kpiChildrenz->id}}">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color:#62D975;"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title"><strong>Edit KPI Child:    {{$kpiChildrenz->name}} </strong></h4>
+                </div>
+                <div class="modal-body" style="background-color:#A4DAAC;">
+                    <form action="{{"/editKPIChild/".$kpiChildrenz->id}}"  method="POST">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <p>Name: </p>
+                        </div>
+                        <div class="col-md-9">
+                            <input type="text" width="80%" height="28%" value="{{$kpiChildrenz->name}}" name="kpiChildName" id="" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <p>Child Type: </p>
+                        </div>
+                        <div class="col-md-9">
+                            <input type="radio" name="typeOfInput" value="1"> Binary (2 options i.e, Done And NotDone) <br>
+                            <input type="radio" name="typeOfInput" value="2"> Number Input <br>
+                            <input type="radio" name="typeOfInput" value="3"> Comparison between two values <br>
+                        </div>
+                    </div>
+                </div>
+                
+                    {{ csrf_field() }}
+                        <div class="modal-footer" style="background-color:#62D975;">
+                            <button class="btn btn-danger" type="button" data-dismiss="modal">Close.</button>
+                            <button class="btn btn-success" type="submit">Save.</button></div>
+                    <input type="hidden" name="kpi_id" value="{{$kpiChildrenz->keyPerfomanceIndicator_id}}">
+                </form>
             </div>
         </div>
     </div>

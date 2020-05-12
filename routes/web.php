@@ -189,6 +189,9 @@ Route::post('/addingNewPerspective','adminController\programMatrices@addingNewPe
 //! THIS ROUTE WILL BE USED TO IMPLEMENT THE USE OF LDAP IN THE APPLICATION. 
 Route::post('/logInLdap','Auth\LoginController@logInUsingLDAP');
 
+// This route is a rediresction route.
+Route::get('/logInLdap','LogInController@logIn');
+
 //! this route is used to logIut The users. 
 Route::get('/loggingOutUsers','logOutFunctionality@loggingOut');
 

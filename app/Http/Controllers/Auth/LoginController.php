@@ -12,6 +12,7 @@ use App\kpiChildrenScores;
 use DB;
 // use App\AssesorPerProgram;
 // use Illuminate\Support\Facades\DB;
+use App\User;
 use App\Program;
 use App\ScoreRecorded;
 use App\StrategicObjectiveScore;
@@ -302,8 +303,55 @@ class LoginController extends Controller
                                //! this section is used to send the non-conformities that have been identified by the application. 
                                 $nonConformities =  NonConformities::all();
                                return view('user.landingPage',['programsToBeListedInProfiles'=>$programsToBeListedInProfiles,'years'=>$years,'kpiChildren'=>$kpiChildren,'kpiChildrenScores'=>$kpiChildrenScores,'nonConformities'=>$nonConformities,'valueOfEditing'=>$valueOfEditing,'programId'=>$id,'quaterOne'=>$quaterOne,'quaterTwo'=>$quaterTwo,'quaterthree'=>$quaterthree,'quaterfour'=>$quaterfour,'perspectives'=>$perspectives,'activeYaer'=>$activeYaer,'activeQuater'=>$activeQuater,'keyPerfomanceIndicatorsScores'=>$keyPerfomanceIndicatorsScores,'programName'=>$programName,'programShortHand'=>$programShortHand]);
-                           }                
-    public function logInUsingLDAP(Request $request){        
+                           }   
+                                        
+    public function logInUsingLDAP(Request $request){
+        
+        // // This section of the code is used as a debugging tool so as to see if the LDAP server is working. 
+
+        // // Getting the logIn Credentials. 
+
+        // Session::put('name', $request->email);
+        // Session::put('email', $request->email);
+
+        // $programids = AssesorPerProgram::where('email','=',$request->email)->get();
+        // $countingid = count($programids);
+        // $id = "null";
+        // if($countingid == 1){
+        //     foreach($programids as $programid){
+        //         //!getting the program that the user should asses, and all its perspetives.
+        //         $id = $programid->program_id;
+                
+        //     }
+        //     return $this->redirectTo($id);
+        // }
+        // else if($countingid > 1){                 
+        //  //    return "You Have more Than One Accounts to update.";
+        //  //! this is the array that is used to hold the array of short hands. 
+        //  $programShortHand = array();
+        //  $programId = array();
+        //  foreach ($programids as $programid) {
+        //      # code...
+        //      if($programid->program_id == 0){
+        //          array_push($programShortHand,'Admin');
+        //          array_push($programId,$programid->program_id);
+        //      }
+        //      else{
+        //          $programWithIds = Program::where('id','=',$programid->program_id)
+        //          ->get();
+
+        //          foreach($programWithIds as $programWithId){
+        //              array_push($programShortHand,$programWithId->shortHand);
+        //              array_push($programId,$programid->program_id);
+        //          }
+        //      }
+        //  }                        
+        //  return view('userWithMoreThanOneProgram',['programShortHand'=>$programShortHand,'programId'=>$programId]);
+        // }
+        // else{
+        //  return view('forbidden');
+        // }   
+                
         header('Content-type: application/json');
         $_JSON = json_decode(file_get_contents('php://input'), true);
         $username = str_replace('@safaricom.co.ke', '', strip_tags($request->email));

@@ -367,7 +367,15 @@ class trends extends Controller
                                 $strateicObjectiveAverage= $strategicObjectivesSum;
                             }
                             
-                            $finalScore += ($strateicObjectiveAverage/$proramPersspective->weight)*100;
+                            $perspectiveWeight = $proramPersspective->weight;
+                            
+                            if ($perspectiveWeight == 0) {
+                                # code...
+                                $perspectiveWeight = 1;
+                            }                           
+                            
+
+                            $finalScore += ($strateicObjectiveAverage/$perspectiveWeight)*100;
                             
 
                         }
@@ -453,8 +461,13 @@ class trends extends Controller
                                     $strateicObjectiveAverage += $strategicObjectivesSum/count($gettingStrategicObjectivesOfRelatedPerspective); 
                                                                         
                                 } 
-                                
-                                    $strateicObjectiveAverage += ($strateicObjectiveAverage/$perspective->weight)*100;
+                                $newperspectiveWeight = $perspective->weight;
+
+                                if ($newperspectiveWeight == 0) {
+                                    # code...
+                                    $newperspectiveWeight = 1;
+                                }
+                                    $strateicObjectiveAverage += ($strateicObjectiveAverage/$newperspectiveWeight)*100;
                             }
 
                             
@@ -556,7 +569,14 @@ class trends extends Controller
                                     }
                                     $strateicObjectiveAverage += $strategicObjectivesSum/count($gettingStrategicObjectivesOfRelatedPerspective);                                    
                                 } 
-                                $strateicObjectiveAverage += ($strateicObjectiveAverage/$perspective->weight)*100;
+
+                                $newperspectiveWeight2 = $perspective->weight;
+
+                                if ($newperspectiveWeight2 == 0) {
+                                    # code...
+                                    $newperspectiveWeight2 = 1;
+                                }
+                                $strateicObjectiveAverage += ($strateicObjectiveAverage/$newperspectiveWeight2)*100;
                             }
 
                             

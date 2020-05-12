@@ -27,13 +27,13 @@ class Kernel extends ConsoleKernel
          $schedule->command('minute:delete')
                   ->cron('3 * * * *');
          $schedule->command('notification:april')
-         ->everyFiveMinutes();
+         ->cron('* * 20 4 *');
          $schedule->command('notification:january')
-         ->everyFiveMinutes();
+         ->cron('* * 20 1 *');
          $schedule->command('notification:july')
-         ->everyFiveMinutes();
+         ->cron('* * 20 7 *');
          $schedule->command('notification:october')
-         ->everyFiveMinutes();
+         ->cron('* * 20 10 *');
     }
 
     /**

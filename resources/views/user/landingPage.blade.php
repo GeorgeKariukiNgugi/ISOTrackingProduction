@@ -291,15 +291,15 @@
                                      <div class="col-md-7">
                                          <p>'.$kpiChildrens->name.'</p>
                                      </div>
-                                     <div class="col-md-3">';
+                                     <div class="col-md-3">';                                                                                                                                                          
                                       echo '<input  type = "hidden" name = "kpiChildrenId'.$subcategoriesIncrement.'" value = '.$kpiChildrens->id.'>';
-                                      // echo '<select id = "kpichild'.$kpi->id.$subcategoriesIncrement.'" name = "kpichild'.$kpi->id.$subcategoriesIncrement.'">';
-
+                                      // echo '<select id = "kpichild'.$kpi->id.$subcategoriesIncrement.'" name = "kpichild'.$kpi->id.$subcategoriesIncrement.'">';                                        
                                         if (count($kpiChildrenScores) == 0) {
                                           # code...
                                           echo '<input value = "0" id = "kpichild'.$kpi->id.$subcategoriesIncrement.'" name = "kpichild'.$kpi->id.$subcategoriesIncrement.'" type="checkbox" data-width="85" checked data-toggle="toggle" data-size="small" data-on="Done" data-off="Not Done" data-onstyle="success" data-offstyle="danger">';
                                         } else {
-                                          # code...                                                                                
+                                          # code...   
+                                          $scoreOfChild = null;                                                                                                                     
                                           foreach ($kpiChildrenScores as $kpiChildrenScore) {
                                             if ($kpiChildrenScore->kpi_id_children == $kpiChildrens->id AND $activeYaer == $kpiChildrenScore->year) {
                                               # code...

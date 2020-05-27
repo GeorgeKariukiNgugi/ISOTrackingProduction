@@ -307,9 +307,9 @@ class LoginController extends Controller
                                         
     public function logInUsingLDAP(Request $request){
         
-        // // This section of the code is used as a debugging tool so as to see if the LDAP server is working. 
+        // This section of the code is used as a debugging tool so as to see if the LDAP server is working. 
 
-        // // Getting the logIn Credentials. 
+        // Getting the logIn Credentials. 
 
         // Session::put('name', $request->email);
         // Session::put('email', $request->email);
@@ -431,8 +431,8 @@ class LoginController extends Controller
                  return view('forbidden');
                 }      
                 
-
-            }
+        }
+            
             else
             {
                 http_response_code(401); 

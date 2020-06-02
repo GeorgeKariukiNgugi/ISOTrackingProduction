@@ -208,3 +208,7 @@ Route::post('/addingNewKPIChild/{id}','adminController\programMatrices@addingKPI
 Route::get('/deletingAKPIChild/{iid}','adminController\programMatrices@deletingKPIChild');
 
 Route::post('/editKPIChild/{iid}','adminController\programMatrices@editingKPIChild');
+
+// ! this route is used to get the no page error. 
+
+Route::get('/nopage','errorAndNoPageError@noPage');

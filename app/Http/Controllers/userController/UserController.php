@@ -506,7 +506,7 @@ class UserController extends Controller
                 $perspectiveIddrawn = $StrategicObjetive->perspective_id;
                 $strategicObjectiveWeight = $StrategicObjetive->weight;
             }
-
+            // return $strategicObjectiveWeight+"  Weight.";
             if($countingTheNUmberOfReturnedStrategicObjective > 1){
 
                 foreach ($gettingStrategicObjectiveRecord as $gettingStrategicObjectiveRecords) {
@@ -555,9 +555,8 @@ class UserController extends Controller
                 $savingTheStrateicObjective->save();
             }
             $errorMessage = '<div role="alert" class="alert alert-success" style="width:70%;text-align:center;margin-right:15%;margin-top:1%;margin-left:15%;"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><span class="text-capitalize"><strong>    '.
-            $activeQuater."    Data has been saved successsfully, Move to the Next Objective".
-                        "</strong><br /></span></div>";
-        
+            $activeQuater. "    Data has been saved successsfully, Move to the Next Objective".
+                        "</strong><br /></span></div>";                  
         return response()->json(['success'=>$errorMessage]);
     }
 
@@ -826,6 +825,7 @@ class UserController extends Controller
 
     //!THIS NEXT SECTION IS USED TO GET THE TOTAL SCORE OF THE PROGRAM.
     $finalScore = 0;
+    $strategicObj = array();
     foreach ($proramPersspectives as $proramPersspective) {
         $strategicObjectivesSum = 0;
         $strateicObjectiveAverage = 0;
@@ -841,7 +841,9 @@ class UserController extends Controller
             # code...
             foreach ($gettingStrategicObjectivesOfRelatedPerspective as $strategicObjective) {
                 # code...
+
                 $strategicObjectivesSum  += $strategicObjective->score;
+                array_push($strategicObj,$strategicObjective->score);
             }
             
         }
@@ -851,6 +853,8 @@ class UserController extends Controller
         $finalScore += $strategicObjectivesSum;
         
     }
+
+    // dd($strategicObj);()
 
     $remainingValue = 100-$finalScore;
     //! creating the pie chart that will give a visual representation of everything.

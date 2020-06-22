@@ -43,6 +43,56 @@ $(function () {
                 period = parseFloat(period);
                 var definigThis = $(this);
                 switch (arithmeticStructureValue) {
+                    case "-1":
+                        function validationCase01() {
+                            inputValue = 0;
+                            var specificQuarter = id.substring(7,8);
+                            console.log("This is the new quater to llop through:   "+specificQuarter);
+                            var looping = parseFloat(specificQuarter);
+                            for (let index = 1; index <= gettingQuater; index++) {
+                                // const element = array[index];
+                                var value = $("#Quater"+index+slicedId).val();
+                                if (value === null || value === NaN || value === '') {
+                                    inputValue += 0;
+                                } else {
+                                    inputValue += parseFloat(value);
+                                }
+                                console.log("This is the looping structure for getting the ideal coloring"+index+'  '+value);
+                                
+                            }
+
+                            if (inputValue > targetValue) {
+                                definigThis.css('background-color','#fba7a7');
+                            } else if(inputValue <= targetValue){
+                                definigThis.css('background-color','#cfeda8'); 
+                            }
+                            else{
+                                definigThis.css('background-color','#FFFFFF');
+                            }
+                        }
+                            
+                        switch (period) {
+                            case 1:
+                                validationCase01();
+                                break;
+                            case 2:
+                                validationCase01();
+                                break;
+                            case 4:
+                                // validationCase1();
+                                if (inputValue > targetValue) {
+                                    definigThis.css('background-color','#fba7a7');
+                                } else if(inputValue <= targetValue){
+                                    definigThis.css('background-color','#cfeda8'); 
+                                }
+                                else{
+                                    definigThis.css('background-color','#FFFFFF');
+                                }
+                                break;
+                            default:
+                                break;
+                        }
+                        break;
                     case "0":
 
                     function validationCase0() {

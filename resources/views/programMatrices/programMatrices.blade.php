@@ -449,7 +449,7 @@
                                 <div class="col-lg-6 col-md-6  col-sm-6">
                                     <p><strong>Arithmetic Structure</strong></p>
                                 </div>
-                                <div class="col-lg-6 col-md-6  col-sm-6"><select required name="arithmeticStructure"><optgroup label="Arithmetic Structure"><option value="1">Above</option><option value="0">Below</option></optgroup></select></div>
+                                <div class="col-lg-6 col-md-6  col-sm-6"><select required name="arithmeticStructure"><optgroup label="Arithmetic Structure"><option value="1">Above</option><option value="0">Below</option> <option value="-1">Zero Tolerance</option> </optgroup></select></div>
                             </div>
                             <div class="row">
                                     <div class="col-lg-6 col-md-6  col-sm-6">
@@ -644,13 +644,20 @@
                                             @if ($kpiModal->arithmeticStructure == 0)
                                             <option value="1">Above</option>
                                             <option value="0" selected>Below</option>
+                                            <option value="-1">Zero Tolerance</option>
                                             @elseif($kpiModal->arithmeticStructure == 1)
                                             <option value="1" selected>Above</option>
-                                            <option value="0" >Below</option>   
+                                            <option value="0" >Below</option>  
+                                            <option value="-1">Zero Tolerance</option> 
+                                            @elseif($kpiModal->arithmeticStructure == -1)
+                                            <option value="-1" selected>Zero Tolerance</option>
+                                            <option value="1" >Above</option>
+                                            <option value="0" >Below</option>                                              
                                             @else 
                                             <option value="{{$kpiModal->arithmeticStructure}}" selected>Special Defined.</option>
                                             <option value="1">Above</option>
-                                            <option value="0" >Below</option>           
+                                            <option value="0" >Below</option>  
+                                            <option value="-1">Zero Tolerance</option>         
                                             @endif
                                     </select>
                                 </div>
@@ -825,7 +832,7 @@
                                 <div class="col-lg-6 col-md-6  col-sm-6">
                                     <p><strong>Arithmetic Structure</strong></p>
                                 </div>
-                                <div class="col-lg-6 col-md-6  col-sm-6"><select required name="arithmeticStructure"><optgroup label="Arithmetic Structure"><option value="1">Above</option><option value="0">Below</option></optgroup></select></div>
+                                <div class="col-lg-6 col-md-6  col-sm-6"><select required name="arithmeticStructure"><optgroup label="Arithmetic Structure"><option value="1">Above</option><option value="0">Below</option> <option value="-1">Zero Tolerance</option> </optgroup></select></div>
                             </div>
                             <div class="row">
                                     <div class="col-lg-6 col-md-6  col-sm-6">

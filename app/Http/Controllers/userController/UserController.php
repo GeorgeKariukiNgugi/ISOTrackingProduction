@@ -315,9 +315,9 @@ class UserController extends Controller
             $kpiTarget = $kpi->target;
             $kpiScore = 0;
             switch ($atithmeticStructure) {
-                    case '0':
-                    # code...
-                    if ($averageThatBecomesytd<=$kpiTarget) {
+
+                    case '-1': 
+                        if ($averageThatBecomesytd<=$kpiTarget) {
                         # code...
                         $kpiScore = 100;
                     } else {
@@ -326,11 +326,27 @@ class UserController extends Controller
                             # code...
                             $kpiScore = 0;
                         }
-                        // $percentage = $averageThatBecomesytd-$kpiTarget;
-                        // $kpiScore = ($percentage/$averageThatBecomesytd)*100; 
+                    }
+                    break;
+                    case '0':
+                    # code...
+                    if ($averageThatBecomesytd<=$kpiTarget) {
+                        # code...
+                        $kpiScore = 100;
+                    } else {
+                        # code...   
+                        if($kpiTarget == 0){
+
+                            $kpiScore = 100/($averageThatBecomesytd+1);                            
+                        }   
+                        else{
+                            $percentage = $averageThatBecomesytd-$kpiTarget;
+                            $kpiScore = ($percentage/$averageThatBecomesytd)*100; 
+                        }                  
+
 
                     }
-                    
+
                     break;
                     case '1':
                         # code...

@@ -54,6 +54,38 @@ $(function () {
                     } else {
 
                         switch (arithmeticStructureValue) {
+                            case -1:
+                                var gettingModalName = "modal" + slicedId;
+                                var unmetTargetId = "unmetTargetComment" + slicedId;
+                                var nonConformityFlag = "nonConformityFlag" + slicedId;
+                                if (inputValue > 0) {
+                                    
+                                    // $("#" + nonConformityFlag + "").val(1);
+                                        console.log("This is Zero Tollerance.");
+                                    console.log($("#" + nonConformityFlag + "").val());
+                                    $("#" + unmetTargetId + "").empty();
+
+                                    $("#" + unmetTargetId + "").append(
+                                        '<i style = "font-size:20px;color:orange;"class = "fa fa-star-half-o">   <b></b> </i></a>'
+                                    );
+                                    inputText.css('background-color', 'orange');
+                                    $("#" + nonConformityFlag + "").val(0);
+                                } else {
+                                    // !setting the flag to a negative.
+                                    $("#" + nonConformityFlag + "").val(0);
+                                    console.log($("#" + nonConformityFlag + "").val());
+                                    console.log(typeof inputValue + "  This is the data type.");
+                                    console.log("0 IT GOOD.");
+                                    $("#" + unmetTargetId + "").empty();
+                                    $("#" + unmetTargetId + "").append(
+                                        '<p style = "color:green;"> <i style = "font-size:20px;" class = "">   <b>YES</b> </i></p>'
+                                    );
+                                    inputText.css('background-color', '#cfeda8');
+
+                                    $("#" + nonConformityFlag + "").val(0);
+                                }
+                                break;
+
                             case 0:
                                 var gettingModalName = "modal" + slicedId;
                                 var unmetTargetId = "unmetTargetComment" + slicedId;
@@ -229,7 +261,52 @@ $(function () {
                         console.log( "This is the input value that I have gotten from the validatingSemiAnuallyAndAnually()  "+ inputValue);
                         var arithmeticStructure = $("#arithmeticStructure" + slicedId);
                         var arithmeticStructureValue = arithmeticStructure.val();
-                        switch (arithmeticStructureValue) {
+                        switch (arithmeticStructureValue) { 
+                            
+                            case "-1":
+                                var unmetTargetId = "unmetTargetComment" + slicedId;
+                                var gettingModalName = "modal" + slicedId;
+                                var nonConformityFlag = "nonConformityFlag" + slicedId;
+                                if (inputValue > targetValue) {
+                                    console.log(
+                                        " 0 IT SHOULD BE SMALLER. target = " +
+                                        targetValue +
+                                        "input value = " +
+                                        inputValue
+                                    );
+                                    console.log(typeof inputValue + "  This is the data type.");
+                                    // !setting the flag to a positive.
+                                    $("#" + nonConformityFlag + "").val(1);
+
+                                    console.log($("#" + nonConformityFlag + "").val());
+                                    $("#" + unmetTargetId + "").empty();
+
+                                    $("#" + unmetTargetId + "").append(
+                                        '<a href = "#" style = "color:red;" data-toggle="modal" data-target= "#' +
+                                        gettingModalName +gettingThevalue.substring(1)+
+                                        '"> </a>'
+                                    );
+                                    // $(this).focus(); 
+                                    console.log("these are the low era");
+                                    $(this).css('background-color', '#fba7a7');
+                                    $("#modal" + slicedId+gettingThevalue.substring(1)).modal("show");
+
+                                } else {
+                                    // !setting the flag to a negative.
+                                    $("#" + nonConformityFlag + "").val(0);
+                                    console.log($("#" + nonConformityFlag + "").val());
+                                    console.log(typeof inputValue + "  This is the data type.");
+                                    console.log("0 IT GOOD.");
+                                    $("#" + unmetTargetId + "").empty();
+                                    $("#" + unmetTargetId + "").append(
+                                        '<p style = "color:green;">    <b>YES</b> </i></p>'
+                                    );
+                                    $(this).css('background-color', '#cfeda8');
+
+
+                                }
+                                break;
+                            
                             case "0":
                                 var unmetTargetId = "unmetTargetComment" + slicedId;
                                 var gettingModalName = "modal" + slicedId;

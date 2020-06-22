@@ -456,7 +456,7 @@
                                 $period = 'Semi-Annually';
                                }
                                else{
-                                $period = 'Quaterly';
+                                $period = 'Quarterly';
                                }
                                @endphp
                                

@@ -33,7 +33,7 @@ $(function () {
                 gettingQuater = parseFloat(gettingQuater);
                 console.log(gettingQuater+ "  This is the quater that is given."+ id +"This is the ID.");
                 var getTargetIdName = "target" + slicedId;
-                var targetValue = parseFloat($("#" + getTargetIdName).text());
+                var targetValue = parseFloat($("." + getTargetIdName).text());
                 var inputRawValue = $("#" + id).val();
                 var inputValue = parseFloat($("#" + id).val());
                 var period = $("#period" + slicedId).val();
@@ -47,7 +47,7 @@ $(function () {
                         function validationCase01() {
                             inputValue = 0;
                             var specificQuarter = id.substring(7,8);
-                            console.log("This is the new quater to llop through:   "+specificQuarter);
+                            // console.log("This is the new quater to llop through:   "+specificQuarter);
                             var looping = parseFloat(specificQuarter);
                             for (let index = 1; index <= gettingQuater; index++) {
                                 // const element = array[index];
@@ -57,7 +57,7 @@ $(function () {
                                 } else {
                                     inputValue += parseFloat(value);
                                 }
-                                console.log("This is the looping structure for getting the ideal coloring"+index+'  '+value);
+                                // console.log("This is the looping structure for getting the ideal coloring"+index+'  '+value);
                                 
                             }
 
@@ -122,6 +122,7 @@ $(function () {
                         break;
                     case "1":
 
+                        console.log("THIS IS THE TARGET THAT IS USED TO GET THE COLORS OF THE FIELDS."+ getTargetIdName + "  THE VALUE OF THE ID IS : " + $("." + getTargetIdName).text());
                         function validationCase1() {
                             inputValue = 0;
                             var specificQuarter = id.substring(7,8);
@@ -145,8 +146,10 @@ $(function () {
                                 definigThis.css('background-color','#cfeda8'); 
                             }
                             else if(inputValue >= 0 ){
-                                definigThis.css('background-color','#FFFFFF');
-                            }
+
+                                console.log("THIS IS THE ERROR I WANT TO CATCH."+"The Input Value Is: "+inputValue+" The Target Value Is: "+ targetValue);
+                                definigThis.css('background-color','green');
+                            }                                                    
                         }
                             
                         switch (period) {
@@ -172,10 +175,10 @@ $(function () {
                         }
                         break;
                         case"3":
-                        function validationCase2(params) {
+                        function validationCase2() {
                             if (inputValue > targetValue) {
                                 definigThis.css('background-color','#fba7a7');
-                            } else if(inputValue >= targetValue){
+                            } else if(inputValue <= targetValue){
                                 definigThis.css('background-color','#cfeda8'); 
                             }
                             else{
@@ -251,7 +254,7 @@ $(function () {
                             function validationCase5() {
                                 if (inputValue > targetValue) {
                                     definigThis.css('background-color','#fba7a7');
-                                } else if(inputValue >= targetValue){
+                                } else if(inputValue <= targetValue){
                                     definigThis.css('background-color','#cfeda8'); 
                                 } else{
                                     definigThis.css('background-color','#FFFFFF');
@@ -298,6 +301,7 @@ $(function () {
                         }
                         break;
                     default:
+                        definigThis.css('background-color','black');
                         break;
                 }
 

@@ -453,15 +453,31 @@ class programMatrices extends Controller
             $kpiToActivate->save();
             # code...
         }
+        
+        
+
         Alert::success(' <h4 style = "color:green;">Congartulations    <i class="fa fa-thumbs-up"></i></h4>', 'Successfully Added A Child KPI.');
         return back();
     }
 
     public function deletingKPIChild($id){
         $kpiChildrens = kpiChildren::where('id','=',$id)->get();
+        $kpiId = null;
         foreach ($kpiChildrens as $kpiChildren) {
             # code...
+            $kpiId = $kpiChildren->keyPerfomanceIndicator_id;
             $kpiChildren->delete();
+        }
+        // ! checking to see if the KPI has children
+        $kpiChildrenForKPI = kpiChildren::where('keyPerfomanceIndicator_id',$kpiId)->get();
+        if (count($kpiChildrenForKPI) == 0) {
+            # code...
+            $kpiWithNoChildrens = KeyPerfomaceIndicator::where('id',$kpiId)->get();
+            foreach ($kpiWithNoChildrens as $kpi) {
+                # code...
+                $kpi->hasChildren = 0;
+                $kpi->save();
+            }
         }
         Alert::success(' <h4 style = "color:green;">Congartulations    <i class="fa fa-thumbs-up"></i></h4>', 'Successfully Deleted A Child KPI.');
         return back();
